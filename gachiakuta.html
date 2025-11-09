@@ -1083,7 +1083,6 @@ body {
 }
 
 
-
 /* Menu de episódios em tela cheia */
 .fullscreen-episodes-menu {
     position: fixed;
@@ -1464,24 +1463,7 @@ body {
 .player-secondary-btn.fullscreen-btn:hover {
     background: var(--highlight-hover);
 }
-/* NOVO: Estilo para o aviso de tela cheia */
-.fullscreen-warning {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    z-index: 9999999;
-    display: none;
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
-    max-width: 90%;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
+
 .fullscreen-warning.show {
     display: block;
 }
@@ -1499,21 +1481,7 @@ body {
     background: var(--highlight-hover);
 }
 
-/* Texto informativo abaixo dos botões de tela cheia */
-.fullscreen-instruction {
-    position: absolute;
-    bottom: 37px;
-    right: 2px;
-    background: transparent; /* 🔥 Fundo totalmente transparente */
-    color: #fff; /* Mantém o texto branco */
-    padding: 6px 10px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    z-index: 5;
-    max-width: 200px;
-    text-align: center;
-    pointer-events: none;
-}
+
     </style>
 </head>
 <body data-theme="light">
@@ -1641,8 +1609,8 @@ body {
     </div>
     <!-- NOVO: Aviso de Tela Cheia -->
     <div class="fullscreen-warning" id="fullscreenWarning">
-        <div><i class="fas fa-exclamation-triangle"></i> Use o botão de tela cheia do player!</div>
-        <p>Para melhor experiência, use o botão de tela cheia <strong>deste player</strong> e não o do Google Drive.</p>
+        <div><i class="fas fa-exclamation-triangle"></i> Site ainda não compativel com o navegador do Facebook</div>
+        <p>Para melhor experiência, use o navegador padrão para assistir em modo tela cheia<strong>acesse os 3 pontinhos e clique em </strong> abrir no navegador.</p>
         <button id="closeFullscreenWarning">OK, entendi!</button>
     </div>
     <!-- NOVO: Menu de episódios em tela cheia -->
@@ -2765,8 +2733,8 @@ body {
                 </div>
               </div>
               <div class="fullscreen-warning" id="fullscreenWarning">
-                <div><i class="fas fa-exclamation-triangle"></i> Use o botão de tela cheia do player!</div>
-                <p>Para melhor experiência, use o botão de tela cheia <strong>deste player</strong> e não o do Google Drive.</p>
+                <div><i class="fas fa-exclamation-triangle"></i> Site ainda não compativel com o navegador do Facebook</div>
+<p>Para melhor experiência, use o navegador padrão para assistir em modo tela cheia<strong>,acesse os 3 pontinhos no canto superior e clique em </strong> abrir no navegador.</p>
                 <button id="closeFullscreenWarning">OK, entendi!</button>
               </div>
             `;
