@@ -74,36 +74,41 @@
 <div class="menu-overlay" id="menuOverlay"></div>
 
 <script>
-  // ===== CONFIGURAÇÃO DO MENU =====
-  const menuItems = [
-    { icon: "fas fa-home", label: "Início", link: "#" },
-    { icon: "fas fa-tv", label: "Animes", link: "#" },
-    { icon: "fas fa-fire", label: "Populares", link: "#" },
-    { icon: "fas fa-tags", label: "Categorias", link: "#" },
-    { icon: "fas fa-gamepad", label: "Jogos", link: "#" },
-    { icon: "fas fa-user-plus", label: "Cadastrar", link: "#" },
-    { icon: "fas fa-sign-in-alt", label: "Login", link: "#" },
-    { icon: "fas fa-info-circle", label: "Sobre o Site", link: "#" }
-  ];
+  document.addEventListener("DOMContentLoaded", () => {
+    // ===== CONFIGURAÇÃO DO MENU =====
+    const menuItems = [
+      { icon: "fas fa-home", label: "Início", link: "#" },
+      { icon: "fas fa-tv", label: "Animes", link: "#" },
+      { icon: "fas fa-fire", label: "Populares", link: "#" },
+      { icon: "fas fa-tags", label: "Categorias", link: "#" },
+      { icon: "fas fa-gamepad", label: "Jogos", link: "#" },
+      { icon: "fas fa-user-plus", label: "Cadastrar", link: "#" },
+      { icon: "fas fa-sign-in-alt", label: "Login", link: "#" },
+      { icon: "fas fa-info-circle", label: "Sobre o Site", link: "#" }
+    ];
 
-  // ===== GERA OS LINKS DO MENU =====
-  const menuContainer = document.getElementById("menuDynamicContent");
-  menuContainer.innerHTML = menuItems.map(item => `
-    <a href="${item.link}" class="menu-item">
-      <i class="${item.icon}"></i> ${item.label}
-    </a>
-  `).join('');
+    // ===== GERA OS LINKS DO MENU =====
+    const menuContainer = document.getElementById("menuDynamicContent");
+    if (menuContainer) {
+      menuContainer.innerHTML = menuItems.map(item => `
+        <a href="${item.link}" class="menu-item">
+          <i class="${item.icon}"></i> ${item.label}
+        </a>
+      `).join('');
+    }
 
-  // ===== FUNÇÕES DE ABRIR E FECHAR =====
-  window.openHamburgerMenu = function() {
-    document.getElementById('hamburgerMenu').classList.add('open');
-    document.getElementById('menuOverlay').classList.add('active');
-  };
+    // ===== FUNÇÕES DE ABRIR E FECHAR =====
+    window.openHamburgerMenu = function() {
+      document.getElementById('hamburgerMenu').classList.add('open');
+      document.getElementById('menuOverlay').classList.add('active');
+    };
 
-  window.closeHamburgerMenu = function() {
-    document.getElementById('hamburgerMenu').classList.remove('open');
-    document.getElementById('menuOverlay').classList.remove('active');
-  };
+    window.closeHamburgerMenu = function() {
+      document.getElementById('hamburgerMenu').classList.remove('open');
+      document.getElementById('menuOverlay').classList.remove('active');
+    };
 
-  document.getElementById('menuOverlay').addEventListener('click', closeHamburgerMenu);
+    const overlay = document.getElementById('menuOverlay');
+    if (overlay) overlay.addEventListener('click', closeHamburgerMenu);
+  });
 </script>
