@@ -757,6 +757,11 @@ body {
             </section>
             
             <section class="anime-carousel-section">
+                <h2 class="carousel-title">Adicionados Recentemente</h2>
+                <div class="anime-grid" id="recently-added-grid">
+                    </div>
+            </section>
+            <section class="anime-carousel-section">
                 <h2 class="carousel-title">Visualizados Recentemente</h2>
                 <div class="anime-grid" id="recentes-externo-grid">
                     </div>
@@ -801,7 +806,7 @@ body {
     </div>
     
     <script type="module">
-        // O JavaScript permanece O MESMO
+        // O JavaScript foi atualizado com novos dados e o novo carrossel
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
         import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
         import { getFirestore, collection, getDocs, doc, getDoc, addDoc } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
@@ -823,45 +828,96 @@ body {
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
         console.log('3. [FIREBASE] App, Analytics e Firestore inicializados.');
+        
+        // Função utilitária para links em construção
+        const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
+        const CONSTRUCTION_SUBTITLE = "Sistema em construção";
 
         const homepageData = {
             hero: [
                 {
-                    title: "Saihate no Paladin",
-                    subtitle: "Nova temporada disponível!",
-                    image: "https://i.postimg.cc/1XXm0m8R/GP5HJ84P7-backdrop-wide.jpg",
-                    url: "saihate-no-paladin.html" 
+                    title: "Spy-Famyli",
+                    subtitle: "Todos têm um lado oculto — numa época em que países ao redor do mundo estavam envolvidos numa feroz guerra de informação subterrânea.",
+                    image: "https://i.postimg.cc/pL6hhZQs/28325-1-9-8b.webp",
+                    url: CONSTRUCTION_LINK
                 },
                 {
-                    title: "Jujutsu Kaisen",
-                    subtitle: "Assista ao Arco de Shibuya!",
-                    image: "https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/355c706c9a3e6f9e2053982c8f8fc32b.jpe",
-                    url: "jujutsu-kaisen.html"
+                    title: "My Hero Academy final",
+                    subtitle: "A nova temporada está aqui!",
+                    image: "https://i.postimg.cc/5yTTQD0f/28328-1-9-8b.webp",
+                    url: CONSTRUCTION_LINK
                 },
                 {
-                    title: "Solo Leveling",
-                    subtitle: "A Sombra se Levanta.",
-                    image: "https://www.crunchyroll.com/imgsrv/display/thumbnail/1200x675/catalog/crunchyroll/0d0322b291c42f06b127c59828e8538d.jpe",
-                    url: "solo-leveling.html"
+                    title: "L9999",
+                    subtitle: "Ele quase foi morto nas profundezas da masmorra por seus companheiros de confiança, mas com o dom do Gacha Infinito, ele obtém companheiros de nível 9999 e se vinga de seus antigos companheiros de grupo e do mundo, dizendo: Bem feito para você",
+                    image: "https://i.postimg.cc/GtCq0rHT/28329-1-9-8b.webp",
+                    url: CONSTRUCTION_LINK
                 }
             ],
-            recentReleases: [
-                { title: "Saihate no Paladin", subtitle: "T1.E12", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "saihate-no-paladin.html" },
-                { title: "Anime Exemplo 2", subtitle: "Episódio 5", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-                { title: "Anime Exemplo 3", subtitle: "Episódio 1", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-                { title: "Anime Exemplo 4", subtitle: "Episódio 8", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-                { title: "Anime Exemplo 5", subtitle: "Episódio 2", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-                { title: "Anime Exemplo 6", subtitle: "Episódio 10", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-                { title: "Anime Exemplo 7", subtitle: "Episódio 11", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-                { title: "Anime Exemplo 8", subtitle: "Episódio 12", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-            ],
+            // -------------------------------------------------------------
+           // Lançamentos (Animes que estão com novos episódios saindo)
+// -------------------------------------------------------------
+recentReleases: [
+    { title: "My Hero Academia Final Season", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/wM05SzhW/IMG-20251111-112503.jpg", url: CONSTRUCTION_LINK },
+    { title: "Spy × Family S3", subtitle: "Ep. 1 (4 de Out. 2025)", image: "https://i.postimg.cc/NMc3p8GT/IMG-20251111-111133.jpg", url: CONSTRUCTION_LINK },
+    { title: "One‑Punch Man S3", subtitle: "Ep. 1 (12 de Out. 2025)", image: "https://i.postimg.cc/Tw040ZHV/images-2025-11-11T111248-289.jpg", url: CONSTRUCTION_LINK },
+    { title: "Dusk Beyond the End of the World", subtitle: "Ep. 1 (26 de Set. 2025)", image: "https://i.postimg.cc/m2zm1zR8/IMG-20251111-111359.jpg", url: CONSTRUCTION_LINK },
+    { title: "This Monster Wants to Eat Me!", subtitle: "Ep. 1 (2 de Out. 2025)", image: "https://i.postimg.cc/bNtRN7H4/IMG-20251111-111459.jpg", url: CONSTRUCTION_LINK },
+    { title: "May I Ask for One Final Thing?", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/ZY9QpDLk/filters-quality-95-format-webp-6.jpg", url: CONSTRUCTION_LINK },
+    { title: "Kakuriyo: Bed & Breakfast for Spirits S2", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/VLqDFyr0/81l-Bp-Kc-TSr-L.jpg", url: CONSTRUCTION_LINK },
+    { title: "With You, Our Love Will Make It Through", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/cH3Q4Yfg/images-13.webp", url: CONSTRUCTION_LINK },
+    { title: "A Star Brighter than the Sun", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/YSW417jt/images-14.webp", url: CONSTRUCTION_LINK },
+    { title: "Who Made Me a Princess", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/jdDRWXDR/images-15.webp", url: CONSTRUCTION_LINK },
+    { title: "The Banished Court Magician Aims to Become the Strongest", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/yxt4hMkM/images-16.webp", url: CONSTRUCTION_LINK },
+    { title: "A Gatherer’s Adventure in Isekai", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/xTGqj5hJ/images-2025-11-11T112830-071.jpg", url: CONSTRUCTION_LINK },
+    { title: "Dad is a Hero, Mom is a Spirit, I’m a Reincarnator", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/NFWS2Rns/images-2025-11-11T112142-360.jpg", url: CONSTRUCTION_LINK },
+    { title: "Blue Orchestra S2", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/mr5vGxSy/images-2025-11-11T112238-100.jpg", url: CONSTRUCTION_LINK },
+    { title: "Kingdom S6", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/LswbbtHN/images-2025-11-11T112334-528.jpg", url: CONSTRUCTION_LINK },
+    { title: "To Your Eternity S3", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/nhLSVRr9/images-2025-11-11T112408-236.jpg", url: CONSTRUCTION_LINK },
+    
+],
+            // -------------------------------------------------------------
+            // Populares (Animes de grande sucesso e audiência)
+            // -------------------------------------------------------------
             popularAnimes: [
-                { title: "Anime Popular 1", subtitle: "12 Episódios", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-                { title: "Anime Popular 2", subtitle: "24 Episódios", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-                { title: "Anime Popular 3", subtitle: "Filme", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-                { title: "Anime Popular 4", subtitle: "Em Lançamento", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-                { title: "Anime Popular 5", subtitle: "Em Lançamento", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: "#" },
-            ]
+                { title: "Naruto Shippuden", subtitle: "500 Episódios", image: "https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg", url: CONSTRUCTION_LINK },
+                { title: "Dragon Ball Super", subtitle: "131 Episódios", image: "https://i.postimg.cc/DwDtGPkM/IMG-20251111-101701.jpg", url: CONSTRUCTION_LINK },
+                { title: "Death Note", subtitle: "37 Episódios", image: "https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg", url: CONSTRUCTION_LINK },
+                { title: "Fullmetal Alchemist: Brotherhood", subtitle: "64 Episódios", image: "https://i.postimg.cc/xTRQX4Rc/IMG-20251111-103449.jpg", url: CONSTRUCTION_LINK },
+                { title: "Hunter x Hunter (2011)", subtitle: "148 Episódios", image: "https://i.postimg.cc/Pr6cssyV/IMG-20251111-103924.jpg", url: CONSTRUCTION_LINK },
+                { title: "Haikyuu!!", subtitle: "4 Temporadas + Filmes", image: "https://i.postimg.cc/zGgkd9cK/IMG-20251111-104051.jpg", url: CONSTRUCTION_LINK },
+                { title: "Sword Art Online", subtitle: "T1, T2, T3 + Filmes", image: "https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg", url: CONSTRUCTION_LINK },
+                { title: "One Punch Man", subtitle: "2 Temporadas", image: "https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg", url: CONSTRUCTION_LINK },
+                { title: "Spy x Family", subtitle: "2 Temporadas + Filme", image: "https://i.postimg.cc/nLwBp25K/IMG-20251111-104434.jpg", url: CONSTRUCTION_LINK },
+                { title: "Vinland Saga", subtitle: "2 Temporadas", image: "https://i.postimg.cc/vBfBkvd3/IMG-20251111-104607.jpg", url: CONSTRUCTION_LINK },
+                { title: "Mob Psycho 100", subtitle: "3 Temporadas", image: "https://i.postimg.cc/RhPzD3qC/IMG-20251111-104810.jpg", url: CONSTRUCTION_LINK },
+                { title: "Steins;Gate", subtitle: "24 Episódios + Filme", image: "https://i.postimg.cc/CKp9JCJH/IMG-20251111-104940.jpg", url: CONSTRUCTION_LINK },
+                { title: "Demon Slayer: Kimetsu no Yaiba", subtitle: "Todas as Temporadas", image: "https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg", url: CONSTRUCTION_LINK },
+                { title: "A Viagem de Chihiro", subtitle: "Filme Clássico", image: "https://i.postimg.cc/mgyKXzq7/IMG-20251111-105228.jpg", url: CONSTRUCTION_LINK },
+                { title: "Your Name", subtitle: "Filme", image: "https://i.postimg.cc/V6ffZPDN/MV5BOTkz-MGIy-Yz-At-MDQy-Yi00OTkx-LWI2ZGMt-ODNm-Yj-My-MWM3ZGY1Xk-Ey-Xk-Fqc-Gc-V1.jpg", url: CONSTRUCTION_LINK },
+            ],
+            // -------------------------------------------------------------
+            // Adicionados Recentemente (Animes recém-inseridos na plataforma)
+            // -------------------------------------------------------------
+            recentlyAdded: [
+                { title: "Solo Leveling", subtitle: "12 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "The Apothecary Diaries", subtitle: "24 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "Mushoku Tensei S2", subtitle: "25 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "Cyberpunk: Edgerunners", subtitle: "10 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "Ranking of Kings", subtitle: "23 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "Spy x Family S1", subtitle: "25 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "Jojo's Bizarre Adventure: Stone Ocean", subtitle: "38 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "Tengen Toppa Gurren Lagann", subtitle: "27 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "Code Geass", subtitle: "2 Temporadas", image: "", url: CONSTRUCTION_LINK },
+                { title: "Violet Evergarden", subtitle: "13 Episódios + Filme", image: "", url: CONSTRUCTION_LINK },
+                { title: "Hajime no Ippo", subtitle: "75 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "Slam Dunk", subtitle: "101 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "Yu Yu Hakusho", subtitle: "112 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "Rurouni Kenshin (2023)", subtitle: "24 Episódios", image: "", url: CONSTRUCTION_LINK },
+                { title: "Trigun Stampede", subtitle: "12 Episódios", image: "", url: CONSTRUCTION_LINK },
+            ],
+            // As seções 'Visualizados Recentemente' e 'Gêneros' manterão o comportamento de carregar do HTML externo
+            // mas terão o novo ID do carrossel no buildHomepage para o novo carrossel.
         };
 
         window.searchAnimes = async (query) => {
@@ -919,7 +975,7 @@ body {
                 resultsList.innerHTML = '';
                 results.forEach(anime => {
                     const resultItem = document.createElement('a');
-                    resultItem.href = anime.watch_url || '#';
+                    resultItem.href = anime.watch_url || CONSTRUCTION_LINK;
                     resultItem.target = '_blank';
                     resultItem.className = 'result-suggestion-item';
                     resultItem.innerHTML = `
@@ -997,6 +1053,7 @@ body {
                 notification.classList.remove('show');
             }, 4000);
         }
+        window.showNotification = showNotification; // Permite o uso em links "javascript:..."
 
         function openReportModal() {
             console.log('[MODAL] Abrindo modal de reporte de erro.');
@@ -1023,7 +1080,11 @@ body {
             container.innerHTML = ''; 
             animeList.forEach((anime, index) => {
                 const card = document.createElement('a');
-                card.href = anime.url;
+                // Link é CONSTRUCTION_LINK se a URL for "#" ou vazia
+                const finalUrl = (anime.url === '#' || !anime.url) ? CONSTRUCTION_LINK : anime.url;
+                const finalSubtitle = finalUrl === CONSTRUCTION_LINK ? CONSTRUCTION_SUBTITLE : anime.subtitle;
+
+                card.href = finalUrl;
                 card.className = 'anime-card';
                 card.style.animationDelay = `${index * 50}ms`;
                 
@@ -1031,7 +1092,7 @@ body {
                     <div class="anime-card-image" style="background-image: url('${anime.image}')"></div>
                     <div class="anime-card-info">
                         <div class="anime-card-title">${anime.title}</div>
-                        <div class="anime-card-subtitle">${anime.subtitle}</div>
+                        <div class="anime-card-subtitle">${finalSubtitle}</div>
                     </div>
                 `;
                 container.appendChild(card);
@@ -1046,8 +1107,10 @@ body {
             }
             container.innerHTML = ''; 
             heroList.forEach((item, index) => {
+                const finalUrl = (item.url === '#' || !item.url) ? CONSTRUCTION_LINK : item.url;
+                
                 const slide = document.createElement('a');
-                slide.href = item.url;
+                slide.href = finalUrl;
                 slide.className = `hero-slide ${index === 0 ? 'active' : ''}`;
                 slide.innerHTML = `
                     <img src="${item.image}" alt="${item.title}" loading="${index === 0 ? 'eager' : 'lazy'}" />
@@ -1076,6 +1139,8 @@ body {
 
         /**
          * Carrega HTML externo e SUBSTITUI o conteúdo de um container.
+         * Note: Este comportamento de carregar HTML externo em um grid 
+         * é mantido para compatibilidade com o código original (C1).
          */
         async function carregarCarrosselExterno(id, arquivo) {
           try {
@@ -1084,14 +1149,26 @@ body {
             const html = await resp.text();
             const container = document.getElementById(id);
             if (container) {
-              // Alterado de volta para "=" (substituir) para preencher os novos containers dedicados
               container.innerHTML = html; 
               console.log(`[CARGA EXTERNA] Conteúdo de ${arquivo} inserido em #${id}`);
+              // Pós-processamento para links (opcional, dependendo do conteúdo do HTML externo)
+              // Geralmente o conteúdo externo já deve estar formatado corretamente.
             } else {
               console.warn(`[CARGA EXTERNA] Container #${id} não encontrado.`);
             }
           } catch (error) {
             console.error(`[CARGA EXTERNA] Erro ao carregar ${arquivo}:`, error);
+            // Injeta cards de erro para preencher a seção
+            const container = document.getElementById(id);
+            if (container) {
+                 const errorList = Array(15).fill({ 
+                    title: "Erro de Carga", 
+                    subtitle: "Arquivo Externo: " + arquivo.split('/').pop(), 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: CONSTRUCTION_LINK 
+                 });
+                 buildAnimeGrid(id, errorList); // Reutiliza a função de build com a mensagem de erro.
+            }
           }
         }
 
@@ -1105,6 +1182,8 @@ body {
             buildHeroSlider('hero-section', homepageData.hero);
             buildAnimeGrid('recent-releases-grid', homepageData.recentReleases);
             buildAnimeGrid('popular-animes-grid', homepageData.popularAnimes);
+            // NOVO CARROSSEL
+            buildAnimeGrid('recently-added-grid', homepageData.recentlyAdded);
         }
 
         const INITIAL_ZOOM = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
@@ -1203,19 +1282,22 @@ body {
         document.addEventListener('DOMContentLoaded', () => {
             console.log('17. [DOM] DOMContentLoaded. Chamando buildHomepage() e setupEventListeners().');
             
-            // 1. Carrega o conteúdo interno do Código 2
+            // 1. Carrega o conteúdo interno (Dados do JS)
             buildHomepage();
             
             // 2. Configura todos os eventos
             setupEventListeners();
 
-            // 3. (INTEGRAÇÃO C1) Carrega o conteúdo externo nos novos containers
+            // 3. (INTEGRAÇÃO C1) Carrega o conteúdo externo nos containers originais
             console.log('17b. [CARGA EXTERNA] Iniciando carregamento de carrosséis externos...');
             
-            // Injeta carrossel-recentes.html no novo container "Visualizados Recentemente"
+            // O HTML original usa 'carrossel-recentes.html' e 'carrossel-populares.html'
+            // para preencher o grid 'recentes-externo-grid' (Visualizados) e 'generos-externo-grid' (Gêneros)
+            
+            // Injeta carrossel-recentes.html no container "Visualizados Recentemente"
             carregarCarrosselExterno("recentes-externo-grid", "carrossel-recentes.html"); 
             
-            // Injeta carrossel-populares.html no novo container "Gêneros"
+            // Injeta carrossel-populares.html no container "Gêneros"
             carregarCarrosselExterno("generos-externo-grid", "carrossel-populares.html");
         });
 
