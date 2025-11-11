@@ -859,7 +859,12 @@ body {
         // ==========================================================
         const homepageData = {
             hero: [
-                { title: "Spy-Famyli", subtitle: "Todos têm um lado oculto...", image: "https://i.postimg.cc/pL6hhZQs/28325-1-9_8b.webp", url: CONSTRUCTION_LINK },
+                {
+    title: "Spy-Famyli",
+    subtitle: "Todos têm um lado oculto...",
+    image: "https://i.postimg.cc/pL6hhZQs/28325-1-9_8b.webp",
+    url: "catalogo/chotto_dake.html"
+},
                 { title: "My Hero Academy final", subtitle: "A nova temporada está aqui!", image: "https://i.postimg.cc/5yTTQD0f/28328-1_9_8b.webp", url: CONSTRUCTION_LINK },
                 { title: "L9999", subtitle: "Ele quase foi morto nas profundezas da masmorra...", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp", url: CONSTRUCTION_LINK }
             ],
@@ -882,7 +887,13 @@ body {
                 { title: "To Your Eternity S3", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/nhLSVRr9/images-2025-11-11T112408-236.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para To Your Eternity S3." },
             ],
             popularAnimes: [
-                { title: "Naruto Shippuden", subtitle: "500 Episódios", image: "https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Naruto Shippuden." },
+                {
+    title: "Naruto Shippuden",
+    subtitle: "500 Episódios",
+    image: "https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg",
+    url: "catalogo/chotto_dake.html", // usando um arquivo que já existe
+    synopsis: "Sinopse placeholder para Naruto Shippuden."
+},
                 { title: "Dragon Ball Super", subtitle: "131 Episódios", image: "https://i.postimg.cc/DwDtGPkM/IMG-20251111-101701.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Dragon Ball Super." },
                 { title: "Death Note", subtitle: "37 Episódios", image: "https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Death Note." },
                 { title: "Fullmetal Alchemist: Brotherhood", subtitle: "64 Episódios", image: "https://i.postimg.cc/xTRQX4Rc/IMG-20251111-103449.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Fullmetal Alchemist: Brotherhood." },
@@ -1290,32 +1301,32 @@ setTimeout(() => {
                 });
             });
 
-            // Lógica para single e double click nos anime-cards
-            let clickTimer = null;
-            document.querySelectorAll('.anime-card').forEach(card => {
-                card.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    if (clickTimer === null) {
-                        clickTimer = setTimeout(() => {
-                            clickTimer = null;
-                            // Single click: redireciona
-                            const url = card.dataset.url;
-                            if (url.startsWith('javascript:')) {
-                                eval(url); // Para CONSTRUCTION_LINK
-                            } else {
-                                window.location.href = url;
-                            }
-                        }, 300); // Tempo para detectar double click
-                    } else {
-                        clearTimeout(clickTimer);
-                        clickTimer = null;
-                        // Double click: abre modal de sinopse
-                        const title = card.dataset.title;
-                        const synopsis = card.dataset.synopsis;
-                        openSynopsisModal(title, synopsis);
-                    }
-                });
-            });
+           // Lógica para single e double click nos anime-cards
+let clickTimer = null;
+document.querySelectorAll('.anime-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (clickTimer === null) {
+            clickTimer = setTimeout(() => {
+                clickTimer = null;
+                // Single click: redireciona diretamente para o link do catálogo
+                const url = card.dataset.url;
+                if (url && url !== "") {
+                    window.location.href = url; // Abre o HTML correspondente
+                } else {
+                    console.warn("URL do anime não definida:", card.dataset.title);
+                }
+            }, 300); // Tempo para detectar double click
+        } else {
+            clearTimeout(clickTimer);
+            clickTimer = null;
+            // Double click: abre modal de sinopse
+            const title = card.dataset.title;
+            const synopsis = card.dataset.synopsis;
+            openSynopsisModal(title, synopsis);
+        }
+    });
+});
 
             document.getElementById('closeSynopsisModal')?.addEventListener('click', closeSynopsisModal);
             document.getElementById('synopsisModal')?.addEventListener('click', (e) => {
