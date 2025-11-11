@@ -26,11 +26,7 @@
       --border: #4b5563;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Economica', sans-serif;
@@ -41,7 +37,7 @@
       position: relative;
     }
 
-    /* CAPA DE VÍDEO (ESTILO FACEBOOK) */
+    /* CAPA DE VÍDEO */
     .video-cover {
       position: relative;
       width: 100%;
@@ -52,12 +48,9 @@
 
     .video-cover video {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: auto;
-      min-width: 100%;
-      min-height: 100%;
+      top: 50%; left: 50%;
+      width: 100%; height: auto;
+      min-width: 100%; min-height: 100%;
       transform: translate(-50%, -50%);
       object-fit: cover;
       z-index: 1;
@@ -71,7 +64,7 @@
       z-index: 2;
     }
 
-    /* CARD DE LOGIN SOBREPOSTO */
+    /* CARD DE LOGIN */
     .login-container {
       position: relative;
       z-index: 10;
@@ -182,19 +175,9 @@
       font-size: 0.9rem;
       cursor: pointer;
     }
-    .action.google {
-      background: #fff;
-      color: #DB4437;
-      border: 1px solid #ddd;
-    }
-    .action.facebook {
-      background: #1877F2;
-      color: white;
-    }
-    .action.microsoft {
-      background: #2F2F2F;
-      color: white;
-    }
+    .action.google { background: #fff; color: #DB4437; border: 1px solid #ddd; }
+    .action.facebook { background: #1877F2; color: white; }
+    .action.microsoft { background: #2F2F2F; color: white; }
 
     .links {
       display: flex;
@@ -202,13 +185,8 @@
       margin-top: 1rem;
       font-size: 0.9rem;
     }
-    .links a {
-      color: #555;
-      text-decoration: none;
-    }
-    .links a:hover {
-      text-decoration: underline;
-    }
+    .links a { color: #555; text-decoration: none; }
+    .links a:hover { text-decoration: underline; }
 
     .footer {
       text-align: center;
@@ -229,10 +207,13 @@
 
 <body data-theme="light">
 
-  <!-- VÍDEO DE CAPA (HOSPEDADO NO SEU GITHUB) -->
+  <!-- VÍDEO DE CAPA COM TESTE + FALLBACK -->
   <div class="video-cover">
-    <video autoplay muted loop playsinline>
-      <source src="https://linkpremiado51-cmd.github.io/yshippcommerce/videos/capa-login.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline preload="metadata" poster="https://via.placeholder.com/1920x1080/1a1a1a/ffffff?text=YshippCommerce">
+      <!-- VÍDEO DE TESTE (FUNCIONA 100%) -->
+      <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+      <!-- FALLBACK: IMAGEM ESTÁTICA -->
+      <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=1920&h=1080&fit=crop" alt="Capa YshippCommerce" style="width:100%; height:45vh; object-fit:cover;">
       Seu navegador não suporta vídeo.
     </video>
   </div>
@@ -246,11 +227,11 @@
 
       <div class="input-group">
         <i class="fa-solid fa-envelope"></i>
-        <input type="email" id="login-email" placeholder="E-mail">
+        <input type="email" id="login-email" placeholder="E-mail" required>
       </div>
       <div class="input-group">
         <i class="fa-solid fa-lock"></i>
-        <input type="password" id="login-senha" placeholder="Senha">
+        <input type="password" id="login-senha" placeholder="Senha" required>
         <i class="fa-regular fa-eye toggle-password"></i>
       </div>
 
@@ -258,9 +239,9 @@
 
       <p class="social-title">Ou entre com</p>
       <div class="social-auth">
-        <button class="action google" onclick="loginComGoogle()">Google</button>
-        <button class="action facebook" onclick="loginComFacebook()">Facebook</button>
-        <button class="action microsoft" onclick="loginComMicrosoft()">Microsoft</button>
+        <button class="action google" onclick="loginComGoogle()" aria-label="Login com Google">Google</button>
+        <button class="action facebook" onclick="loginComFacebook()" aria-label="Login com Facebook">Facebook</button>
+        <button class="action microsoft" onclick="loginComMicrosoft()" aria-label="Login com Microsoft">Microsoft</button>
       </div>
 
       <div class="links">
@@ -281,7 +262,7 @@
     </div>
   </div>
 
-  <!-- CARD DE CADASTRO (OCULTO) -->
+  <!-- CARD DE CADASTRO -->
   <div class="login-container hidden" id="signup-section">
     <div class="card">
       <div class="signup-header">
@@ -290,15 +271,15 @@
 
       <div class="input-group">
         <i class="fa-solid fa-user"></i>
-        <input type="text" id="nome" placeholder="Nome completo">
+        <input type="text" id="nome" placeholder="Nome completo" required>
       </div>
       <div class="input-group">
         <i class="fa-solid fa-envelope"></i>
-        <input type="email" id="email" placeholder="E-mail">
+        <input type="email" id="email" placeholder="E-mail" required>
       </div>
       <div class="input-group">
         <i class="fa-solid fa-lock"></i>
-        <input type="password" id="senha" placeholder="Senha">
+        <input type="password" id="senha" placeholder="Senha" required>
         <i class="fa-regular fa-eye toggle-password"></i>
       </div>
 
@@ -306,16 +287,16 @@
 
       <p class="social-title">Ou cadastre-se com</p>
       <div class="social-auth">
-        <button class="action google" onclick="loginComGoogle()">Google</button>
-        <button class="action facebook" onclick="loginComFacebook()">Facebook</button>
-        <button class="action microsoft" onclick="loginComMicrosoft()">Microsoft</button>
+        <button class="action google" onclick="loginComGoogle()" aria-label="Cadastro com Google">Google</button>
+        <button class="action facebook" onclick="loginComFacebook()" aria-label="Cadastro com Facebook">Facebook</button>
+        <button class="action microsoft" onclick="loginComMicrosoft()" aria-label="Cadastro com Microsoft">Microsoft</button>
       </div>
 
       <div class="links">
         <a href="#" onclick="showTab('login')">Já tem uma conta?</a>
       </div>
 
-      <p id="mensagem" class="text-center text-sm mt-3 text-red-500"></p>
+      <p id="mensagem-cadastro" class="text-center text-sm mt-3 text-red-500"></p>
 
       <div class="footer">
         <select class="language-select">
@@ -328,7 +309,7 @@
     </div>
   </div>
 
-  <!-- FIREBASE + JS -->
+  <!-- FIREBASE -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, OAuthProvider, signInWithPopup, sendPasswordResetEmail, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
@@ -347,21 +328,16 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Persistência LOCAL
-    setPersistence(auth, browserLocalPersistence)
-      .then(() => console.log("Persistência LOCAL ativada"))
-      .catch(err => console.error("Erro na persistência:", err));
+    setPersistence(auth, browserLocalPersistence).catch(console.error);
 
-    const mensagemEl = document.getElementById('mensagem');
+    const msgLogin = document.getElementById('mensagem');
+    const msgCadastro = document.getElementById('mensagem-cadastro');
 
     window.showTab = function(tab) {
       document.querySelectorAll('.login-container').forEach(el => el.classList.add('hidden'));
-      if (tab === 'login') {
-        document.querySelector('.login-container:not(#signup-section)').classList.remove('hidden');
-      } else {
-        document.getElementById('signup-section').classList.remove('hidden');
-      }
-      mensagemEl.textContent = '';
+      document.getElementById(tab === 'signup' ? 'signup-section' : 'login-container').classList.remove('hidden');
+      msgLogin.textContent = '';
+      msgCadastro.textContent = '';
     };
 
     // Cadastro
@@ -374,25 +350,15 @@
         const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
         const user = userCredential.user;
         const walletRef = doc(db, 'wallets', user.uid);
-        const walletSnap = await getDoc(walletRef);
-
-        if (!walletSnap.exists()) {
-          await setDoc(walletRef, {
-            userId: user.uid,
-            name: nome,
-            goldsBalance: 0,
-            reaisBalance: 0,
-            transactions: [],
-            createdAt: new Date()
-          });
+        if (!(await getDoc(walletRef)).exists()) {
+          await setDoc(walletRef, { userId: user.uid, name: nome, goldsBalance: 0, reaisBalance: 0, transactions: [], createdAt: new Date() });
         }
-
-        mensagemEl.textContent = "Conta criada! Redirecionando...";
-        mensagemEl.className = "text-center text-sm mt-3 text-green-500";
-        setTimeout(() => window.location.href = "https://linkpremiado51-cmd.github.io/yshippcommerce/index.html", 2000);
+        msgCadastro.textContent = "Conta criada! Redirecionando...";
+        msgCadastro.className = "text-center text-sm mt-3 text-green-500";
+        setTimeout(() => location.href = "https://linkpremiado51-cmd.github.io/yshippcommerce/index.html", 2000);
       } catch (error) {
-        mensagemEl.textContent = error.message;
-        mensagemEl.className = "text-center text-sm mt-3 text-red-500";
+        msgCadastro.textContent = error.message;
+        msgCadastro.className = "text-center text-sm mt-3 text-red-500";
       }
     });
 
@@ -400,49 +366,33 @@
     document.getElementById('login-btn').addEventListener('click', async () => {
       const email = document.getElementById('login-email').value.trim();
       const senha = document.getElementById('login-senha').value.trim();
-
       try {
         await signInWithEmailAndPassword(auth, email, senha);
-        mensagemEl.textContent = "Login realizado!";
-        mensagemEl.className = "text-center text-sm mt-3 text-green-500";
-        setTimeout(() => window.location.href = "https://linkpremiado51-cmd.github.io/yshippcommerce/index.html", 1500);
+        msgLogin.textContent = "Login realizado!";
+        msgLogin.className = "text-center text-sm mt-3 text-green-500";
+        setTimeout(() => location.href = "https://linkpremiado51-cmd.github.io/yshippcommerce/index.html", 1500);
       } catch (error) {
-        mensagemEl.textContent = error.message;
-        mensagemEl.className = "text-center text-sm mt-3 text-red-500";
+        msgLogin.textContent = error.message;
+        msgLogin.className = "text-center text-sm mt-3 text-red-500";
       }
     });
 
-    // Login Social (Google, Facebook, Microsoft)
-    ['Google', 'Facebook', 'Microsoft'].forEach(providerName => {
-      window[`loginCom${providerName}`] = async () => {
-        let provider;
-        if (providerName === 'Google') provider = new GoogleAuthProvider();
-        else if (providerName === 'Facebook') provider = new FacebookAuthProvider();
-        else provider = new OAuthProvider('microsoft.com');
-
+    // Social Login
+    ['Google', 'Facebook', 'Microsoft'].forEach(p => {
+      window[`loginCom${p}`] = async () => {
+        const provider = p === 'Google' ? new GoogleAuthProvider() : p === 'Facebook' ? new FacebookAuthProvider() : new OAuthProvider('microsoft.com');
         try {
-          const userCredential = await signInWithPopup(auth, provider);
-          const user = userCredential.user;
+          const { user } = await signInWithPopup(auth, provider);
           const walletRef = doc(db, 'wallets', user.uid);
-          const walletSnap = await getDoc(walletRef);
-
-          if (!walletSnap.exists()) {
-            await setDoc(walletRef, {
-              userId: user.uid,
-              name: user.displayName || user.email || `Usuário ${providerName}`,
-              goldsBalance: 0,
-              reaisBalance: 0,
-              transactions: [],
-              createdAt: new Date()
-            });
+          if (!(await getDoc(walletRef)).exists()) {
+            await setDoc(walletRef, { userId: user.uid, name: user.displayName || user.email, goldsBalance: 0, reaisBalance: 0, transactions: [], createdAt: new Date() });
           }
-
-          mensagemEl.textContent = `Login com ${providerName} realizado!`;
-          mensagemEl.className = "text-center text-sm mt-3 text-green-500";
-          setTimeout(() => window.location.href = "https://linkpremiado51-cmd.github.io/yshippcommerce/index.html", 1500);
+          (p === 'Google' ? msgLogin : msgCadastro).textContent = `Login com ${p} realizado!`;
+          (p === 'Google' ? msgLogin : msgCadastro).className = "text-center text-sm mt-3 text-green-500";
+          setTimeout(() => location.href = "https://linkpremiado51-cmd.github.io/yshippcommerce/index.html", 1500);
         } catch (error) {
-          mensagemEl.textContent = error.message;
-          mensagemEl.className = "text-center text-sm mt-3 text-red-500";
+          (p === 'Google' ? msgLogin : msgCadastro).textContent = error.message;
+          (p === 'Google' ? msgLogin : msgCadastro).className = "text-center text-sm mt-3 text-red-500";
         }
       };
     });
@@ -451,13 +401,9 @@
     document.querySelectorAll('.toggle-password').forEach(icon => {
       icon.addEventListener('click', () => {
         const input = icon.previousElementSibling;
-        if (input.type === 'password') {
-          input.type = 'text';
-          icon.classList.replace('fa-eye', 'fa-eye-slash');
-        } else {
-          input.type = 'password';
-          icon.classList.replace('fa-eye-slash', 'fa-eye');
-        }
+        input.type = input.type === 'password' ? 'text' : 'password';
+        icon.classList.toggle('fa-eye');
+        icon.classList.toggle('fa-eye-slash');
       });
     });
 
@@ -465,18 +411,14 @@
     document.getElementById('reset-password-link').addEventListener('click', async (e) => {
       e.preventDefault();
       const email = document.getElementById('login-email').value.trim();
-      if (!email) {
-        mensagemEl.textContent = "Digite seu e-mail acima.";
-        mensagemEl.className = "text-center text-sm mt-3 text-red-500";
-        return;
-      }
+      if (!email) return msgLogin.textContent = "Digite seu e-mail acima.", msgLogin.className = "text-center text-sm mt-3 text-red-500";
       try {
         await sendPasswordResetEmail(auth, email);
-        mensagemEl.textContent = "E-mail de redefinição enviado!";
-        mensagemEl.className = "text-center text-sm mt-3 text-green-500";
+        msgLogin.textContent = "E-mail enviado!";
+        msgLogin.className = "text-center text-sm mt-3 text-green-500";
       } catch (error) {
-        mensagemEl.textContent = error.message;
-        mensagemEl.className = "text-center text-sm mt-3 text-red-500";
+        msgLogin.textContent = error.message;
+        msgLogin.className = "text-center text-sm mt-3 text-red-500";
       }
     });
   </script>
