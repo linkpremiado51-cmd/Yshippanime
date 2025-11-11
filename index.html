@@ -721,18 +721,14 @@ body {
             </div>
             <div class="result-card" id="result-card"></div>
         </nav>
-       <!-- Contêiner para o menu lateral -->
-<div id="menu-lateral-container"></div>
-
-<script>
-    // Carrega automaticamente o menu-lateral.html
-    fetch("menu-lateral.html")
-        .then(resp => resp.text())
-        .then(html => {
-            document.getElementById("menu-lateral-container").innerHTML = html;
-        })
-        .catch(err => console.error("[ERRO] Falha ao carregar menu-lateral.html:", err));
-</script>
+        <div class="hamburger-menu" id="hamburgerMenu">
+            <a href="#" class="menu-item"><i class="fas fa-tv"></i> Animes</a>
+            <a href="#" class="menu-item"><i class="fas fa-user-plus"></i> Cadastrar</a>
+            <a href="#" class="menu-item"><i class="fas fa-sign-in-alt"></i> Fazer Login</a>
+            <a href="#" class="menu-item" onclick="closeHamburgerMenu()"><i class="fas fa-times"></i> Fechar</a>
+        </div>
+        <div class="menu-overlay" id="menuOverlay"></div>
+    </div>
 
     <div class="zoom-container" id="zoom-container">
         
