@@ -173,7 +173,17 @@
       .then(html => {
         document.getElementById("menu-lateral-container").innerHTML = html;
       });
+// Carrega os carrosséis externos
+async function carregarCarrossel(id, arquivo) {
+  const resp = await fetch(arquivo);
+  const html = await resp.text();
+  document.getElementById(id).innerHTML = html;
+}
 
+// Chama os carrosséis
+carregarCarrossel("recent-releases-section", "carrossel-recentes.html");
+carregarCarrossel("popular-animes-grid", "carrossel-populares.html");
+    
     // Tema claro/escuro
     document.getElementById("theme-toggle").addEventListener("click", () => {
       const body = document.body;
