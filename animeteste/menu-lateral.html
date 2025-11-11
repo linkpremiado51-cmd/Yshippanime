@@ -1,6 +1,5 @@
 <!-- menu-lateral.html -->
 <style>
-  /* ===== MENU LATERAL UNIVERSAL ===== */
   .hamburger-menu {
     position: fixed;
     top: 0;
@@ -8,155 +7,164 @@
     width: 280px;
     max-width: 80%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
     z-index: 4000;
-    transition: right 0.3s ease-in-out;
-    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.25);
+    transition: right .3s;
+    box-shadow: -4px 0 12px rgba(0,0,0,.25);
     padding: 70px 20px 20px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
   }
-
-  .hamburger-menu.open {
-    right: 0;
-  }
-
-  .menu-section {
-    margin-bottom: 20px;
-  }
-
-  .menu-section h3 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 8px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding-bottom: 4px;
-  }
-
+  .hamburger-menu.open { right:0; }
   .menu-item {
     padding: 12px;
     margin-bottom: 8px;
-    background: rgba(0, 0, 0, 0.05);
-    color: #1a1a1a;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    border-radius: 6px;
-    transition: background 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    background: rgba(0,0,0,.05);
+    border-radius:6px;
+    text-decoration:none;
+    color:#111;
+    display:flex;
+    align-items:center;
+    gap:10px;
   }
-
-  .menu-item:hover {
-    background: rgba(0, 0, 0, 0.15);
-  }
-
-  .menu-item.active {
-    background: rgba(0, 0, 0, 0.25);
-    font-weight: 600;
-  }
-
+  .menu-item:hover { background:rgba(0,0,0,.15); }
+  .menu-section h3 {font-size:.9rem;margin:10px 0 6px;}
   .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 3999;
-    display: none;
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,.5);z-index:3999;display:none;
   }
-
-  .menu-overlay.active {
-    display: block;
+  .menu-overlay.active {display:block;}
+  #alertModal {
+    position:fixed;top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    background:white;padding:20px;border-radius:8px;
+    box-shadow:0 4px 20px rgba(0,0,0,.3);
+    z-index:5000;display:none;max-width:300px;text-align:center;
   }
-
-  i {
-    width: 22px;
-    text-align: center;
-  }
+  #alertModal button {margin-top:10px;padding:6px 12px;}
 </style>
 
-<!-- Estrutura HTML -->
 <div class="hamburger-menu" id="hamburgerMenu">
+  <div id="authArea" class="menu-section">
+    <h3>Conta</h3>
+    <a href="https://linkpremiado51-cmd.github.io/yshippcommerce/cadastro.html" class="menu-item" id="registerLink">
+      <i class="fas fa-user-plus"></i> Cadastrar
+    </a>
+    <a href="https://linkpremiado51-cmd.github.io/yshippcommerce/cadastro.html" class="menu-item" id="loginLink">
+      <i class="fas fa-sign-in-alt"></i> Fazer Login
+    </a>
+  </div>
+
   <div id="menuDynamicContent"></div>
 
   <a href="#" class="menu-item" onclick="closeHamburgerMenu()">
     <i class="fas fa-times"></i> Fechar
   </a>
 </div>
-
 <div class="menu-overlay" id="menuOverlay"></div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const currentPage = window.location.pathname.split("/").pop();
+<div id="alertModal">
+  <p>Você precisa se cadastrar ou fazer login para acessar a Carteira.</p>
+  <button onclick="document.getElementById('alertModal').style.display='none'">Fechar</button>
+</div>
 
-    // ===== SEÇÕES DO MENU =====
-    const sections = [
-      {
-        title: "Adicionados Recentemente",
-        items: [
-          { icon: "fas fa-tv", label: "Chotto Dake", link: "chotto_dake.html" },
-          { icon: "fas fa-fire", label: "Gachiakuta", link: "gachiakuta.html" },
-          { icon: "fas fa-tags", label: "Orient", link: "orient.html" },
-          { icon: "fas fa-star", label: "Saihate no Paladin", link: "saihate_no_paradin.html" }
-        ]
-      },
-      {
-        title: "Populares",
-        items: [
-          { icon: "fas fa-bolt", label: "Top Animes", link: "#" },
-          { icon: "fas fa-crown", label: "Mais Assistidos", link: "#" }
-        ]
-      },
-      {
-        title: "Gêneros",
-        items: [
-          { icon: "fas fa-dragon", label: "Ação", link: "#" },
-          { icon: "fas fa-heart", label: "Romance", link: "#" },
-          { icon: "fas fa-ghost", label: "Sobrenatural", link: "#" },
-          { icon: "fas fa-graduation-cap", label: "Escolar", link: "#" }
-        ]
-      },
-      {
-        title: "Outros",
-        items: [
-          { icon: "fas fa-wallet", label: "Carteira", link: "https://linkpremiado51-cmd.github.io/yshippcommerce/carteira.html" },
-          { icon: "fas fa-info-circle", label: "Sobre o Site", link: "#" }
-        ]
-      }
-    ];
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
-    // ===== GERA OS LINKS =====
-    const menuContainer = document.getElementById("menuDynamicContent");
-    menuContainer.innerHTML = sections.map(section => `
-      <div class="menu-section">
-        <h3>${section.title}</h3>
-        ${section.items.map(item => `
-          <a href="${item.link}" class="menu-item ${item.link.includes(currentPage) ? 'active' : ''}">
-            <i class="${item.icon}"></i> ${item.label}
-          </a>
-        `).join('')}
-      </div>
-    `).join('');
+  const firebaseConfig = {
+    apiKey: "AIzaSyDbxygCeFLDbf6Ge6YZHJqq0VvlSSfbc_I",
+    authDomain: "yshippcommerce.firebaseapp.com",
+    databaseURL: "https://yshippcommerce-default-rtdb.firebaseio.com",
+    projectId: "yshippcommerce",
+    storageBucket: "yshippcommerce.firebasestorage.app",
+    messagingSenderId: "680576769517",
+    appId: "1:680576769517:web:ace30d8e451ee70511dbe4",
+    measurementId: "G-L3K47XVVJH"
+  };
 
-    // ===== FUNÇÕES DE ABRIR E FECHAR =====
-    window.openHamburgerMenu = function() {
-      document.getElementById('hamburgerMenu').classList.add('open');
-      document.getElementById('menuOverlay').classList.add('active');
-    };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-    window.closeHamburgerMenu = function() {
-      document.getElementById('hamburgerMenu').classList.remove('open');
-      document.getElementById('menuOverlay').classList.remove('active');
-    };
+  const sections = [
+    {
+      title: "Adicionados Recentemente",
+      items: [
+        { icon: "fas fa-tv", label: "Chotto Dake", link: "chotto_dake.html" },
+        { icon: "fas fa-fire", label: "Gachiakuta", link: "gachiakuta.html" },
+        { icon: "fas fa-tags", label: "Orient", link: "orient.html" },
+        { icon: "fas fa-star", label: "Saihate no Paladin", link: "saihate_no_paradin.html" }
+      ]
+    },
+    {
+      title: "Populares",
+      items: [
+        { icon: "fas fa-bolt", label: "Top Animes", link: "#" },
+        { icon: "fas fa-crown", label: "Mais Assistidos", link: "#" }
+      ]
+    },
+    {
+      title: "Gêneros",
+      items: [
+        { icon: "fas fa-dragon", label: "Ação", link: "#" },
+        { icon: "fas fa-heart", label: "Romance", link: "#" },
+        { icon: "fas fa-ghost", label: "Sobrenatural", link: "#" },
+        { icon: "fas fa-graduation-cap", label: "Escolar", link: "#" }
+      ]
+    },
+    {
+      title: "Outros",
+      items: [
+        { icon: "fas fa-wallet", label: "Carteira", link: "https://linkpremiado51-cmd.github.io/yshippcommerce/carteira.html", protected:true },
+        { icon: "fas fa-info-circle", label: "Sobre o Site", link: "#" }
+      ]
+    }
+  ];
 
-    const overlay = document.getElementById('menuOverlay');
-    if (overlay) overlay.addEventListener('click', closeHamburgerMenu);
+  const menuContainer = document.getElementById("menuDynamicContent");
+  const currentPage = window.location.pathname.split("/").pop();
+
+  menuContainer.innerHTML = sections.map(section => `
+    <div class="menu-section">
+      <h3>${section.title}</h3>
+      ${section.items.map(item => `
+        <a href="${item.link}" class="menu-item ${item.link.includes(currentPage) ? 'active' : ''}"
+           ${item.protected ? 'data-protected="true"' : ''}>
+          <i class="${item.icon}"></i> ${item.label}
+        </a>
+      `).join('')}
+    </div>
+  `).join('');
+
+  // controle de login simples
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      localStorage.setItem("userLogged", "true");
+    } else {
+      localStorage.removeItem("userLogged");
+    }
   });
+
+  // interceptar clique em links protegidos
+  menuContainer.addEventListener("click", e => {
+    const link = e.target.closest("a[data-protected]");
+    if (link) {
+      if (!localStorage.getItem("userLogged")) {
+        e.preventDefault();
+        document.getElementById("alertModal").style.display = "block";
+      }
+    }
+  });
+
+  window.openHamburgerMenu = function() {
+    document.getElementById('hamburgerMenu').classList.add('open');
+    document.getElementById('menuOverlay').classList.add('active');
+  };
+  window.closeHamburgerMenu = function() {
+    document.getElementById('hamburgerMenu').classList.remove('open');
+    document.getElementById('menuOverlay').classList.remove('active');
+  };
+  document.getElementById('menuOverlay').addEventListener('click', closeHamburgerMenu);
 </script>
