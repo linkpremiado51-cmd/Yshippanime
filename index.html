@@ -647,9 +647,9 @@ body {
     color: var(--text-secondary);
 }
 
-/* ==========================================================
-   ✨ ALTERAÇÕES PARA 4 COLUNAS NO MOBILE (SOLICITADO)     
-   ========================================================== */
+/* ========================================================== */
+/* ✨ ALTERAÇÕES PARA 4 COLUNAS NO MOBILE (SOLICITADO)     */
+/* ========================================================== */
 
 @media (max-width: 768px) {
     .hero-section {
@@ -1294,10 +1294,12 @@ recentReleases: [
             // O HTML original usa 'carrossel-recentes.html' e 'carrossel-populares.html'
             // para preencher o grid 'recentes-externo-grid' (Visualizados) e 'generos-externo-grid' (Gêneros)
             
-           // CORREÇÃO: Adicionando as chamadas de função para carregar os carrosséis externos
-           carregarCarrosselExterno('recentes-externo-grid', 'carrossel-recentes.html');
-           carregarCarrosselExterno('generos-externo-grid', 'carrossel-generos.html');
-           // A linha incorreta "carrossel-recentes.html" foi removida e substituída pelas duas chamadas acima.
+            // Injeta carrossel-recentes.html no container "Visualizados Recentemente"
+            carregarCarrosselExterno("recentes-externo-grid", "carrossel-recentes.html"); 
+            
+            // Injeta carrossel-populares.html no container "Gêneros"
+            carregarCarrosselExterno("generos-externo-grid", "carrossel-populares.html");
+        });
 
         window.addEventListener('beforeunload', () => {
             console.log('[LIFECYCLE] Evento beforeunload. Salvando estado...');
