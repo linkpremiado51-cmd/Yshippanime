@@ -1,0 +1,162 @@
+<!-- menu-lateral.html -->
+<style>
+  /* ===== MENU LATERAL UNIVERSAL ===== */
+  .hamburger-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 280px;
+    max-width: 80%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    z-index: 4000;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.25);
+    padding: 70px 20px 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hamburger-menu.open {
+    right: 0;
+  }
+
+  .menu-section {
+    margin-bottom: 20px;
+  }
+
+  .menu-section h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 4px;
+  }
+
+  .menu-item {
+    padding: 12px;
+    margin-bottom: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .menu-item:hover {
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  .menu-item.active {
+    background: rgba(0, 0, 0, 0.25);
+    font-weight: 600;
+  }
+
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 3999;
+    display: none;
+  }
+
+  .menu-overlay.active {
+    display: block;
+  }
+
+  i {
+    width: 22px;
+    text-align: center;
+  }
+</style>
+
+<!-- Estrutura HTML -->
+<div class="hamburger-menu" id="hamburgerMenu">
+  <div id="menuDynamicContent"></div>
+
+  <a href="#" class="menu-item" onclick="closeHamburgerMenu()">
+    <i class="fas fa-times"></i> Fechar
+  </a>
+</div>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentPage = window.location.pathname.split("/").pop();
+
+    // ===== SEÇÕES DO MENU =====
+    const sections = [
+      {
+        title: "Adicionados Recentemente",
+        items: [
+          { icon: "fas fa-tv", label: "Chotto Dake", link: "chotto_dake.html" },
+          { icon: "fas fa-fire", label: "Gachiakuta", link: "gachiakuta.html" },
+          { icon: "fas fa-tags", label: "Orient", link: "orient.html" },
+          { icon: "fas fa-star", label: "Saihate no Paladin", link: "saihate_no_paradin.html" }
+        ]
+      },
+      {
+        title: "Populares",
+        items: [
+          { icon: "fas fa-bolt", label: "Top Animes", link: "#" },
+          { icon: "fas fa-crown", label: "Mais Assistidos", link: "#" }
+        ]
+      },
+      {
+        title: "Gêneros",
+        items: [
+          { icon: "fas fa-dragon", label: "Ação", link: "#" },
+          { icon: "fas fa-heart", label: "Romance", link: "#" },
+          { icon: "fas fa-ghost", label: "Sobrenatural", link: "#" },
+          { icon: "fas fa-graduation-cap", label: "Escolar", link: "#" }
+        ]
+      },
+      {
+        title: "Outros",
+        items: [
+          { icon: "fas fa-wallet", label: "Carteira", link: "https://linkpremiado51-cmd.github.io/yshippcommerce/carteira.html" },
+          { icon: "fas fa-info-circle", label: "Sobre o Site", link: "#" }
+        ]
+      }
+    ];
+
+    // ===== GERA OS LINKS =====
+    const menuContainer = document.getElementById("menuDynamicContent");
+    menuContainer.innerHTML = sections.map(section => `
+      <div class="menu-section">
+        <h3>${section.title}</h3>
+        ${section.items.map(item => `
+          <a href="${item.link}" class="menu-item ${item.link.includes(currentPage) ? 'active' : ''}">
+            <i class="${item.icon}"></i> ${item.label}
+          </a>
+        `).join('')}
+      </div>
+    `).join('');
+
+    // ===== FUNÇÕES DE ABRIR E FECHAR =====
+    window.openHamburgerMenu = function() {
+      document.getElementById('hamburgerMenu').classList.add('open');
+      document.getElementById('menuOverlay').classList.add('active');
+    };
+
+    window.closeHamburgerMenu = function() {
+      document.getElementById('hamburgerMenu').classList.remove('open');
+      document.getElementById('menuOverlay').classList.remove('active');
+    };
+
+    const overlay = document.getElementById('menuOverlay');
+    if (overlay) overlay.addEventListener('click', closeHamburgerMenu);
+  });
+</script>
