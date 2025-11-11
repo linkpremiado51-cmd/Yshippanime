@@ -211,7 +211,432 @@
   <div class="video-cover">
     <video autoplay muted loop playsinline preload="metadata" poster="https://via.placeholder.com/1920x1080/1a1a1a/ffffff?text=YshippCommerce">
       <!-- VÍDEO DE TESTE (FUNCIONA 100%) -->
-      <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+      <source src="<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acesso - YshippCommerce</title>
+  <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --background: #f5f7fa;
+      --surface: #ffffff;
+      --text-primary: #333333;
+      --text-secondary: #777777;
+      --primary: #007bff;
+      --primary-hover: #0056b3;
+      --border: #e5e7eb;
+    }
+    [data-theme="dark"] {
+      --background: #1f2937;
+      --surface: #374151;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --border: #4b5563;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Economica', sans-serif;
+      background: #000;
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* CAPA DE VÍDEO */
+    .video-cover {
+      position: relative;
+      width: 100%;
+      height: 45vh;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-cover video {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 100%; height: auto;
+      min-width: 100%; min-height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .video-cover::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+      z-index: 2;
+    }
+
+    /* CARD DE LOGIN */
+    .login-container {
+      position: relative;
+      z-index: 10;
+      margin-top: -100px;
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    [data-theme="dark"] .card {
+      background: rgba(31, 41, 55, 0.95);
+      color: #f3f4f6;
+    }
+
+    .login-header h2, .signup-header h2 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 1.2rem;
+    }
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      transform: translateY(-50%);
+      color: #777;
+      font-size: 1.1rem;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 14px 14px 14px 50px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--background);
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+    .input-group input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,123,255,0.2);
+      outline: none;
+    }
+    .toggle-password {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #777;
+    }
+
+    .btn-login, .btn-signup {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-login:hover, .btn-signup:hover {
+      background: var(--primary-hover);
+    }
+
+    .social-title {
+      text-align: center;
+      margin: 1.5rem 0 0.5rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .social-auth {
+      display: flex;
+      gap: 8px;
+      margin-top: 0.5rem;
+    }
+    .action {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .action.google { background: #fff; color: #DB4437; border: 1px solid #ddd; }
+    .action.facebook { background: #1877F2; color: white; }
+    .action.microsoft { background: #2F2F2F; color: white; }
+
+    .links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .links a { color: #555; text-decoration: none; }
+    .links a:hover { text-decoration: underline; }
+
+    .footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 480px) {
+      .video-cover { height: 35vh; }
+      .login-container { margin-top: -80px; }
+      .card { padding: 24px; }
+    }
+  </style>
+</head>
+
+<body data-theme="light">
+
+  <!-- VÍDEO DE CAPA COM TESTE + FALLBACK -->
+  <div class="video-cover">
+    <video autoplay muted loop playsinline preload="metadata" poster="https://via.placeholder.com/1920x1080/1a1a1a/ffffff?text=YshippCommerce">
+      <!-- VÍDEO DE TESTE (FUNCIONA 100%) -->
+      <source src="https://linkpremiado51-cmd.github.io/Yshippanime/videos/capa-login.mp4" type="video/mp4">
+      <!-- FALLBACK: IMAGEM ESTÁTICA -->
+      <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=1920&h=1080&fit=crop" alt="Capa YshippCommerce" style="width:100%; height:45vh; object-fit:cover;">
+      Seu navegador não suporta vídeo.
+    </video>
+  </div>
+
+  <!-- CARD DE LOGIN -->
+  <div class="login-container">
+    <div class="card">
+      <div class="login-header">
+        <h2>YshippCommerce</h2>
+      </div>
+
+      <div class="input-group">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" id="login-email" placeholder="E-mail" required>
+      </div>
+      <div class="input-group">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" id="login-senha" placeholder="Senha" required>
+        <i class="fa-regular fa-eye toggle-password"></i>
+      </div>
+
+      <button class="btn-login" id="login-btn">Entrar</button>
+
+      <p class="social-title">Ou entre com</p>
+      <div class="social-auth">
+        <button class="action google" onclick="loginComGoogle()" aria-label="Login com Google">Google</button>
+        <button class="action facebook" onclick="loginComFacebook()" aria-label="Login com Facebook">Facebook</button>
+        <button class="action microsoft" onclick="loginComMicrosoft()" aria-label="Login com Microsoft">Microsoft</button>
+      </div>
+
+      <div class="links">
+        <a href="#" id="reset-password-link">Esqueceu a senha?</a>
+        <a href="#" onclick="showTab('signup')">Criar conta</a>
+      </div>
+
+      <p id="mensagem" class="text-center text-sm mt-3 text-red-500"></p>
+
+      <div class="footer">
+        <select class="language-select">
+          <option>Português (BR)</option>
+          <option>English (US)</option>
+          <option>Español</option>
+        </select>
+        <p>© 2025 Yshipp Systems — v1.4.3</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD DE CADASTRO -->
+  <div class="login-container hidden" id="signup-section">
+    <div class="card">
+      <div class="signup-header">
+        <h2>YshippCommerce</h2>
+      </div>
+
+      <div class="input-group">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" id="nome" placeholder="Nome completo" required>
+      </div>
+      <div class="input-group">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" id="email" placeholder="E-mail" required>
+      </div>
+      <div class="input-group">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" id="senha" placeholder="Senha" required>
+        <i class="fa-regular fa-eye toggle-password"></i>
+      </div>
+
+      <button class="btn-signup" id="signup-btn">Cadastrar</button>
+
+      <p class="social-title">Ou cadastre-se com</p>
+      <div class="social-auth">
+        <button class="action google" onclick="loginComGoogle()" aria-label="Cadastro com Google">Google</button>
+        <button class="action facebook" onclick="loginComFacebook()" aria-label="Cadastro com Facebook">Facebook</button>
+        <button class="action microsoft" onclick="loginComMicrosoft()" aria-label="Cadastro com Microsoft">Microsoft</button>
+      </div>
+
+      <div class="links">
+        <a href="#" onclick="showTab('login')">Já tem uma conta?</a>
+      </div>
+
+      <p id="mensagem-cadastro" class="text-center text-sm mt-3 text-red-500"></p>
+
+      <div class="footer">
+        <select class="language-select">
+          <option>Português (BR)</option>
+          <option>English (US)</option>
+          <option>Español</option>
+        </select>
+        <p>© 2025 Yshipp Systems — v1.4.3</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIREBASE -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, FacebookAuthProvider, OAuthProvider, signInWithPopup, sendPasswordResetEmail, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDbxygCeFLDbf6Ge6YZHJqq0VvlSSfbc_I",
+      authDomain: "yshippcommerce.firebaseapp.com",
+      projectId: "yshippcommerce",
+      storageBucket: "yshippcommerce.appspot.com",
+      messagingSenderId: "680576769517",
+      appId: "1:680576769517:web:ace30d8e451ee70511dbe4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    setPersistence(auth, browserLocalPersistence).catch(console.error);
+
+    const msgLogin = document.getElementById('mensagem');
+    const msgCadastro = document.getElementById('mensagem-cadastro');
+
+    window.showTab = function(tab) {
+      document.querySelectorAll('.login-container').forEach(el => el.classList.add('hidden'));
+      document.getElementById(tab === 'signup' ? 'signup-section' : 'login-container').classList.remove('hidden');
+      msgLogin.textContent = '';
+      msgCadastro.textContent = '';
+    };
+
+    // Cadastro
+    document.getElementById('signup-btn').addEventListener('click', async () => {
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value.trim();
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
+        const user = userCredential.user;
+        const walletRef = doc(db, 'wallets', user.uid);
+        if (!(await getDoc(walletRef)).exists()) {
+          await setDoc(walletRef, { userId: user.uid, name: nome, goldsBalance: 0, reaisBalance: 0, transactions: [], createdAt: new Date() });
+        }
+        msgCadastro.textContent = "Conta criada! Redirecionando...";
+        msgCadastro.className = "text-center text-sm mt-3 text-green-500";
+        setTimeout(() => location.href = "https://linkpremiado51-cmd.github.io/yshippcommerce/index.html", 2000);
+      } catch (error) {
+        msgCadastro.textContent = error.message;
+        msgCadastro.className = "text-center text-sm mt-3 text-red-500";
+      }
+    });
+
+    // Login
+    document.getElementById('login-btn').addEventListener('click', async () => {
+      const email = document.getElementById('login-email').value.trim();
+      const senha = document.getElementById('login-senha').value.trim();
+      try {
+        await signInWithEmailAndPassword(auth, email, senha);
+        msgLogin.textContent = "Login realizado!";
+        msgLogin.className = "text-center text-sm mt-3 text-green-500";
+        setTimeout(() => location.href = "https://linkpremiado51-cmd.github.io/yshippcommerce/index.html", 1500);
+      } catch (error) {
+        msgLogin.textContent = error.message;
+        msgLogin.className = "text-center text-sm mt-3 text-red-500";
+      }
+    });
+
+    // Social Login
+    ['Google', 'Facebook', 'Microsoft'].forEach(p => {
+      window[`loginCom${p}`] = async () => {
+        const provider = p === 'Google' ? new GoogleAuthProvider() : p === 'Facebook' ? new FacebookAuthProvider() : new OAuthProvider('microsoft.com');
+        try {
+          const { user } = await signInWithPopup(auth, provider);
+          const walletRef = doc(db, 'wallets', user.uid);
+          if (!(await getDoc(walletRef)).exists()) {
+            await setDoc(walletRef, { userId: user.uid, name: user.displayName || user.email, goldsBalance: 0, reaisBalance: 0, transactions: [], createdAt: new Date() });
+          }
+          (p === 'Google' ? msgLogin : msgCadastro).textContent = `Login com ${p} realizado!`;
+          (p === 'Google' ? msgLogin : msgCadastro).className = "text-center text-sm mt-3 text-green-500";
+          setTimeout(() => location.href = "https://linkpremiado51-cmd.github.io/yshippcommerce/index.html", 1500);
+        } catch (error) {
+          (p === 'Google' ? msgLogin : msgCadastro).textContent = error.message;
+          (p === 'Google' ? msgLogin : msgCadastro).className = "text-center text-sm mt-3 text-red-500";
+        }
+      };
+    });
+
+    // Toggle senha
+    document.querySelectorAll('.toggle-password').forEach(icon => {
+      icon.addEventListener('click', () => {
+        const input = icon.previousElementSibling;
+        input.type = input.type === 'password' ? 'text' : 'password';
+        icon.classList.toggle('fa-eye');
+        icon.classList.toggle('fa-eye-slash');
+      });
+    });
+
+    // Reset senha
+    document.getElementById('reset-password-link').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      if (!email) return msgLogin.textContent = "Digite seu e-mail acima.", msgLogin.className = "text-center text-sm mt-3 text-red-500";
+      try {
+        await sendPasswordResetEmail(auth, email);
+        msgLogin.textContent = "E-mail enviado!";
+        msgLogin.className = "text-center text-sm mt-3 text-green-500";
+      } catch (error) {
+        msgLogin.textContent = error.message;
+        msgLogin.className = "text-center text-sm mt-3 text-red-500";
+      }
+    });
+  </script>
+</body>
+</html>" type="video/mp4">
       <!-- FALLBACK: IMAGEM ESTÁTICA -->
       <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=1920&h=1080&fit=crop" alt="Capa YshippCommerce" style="width:100%; height:45vh; object-fit:cover;">
       Seu navegador não suporta vídeo.
