@@ -1,6 +1,6 @@
 <!-- menu-lateral.html -->
 <style>
-  /* ===== MENU LATERAL ===== */
+  /* ===== MENU LATERAL UNIVERSAL ===== */
   .hamburger-menu {
     position: fixed;
     top: 0;
@@ -42,6 +42,11 @@
     background: rgba(0, 0, 0, 0.15);
   }
 
+  .menu-item.active {
+    background: rgba(0, 0, 0, 0.25);
+    font-weight: 600;
+  }
+
   .menu-overlay {
     position: fixed;
     top: 0;
@@ -57,7 +62,6 @@
     display: block;
   }
 
-  /* Ícones FontAwesome (caso use CDN no chotto_dake.html) */
   i {
     width: 22px;
     text-align: center;
@@ -75,27 +79,25 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    // ===== CONFIGURAÇÃO DO MENU =====
+    // ===== LINKS DO MENU =====
     const menuItems = [
-      { icon: "fas fa-home", label: "Início", link: "#" },
-      { icon: "fas fa-tv", label: "Animes", link: "#" },
-      { icon: "fas fa-fire", label: "Populares", link: "#" },
-      { icon: "fas fa-tags", label: "Categorias", link: "#" },
-      { icon: "fas fa-gamepad", label: "Jogos", link: "#" },
-      { icon: "fas fa-user-plus", label: "Cadastrar", link: "#" },
-      { icon: "fas fa-sign-in-alt", label: "Login", link: "#" },
+      { icon: "fas fa-home", label: "Início", link: "../index.html" },
+      { icon: "fas fa-tv", label: "Chotto Dake", link: "chotto_dake.html" },
+      { icon: "fas fa-fire", label: "Gachiakuta", link: "gachiakuta.html" },
+      { icon: "fas fa-tags", label: "Orient", link: "orient.html" },
+      { icon: "fas fa-star", label: "Saihate no Paladin", link: "saihate_no_paradin.html" },
       { icon: "fas fa-info-circle", label: "Sobre o Site", link: "#" }
     ];
 
     // ===== GERA OS LINKS DO MENU =====
     const menuContainer = document.getElementById("menuDynamicContent");
-    if (menuContainer) {
-      menuContainer.innerHTML = menuItems.map(item => `
-        <a href="${item.link}" class="menu-item">
-          <i class="${item.icon}"></i> ${item.label}
-        </a>
-      `).join('');
-    }
+    const currentPage = window.location.pathname.split("/").pop(); // nome do arquivo atual
+
+    menuContainer.innerHTML = menuItems.map(item => `
+      <a href="${item.link}" class="menu-item ${item.link.includes(currentPage) ? 'active' : ''}">
+        <i class="${item.icon}"></i> ${item.label}
+      </a>
+    `).join('');
 
     // ===== FUNÇÕES DE ABRIR E FECHAR =====
     window.openHamburgerMenu = function() {
