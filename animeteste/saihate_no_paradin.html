@@ -1,0 +1,3029 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Anime I Geek">
+    <title>Saihate no Paradin </title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+/* INÍCIO DO CSS UNIFICADO */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+:root {
+    --primary-gradient: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --background: #f5f7fa;
+    --surface: rgba(0, 0, 0, 0.05);
+    --border: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --blur-effect: blur(12px);
+    --transition: all 0.6s ease-in-out;
+    --highlight-color: #E53E3E;
+    --highlight-hover: #C53030;
+    --watch-later-color: #38A169;
+    --watch-later-hover: #2F855A;
+    --episodes-color: #2D3748;
+    --episodes-hover: #4A5568;
+    --report-error-color: #4B5563;
+    --report-error-hover: #6B7280;
+    --menu-background: rgba(255, 255, 255, 0.65);
+    --menu-item-background: rgba(0, 0, 0, 0.05);
+    --menu-item-hover-background: rgba(0, 0, 0, 0.1);
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-section: 40px;
+    --font-size-xs: clamp(0.8rem, 2vw, 1rem);
+    --font-size-sm: clamp(1rem, 2.5vw, 1.1rem);
+    --font-size-md: clamp(1.1rem, 3vw, 1.3rem);
+    --font-size-lg: clamp(1.4rem, 4vw, 1.8rem);
+    --primary: #2d3748;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --menu-bg-light: rgba(255, 255, 255, 0.5);
+    --menu-bg-dark: rgba(45, 55, 72, 0.5);
+    --card-bg: #ffffff;
+    --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --header-bg: var(--surface);
+    --progress-bg: #edf2f7;
+    --zoom-scale: 1.0;
+    /* Tamanho do botão Assistir Agora para padronização */
+    --watch-now-button-width: 150px;
+    /* NOVO: Opacidade base dos botões na capa (100% - 20% = 80%) */
+    --cover-button-opacity: 0.8;
+}
+[data-theme="dark"] {
+    --text-primary: #e2e8f0;
+    --text-secondary: #a0aec0;
+    --background: #1a202c;
+    --surface: rgba(255, 255, 255, 0.05);
+    --border: #4a5568;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --menu-background: rgba(45, 55, 72, 0.65);
+    --menu-item-background: rgba(255, 255, 255, 0.05);
+    --menu-item-hover-background: rgba(255, 255, 255, 0.1);
+    --card-bg: #374151;
+    --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --progress-bg: #4a5568;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+body {
+    font-family: 'Jura', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    background: var(--background);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    touch-action: pan-y;
+    transition: background 0.3s ease, color 0.3s ease;
+    overscroll-behavior-x: none;
+}
+.zoom-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
+}
+.header-menu {
+    width: 100%;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    background: var(--header-bg, var(--surface));
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 1001;
+    box-shadow: var(--shadow);
+    transition: background 0.3s ease;
+}
+.header h1 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+}
+:fullscreen .header {
+    display: none !important;
+}
+:-webkit-full-screen .header {
+    display: none !important;
+}
+.top-bar__section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.top-bar__icon {
+    color: var(--text-primary);
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    border-radius: 0px;
+}
+.top-bar__icon i {
+    font-size: 1.125rem;
+}
+.top-bar__icon:hover {
+    background: var(--primary);
+    color: white;
+}
+.top-bar__icon:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.menu {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50vh;
+    background: var(--menu-bg-light);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px;
+    opacity: 0;
+    pointer-events: none;
+}
+[data-theme="dark"] .menu {
+    background: var(--menu-bg-dark);
+}
+.menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+.search-container {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    margin-bottom: 16px;
+}
+.search-input {
+    width: 100%;
+    padding: 14px 50px 14px 16px;
+    font-size: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0px;
+    background: var(--surface);
+    color: var(--text-primary);
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(45, 55, 72, 0.1);
+}
+.search-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+.result-card {
+    width: 100%;
+    max-width: 600px;
+    background: var(--card-bg);
+    border-radius: 0px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    margin-top: 8px;
+}
+.result-card.show {
+    opacity: 1;
+    transform: translateY(0);
+    display: flex;
+}
+.result-suggestion-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 0px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: background 0.2s ease;
+    width: 100%;
+}
+.result-suggestion-item:hover {
+    background: var(--menu-item-hover-background);
+}
+.result-suggestion-item i {
+    margin-right: 12px;
+    color: var(--text-secondary);
+    width: 20px;
+    text-align: center;
+}
+.result-suggestion-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+.slideshow-container {
+    z-index: 10;
+}
+/* Estilização melhorada do título do carrossel */
+.carousel-section {
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 0.75rem;
+    margin: 30px auto 10px;
+}
+.carousel-title {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    padding: 5px 0;
+    border-bottom: 3px solid var(--highlight-color);
+    display: inline-block;
+    line-height: 1;
+}
+/* Fim da estilização melhorada */
+.slides-wrapper {
+    height: 21.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    position: relative;
+    padding: 0 1.5625rem;
+    touch-action: pan-y;
+    overflow: hidden;
+}
+.slide {
+    position: absolute;
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+    width: 12.75rem;
+    height: 9.5625rem;
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: grab;
+    overflow: hidden;
+    box-shadow: 0 2px 12px var(--shadow-color);
+    will-change: transform, opacity;
+    z-index: 5;
+}
+.slide.active {
+    transform: translateX(0) scale(1.15);
+    z-index: 20;
+    opacity: 1;
+    pointer-events: all;
+    width: 19.125rem;
+    height: 14.34375rem;
+}
+.slide.prev {
+    transform: translateX(-15.625rem) scale(0.9);
+    opacity: 0.7;
+}
+.slide.next {
+    transform: translateX(15.625rem) scale(0.9);
+    opacity: 0.7;
+}
+@media (max-width: 768px) {
+    .slides-wrapper {
+        height: 18.0625rem;
+        gap: 1.59375rem;
+        padding: 0 0.75rem;
+    }
+    .slide {
+        width: 10.625rem;
+        height: 7.96875rem;
+    }
+    .slide.active {
+        width: 15.9375rem;
+        height: 11.953125rem;
+    }
+    .slide.prev {
+        transform: translateX(-110%) scale(0.9);
+        opacity: 0.7;
+    }
+    .slide.next {
+        transform: translateX(110%) scale(0.9);
+        opacity: 0.7;
+    }
+}
+@keyframes slideHint {
+    0% {
+        transform: translateX(0) scale(1.15);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.15);
+    }
+    100% {
+        transform: translateX(50%) scale(1.15);
+    }
+}
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    loading: lazy;
+    z-index: 6;
+}
+.info-carousel-container {
+    max-width: 800px;
+    width: 95%;
+    margin: var(--spacing-section) auto;
+    padding: 17px;
+    background: var(--surface);
+    box-shadow: 0 6px 30px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+}
+.info-slides-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.info-slide {
+    display: none;
+    width: 100%;
+    transition: opacity 0.6s ease-in-out;
+    opacity: 0;
+}
+.info-slide.active {
+    display: block;
+    opacity: 1;
+}
+.slide-content {
+    position: static;
+    background: none;
+    padding: 8px 0;
+    color: var(--text-primary);
+}
+.title {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    margin-bottom: 4px;
+    text-transform: lowercase;
+}
+.episode {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+.duration {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+.synopsis {
+    font-size: var(--font-size-xs);
+    color: var(--text-primary);
+    line-height: 1.5;
+    max-height: 48px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: 12px;
+}
+.actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+    display: none;
+}
+.action-button {
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: transform 0.2s ease, background 0.2s ease;
+    width: var(--watch-now-button-width);
+    text-align: center;
+    background: var(--highlight-color);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+}
+.action-button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    transform: scale(0);
+}
+.action-button:hover::after {
+    opacity: 1;
+    transform: scale(2);
+}
+.action-button.watch-now {
+    background: var(--highlight-color);
+}
+.action-button.watch-now:hover {
+    background: var(--highlight-hover);
+    transform: scale(1.05);
+}
+.action-button.next-ep {
+    background: var(--episodes-color);
+}
+.action-button.next-ep:hover {
+    background: var(--episodes-hover);
+    transform: scale(1.05);
+}
+.action-button.episodes {
+    background: var(--episodes-color);
+}
+.action-button.episodes:hover {
+    background: var(--episodes-hover);
+    transform: scale(1.05);
+}
+.action-button.report-error {
+    background: var(--report-error-color);
+}
+.action-button.report-error:hover {
+    background: var(--report-error-hover);
+    transform: scale(1.05);
+}
+.action-button:disabled {
+    background: #808080;
+    cursor: not-allowed;
+    transform: none;
+}
+.video-cover-hero {
+    width: 100%;
+    max-width: 1000px;
+    margin: 65px auto 0;
+    padding: 0;
+    z-index: 10;
+}
+.notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2000;
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+    border-radius: 0px;
+}
+[data-theme="light"] .notification {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-primary);
+}
+[data-theme="dark"] .notification {
+    background: rgba(18, 21, 32, 0.95);
+    color: var(--text-primary);
+}
+.notification.show {
+    opacity: 1;
+}
+.anime-info {
+    max-width: 800px;
+    width: 95%;
+    margin: var(--spacing-section) auto;
+    padding: 17px;
+    background: var(--surface);
+    box-shadow: 0 4px 20px var(--shadow-color);
+    color: var(--text-primary);
+    border-radius: 0px;
+}
+.anime-info.player-active {
+    display: none;
+}
+.anime-info h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--highlight-color);
+}
+.anime-info p {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+.footer {
+    width: 100%;
+    background: var(--surface);
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 16px 16px;
+    margin-top: var(--spacing-section);
+    box-shadow: 0 -2px 5px var(--shadow-color);
+    font-size: var(--font-size-xs);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.footer-right {
+    text-align: right;
+}
+.footer a {
+    color: var(--highlight-color);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.2s ease;
+}
+.footer a:hover {
+    color: var(--highlight-hover);
+}
+.episodes-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: var(--menu-background);
+    backdrop-filter: blur(8px);
+    z-index: 3000;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+}
+.episodes-menu.open {
+    left: 0;
+}
+.episodes-menu__title {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+.episodes-menu__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.episodes-menu__item {
+    background: var(--menu-item-background);
+    color: var(--text-primary);
+    border: none;
+    padding: 10px;
+    text-align: left;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    border: 2px solid transparent;
+    border-radius: 0px;
+}
+.episodes-menu__item.last-watched {
+    border-color: var(--highlight-color);
+}
+.episodes-menu__item:hover {
+    background: var(--menu-item-hover-background);
+}
+.episodes-menu__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2999;
+    display: none;
+}
+.episodes-menu__overlay.active {
+    display: block;
+}
+.ads-section {
+    width: 100%;
+    max-width: 1000px;
+    padding: 1rem;
+    background: var(--surface);
+    border-radius: 0px;
+    box-shadow: var(--shadow);
+    margin: 1rem auto;
+    border: 1px solid var(--border);
+}
+.ads-section.player-active {
+    display: none;
+}
+.ads-section h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.ads-section h2 i {
+    color: var(--highlight-color);
+}
+.ads-section>p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+}
+.carousel-container {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: 0.75rem;
+    padding: 0 0.75rem 0.75rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+.carousel-container .ad-card {
+    flex: 0 0 calc(100% - 1.5rem);
+    max-width: 100%;
+    scroll-snap-align: start;
+    min-height: 120px;
+}
+.ad-card {
+    background: var(--background);
+    border-radius: 0px;
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    transition: all 0.2s ease;
+    border: 1px solid var(--border);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.ad-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+.ad-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+.ad-card.propaganda {
+    flex: 0 0 12.5rem;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, var(--surface), var(--background));
+    border: 1px solid var(--border);
+    cursor: pointer;
+}
+.ad-card.propaganda h3 {
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 0;
+    color: var(--text-primary);
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+@media (max-width: 768px) {
+    :root {
+        --spacing-section: 25px;
+    }
+    .header {
+        padding: 0 12px;
+        height: 55px;
+    }
+    .video-cover-hero {
+        margin-top: 55px;
+    }
+    .header h1 {
+        font-size: 1rem;
+    }
+    .top-bar__icon i {
+        font-size: 1rem;
+    }
+    .slides-wrapper {
+        height: 18.0625rem;
+        gap: 1.59375rem;
+        padding: 0 0.75rem;
+    }
+    .slide {
+        width: 10.625rem;
+        height: 7.96875rem;
+    }
+    .slide.active {
+        width: 15.9375rem;
+        height: 11.953125rem;
+    }
+    .slide.prev {
+        transform: translateX(-110%) scale(0.9);
+    }
+    .slide.next {
+        transform: translateX(110%) scale(0.9);
+    }
+    .title {
+        font-size: var(--font-size-xs);
+    }
+    .episode,
+    .duration,
+    .synopsis {
+        font-size: calc(var(--font-size-xs) * 0.9);
+    }
+    .actions .action-button {
+        padding: 6px 12px;
+        font-size: var(--font-size-xs);
+        min-width: 80px;
+        width: auto;
+    }
+    .notification {
+        font-size: var(--font-size-sm);
+        padding: 10px 20px;
+        width: 300px;
+    }
+    .episodes-menu {
+        width: 80%;
+    }
+    .zoom-container {
+        padding-top: 0;
+    }
+    .menu {
+        top: 55px;
+    }
+    .top-bar__icon {
+        padding: 6px;
+    }
+    .ads-section {
+        padding: 0.75rem;
+    }
+    .ads-section h2 {
+        font-size: 1.125rem;
+    }
+    .carousel-container .ad-card {
+        flex: 0 0 calc(100% - 1rem);
+    }
+    .ad-card {
+        padding: 0.75rem;
+    }
+    .ad-card h3 {
+        font-size: 1rem;
+    }
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 70px;
+    }
+    .footer-left {
+        width: 100%;
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+    .footer-right {
+        text-align: center;
+        width: 100%;
+    }
+    .episode-cover-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        width: 120px;
+    }
+    .player-action-button {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 480px) {
+    .slides-wrapper {
+        height: 15.625rem;
+    }
+    .slide {
+        width: 9.375rem;
+        height: 7.03125rem;
+    }
+    .slide.active {
+        width: 14.0625rem;
+        height: 10.546875rem;
+    }
+    .episode-cover-btn {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+    }
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+    .header h1 {
+        font-size: 1.125rem;
+    }
+    .ads-section {
+        padding: 0.75rem;
+    }
+    .ads-section h2 {
+        font-size: 1.25rem;
+    }
+}
+/* Alterações na Capa do Episódio */
+.episode-cover {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 65px auto 0;
+    max-width: 1000px;
+    width: 100%;
+}
+.episode-cover img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.8s ease-in-out;
+}
+.episode-cover:hover img {
+    transform: none;
+}
+.episode-cover .play-icon-overlay {
+    display: none;
+}
+.episode-cover .episode-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+.episode-cover .episode-info .episode-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+.episode-cover .episode-info .episode-description {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+/* Estilo dos novos botões no canto da capa */
+.cover-buttons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    z-index: 50;
+}
+/* Estilo para agrupar Próximo e Assistir Agora (Lado Direito) */
+.cover-button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+}
+/* Novo: Estilo para o botão "Anterior" (Lado Esquerdo) */
+.cover-button-prev-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+.episode-cover-btn {
+    background: var(--highlight-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 0px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    width: var(--watch-now-button-width);
+    opacity: var(--cover-button-opacity);
+}
+.episode-cover-btn:hover {
+    opacity: 1;
+}
+.episode-cover-btn.prev-episode-cover {
+    background: var(--episodes-color);
+}
+.episode-cover-btn.prev-episode-cover:hover {
+    background: var(--episodes-hover);
+}
+.episode-cover-btn.watch-now-cover {
+    background: var(--highlight-color);
+}
+.episode-cover-btn.watch-now-cover:hover {
+    background: var(--highlight-hover);
+}
+.episode-cover-btn.next-episode-cover {
+    background: var(--episodes-color);
+    margin-left: 0;
+}
+.episode-cover-btn.next-episode-cover:hover {
+    background: var(--episodes-hover);
+}
+/* O botão 'Assistir Agora' antigo dentro de episode-info será removido via JS/lógica ou display:none */
+.watch-now-btn {
+    display: none;
+}
+/* FIM Alterações na Capa do Episódio */
+.episode-embed-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 65px auto 0;
+    padding: 0 0.75rem;
+}
+.episode-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background: #000;
+    width: 100%;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+.episode-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 1;
+}
+
+
+/* Menu de episódios em tela cheia */
+.fullscreen-episodes-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999999;
+    display: none;
+    flex-direction: column;
+    padding: 20px 0;
+    overflow-y: auto;
+    backdrop-filter: blur(5px);
+}
+.fullscreen-episodes-menu.show {
+    display: flex;
+}
+.fullscreen-episodes-menu h3 {
+    color: white;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+.fullscreen-episodes-menu button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: left;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.fullscreen-episodes-menu button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.fullscreen-episodes-menu button.active {
+    color: var(--highlight-color);
+    font-weight: bold;
+}
+
+/* Estilização para a nova tela do player */
+.player-controls-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 0;
+    padding: 0 10px;
+}
+#player-screen.active {
+    padding-top: 65px;
+}
+.player-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.player-action-button {
+    background: var(--episodes-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s ease;
+    font-size: 0.9rem;
+    flex-grow: 0;
+    width: var(--watch-now-button-width);
+}
+.player-action-button.home-btn {
+    background: var(--highlight-color);
+}
+.player-action-button.home-btn:hover {
+    background: var(--highlight-hover);
+}
+.player-action-button:not(.home-btn):hover {
+    background: var(--episodes-hover);
+}
+.player-action-button.next-ep-player {
+    margin-left: auto;
+}
+/* NOVO: Estilo para o botão de Episódios e Reportar Erro na tela do Player */
+.player-secondary-btn {
+    background: var(--episodes-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s ease;
+    font-size: 0.9rem;
+    width: var(--watch-now-button-width);
+}
+.player-secondary-btn.report-error-btn {
+    background: var(--report-error-color);
+    margin-left: 10px;
+}
+.player-secondary-btn:hover {
+    background: var(--episodes-hover);
+}
+.player-secondary-btn.report-error-btn:hover {
+    background: var(--report-error-hover);
+}
+/* NOVO: Estilo para o botão de Download na tela do Player */
+.download-icon-btn {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    transform: translateY(calc(100% + 10px));
+    width: 40px;
+    height: 40px;
+    background: var(--episodes-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    z-index: 15;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.download-icon-btn:hover {
+    background: var(--episodes-hover);
+    transform: translateY(calc(100% + 10px)) scale(1.1);
+}
+.download-icon-btn i {
+    font-size: 1.2rem;
+}
+/* NOVO: Container para os botões abaixo do player */
+.player-extra-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+.player-episodes-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+.player-download-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+/* NOVO CONTÊINER PARA MANTER O PLAYER SEPARADO E A CAPA/CONTEÚDO ABAIXO */
+#player-screen {
+    width: 100%;
+    max-width: 1000px;
+    margin: 65px auto 0;
+    display: none;
+    flex-direction: column;
+    z-index: 100;
+    position: relative;
+    padding: 0 0.75rem;
+}
+#player-screen.active {
+    display: flex;
+}
+/* Estilos para ocultar a capa principal quando o player estiver ativo, mas manter o restante do conteúdo */
+#episodeCover.player-active,
+
+/* NOVO: Modal de Reportar Erro */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 5000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background: var(--background);
+    color: var(--text-primary);
+    padding: 30px;
+    border-radius: 0px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: var(--shadow-lg);
+    animation: fadeIn 0.3s ease-out;
+}
+.modal-content h3 {
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--highlight-color);
+    padding-bottom: 10px;
+}
+.report-option {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: var(--menu-item-background);
+    border: 1px solid var(--border);
+    border-radius: 0px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: var(--font-size-sm);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.report-option:hover {
+    background: var(--menu-item-hover-background);
+}
+.modal-close-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background: var(--highlight-color);
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.modal-close-btn:hover {
+    background: var(--highlight-hover);
+}
+/* Novo Rodapé Fixo */
+.fixed-footer-controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: var(--header-bg, var(--surface));
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 1002;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+}
+@media (min-width: 769px) {
+    .fixed-footer-controls {
+        display: none;
+    }
+    .footer {
+        padding: 16px;
+    }
+    .player-extra-actions {
+        padding: 10px 0;
+    }
+}
+@media (max-width: 768px) {
+    .zoom-container main {
+        padding-bottom: 120px;
+    }
+    .player-extra-actions {
+        padding: 10px 0;
+    }
+    .player-secondary-btn {
+        width: auto;
+        min-width: 100px;
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+    .download-icon-btn {
+        width: 35px;
+        height: 35px;
+        right: 0;
+        transform: translateY(calc(100% + 5px));
+    }
+    .download-icon-btn i {
+        font-size: 1rem;
+    }
+    .player-secondary-btn.report-error-btn {
+        min-width: 100px;
+        font-size: 0.8rem;
+        padding: 8px 10px;
+        margin-left: 5px;
+    }
+}
+/* =====================================================
+   🔧 CORREÇÃO DEFINITIVA DO BUG DE FULLSCREEN (Google Drive)
+   ===================================================== */
+.episode-embed:fullscreen,
+.episode-embed:-webkit-full-screen,
+.episode-embed:-moz-full-screen {
+    overflow: visible !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 999999 !important;
+    background: #000 !important;
+    padding: 0 !important;
+}
+.episode-embed iframe:fullscreen,
+.episode-embed iframe:-webkit-full-screen,
+.episode-embed iframe:-moz-full-screen {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    border: none !important;
+    z-index: 1000000 !important;
+}
+/* Esconde menus, cabeçalhos e rodapés durante fullscreen */
+:fullscreen .header,
+:fullscreen .fixed-footer-controls,
+:fullscreen .menu-overlay,
+:fullscreen .episodes-menu__overlay,
+:fullscreen .modal-overlay,
+:fullscreen .fullscreen-episodes-menu {
+    display: none !important;
+}
+:-webkit-full-screen .header,
+:-webkit-full-screen .fixed-footer-controls,
+:-webkit-full-screen .menu-overlay,
+:-webkit-full-screen .episodes-menu__overlay,
+:-webkit-full-screen .modal-overlay,
+:-webkit-full-screen .fullscreen-episodes-menu {
+    display: none !important;
+}
+/* Garante que o click-blocker não interfira */
+.click-blocker {
+    pointer-events: none !important;
+}
+/* Garante que menus e overlays não causem stacking context que trave o fullscreen */
+.header,
+.menu-overlay,
+.fixed-footer-controls,
+.episodes-menu__overlay,
+.modal-overlay,
+.fullscreen-episodes-menu {
+    transform: none !important;
+    filter: none !important;
+    perspective: none !important;
+    contain: none !important;
+}
+/* Corrige caso algum container externo tenha overflow escondendo o player */
+.zoom-container,
+.player-controls-container {
+    overflow: visible !important;
+}
+/* NOVO: Estilo para o botão de Tela Cheia */
+.player-secondary-btn.fullscreen-btn {
+    background: var(--highlight-color);
+    margin-left: 10px;
+}
+.player-secondary-btn.fullscreen-btn:hover {
+    background: var(--highlight-hover);
+}
+
+.fullscreen-warning.show {
+    display: block;
+}
+.fullscreen-warning button {
+    background: var(--highlight-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-top: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.fullscreen-warning button:hover {
+    background: var(--highlight-hover);
+}
+
+
+    </style>
+</head>
+<body data-theme="light">
+    <div class="header-menu">
+        <nav class="header">
+            <div class="top-bar__section">
+                <h1><i class="fas fa-dragon"></i>Anime I Geek</h1>
+            </div>
+            <div class="top-bar__section">
+                <button aria-label="Abrir busca" class="top-bar__icon" id="menu-icon">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button aria-label="Alternar tema" class="top-bar__icon" id="theme-toggle">
+                    <i class="fas fa-adjust"></i>
+                </button>
+                <button aria-label="Abrir menu" class="top-bar__icon" id="hamburger-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <script>
+  document.getElementById('hamburger-btn').addEventListener('click', () => {
+    if (typeof openHamburgerMenu === 'function') {
+      openHamburgerMenu();
+    } else {
+      console.warn('⚠️ menu-lateral ainda não foi carregado');
+    }
+  });
+</script>
+            </div>
+        </nav>
+        <nav class="menu" id="main-menu">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Pesquisar anime..." id="search-input">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="result-card" id="result-card"></div>
+        </nav>
+     <!-- MENU LATERAL (carregado automaticamente) -->
+<div id="menu-lateral-container"></div>
+<script>
+    fetch('menu-lateral.html')
+        .then(r => r.text())
+        .then(html => {
+            const container = document.getElementById('menu-lateral-container');
+            container.innerHTML = html;
+            
+            // 🔧 Executa os scripts do menu-lateral.html após inserir
+            container.querySelectorAll('script').forEach(oldScript => {
+                const newScript = document.createElement('script');
+                if (oldScript.src) newScript.src = oldScript.src;
+                else newScript.textContent = oldScript.textContent;
+                document.body.appendChild(newScript);
+            });
+        })
+        .catch(err => console.error('Erro ao carregar menu-lateral:', err));
+</script>
+<!-- FIM DO MENU LATERAL -->
+    </div>
+    <div id="player-screen"></div>
+    <div class="episode-cover" id="episodeCover">
+        <div class="image-transition-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <img class="cover-image active-image"
+                 src="https://i.postimg.cc/1XXm0m8R/GP5HJ84P7-backdrop-wide.jpg"
+                 alt="Capa do Episódio"
+                 id="episodeCoverImage"
+                 style="opacity: 1;">
+            <img class="cover-image next-image"
+                 src=""
+                 alt="Capa do Episódio"
+                 id="nextEpisodeCoverImage"
+                 style="opacity: 0; position: absolute; top: 0; left: 0;">
+        </div>
+        <div class="cover-buttons">
+            <div class="cover-button-prev-group">
+                <button class="episode-cover-btn prev-episode-cover" id="prevEpisodeCoverBtn">
+                    <span id="prevEpisodeNumber" style="display: none;"></span> Anterior
+                </button>
+            </div>
+            <div class="cover-button-group">
+                <button class="episode-cover-btn next-episode-cover" id="nextEpisodeCoverBtn">
+                    Próximo <span id="nextEpisodeNumber" style="display: none;"></span>
+                </button>
+                <button class="episode-cover-btn watch-now-cover" id="watchNowCoverBtn">
+                    <i class="fas fa-play"></i> Assistir Agora
+                </button>
+            </div>
+        </div>
+        <div class="episode-info">
+            <div class="episode-title" id="episodeCoverTitle">Clique para assistir ao episódio selecionado</div>
+            <div class="episode-description" id="episodeCoverDescription">Selecione um episódio na lista abaixo</div>
+            <button class="watch-now-btn" id="watchNowBtn">▶ Assistir Agora</button>
+        </div>
+    </div>
+    <div class="zoom-container" id="zoom-container">
+        <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
+            <div class="slideshow-container" id="slideshow-container" aria-live="polite">
+                <div class="carousel-section">
+                    <div class="carousel-title" id="carouselTitle">The Faraway Paladin</div>
+                    <div class="slides-wrapper" id="slidesWrapper"></div>
+                </div>
+            </div>
+            <div class="info-carousel-container" id="infoCarousel">
+                <div class="info-slides-wrapper" id="infoSlidesWrapper"></div>
+            </div>
+            <div class="anime-info" id="animeInfoSection">
+                <h2>Sobre Saihate no Paladin</h2>
+                <p><strong>Gênero:</strong> Fantasia épica, Drama, Isekai</p>
+                <p><strong>Estúdio:</strong> Children's Playground Entertainment</p>
+                <p><strong>Diretor:</strong> Tetsurō Araki</p>
+                <p><strong>Ano:</strong> 2021</p>
+                <p><strong>Total de Episódios:</strong> 12</p>
+                <p><strong>Sinopse:</strong> Um cavaleiro criado por três guardiões justos, mas monstruosos, parte numa busca para melhorar a sua terra.</p>
+            </div>
+           
+               
+            </section>
+        </main>
+    </div>
+    <div class="footer-right">
+        <p>© 2025 The Faraway Paladin. Todos os direitos reservados. Desenvolvido por xAI.</p>
+        </div>
+        
+    </div>
+    <div class="fixed-footer-controls">
+        <button aria-label="Diminuir zoom" class="top-bar__icon" id="zoom-out-btn-fixed">
+            <i class="fas fa-search-minus"></i>
+        </button>
+        <button aria-label="Aumentar zoom" class="top-bar__icon" id="zoom-in-btn-fixed">
+            <i class="fas fa-search-plus"></i>
+        </button>
+    </div>
+    <div class="notification" id="notification"></div>
+    <div class="episodes-menu" id="episodesMenu">
+        <div class="episodes-menu__title">Lista de Episódios</div>
+        <div class="episodes-menu__list" id="episodesMenuList"></div>
+    </div>
+    <div class="episodes-menu__overlay" id="episodesMenuOverlay"></div>
+    <div class="modal-overlay" id="reportErrorModal">
+        <div class="modal-content">
+            <h3><i class="fas fa-exclamation-triangle"></i> Reportar Problema</h3>
+            <p>Selecione o problema encontrado neste episódio:</p>
+            <button class="report-option" data-error-type="Player Quebrado/Não Carrega"><i class="fas fa-video-slash"></i> Player Quebrado/Não Carrega</button>
+            <button class="report-option" data-error-type="Áudio/Legenda Desincronizada"><i class="fas fa-microphone-alt-slash"></i> Áudio/Legenda Desincronizada</button>
+            <button class="report-option" data-error-type="Qualidade Baixa/Ruim"><i class="fas fa-low-vision"></i> Qualidade Baixa/Ruim</button>
+            <button class="report-option" data-error-type="Episódio Errado/Faltando"><i class="fas fa-puzzle-piece"></i> Episódio Errado/Faltando</button>
+            <button class="modal-close-btn" id="closeReportModal">Cancelar</button>
+        </div>
+    </div>
+    <!-- NOVO: Aviso de Tela Cheia -->
+    <div class="fullscreen-warning" id="fullscreenWarning">
+        <div><i class="fas fa-exclamation-triangle"></i> Site ainda não compativel com o navegador do Facebook</div>
+        <p>Para melhor experiência, use o navegador padrão para assistir em modo tela cheia<strong>acesse os 3 pontinhos e clique em </strong> abrir no navegador.</p>
+       
+    </div>
+    <!-- NOVO: Menu de episódios em tela cheia -->
+    <div class="fullscreen-episodes-menu" id="fullscreenEpisodesMenu">
+        <h3>Episódios</h3>
+        <div id="fullscreenEpisodesList"></div>
+    </div>
+    <
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
+        import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
+        import { getFirestore, collection, getDocs, doc, getDoc, addDoc } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
+
+        console.log('1. [INICIALIZAÇÃO] Iniciando script...');
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA9vB_anmutvZByIhKxsPJbsP0VZ7gyWB0",
+            authDomain: "sorteio-mega-sorte.firebaseapp.com",
+            projectId: "sorteio-mega-sorte",
+            storageBucket: "sorteio-mega-sorte.appspot.com",
+            messagingSenderId: "776750928407",
+            appId: "1:776750928407:web:72da06deb8b97302b5c252",
+            measurementId: "G-GD7D30N0G"
+        };
+        console.log('2. [FIREBASE] Configurações carregadas.');
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+        console.log('3. [FIREBASE] App, Analytics e Firestore inicializados.');
+
+        // Nova variável para armazenar o estado de tela cheia
+        let isFullscreen = false;
+        let fullscreenIframe = null;
+        // Variável global para armazenar a URL de propaganda universal
+        const UNIVERSAL_AD_URL = ""; // Deixe vazio para usar os links individuais
+        console.log(`4. [GLOBAL] UNIVERSAL_AD_URL definido como: "${UNIVERSAL_AD_URL}"`);
+
+        window.searchAnimes = async (query) => {
+            console.log(`[BUSCA] Chamada para searchAnimes com query: "${query}"`);
+            const resultsList = document.getElementById('result-card');
+            const lowerQuery = query.trim().toLowerCase();
+            
+            if (!lowerQuery) {
+                console.log('[BUSCA] Query vazia. Escondendo resultados.');
+                resultsList.style.display = 'none';
+                resultsList.innerHTML = '';
+                return;
+            }
+            const firstLetter = lowerQuery[0];
+            if (!firstLetter.match(/^[a-z]$/)) {
+                console.log(`[BUSCA] Primeiro caractere (${firstLetter}) não é uma letra. Escondendo resultados.`);
+                resultsList.style.display = 'none';
+                resultsList.innerHTML = '';
+                return;
+            }
+            
+            const results = [];
+            
+            try {
+                console.log(`[FIREBASE/BUSCA] Buscando documento 'pesquisa_animes/${firstLetter}'...`);
+                const docRef = doc(db, 'pesquisa_animes', firstLetter);
+                const docSnap = await getDoc(docRef);
+                
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    console.log(`[FIREBASE/BUSCA] Documento encontrado. Total de itens a verificar: ${Object.keys(data).length}`);
+                    for (const [animeKey, animeData] of Object.entries(data)) {
+                        const lowerTitle = animeData.title ? animeData.title.toLowerCase() : '';
+                        const lowerKey = animeKey.toLowerCase();
+                        if (lowerTitle.startsWith(lowerQuery) || lowerKey.startsWith(lowerQuery)) {
+                            results.push({
+                                ...animeData,
+                                key: animeKey,
+                                title: animeData.title || animeKey
+                            });
+                        }
+                    }
+                    console.log(`[BUSCA] Resultados filtrados: ${results.length} animes encontrados.`);
+                } else {
+                    console.log('[FIREBASE/BUSCA] Nenhum documento encontrado para a primeira letra.');
+                }
+            } catch (error) {
+                console.error('[FIREBASE/BUSCA] Erro na busca:', error);
+            }
+
+            results.sort((a, b) => a.title.localeCompare(b.title));
+
+            if (results.length > 0) {
+                console.log('[BUSCA] Exibindo resultados da pesquisa.');
+                resultsList.innerHTML = '';
+                results.forEach(anime => {
+                    const resultItem = document.createElement('a');
+                    resultItem.href = anime.watch_url || '#';
+                    resultItem.target = '_blank';
+                    resultItem.className = 'result-suggestion-item';
+                    resultItem.innerHTML = `
+                        <i class="${anime.thumbnail_icon || 'fas fa-book'}"></i>
+                        <span class="result-suggestion-title">${anime.title}</span>
+                    `;
+                    resultsList.appendChild(resultItem);
+                    if (analytics) {
+                         logEvent(analytics, 'search_suggestion_shown', { anime: anime.title, query: query });
+                         console.log(`[ANALYTICS] Evento 'search_suggestion_shown' logado para: ${anime.title}`);
+                    }
+                });
+                resultsList.style.display = 'flex';
+                resultsList.classList.add('show');
+            } else {
+                console.log('[BUSCA] Nenhum resultado encontrado. Escondendo resultados.');
+                resultsList.style.display = 'none';
+                resultsList.innerHTML = '';
+            }
+            console.log('[BUSCA] Finalizando searchAnimes.');
+        };
+
+        const config = {
+            series: [
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                    "episode": "T1.E1 ∙ O Menino da Cidade dos Mortos",
+                    "duration": "Episódio foi ao ar 9 de out. de 2021 24 min",
+                    "synopsis": "Will nasceu na cidade dos mortos, onde foi criado por três mortos-vivos. Apesar de ter sido nutrido com amor, Will questiona sua existência neste lugar inóspito, onde é o único humano vivo. Ele descobre que seus três pais escondem algo que pode explicar esse mistério e, como se isso não fosse intrigante o suficiente, ainda precisa descobrir que outros segredos se escondem dentro dele.",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview",
+                    "adUrl": "https://otieu.com/4/9277353"
+                },
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                    "episode": "T1.E2  O Sábio Errante",
+                    "duration": "Episódio foi ao ar 16 de out. de 2021 24 min",
+                    "synopsis": "Cinco anos se passaram desde que Will descobriu o segredo de Mary, e agora ele tem 13 anos. As lições de seus pais mortos-vivos se tornam cada vez mais difíceis, mas Will consegue perseverar. Um dia, Blood lhe dá uma missão que exige que ele escape das ruínas da cidade. Will tenta desesperadamente lutar para sair, mas uma estranha sensação de malícia o impede. Descobre-se que essa malícia vinha de uma fonte inesperada.",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/1Z6lnU84ZyQ1MMvwaO4dBoRQ53VaViufL/preview",
+                    "adUrl": "https://otieu.com/4/9277353"
+                },
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                    "episode": "T1.E3 O Dia Prometido",
+                    "duration": "Episódio foi ao ar 23 de out. de 2021 24 min",
+                    "synopsis": "Ao completar 15 anos, Will desafia Blood para um duelo com espadas de verdade como parte de sua cerimônia de passagem para a vida adulta, mas Gus pede que Will perca de propósito. Will não tem a chance de perguntar a Gus sobre o que aconteceu naquele dia",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/10ZwqJLhMgSEb0DrOvFnbL91YwPbR0k61/preview",
+                    "adUrl": "https://otieu.com/4/9277353"
+                },
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
+                    "episode": "T1.E4 – A Deusa das Luzes",
+                    "duration": "Episódio foi ao ar 30 de out. de 2021 24 min",
+                    "synopsis": "De repente, o Deus Imortal Estagnado tenta levar Brad e Marie embora, mas é Gas quem os impede. No entanto, para alívio de Will, uma névoa negra o atravessou por um instante. Estagnado ri invencivelmente para Will, que se levanta sem fazer nada, dizendo: Obrigado.",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/13PJ6or0l_fx6TFn8pGHsVrLHRCpZ89E2/preview",
+                    "adUrl": "https://otieu.com/4/9277353"
+                },
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                    "episode": "T1.E5 O Elmo da Vontade",
+                    "duration": "Episódio foi ao ar 5 de nov. de 2021 24 min",
+                    "synopsis": "À beira da morte, Will faz um juramento a Grace Feel e se levanta novamente para desafiar Stagnate. No entanto, Stagnate engana Will e desaparece, mirando diretamente em Brad e Marie. Will, que percebeu a intenção e voltou correndo para o templo, viu que Stagnate estava prestes a alcançar os dois, que estavam gravemente feridos.",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/1scxaqvP7Pk74c1EDAAXnRVjfcrY02H4p/preview",
+                    "adUrl": "https://otieu.com/4/10171237"
+                },
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
+                    "episode": "T1.E6  Arqueiro da Floresta das Feras",
+                    "duration": "Episódio foi ao ar 13 de nov. de 2021 24 min",
+                    "synopsis": "Após deixar a cidade dos mortos, Will embarca em uma jornada pelo mundo invisível. Ele caminhou pela floresta por dias, e a primeira pessoa que encontrou foi Menell, um caçador meio-elfo. Mesmo depois de se separar dele, Will ainda sente a alegria de conversar com pessoas da sua idade. No entanto, naquela noite, Grace Feel lhe fez uma revelação...",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/1e9BjWWzkvI-WCDxQ3P8PWo6xZ1SF1l1O/preview",
+                    "adUrl": "https://otieu.com/4/9277353"
+                },
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
+                    "episode": "T1.E7  Memória Traumática",
+                    "duration": "Episódio foi ao ar 20 de nov. de 2021",
+                    "synopsis": "Menel leva Will a uma aldeia que está sendo atacada por monstros. Ao expulsá-los, ele percebe a gravidade das tragédias causadas pelo ataque. Corpos empilhados e casas queimadas estão por toda parte. Então, em meio a tudo isso, uma voz fraca chama a atenção de Menel. A voz pertence a um menino gravemente queimado que se tornou um morto-vivo.",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/1dkVPHrTatf1Ha8Aqi-KMmml0fXYHt9Ts/preview",
+                    "adUrl": "https://otieu.com/4/9277353"
+                },
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
+                    "episode": "T1.E8  O Poema do Herói",
+                    "duration": "Episódio foi ao ar 4 de dez. de 2021 24 min",
+                    "synopsis": "Sob a orientação de Menel, Will vai a uma aldeia que foi atacada por monstros. Enquanto subjuga os remanescentes dos demônios, a tragédia da aldeia gradualmente se torna evidente. Uma casa queimada e coberta por cadáveres. E foi um menino, queimado pelas chamas e transformado em morto-vivo, quem chamou por Menel com uma voz fraca.",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/1HbIAZ9DqHNJegkmJOLBis7xKVVmBeXjt/preview",
+                    "adUrl": "https://otieu.com/4/9277353"
+                },
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
+                    "episode": "T1.E9  A Cidade das Velas Brancas",
+                    "duration": "Episódio foi ao ar 11 de dez. de 2021 24 min",
+                    "synopsis": "Will e seus amigos, que viajam com Bee e Tonio, finalmente chegam ao destino, a Cidade das Velas Brancas. Will fica impressionado com a grande cidade que vê pela primeira vez e com as pessoas que ali vivem. Enquanto se recupera do cansaço da viagem, o alarme de emergência toca. Olhando apressadamente, uma grande sombra negra cruza sobre suas...",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/1W4g4ooNv_ijUdxj63TcvkbJ-D5C7SsrH/preview",
+                    "adUrl": "https://otieu.com/4/9277353"
+                },
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
+                    "episode": "T1.E10  Glória Renomada",
+                    "duration": "Episódio foi ao ar 18 de dez. de 2021 24 min",
+                    "synopsis": "Will, que deveria ter uma audiência com o lorde Ethelwald como um Víbora Assassina, oferece-se para reunir soldados particulares para eliminar os frequentes danos causados por monstros. Ethel inicialmente demonstra uma atitude intimidadora diante de uma oferta tão extravagante, mas decide reconhecer Will e perdoá-lo. Vá até um bar onde aventureiros se reúnem para encontrar companheiros de luta.",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/1uhsHL1h3rNveyKMv4sEA4Duj5ZdP0XhK/preview",
+                    "adUrl": "https://otieu.com/4/9277353"
+                },
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
+                    "episode": "T1.E11  Vale do Desespero",
+                    "duration": "Episódio foi ao ar 25 de dez. de 2021 24 min",
+                    "synopsis": "Will, que foi nomeado paladino, era responsável pela reconstrução da vila e pelo extermínio dos demônios. Um dia, ele vai para a Floresta das Feras com Reistov e Menel, que têm dois nomes, Tsuranuki, para procurar uma unidade que não retornou. Ele sente que algo está errado com os corpos espalhados e segue para o vale nos fundos.",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/1vrcY4wR4w4FYxPyHkgRUhDxij7bgzMAh/preview",
+                    "adUrl": "https://otieu.com/4/9277353"
+                },
+                {
+                    "title": "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
+                    "episode": "T1.E12  O Paladino Distante",
+                    "duration": "Episódio foi ao ar 3 de jan. de 2022 24 min",
+                    "synopsis": "Tamsy e Zanka lutam para salvar seus aliados cativos. Depois disso, Rudo tem uma reação inesperada.",
+                    "image": "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg",
+                    "link": "https://drive.google.com/file/d/1eJ-mYEzHpmr27Pzpbr44a9zIfsR7tJBf/preview",
+                    "adUrl": "https://otieu.com/4/9277353"
+                },
+               
+
+            ],
+            swipeThreshold: 100
+        };
+        console.log(`5. [CONFIG] Configuração da série carregada. Total de episódios: ${config.series.length}`);
+        
+        let state = {
+            currentSlide: 0,
+            isDraggingSlides: false,
+            startX: 0,
+            currentX: 0,
+            lastTouchTime: 0,
+            isAdNext: true,
+            isWatchNowBlocked: false,
+            isEpisodesMenuOpen: false,
+            lastWatchedEpisode: parseInt(localStorage.getItem('lastWatchedEpisode')) || null,
+            selectedEpisode: 0,
+            isPlayerActive: false
+        };
+        
+        let elements = {};
+        const GLOBAL_AD_URL = "https://otieu.com/4/9329063";
+        const DOWNLOAD_LINK_EXAMPLE = "#";
+        const AD_INTERVAL = 5 * 60 * 1000;
+        let lastAdRedirect = localStorage.getItem('lastAdRedirect') ? parseInt(localStorage.getItem('lastAdRedirect')) : 0;
+        const INITIAL_ZOOM = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
+        const MIN_ZOOM = 0.5;
+        const MAX_ZOOM = 1.5;
+
+        console.log(`6. [ESTADO INICIAL] lastWatchedEpisode: ${state.lastWatchedEpisode}, selectedEpisode: ${state.selectedEpisode}, lastAdRedirect: ${new Date(lastAdRedirect).toISOString()}, INITIAL_ZOOM: ${INITIAL_ZOOM}`);
+
+        // Função para salvar estado completo no localStorage
+        function saveStateToLocalStorage() {
+            console.log('[ESTADO] Preparando para salvar estado...');
+            const stateToSave = {
+                currentSlide: state.currentSlide,
+                lastWatchedEpisode: state.lastWatchedEpisode,
+                selectedEpisode: state.selectedEpisode,
+                isPlayerActive: state.isPlayerActive,
+                zoomLevel: parseFloat(localStorage.getItem('zoomLevel')) || INITIAL_ZOOM,
+                theme: document.body.dataset.theme
+            };
+            localStorage.setItem('animeAppState', JSON.stringify(stateToSave));
+            console.log('[ESTADO] Estado salvo no localStorage:', stateToSave);
+        }
+
+        // Função para carregar estado do localStorage
+        function loadStateFromLocalStorage() {
+            console.log('[ESTADO] Tentando carregar estado do localStorage...');
+            const savedState = localStorage.getItem('animeAppState');
+            if (savedState) {
+                const parsedState = JSON.parse(savedState);
+                state.currentSlide = parsedState.currentSlide || 0;
+                state.lastWatchedEpisode = parsedState.lastWatchedEpisode;
+                state.selectedEpisode = parsedState.selectedEpisode || 0;
+                state.isPlayerActive = parsedState.isPlayerActive || false;
+                if (parsedState.theme) {
+                    document.body.dataset.theme = parsedState.theme;
+                }
+                if (parsedState.zoomLevel) {
+                    localStorage.setItem('zoomLevel', parsedState.zoomLevel);
+                }
+                console.log('[ESTADO] Estado carregado do localStorage:', parsedState);
+                return true;
+            }
+            console.log('[ESTADO] Nenhum estado salvo encontrado no localStorage.');
+            return false;
+        }
+
+        // Função para atualizar o último episódio assistido
+        function updateLastWatchedEpisode(episodeIndex) {
+            console.log(`[EPISÓDIO] Atualizando último episódio assistido para índice: ${episodeIndex}`);
+            localStorage.setItem('lastWatchedEpisode', episodeIndex);
+            state.lastWatchedEpisode = episodeIndex;
+            saveStateToLocalStorage();
+        }
+
+        async function getIPAddress() {
+            console.log('[IP] Tentando obter endereço IP...');
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                console.log(`[IP] Endereço IP obtido: ${data.ip}`);
+                return data.ip;
+            } catch (error) {
+                console.warn("[IP] Aviso: Falha ao obter o IP. Registrando como IP_NAO_DISPONIVEL. Erro:", error);
+                return "IP_NAO_DISPONIVEL";
+            }
+        }
+
+        async function recordReportError(episodeIndex, errorType) {
+            console.info(`[REGISTRO] Tentativa de registrar Reporte de Erro: ${errorType} para índice ${episodeIndex}`);
+            const episodeData = config.series[episodeIndex];
+            if (!episodeData) {
+                 console.error('[REGISTRO] Falha ao registrar reporte: Dados do episódio não encontrados.');
+                 return;
+            }
+
+            const episodeId = episodeData.episode
+                .replace(/^.*(EP\.\s*\d+\s*[–-]?\s*\w+.*)/i, '$1')
+                .replace(/[.\s–-]/g, '_')
+                .toLowerCase()
+                .replace(/_+/g, '_')
+                .replace(/^_|_$/g, '');
+            console.log(`[REGISTRO] Episode ID gerado: ${episodeId}`);
+
+            const reportRef = collection(db, 'report');
+            const userIP = await getIPAddress();
+            const reportData = {
+                timestamp: new Date().toISOString(),
+                episodeIndex: episodeIndex,
+                episodeId: episodeId,
+                episodeTitle: episodeData.title,
+                episodeNumber: episodeData.episode,
+                errorType: errorType,
+                ipAddress: userIP,
+                userAgent: navigator.userAgent
+            };
+
+            try {
+                await addDoc(reportRef, reportData);
+                console.log(`[FIREBASE] Firebase Registrado com SUCESSO: Reporte de Erro (${errorType}) para ${episodeData.episode} (IP: ${userIP})`);
+                showNotification('Problema reportado com sucesso! Obrigado pela sua ajuda.');
+                closeReportModal();
+            } catch (e) {
+                console.error("[FIREBASE] ERRO ao registrar Reporte de Erro no Firestore. Detalhes:", e);
+                showNotification('Erro ao enviar reporte. Tente novamente mais tarde.');
+            }
+        }
+
+        async function recordUserInteraction(eventType, episodeIndex, adLink = null) {
+            console.info(`[REGISTRO] Tentativa de registrar evento: ${eventType}. É Global? ${episodeIndex === null ? 'Sim' : 'Não'} (Índice: ${episodeIndex})`);
+            const isGlobalEvent = episodeIndex === null;
+            let episodeId = null;
+            let episodeData = null;
+            let interactionRef;
+
+            if (!isGlobalEvent) {
+                episodeData = config.series[episodeIndex];
+                if (!episodeData) {
+                    console.error('[REGISTRO] Falha ao registrar interação: Dados do episódio não encontrados.');
+                    return;
+                }
+                
+                episodeId = episodeData.episode
+                    .replace(/^.*(EP\.\s*\d+\s*[–-]?\s*\w+.*)/i, '$1')
+                    .replace(/[.\s–-]/g, '_')
+                    .toLowerCase()
+                    .replace(/_+/g, '_')
+                    .replace(/^_|_$/g, '');
+                
+                // Nota: Usando 'death_note_legendado' como ID fixo da série, conforme seu código.
+                const episodeDocRef = doc(db, 'animes', 'death_note_legendado', 'episodios', episodeId);
+                interactionRef = collection(episodeDocRef, 'interacoes');
+                console.log(`[REGISTRO] Referência do Firestore para Interação de Episódio: ${episodeId}`);
+            } else {
+                interactionRef = collection(db, 'interacoes_globais');
+                console.log('[REGISTRO] Referência do Firestore para Interação Global.');
+            }
+
+            const userIP = await getIPAddress();
+            const interactionData = {
+                timestamp: new Date().toISOString(),
+                eventType: eventType,
+                ipAddress: userIP,
+                userAgent: navigator.userAgent,
+                screenResolution: `${window.screen.width}x${window.screen.height}`,
+                ...(isGlobalEvent ? {
+                    adLink: adLink
+                } : {
+                    episodeId: episodeId,
+                    episode: episodeData.episode,
+                    episodeTitle: episodeData.title,
+                    ...(adLink && { adLink: adLink })
+                })
+            };
+
+            try {
+                await addDoc(interactionRef, interactionData);
+                const logDetail = isGlobalEvent ? 'GLOBAL' : `${episodeData.episode} (ID: ${episodeId})`;
+                console.log(`[FIREBASE] Firebase Registrado com SUCESSO: ${eventType} para ${logDetail} (IP: ${userIP})`);
+            } catch (e) {
+                console.error("[FIREBASE] ERRO ao registrar no Firestore. Detalhes:", e);
+            }
+        }
+
+        function redirectForAd(episodeIndex, eventType) {
+            console.log(`[PROPAGANDA] Tentativa de redirecionamento para evento: ${eventType} (Índice: ${episodeIndex})`);
+            const now = Date.now();
+            
+            if (now - lastAdRedirect >= AD_INTERVAL) {
+                console.log(`[PROPAGANDA] Intervalo de AD (${AD_INTERVAL}ms) atingido. Redirecionando...`);
+
+                let adUrl = GLOBAL_AD_URL;
+                if (UNIVERSAL_AD_URL) {
+                    adUrl = UNIVERSAL_AD_URL;
+                    console.log('[PROPAGANDA] Usando UNIVERSAL_AD_URL.');
+                } else if (episodeIndex !== null && config.series[episodeIndex]?.adUrl) {
+                    adUrl = config.series[episodeIndex].adUrl;
+                    console.log(`[PROPAGANDA] Usando adUrl do episódio (Índice: ${episodeIndex}).`);
+                } else {
+                    console.log('[PROPAGANDA] Usando GLOBAL_AD_URL como fallback.');
+                }
+
+                recordUserInteraction(eventType, episodeIndex, adUrl);
+                lastAdRedirect = now;
+                localStorage.setItem('lastAdRedirect', now);
+                showNotification('Redirecionando para propaganda...');
+
+                console.log(`[PROPAGANDA] Redirecionando para: ${adUrl}`);
+                const win = window.open(adUrl, '_blank');
+                
+                if (!win) {
+                    console.error('[PROPAGANDA] Window.open bloqueado. URL:', adUrl);
+                    showNotification('Pop-up bloqueado. Permita pop-ups para ver a propaganda.');
+                }
+                
+                console.log('[PROPAGANDA] Redirecionamento de AD efetuado. Retornando TRUE.');
+                return true;
+            }
+            console.log(`[PROPAGANDA] Intervalo de AD não atingido. Próximo AD em: ${(AD_INTERVAL - (now - lastAdRedirect)) / 1000}s. Retornando FALSE.`);
+            return false;
+        }
+
+        function handleGlobalClick(e) {
+            console.log('[CLICK] Evento de clique global detectado.');
+            const isInteractiveElement = e.target.closest('a, button, input, iframe, .top-bar__icon, .slide, .episode-cover-btn, .player-action-button, .player-secondary-btn, .download-icon-btn, .report-option, .modal-content, .click-blocker, .fullscreen-overlay-btn, .episodes-overlay-btn');
+            
+            // Correção de segurança: verificar se elements.reportErrorModal existe antes de acessar style.display
+            const isModalOpen = elements.reportErrorModal ? elements.reportErrorModal.style.display === 'flex' : false;
+            
+            if (!isInteractiveElement && !state.isPlayerActive && !isModalOpen) {
+               console.log('[CLICK] Elemento não interativo, player inativo e modal fechado. Tentando redirecionamento de propaganda global.');
+               redirectForAd(null, 'Clique Global Propaganda');
+            } else {
+                 console.log(`[CLICK] Clique ignorado. isInteractiveElement: ${!!isInteractiveElement}, isPlayerActive: ${state.isPlayerActive}, isModalOpen: ${isModalOpen}`);
+            }
+        }
+
+        function initialize() {
+            console.log('7. [INICIALIZAÇÃO] Iniciando função initialize().');
+            
+            // Mapeamento de Elementos
+            elements.slidesWrapper = document.getElementById('slidesWrapper');
+            elements.episodesMenu = document.getElementById('episodesMenu');
+            elements.episodesMenuList = document.getElementById('episodesMenuList');
+            elements.episodesMenuOverlay = document.getElementById('episodesMenuOverlay');
+            elements.infoCarousel = document.getElementById('infoCarousel');
+            elements.infoSlidesWrapper = document.getElementById('infoSlidesWrapper');
+            elements.carouselTitle = document.getElementById('carouselTitle');
+            elements.episodeCover = document.getElementById('episodeCover');
+            elements.episodeCoverImage = document.getElementById('episodeCoverImage');
+            elements.episodeCoverTitle = document.getElementById('episodeCoverTitle');
+            elements.episodeCoverDescription = document.getElementById('episodeCoverDescription');
+            elements.watchNowBtn = document.getElementById('watchNowBtn');
+            elements.watchNowCoverBtn = document.getElementById('watchNowCoverBtn');
+            elements.nextEpisodeCoverBtn = document.getElementById('nextEpisodeCoverBtn');
+            elements.prevEpisodeCoverBtn = document.getElementById('prevEpisodeCoverBtn');
+            elements.nextEpisodeNumber = document.getElementById('nextEpisodeNumber');
+            elements.prevEpisodeNumber = document.getElementById('prevEpisodeNumber');
+            elements.activeCoverImage = elements.episodeCover ? elements.episodeCover.querySelector('.active-image') : null;
+            elements.nextCoverImage = elements.episodeCover ? elements.episodeCover.querySelector('.next-image') : null;
+            elements.playerScreen = document.getElementById('player-screen');
+            elements.animeInfoSection = document.getElementById('animeInfoSection');
+            elements.adsSection = document.getElementById('adsSection');
+            elements.reportErrorModal = document.getElementById('reportErrorModal');
+            elements.fullscreenEpisodesMenu = document.getElementById('fullscreenEpisodesMenu');
+            elements.fullscreenEpisodesList = document.getElementById('fullscreenEpisodesList');
+
+            // Verificação de elementos essenciais
+            if (!elements.slidesWrapper || !elements.episodesMenu || !elements.episodesMenuList || !elements.episodesMenuOverlay || !elements.infoCarousel || !elements.infoSlidesWrapper || !elements.carouselTitle || !elements.episodeCover || !elements.playerScreen) {
+                console.error('8. [ERRO] Elementos essenciais não encontrados. A inicialização será interrompida.');
+                return;
+            }
+            console.log('8. [INICIALIZAÇÃO] Elementos essenciais mapeados com sucesso.');
+
+            // Carregar estado salvo
+            const stateLoaded = loadStateFromLocalStorage();
+            console.log(`9. [INICIALIZAÇÃO] Estado do localStorage carregado: ${stateLoaded}`);
+            
+            createCarousels();
+            createEpisodesMenu();
+            setupEventListeners();
+            triggerSlideAnimation();
+            updateEpisodeCover(state.selectedEpisode);
+            startCoverSlideshow();
+            
+            if (state.lastWatchedEpisode !== null) {
+                console.log(`10. [INICIALIZAÇÃO] Último episódio assistido encontrado. Indo para slide: ${state.lastWatchedEpisode}`);
+                goToSlide(state.lastWatchedEpisode);
+            }
+            
+            if (elements.episodeCover) {
+                elements.episodeCover.addEventListener('click', () => {
+                    console.log('[EPISODE COVER] Clique na capa. isPlayerActive:', state.isPlayerActive, 'selectedEpisode:', state.selectedEpisode);
+                    if (!state.isPlayerActive && state.selectedEpisode !== null) {
+                        if (redirectForAd(state.selectedEpisode, 'Capa: Assistir Agora')) {
+                             loadSelectedEpisode(state.selectedEpisode);
+                        } else {
+                             loadSelectedEpisode(state.selectedEpisode);
+                        }
+                    } else {
+                         console.log('[EPISODE COVER] Clique na capa ignorado. Player já ativo ou nenhum episódio selecionado.');
+                    }
+                });
+            } else {
+                 console.warn('[EPISODE COVER] Elemento episodeCover não encontrado para adicionar listener.');
+            }
+
+            // Se o estado foi carregado e o player estava ativo, recarregar o player
+            if (stateLoaded && state.isPlayerActive && state.selectedEpisode !== null) {
+                console.log(`11. [INICIALIZAÇÃO] Player estava ativo. Recarregando episódio: ${state.selectedEpisode}`);
+                loadSelectedEpisode(state.selectedEpisode, true);
+            }
+             console.log('12. [INICIALIZAÇÃO] Finalizando função initialize().');
+        }
+
+        function openHamburgerMenu() {
+            console.log('[MENU] Abrindo menu hambúrguer.');
+            document.getElementById('hamburgerMenu')?.classList.add('open');
+            document.getElementById('menuOverlay')?.classList.add('active');
+        }
+
+        function closeHamburgerMenu() {
+            console.log('[MENU] Fechando menu hambúrguer.');
+            document.getElementById('hamburgerMenu')?.classList.remove('open');
+            document.getElementById('menuOverlay')?.classList.remove('active');
+        }
+        window.closeHamburgerMenu = closeHamburgerMenu;
+
+        let coverSlideshowInterval;
+        let currentCoverIndex = 0;
+        const coverImagesToTransition = config.series.map(item => item.image);
+
+        function getNextCoverImageIndex(currentIndex) {
+            return (currentIndex + 1) % config.series.length;
+        }
+
+        function startCoverSlideshow() {
+            console.log('[SLIDESHOW] Iniciando slideshow da capa.');
+            if (coverImagesToTransition.length < 2) {
+                console.log('[SLIDESHOW] Slideshow ignorado: menos de 2 imagens disponíveis.');
+                return;
+            }
+            if (elements.activeCoverImage) {
+                 elements.activeCoverImage.src = coverImagesToTransition[currentCoverIndex];
+            }
+            coverSlideshowInterval = setInterval(performCoverTransition, 5000);
+            console.log('[SLIDESHOW] Intervalo de slideshow (5000ms) criado.');
+        }
+
+        function performCoverTransition() {
+            if (state.isPlayerActive) {
+                 return;
+            }
+            console.log(`[SLIDESHOW] Realizando transição. Índice atual: ${currentCoverIndex}`);
+            const nextIndex = getNextCoverImageIndex(currentCoverIndex);
+            const nextImageSrc = coverImagesToTransition[nextIndex];
+
+            if (!elements.nextCoverImage || !elements.activeCoverImage) {
+                 console.error('[SLIDESHOW] Elementos de imagem da capa não encontrados para transição.');
+                 clearInterval(coverSlideshowInterval);
+                 return;
+            }
+
+            elements.nextCoverImage.src = nextImageSrc;
+
+            setTimeout(() => {
+                elements.activeCoverImage.style.opacity = 0;
+                elements.nextCoverImage.style.opacity = 1;
+            }, 50);
+
+            setTimeout(() => {
+                elements.activeCoverImage.classList.remove('active-image');
+                elements.activeCoverImage.classList.add('next-image');
+                elements.nextCoverImage.classList.remove('next-image');
+                elements.nextCoverImage.classList.add('active-image');
+                [elements.activeCoverImage, elements.nextCoverImage] = [elements.nextCoverImage, elements.activeCoverImage];
+                elements.nextCoverImage.style.opacity = 0;
+                currentCoverIndex = nextIndex;
+                console.log(`[SLIDESHOW] Transição concluída. Novo índice: ${currentCoverIndex}`);
+            }, 850);
+        }
+
+        function getEpisodeNumber(index) {
+            if (index === null || index < 0 || index >= config.series.length) {
+                console.warn(`[EPISÓDIO] Índice inválido para número do episódio: ${index}`);
+                return "N/A";
+            }
+            const episodeStr = config.series[index].episode;
+            const match = episodeStr.match(/(T\d+\.E\d+)/i);
+            const result = match ? match[0] : `Ep. ${index + 1}`;
+            return result;
+        }
+
+        function updateEpisodeCover(index = state.selectedEpisode) {
+            console.log(`[CAPA] Atualizando capa para o índice: ${index}`);
+            
+            if (!elements.episodeCoverTitle || !elements.episodeCoverDescription || !elements.prevEpisodeNumber || !elements.nextEpisodeNumber || !elements.prevEpisodeCoverBtn || !elements.nextEpisodeCoverBtn) {
+                 console.error('[CAPA] Elementos da capa não encontrados para atualização.');
+                 return;
+            }
+
+            const seriesLength = config.series.length;
+            
+            if (index !== null && index >= 0 && index < seriesLength) {
+                const prevEpisodeIndex = (index - 1 + seriesLength) % seriesLength;
+                const nextEpisodeIndex = (index + 1) % seriesLength;
+                
+                const episode = config.series[index];
+                elements.episodeCoverTitle.textContent = episode.episode;
+                elements.episodeCoverDescription.textContent = episode.synopsis.substring(0, 80) + '...';
+                elements.prevEpisodeNumber.textContent = getEpisodeNumber(prevEpisodeIndex);
+                elements.nextEpisodeNumber.textContent = getEpisodeNumber(nextEpisodeIndex);
+                elements.prevEpisodeCoverBtn.dataset.index = prevEpisodeIndex;
+                elements.nextEpisodeCoverBtn.dataset.index = nextEpisodeIndex;
+                console.log(`[CAPA] Capa atualizada. Título: ${episode.episode}`);
+            } else {
+                elements.episodeCoverTitle.textContent = "Clique para assistir ao episódio selecionado";
+                elements.episodeCoverDescription.textContent = "Selecione um episódio na lista abaixo";
+                elements.prevEpisodeNumber.textContent = "N/A";
+                elements.nextEpisodeNumber.textContent = "N/A";
+                console.log('[CAPA] Capa atualizada para estado de não seleção.');
+            }
+        }
+
+        function triggerSlideAnimation() {
+            console.log('[ANIMAÇÃO] Iniciando animação de dica de slide.');
+            const activeSlide = elements.slidesWrapper ? elements.slidesWrapper.querySelector('.slide.active') : null;
+            if (activeSlide) {
+                activeSlide.classList.add('animate-hint');
+                showNotification('Deslize para o próximo ou anterior episódio');
+                setTimeout(() => {
+                    activeSlide.classList.remove('animate-hint');
+                    console.log('[ANIMAÇÃO] Animação de dica de slide removida.');
+                }, 4000);
+            } else {
+                console.warn('[ANIMAÇÃO] Não foi possível encontrar o slide ativo para a animação de dica.');
+            }
+        }
+
+        function createCarousels() {
+            console.log('[CAROUSEL] Criando carrosséis de slides e informações.');
+            if (!elements.slidesWrapper || !elements.infoSlidesWrapper) {
+                console.error('[CAROUSEL] Elementos do carrossel não encontrados.');
+                return;
+            }
+            
+            elements.slidesWrapper.innerHTML = '';
+            elements.infoSlidesWrapper.innerHTML = '';
+            const items = config.series;
+
+            items.forEach((item, index) => {
+                // Criação do Slide da Imagem
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                slide.dataset.index = index;
+                slide.setAttribute('aria-label', `Episódio ${item.episode}: ${item.title}`);
+                slide.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/360x270?text=Imagem+Indisponível'">
+                `;
+                elements.slidesWrapper.appendChild(slide);
+                
+                // Criação do Slide de Informação
+                const infoSlide = document.createElement('div');
+                infoSlide.className = 'info-slide';
+                infoSlide.dataset.index = index;
+                infoSlide.innerHTML = `
+                    <div class="slide-content">
+                        <div class="title">${item.title.toLowerCase()}</div>
+                        <div class="episode">${item.episode}</div>
+                        <div class="duration">${item.duration}</div>
+                        <div class="synopsis">${item.synopsis || 'Sinopse indisponível'}</div>
+                        <div class="actions"></div>
+                    </div>
+                `;
+                elements.infoSlidesWrapper.appendChild(infoSlide);
+            });
+
+            updateSlides();
+            updateInfoSlide(state.currentSlide);
+            console.log(`[CAROUSEL] Criação de ${items.length} slides concluída.`);
+        }
+
+        function selectEpisodeForCover(index) {
+            console.log(`[ESTADO] Selecionando episódio de capa para índice: ${index}`);
+            state.selectedEpisode = index;
+            updateEpisodeCover();
+            saveStateToLocalStorage();
+        }
+
+        function createEpisodesMenu() {
+            console.log('[MENU EPISÓDIOS] Criando menu de episódios principal.');
+            if (!elements.episodesMenuList) {
+                 console.error('[MENU EPISÓDIOS] Elemento episodesMenuList não encontrado.');
+                 return;
+            }
+            elements.episodesMenuList.innerHTML = '';
+            config.series.forEach((item, index) => {
+                const episodeButton = document.createElement('button');
+                episodeButton.className = `episodes-menu__item ${index === state.lastWatchedEpisode ? 'last-watched' : ''}`;
+                episodeButton.dataset.index = index;
+                episodeButton.textContent = `${item.episode}: ${item.synopsis.substring(0, 50)}${item.synopsis.length > 50 ? '...' : ''}`;
+                episodeButton.setAttribute('aria-label', `Selecionar ${item.episode}`);
+                episodeButton.onclick = () => {
+                    console.log(`[MENU EPISÓDIOS] Clique no episódio ${index}.`);
+                    selectEpisodeForCover(index);
+                    if (state.isPlayerActive) {
+                        console.log('[MENU EPISÓDIOS] Player está ativo. Tentando redirecionamento de AD e carregamento.');
+                        if (redirectForAd(index, 'Menu Episódios: Assistir Agora')) {
+                           loadSelectedEpisode(index);
+                        } else {
+                           loadSelectedEpisode(index);
+                        }
+                    }
+                    closeEpisodesMenu();
+                };
+                elements.episodesMenuList.appendChild(episodeButton);
+            });
+            console.log(`[MENU EPISÓDIOS] Menu criado com ${config.series.length} itens.`);
+        }
+
+        function createFullscreenEpisodesMenu() {
+            console.log('[MENU EPISÓDIOS] Criando menu de episódios em Fullscreen.');
+            if (!elements.fullscreenEpisodesList) {
+                console.error('[MENU EPISÓDIOS] Elemento fullscreenEpisodesList não encontrado.');
+                return;
+            }
+            elements.fullscreenEpisodesList.innerHTML = '';
+            config.series.forEach((item, index) => {
+                const episodeButton = document.createElement('button');
+                episodeButton.dataset.index = index;
+                episodeButton.textContent = item.episode;
+                if (index === state.selectedEpisode) {
+                    episodeButton.classList.add('active');
+                    console.log(`[MENU EPISÓDIOS] Marcando episódio ${index} como ativo.`);
+                }
+                episodeButton.onclick = () => {
+                    console.log(`[MENU EPISÓDIOS/FULLSCREEN] Clique no episódio ${index}.`);
+                    selectEpisodeForCover(index);
+                    loadSelectedEpisode(index);
+                    elements.fullscreenEpisodesMenu.classList.remove('show');
+                    if (document.fullscreenElement) {
+                        console.log('[MENU EPISÓDIOS/FULLSCREEN] Saindo do fullscreen após seleção.');
+                        document.exitFullscreen();
+                    }
+                };
+                elements.fullscreenEpisodesList.appendChild(episodeButton);
+            });
+        }
+
+        function setupEventListeners() {
+            console.log('13. [EVENTOS] Configurando event listeners...');
+            
+            const searchInput = document.getElementById('search-input');
+            const menuToggle = document.getElementById('menu-icon');
+            const mainMenu = document.getElementById('main-menu');
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const zoomInBtn = document.getElementById('zoom-in-btn');
+            const zoomOutBtn = document.getElementById('zoom-out-btn');
+            const zoomInBtnFixed = document.getElementById('zoom-in-btn-fixed');
+            const zoomOutBtnFixed = document.getElementById('zoom-out-btn-fixed');
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const rootElement = document.documentElement;
+            let currentScale = INITIAL_ZOOM;
+            const step = 0.05;
+            const maxScale = MAX_ZOOM;
+            const minScale = MIN_ZOOM;
+            const baseFontSize = 16;
+
+            function updateZoom() {
+                console.log(`[ZOOM] Atualizando zoom para: ${currentScale.toFixed(2)}`);
+                rootElement.style.fontSize = `${baseFontSize * currentScale}px`;
+                showNotification(`Zoom: ${Math.round(currentScale * 100)}%`);
+                localStorage.setItem('zoomLevel', currentScale.toFixed(2));
+                
+                const isDisabledMax = currentScale >= maxScale;
+                const isDisabledMin = currentScale <= minScale;
+                
+                [zoomInBtn, zoomInBtnFixed].forEach(btn => btn ? btn.disabled = isDisabledMax : null);
+                [zoomOutBtn, zoomOutBtnFixed].forEach(btn => btn ? btn.disabled = isDisabledMin : null);
+                
+                saveStateToLocalStorage();
+            }
+
+            function handleZoom(direction) {
+                console.log(`[ZOOM] Manipulando zoom: ${direction}`);
+                if (direction === 'in') {
+                    currentScale = Math.min(maxScale, currentScale + step);
+                } else if (direction === 'out') {
+                    currentScale = Math.max(minScale, currentScale - step);
+                }
+                currentScale = parseFloat(currentScale.toFixed(2));
+                updateZoom();
+            }
+
+            [zoomInBtn, zoomInBtnFixed].forEach(btn => btn?.addEventListener('click', () => handleZoom('in')));
+            [zoomOutBtn, zoomOutBtnFixed].forEach(btn => btn?.addEventListener('click', () => handleZoom('out')));
+            updateZoom(); // Aplica o zoom inicial
+
+            hamburgerBtn?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openHamburgerMenu();
+            });
+            menuOverlay?.addEventListener('click', closeHamburgerMenu);
+
+            searchInput?.addEventListener('input', (e) => {
+                console.log('[BUSCA] Evento "input" no campo de pesquisa.');
+                window.searchAnimes(e.target.value);
+            });
+
+            menuToggle?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mainMenu.classList.toggle('open');
+                console.log(`[MENU] Toggle menu principal. Estado: ${mainMenu.classList.contains('open') ? 'aberto' : 'fechado'}`);
+                if (mainMenu.classList.contains('open') && searchInput) {
+                    setTimeout(() => searchInput.focus(), 300);
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (mainMenu && !e.target.closest('#main-menu') && !e.target.closest('#menu-icon') && mainMenu.classList.contains('open')) {
+                    console.log('[MENU] Clique fora. Fechando menu principal.');
+                    mainMenu.classList.remove('open');
+                }
+            });
+
+            function toggleTheme() {
+                const currentTheme = body.dataset.theme;
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                body.dataset.theme = newTheme;
+                localStorage.setItem('theme', newTheme);
+                console.log(`[TEMA] Tema alterado para: ${newTheme}`);
+                saveStateToLocalStorage();
+            }
+            themeToggle?.addEventListener('click', toggleTheme);
+
+            function updateThemeIcon() {
+                if (themeToggle) {
+                    themeToggle.innerHTML = `<i class="fas fa-adjust"></i>`;
+                }
+            }
+            // Adicionado verificação antes de observar
+            if (body) {
+                new MutationObserver(updateThemeIcon).observe(body, { attributes: true, attributeFilter: ['data-theme'] });
+            }
+            
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.dataset.theme = savedTheme;
+            updateThemeIcon();
+            console.log(`[TEMA] Tema inicial aplicado: ${savedTheme}`);
+
+            // Listeners de Swipe/Touch
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            elements.slidesWrapper?.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                console.log('[SWIPE] Touch start.');
+            }, { passive: true });
+
+            elements.slidesWrapper?.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+                console.log('[SWIPE] Touch end. Tentando swipe.');
+            }, { passive: true });
+
+            function handleSwipe() {
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) < 50) {
+                     console.log(`[SWIPE] Diferença de toque (${diff}) é menor que 50. Ignorando.`);
+                     return;
+                }
+                
+                if (diff > 50) {
+                    console.log('[SWIPE] Deslize para a esquerda detectado (Próximo slide).');
+                    nextSlide();
+                } else if (diff < -50) {
+                    console.log('[SWIPE] Deslize para a direita detectado (Slide anterior).');
+                    prevSlide();
+                }
+            }
+
+            elements.slidesWrapper?.addEventListener('click', handleSlideClick);
+            document.addEventListener('keydown', handleKeyboardNavigation);
+            elements.episodesMenuOverlay?.addEventListener('click', closeEpisodesMenu);
+            
+            document.documentElement.addEventListener('click', handleGlobalClick, { capture: true });
+            console.log('[EVENTOS] Listener de clique global adicionado.');
+
+            elements.watchNowCoverBtn?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                console.log('[WATCH NOW COVER] Clique em "Assistir Agora" na capa.');
+                if (state.selectedEpisode !== null) {
+                    if (redirectForAd(state.selectedEpisode, 'Capa: Assistir Agora')) {
+                        loadSelectedEpisode(state.selectedEpisode);
+                    } else {
+                        loadSelectedEpisode(state.selectedEpisode);
+                    }
+                } else {
+                    showNotification('Por favor, selecione um episódio primeiro!');
+                    console.warn('[WATCH NOW COVER] Tentativa de assistir sem episódio selecionado.');
+                }
+            });
+
+            elements.nextEpisodeCoverBtn?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                console.log('[CAPA] Clique no botão Próximo Episódio (capa).');
+                nextSlide();
+            });
+
+            elements.prevEpisodeCoverBtn?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                console.log('[CAPA] Clique no botão Episódio Anterior (capa).');
+                prevSlide();
+            });
+
+            document.getElementById('closeReportModal')?.addEventListener('click', closeReportModal);
+            
+            elements.reportErrorModal?.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal-overlay')) {
+                    console.log('[MODAL] Clique no overlay do modal de reporte. Fechando.');
+                    closeReportModal();
+                }
+            });
+
+            // Corrigido: Adicionar event listeners para todas as opções de reporte
+            document.querySelectorAll('.report-option').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const errorType = e.currentTarget.dataset.errorType;
+                    console.log(`[REPORTE] Clique na opção de reporte: ${errorType}`);
+                    if (state.selectedEpisode !== null) {
+                        recordReportError(state.selectedEpisode, errorType);
+                    } else {
+                        showNotification('Nenhum episódio selecionado para reportar.');
+                        console.warn('[REPORTE] Tentativa de reporte sem episódio selecionado.');
+                        closeReportModal();
+                    }
+                });
+            });
+
+            // Listener para fullscreen change
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+            console.log('[EVENTOS] Listeners de Fullscreen adicionados.');
+             console.log('14. [EVENTOS] Configuração de event listeners concluída.');
+        }
+
+        function handleFullscreenChange() {
+            console.log('[FULLSCREEN] Evento fullscreenchange detectado.');
+            isFullscreen = !!document.fullscreenElement || !!document.webkitFullscreenElement || !!document.mozFullScreenElement || !!document.msFullscreenElement;
+            const episodeEmbed = document.querySelector('.episode-embed');
+
+            if (isFullscreen) {
+                console.log('[FULLSCREEN] Modo tela cheia ATIVO.');
+                const episodesBtn = document.querySelector('.episodes-overlay-btn');
+                if (episodesBtn) {
+                    episodesBtn.classList.add('show');
+                    console.log('[FULLSCREEN] Botão de episódios overlay visível.');
+                }
+                if (episodeEmbed) {
+                    fullscreenIframe = episodeEmbed.querySelector('iframe');
+                }
+            } else {
+                console.log('[FULLSCREEN] Modo tela cheia INATIVO.');
+                const episodesBtn = document.querySelector('.episodes-overlay-btn');
+                if (episodesBtn) {
+                    episodesBtn.classList.remove('show');
+                    console.log('[FULLSCREEN] Botão de episódios overlay invisível.');
+                }
+                fullscreenIframe = null;
+                // Garantir que o menu de fullscreen feche ao sair
+                elements.fullscreenEpisodesMenu?.classList.remove('show');
+            }
+        }
+
+        function loadSelectedEpisode(index, reload = false) {
+            console.log(`[PLAYER] Carregando episódio: ${index}. É recarga? ${reload}`);
+            const episode = config.series[index];
+            
+            if (!episode || !episode.link) {
+                // Seu código já garante que o link existe, mas mantemos o log de erro por segurança.
+                console.error('[PLAYER] ERRO: Dados do episódio ou link não encontrados.');
+                showNotification('Erro ao carregar o episódio. Tente novamente.');
+                return;
+            }
+
+            if (!reload) {
+                showNotification(`Carregando ${episode.episode}...`);
+            }
+            
+            recordUserInteraction('Acesso', index);
+            updateLastWatchedEpisode(index);
+            state.selectedEpisode = index;
+            
+            const seriesLength = config.series.length;
+            const prevIndex = (index - 1 + seriesLength) % seriesLength;
+            const nextIndex = (index + 1) % seriesLength;
+            const downloadLink = DOWNLOAD_LINK_EXAMPLE;
+
+            console.log(`[PLAYER] Link de embed: ${episode.link}`);
+
+            const episodeEmbedHtml = `
+              <div class="player-controls-container">
+                <div class="player-actions">
+                  <button id="backToHomeBtn" class="player-action-button home-btn" title="Voltar para a página principal">
+                    <i class="fas fa-arrow-left"></i> Home
+                  </button>
+                  <button id="prevEpisodeBtn" class="player-action-button" data-index="${prevIndex}" title="Assistir ${config.series[prevIndex].episode}">
+                    <i class="fas fa-backward"></i> Anterior
+                  </button>
+                  <button id="nextEpisodePlayerBtn" class="player-action-button next-ep-player" data-index="${nextIndex}" title="Assistir ${config.series[nextIndex].episode}">
+                    Próximo <i class="fas fa-forward"></i>
+                  </button>
+                </div>
+                <div class="episode-embed" style="position:relative;">
+                  <iframe
+                    id="currentEpisodeFrame"
+                    src="${episode.link}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    title="${episode.episode}"
+                    style="width:100%;height:100%;border:none;display:block;"
+                  ></iframe>
+                  <div class="click-blocker" id="clickBlocker"></div>
+                  <div class="fullscreen-overlay-btn" id="fullscreenOverlayBtn">
+                    <i class="fas fa-expand"></i>
+                  </div>
+                  <div class="episodes-overlay-btn" id="episodesOverlayBtn">
+                    episódios
+                  </div>
+                  <div class="fullscreen-instruction">tela cheia</div>
+                  <a href="${downloadLink}" id="downloadBtn" class="download-icon-btn" target="_blank" title="Download do Episódio (Exemplo)">
+                    <i class="fas fa-download"></i>
+                  </a>
+                </div>
+                <div class="player-extra-actions">
+                  <div class="player-episodes-container">
+                    <button id="playerEpisodesBtn" class="player-secondary-btn" aria-label="Ver lista de episódios">
+                      <i class="fas fa-list-ul"></i> Episódios
+                    </button>
+                    <button id="playerReportErrorBtn" class="player-secondary-btn report-error-btn" aria-label="Reportar erro neste episódio">
+                      <i class="fas fa-exclamation-triangle"></i> Reportar Erro
+                    </button> </div>
+                </div>
+              </div>
+              <div class="fullscreen-warning" id="fullscreenWarning">
+                <div><i class="fas fa-exclamation-triangle"></i> Site ainda não compativel com o navegador do Facebook</div>
+<p>Para melhor experiência, use o navegador padrão para assistir em modo tela cheia<strong>,acesse os 3 pontinhos no canto superior e clique em </strong> abrir no navegador.</p>
+                <button id="closeFullscreenWarning">OK, entendi!</button>
+              </div>
+            `;
+            
+            elements.playerScreen.innerHTML = episodeEmbedHtml;
+            elements.playerScreen.classList.add('active');
+            state.isPlayerActive = true;
+            elements.episodeCover?.classList.add('player-active');
+            elements.infoCarousel?.classList.add('player-active');
+            elements.slidesWrapper?.closest('.slideshow-container')?.classList.add('player-active');
+            elements.animeInfoSection?.classList.add('player-active');
+            elements.adsSection?.classList.add('player-active');
+            saveStateToLocalStorage();
+            console.log('[PLAYER] Estado de Player Ativo salvo.');
+
+            // Recriar menu de episódios em fullscreen
+            createFullscreenEpisodesMenu();
+            
+            // Listeners do Player
+            document.getElementById('backToHomeBtn')?.addEventListener('click', () => {
+                console.log('[PLAYER] Clique em "Voltar para Home". Desativando player.');
+                elements.playerScreen.classList.remove('active');
+                state.isPlayerActive = false;
+                elements.episodeCover?.classList.remove('player-active');
+                elements.infoCarousel?.classList.remove('player-active');
+                elements.slidesWrapper?.closest('.slideshow-container')?.classList.remove('player-active');
+                elements.animeInfoSection?.classList.remove('player-active');
+                elements.adsSection?.classList.remove('player-active');
+                elements.playerScreen.innerHTML = '';
+                
+                // Correção de segurança: verificar se o elemento existe antes de chamar scrollIntoView
+                const zoomContainer = document.getElementById('zoom-container');
+                if(zoomContainer) {
+                    zoomContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    console.log('[PLAYER] Scroll para o topo da seção principal.');
+                } else {
+                    console.warn('[PLAYER] zoom-container não encontrado para scroll.');
+                }
+                
+                saveStateToLocalStorage();
+            });
+
+            document.getElementById('prevEpisodeBtn')?.addEventListener('click', (e) => {
+                const newIndex = parseInt(e.currentTarget.dataset.index);
+                console.log(`[PLAYER] Clique em "Episódio Anterior". Novo índice: ${newIndex}`);
+                if (redirectForAd(newIndex, 'Player: Episódio Anterior')) {
+                    loadSelectedEpisode(newIndex);
+                    goToSlide(newIndex);
+                } else {
+                    loadSelectedEpisode(newIndex);
+                    goToSlide(newIndex);
+                }
+            });
+
+            document.getElementById('nextEpisodePlayerBtn')?.addEventListener('click', (e) => {
+                const newIndex = parseInt(e.currentTarget.dataset.index);
+                console.log(`[PLAYER] Clique em "Próximo Episódio". Novo índice: ${newIndex}`);
+                if (redirectForAd(newIndex, 'Player: Próximo Episódio')) {
+                    loadSelectedEpisode(newIndex);
+                    goToSlide(newIndex);
+                } else {
+                    loadSelectedEpisode(newIndex);
+                    goToSlide(newIndex);
+                }
+            });
+
+            document.getElementById('playerEpisodesBtn')?.addEventListener('click', openEpisodesMenu);
+            document.getElementById('playerReportErrorBtn')?.addEventListener('click', openReportModal);
+
+            // Listener de Fullscreen (NOVO)
+            // **IMPORTANTE**: Este ID ('playerFullscreenBtn') NÃO existe no HTML que você forneceu. 
+            // Estou verificando se ele existe para evitar o erro, conforme sugerido.
+            const playerFullscreenBtn = document.getElementById('playerFullscreenBtn'); 
+            if (playerFullscreenBtn) {
+                console.log('[PLAYER] Listener de playerFullscreenBtn (Player Extra Actions) adicionado.');
+                playerFullscreenBtn.addEventListener('click', () => {
+                    console.log('[PLAYER] Clique no playerFullscreenBtn.');
+                    const playerScreen = document.getElementById('player-screen');
+                    const episodeEmbed = playerScreen.querySelector('.episode-embed');
+                    const iframe = episodeEmbed.querySelector('iframe');
+                    
+                    document.getElementById('fullscreenWarning')?.classList.add('show');
+                    document.getElementById('closeFullscreenWarning')?.addEventListener('click', () => {
+                        document.getElementById('fullscreenWarning')?.classList.remove('show');
+                        toggleCustomFullscreen(episodeEmbed, iframe);
+                    }, { once: true });
+                });
+            } else {
+                console.warn('[PLAYER] playerFullscreenBtn não encontrado no HTML. Listener não adicionado.');
+            }
+
+            // Camada de clique no canto inferior direito
+            document.getElementById('fullscreenOverlayBtn')?.addEventListener('click', () => {
+                console.log('[PLAYER] Clique no fullscreenOverlayBtn (Overlay do player).');
+                const playerScreen = document.getElementById('player-screen');
+                const episodeEmbed = playerScreen.querySelector('.episode-embed');
+                if (episodeEmbed) {
+                    toggleCustomFullscreen(episodeEmbed, episodeEmbed.querySelector('iframe'));
+                } else {
+                    console.error('[PLAYER] episodeEmbed não encontrado ao tentar fullscreen.');
+                }
+            });
+
+            // Camada de episódios no canto inferior esquerdo (apenas em fullscreen)
+            document.getElementById('episodesOverlayBtn')?.addEventListener('click', () => {
+                console.log('[PLAYER] Clique no episodesOverlayBtn.');
+                if (isFullscreen) {
+                    console.log('[PLAYER] Abrindo menu de episódios em fullscreen.');
+                    elements.fullscreenEpisodesMenu?.classList.add('show');
+                } else {
+                    console.log('[PLAYER] episodesOverlayBtn ignorado: não está em fullscreen.');
+                }
+            });
+
+            // Modal de fullscreen warning
+            document.getElementById('closeFullscreenWarning')?.addEventListener('click', () => {
+                console.log('[WARNING] Clique em "OK, entendi!" no aviso de tela cheia.');
+                document.getElementById('fullscreenWarning')?.classList.remove('show');
+            });
+        }
+
+        function toggleCustomFullscreen(embedElement, iframe) {
+            console.log('[FULLSCREEN] Toggle Fullscreen iniciado.');
+            if (!document.fullscreenElement) {
+                console.log('[FULLSCREEN] Entrando em tela cheia.');
+                embedElement.requestFullscreen().catch(err => {
+                    console.error('[FULLSCREEN] Erro ao entrar em tela cheia:', err);
+                    showNotification('Erro ao ativar tela cheia. Tente novamente.');
+                });
+            } else {
+                console.log('[FULLSCREEN] Saindo de tela cheia.');
+                document.exitFullscreen();
+            }
+        }
+
+        function handleSlideClick(e) {
+            const slide = e.target.closest('.slide');
+            if (!slide) return;
+            const index = parseInt(slide.dataset.index);
+            console.log(`[SLIDE] Clique no slide: ${index}`);
+            e.stopPropagation();
+            e.preventDefault();
+            goToSlide(index);
+        }
+
+        function handleKeyboardNavigation(e) {
+            if (e.key === 'ArrowLeft') {
+                console.log('[TECLADO] Seta esquerda pressionada.');
+                prevSlide();
+            }
+            else if (e.key === 'ArrowRight') {
+                console.log('[TECLADO] Seta direita pressionada.');
+                nextSlide();
+            }
+        }
+
+        function nextSlide() {
+            state.currentSlide = (state.currentSlide + 1) % config.series.length;
+            console.log(`[NAVEGAÇÃO] Próximo slide. Novo índice: ${state.currentSlide}`);
+            updateSlides();
+            selectEpisodeForCover(state.currentSlide);
+            if(state.isPlayerActive) {
+                console.log('[NAVEGAÇÃO] Player ativo. Recarregando episódio após navegação.');
+                loadSelectedEpisode(state.currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            state.currentSlide = (state.currentSlide - 1 + config.series.length) % config.series.length;
+            console.log(`[NAVEGAÇÃO] Slide anterior. Novo índice: ${state.currentSlide}`);
+            updateSlides();
+            selectEpisodeForCover(state.currentSlide);
+            if(state.isPlayerActive) {
+                console.log('[NAVEGAÇÃO] Player ativo. Recarregando episódio após navegação.');
+                loadSelectedEpisode(state.currentSlide);
+            }
+        }
+
+        function goToSlide(index) {
+            console.log(`[NAVEGAÇÃO] Indo diretamente para slide: ${index}`);
+            state.currentSlide = index;
+            updateSlides();
+            selectEpisodeForCover(index);
+        }
+
+        function updateSlides() {
+            requestAnimationFrame(() => {
+                console.log(`[SLIDE] Atualizando slides para o índice: ${state.currentSlide}`);
+                const slides = elements.slidesWrapper?.querySelectorAll('.slide');
+                const items = config.series;
+                
+                if (elements.carouselTitle) {
+                    elements.carouselTitle.textContent = `Saihate no Paladin: Tetsusabi no Yama no Ou ${getEpisodeNumber(state.currentSlide)}`;
+                }
+
+                slides?.forEach((slide, i) => {
+                    slide.classList.remove('active', 'prev', 'next');
+                    if (i === state.currentSlide) {
+                        slide.classList.add('active');
+                    } else {
+                        const prevIndex = (state.currentSlide - 1 + items.length) % items.length;
+                        const nextIndex = (state.currentSlide + 1) % items.length;
+                        if (i === prevIndex) {
+                            slide.classList.add('prev');
+                        } else if (i === nextIndex) {
+                            slide.classList.add('next');
+                        }
+                    }
+                });
+                updateInfoSlide(state.currentSlide);
+            });
+        }
+
+        function updateInfoSlide(index) {
+            // console.log(`[INFO SLIDE] Atualizando info slide para índice: ${index}`); // Comentado para evitar log excessivo
+            const infoSlides = elements.infoSlidesWrapper?.querySelectorAll('.info-slide');
+            infoSlides?.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function openReportModal() {
+            console.log('[MODAL] Abrindo modal de reporte de erro.');
+            if (elements.reportErrorModal) {
+                 elements.reportErrorModal.style.display = 'flex';
+            }
+            // A reativação dos listeners está sendo feita na função setupEventListeners e no loadSelectedEpisode (para o player).
+        }
+
+        function closeReportModal() {
+            console.log('[MODAL] Fechando modal de reporte de erro.');
+            if (elements.reportErrorModal) {
+                 elements.reportErrorModal.style.display = 'none';
+            }
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            if (!notification) {
+                console.warn('[NOTIFICAÇÃO] Elemento de notificação não encontrado.');
+                return;
+            }
+            console.log(`[NOTIFICAÇÃO] Exibindo: "${message}"`);
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+                // console.log('[NOTIFICAÇÃO] Notificação escondida.');
+            }, 4000);
+        }
+
+        function openEpisodesMenu() {
+            console.log('[MENU EPISÓDIOS] Abrindo menu de episódios.');
+            state.isEpisodesMenuOpen = true;
+            elements.episodesMenu?.classList.add('open');
+            elements.episodesMenuOverlay?.classList.add('active');
+        }
+
+        function closeEpisodesMenu() {
+            console.log('[MENU EPISÓDIOS] Fechando menu de episódios.');
+            state.isEpisodesMenuOpen = false;
+            elements.episodesMenu?.classList.remove('open');
+            elements.episodesMenuOverlay?.classList.remove('active');
+        }
+
+        const PROPAGANDAS = [
+            { id: 'ad-1', title: 'Shopee: Descontos de até 50%!', url: 'https://shopee.com.br' },
+            { id: 'ad-2', title: 'Amazon: Frete Grátis em Milhares de Itens', url: 'https://amazon.com.br' },
+            { id: 'ad-3', title: 'Mercado Livre: Seu Produto Chega Mais Rápido!', url: 'https://mercadolivre.com.br' },
+            { id: 'ad-4', title: 'Magazine Luiza: Ofertas do Dia', url: 'https://magazineluiza.com.br' },
+            { id: 'ad-5', title: 'Casas Bahia: Liquidação Total!', url: 'https://casasbahia.com.br' }
+        ];
+
+        function createPropagandaCard(ad) {
+            const card = document.createElement('div');
+            card.classList.add('ad-card', 'propaganda', 'fade-in');
+            card.setAttribute('onclick', `window.open('${ad.url}', '_blank'); console.log('[PROPAGANDA] Clique no card de propaganda: ${ad.id}');`);
+            card.innerHTML = `<h3>${ad.title}</h3>`;
+            return card;
+        }
+
+        function loadPropagandaCarousel(carouselId, ads) {
+            console.log(`[PROPAGANDA CAROUSEL] Carregando carrossel de propaganda: ${carouselId}`);
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) {
+                console.warn(`[PROPAGANDA CAROUSEL] Carrossel ${carouselId} não encontrado.`);
+                return;
+            }
+            carousel.innerHTML = '';
+            ads.forEach(ad => {
+                carousel.appendChild(createPropagandaCard(ad));
+            });
+            // Duplicar para rolagem contínua
+            ads.forEach(ad => {
+                carousel.appendChild(createPropagandaCard(ad));
+            });
+            console.log(`[PROPAGANDA CAROUSEL] Carregados ${ads.length * 2} cards.`);
+        }
+
+        function autoScrollCarousel(carouselId, scrollTimeMs, cardWidth) {
+            console.log(`[SCROLL] Configurando auto-scroll para ${carouselId}.`);
+            const carousel = document.getElementById(carouselId);
+            if (!carousel) return;
+            let scrollInterval;
+            let isHovering = false;
+            
+            const startScroll = () => {
+                scrollInterval = setInterval(() => {
+                    if (isHovering) return;
+                    const currentScroll = carousel.scrollLeft;
+                    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                    const nextScroll = currentScroll + cardWidth + 12; // 12 é a margem/gap
+                    
+                    if (currentScroll >= maxScroll - 10) {
+                        carousel.scrollLeft = 0;
+                        console.log(`[SCROLL] ${carouselId} atingiu o fim. Resetando para 0.`);
+                    } else {
+                        carousel.scroll({ left: nextScroll, behavior: 'smooth' });
+                    }
+                }, scrollTimeMs);
+                console.log(`[SCROLL] Auto-scroll iniciado para ${carouselId}. Intervalo: ${scrollTimeMs}ms`);
+            };
+
+            const stopScroll = () => {
+                clearInterval(scrollInterval);
+                console.log(`[SCROLL] Auto-scroll parado para ${carouselId}.`);
+            };
+
+            carousel.addEventListener('mouseenter', () => isHovering = true);
+            carousel.addEventListener('mouseleave', () => isHovering = false);
+            carousel.addEventListener('touchstart', () => isHovering = true, { passive: true });
+            carousel.addEventListener('touchend', () => isHovering = false);
+            
+            startScroll();
+        }
+
+        function setupPropagandaCarousels() {
+            console.log('15. [PROPAGANDA CAROUSEL] Iniciando configuração dos carrosséis de propaganda.');
+            const carouselData = [
+                { id: 'propaganda-carousel-1', delay: 8000, cardWidth: 200 }
+            ];
+            carouselData.forEach(data => {
+                loadPropagandaCarousel(data.id, PROPAGANDAS);
+                autoScrollCarousel(data.id, data.delay, data.cardWidth);
+            });
+            console.log('16. [PROPAGANDA CAROUSEL] Configuração dos carrosséis concluída.');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('17. [DOM] DOMContentLoaded. Chamando initialize() e setupPropagandaCarousels().');
+            initialize();
+            setupPropagandaCarousels();
+        });
+
+        // Salvar estado antes de recarregar/navegar
+        window.addEventListener('beforeunload', () => {
+            console.log('[LIFECYCLE] Evento beforeunload. Salvando estado...');
+            saveStateToLocalStorage();
+        });
+        
+        console.log('18. [FINAL] Script carregado e listeners de unload configurados.');
+    </script>
+</body>
+</html>
