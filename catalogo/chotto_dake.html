@@ -1674,7 +1674,16 @@ body {
                 resultsList.innerHTML = '';
                 results.forEach(anime => {
                     const resultItem = document.createElement('a');
-                    resultItem.href = anime.watch_url || '#';
+                    
+                    // ⚙️ CORREÇÃO APLICADA AQUI:
+                    // Adiciona o prefixo 'catalogo/' se o link for um caminho relativo local (sem 'http' ou 'https').
+                    let targetUrl = anime.watch_url || '#';
+                    if (targetUrl !== '#' && !targetUrl.includes('://') && targetUrl.length > 0) {
+                         targetUrl = 'catalogo/' + targetUrl;
+                         console.log(`[BUSCA/CORREÇÃO] Caminho corrigido para: ${targetUrl}`);
+                    }
+                    resultItem.href = targetUrl;
+                    
                     resultItem.target = '_blank';
                     resultItem.className = 'result-suggestion-item';
                     resultItem.innerHTML = `
