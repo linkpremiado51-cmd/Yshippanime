@@ -426,6 +426,25 @@ body {
         text-align: center;
         width: 100%;
     }
+    /* Estilo do modal em telas menores */
+    .modal-content {
+        max-width: 95%;
+        margin: 20px;
+        padding: 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    .modal-main-content {
+        flex-direction: column;
+    }
+    .modal-trailer-container {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .modal-synopsis-container {
+        width: 100%;
+    }
 }
 @media (max-width: 480px) {
    /* Estilos mobile */
@@ -447,23 +466,79 @@ body {
     justify-content: center;
     align-items: center;
 }
+/* ✨ NOVO ESTILO DO MODAL DE DETALHES (Sinopse + Trailer) */
 .modal-content {
-    background: var(--background);
+    background: var(--card-bg); /* Fundo claro ou escuro do card */
     color: var(--text-primary);
     padding: 30px;
     border-radius: 0px;
     width: 90%;
-    max-width: 400px;
+    max-width: 800px; /* Aumenta a largura máxima para acomodar trailer */
     box-shadow: var(--shadow-lg);
     animation: fadeIn 0.3s ease-out;
+    max-height: 90vh;
+    overflow-y: auto; /* Permite scroll se o conteúdo for muito grande */
 }
 .modal-content h3 {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     font-weight: 700;
     margin-bottom: 20px;
     border-bottom: 2px solid var(--highlight-color);
     padding-bottom: 10px;
 }
+.modal-main-content {
+    display: flex;
+    gap: 20px;
+}
+/* ✨ Aumento de 30px na altura do frame do YouTube */
+.modal-trailer-container {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+    padding-bottom: calc(56.25% + 30px); /* 16:9 Aspect Ratio + 30px */
+    height: 0;
+    overflow: hidden;
+    background: #000;
+}
+.trailer-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.modal-synopsis-container {
+    flex: 1;
+    max-height: 400px; /* Limita altura da sinopse no desktop */
+    overflow-y: auto;
+    padding-right: 10px;
+}
+.modal-synopsis-container p {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+/* Scrollbar customizada para Firefox */
+.modal-synopsis-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--highlight-color) var(--surface);
+}
+/* Scrollbar customizada para Webkit */
+.modal-synopsis-container::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-synopsis-container::-webkit-scrollbar-thumb {
+    background-color: var(--highlight-color);
+    border-radius: 4px;
+}
+.modal-synopsis-container::-webkit-scrollbar-track {
+    background: var(--surface);
+}
+
+
+/* Estilos do modal de Reportar (mantidos) */
 .report-option {
     display: block;
     width: 100%;
@@ -499,6 +574,8 @@ body {
 .modal-close-btn:hover {
     background: var(--highlight-hover);
 }
+
+
 .fixed-footer-controls {
     position: fixed;
     bottom: 0;
@@ -678,9 +755,9 @@ body {
     font-size: var(--font-size-xs);
     color: var(--text-secondary);
 }
-/* ========================================================== */
-/* ✨ ALTERAÇÕES PARA 4 COLUNAS NO MOBILE (SOLICITADO)     */
-/* ========================================================== */
+/* ==========================================================
+   ✨ ALTERAÇÕES PARA 4 COLUNAS NO MOBILE (SOLICITADO)
+   ========================================================== */
 @media (max-width: 768px) {
     .hero-section {
         height: 300px;
@@ -772,8 +849,8 @@ body {
                 <h2 class="carousel-title" data-link-id="none">Anime I Geek Recomenda</h2>
                 <div id="recommend-carousel">
                 </div>
-                </section>
-                  <section class="anime-carousel-section" id="genres-section">
+            </section>
+            <section class="anime-carousel-section" id="genres-section">
                 <h2 class="carousel-title" data-link-id="genres">Gêneros</h2>
                 <div class="anime-grid" id="generos-externo-grid">
                 </div>
@@ -783,6 +860,7 @@ body {
                 <div class="anime-grid" id="recent-releases-grid">
                 </div>
             </section>
+            
             <section class="anime-carousel-section" id="popular-section">
                 <h2 class="carousel-title" data-link-id="popular">Populares</h2>
                 <div class="anime-grid" id="popular-animes-grid">
@@ -791,6 +869,11 @@ body {
             <section class="anime-carousel-section" id="added-section">
                 <h2 class="carousel-title" data-link-id="added">Adicionados Recentemente</h2>
                 <div class="anime-grid" id="recently-added-grid">
+                </div>
+            </section>
+            <section class="anime-carousel-section" id="binge-watch-section">
+                <h2 class="carousel-title" data-link-id="binge-watch">Para Maratonar em 1 Dia</h2>
+                <div id="binge-watch-carousel">
                 </div>
             </section>
           
@@ -822,11 +905,19 @@ body {
             <button class="modal-close-btn" id="closeReportModal">Cancelar</button>
         </div>
     </div>
-    <div class="modal-overlay" id="synopsisModal">
+    <div class="modal-overlay" id="detailsModal">
         <div class="modal-content">
-            <h3 id="synopsisTitle"></h3>
-            <p id="synopsisText"></p>
-            <button class="modal-close-btn" id="closeSynopsisModal">Fechar</button>
+            <h3 id="detailsTitle"></h3>
+            <div class="modal-main-content">
+                <div class="modal-trailer-container">
+                    <iframe id="trailerVideo" class="trailer-video" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="modal-synopsis-container">
+                    <h4>Sinopse:</h4>
+                    <p id="synopsisText"></p>
+                </div>
+            </div>
+            <button class="modal-close-btn" id="closeDetailsModal">Fechar</button>
         </div>
     </div>
     <script type="module">
@@ -855,8 +946,7 @@ body {
         const CONSTRUCTION_SUBTITLE = "Sistema em construção";
 
         // ==========================================================
-        // ✨ DADOS ATUALIZADOS E NOVOS DADOS PARA GÊNEROS
-        // URLs atualizadas para usar caminhos relativos (catalogo/*.html)
+        // ✨ DADOS ATUALIZADOS E NOVOS DADOS
         // ==========================================================
         const homepageData = {
             hero: [
@@ -869,23 +959,47 @@ body {
                 { title: "My Hero Academy final", subtitle: "A nova temporada está aqui!", image: "https://i.postimg.cc/5yTTQD0f/28328-1_9_8b.webp", url: CONSTRUCTION_LINK },
                 { title: "L9999", subtitle: "Ele quase foi morto nas profundezas da masmorra...", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp", url: CONSTRUCTION_LINK }
             ],
+            // ✨ NOVO CARROSSEL: Para Maratonar em 1 Dia
+            bingeWatch: [
+                { 
+                    title: "Another", 
+                    subtitle: "12 Episódios (Terror)", 
+                    image: "https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg", 
+                    url: CONSTRUCTION_LINK, 
+                    synopsis: "Em 1998, um estudante transferido, Koichi Sakakibara, se aproxima da misteriosa Misaki Mei, mas descobre que ela e o resto de sua classe escondem um segredo terrível ligado a uma série de mortes.", 
+                    trailerId: "wG2c27b0X-E" // ID do trailer do YouTube (Exemplo)
+                },
+                { 
+                    title: "Death Note", 
+                    subtitle: "37 Episódios (Suspense)", 
+                    image: "https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg", 
+                    url: CONSTRUCTION_LINK, 
+                    synopsis: "Um estudante do ensino médio encontra um caderno sobrenatural que lhe permite matar qualquer pessoa escrevendo seu nome. Ele decide criar um mundo sem o mal, mas seus planos são frustrados por um detetive gênio.", 
+                    trailerId: "Yv2yD9V-13A" // ID do trailer do YouTube (Exemplo)
+                },
+                { title: "Code Geass: Lelouch of the Rebellion", subtitle: "25 Episódios (Mecha, Militar)", image: "https://i.postimg.cc/zvwvwbMc/135089.jpg", url: CONSTRUCTION_LINK, synopsis: "O exilado príncipe Lelouch vi Britannia ganha um poder misterioso chamado Geass, que lhe permite dar ordens absolutas. Ele usa esse poder para liderar uma rebelião contra seu império tirânico.", trailerId: "X_xT6KjJgq0" },
+                { title: "Cowboy Bebop", subtitle: "26 Episódios (Sci-Fi, Ação)", image: "https://i.postimg.cc/yxt4hMkM/images-16.webp", url: CONSTRUCTION_LINK, synopsis: "Acompanha as desventuras de um grupo de caçadores de recompensas viajando pela galáxia a bordo da nave espacial Bebop no ano de 2071.", trailerId: "O9-H-Y13b4w" },
+                { title: "Puella Magi Madoka Magica", subtitle: "12 Episódios (Drama, Mágica)", image: "https://i.postimg.cc/7YcyLYbj/127508.webp", url: CONSTRUCTION_LINK, synopsis: "Duas garotas se deparam com uma criatura mágica que se oferece para realizar qualquer desejo delas. Em troca, elas devem se tornar 'garotas mágicas' e lutar contra bruxas.", trailerId: "C1J6iG3c18E" },
+                { title: "Haikyuu!! T1", subtitle: "25 Episódios (Esportes)", image: "https://i.postimg.cc/zGgkd9cK/IMG-20251111-104051.jpg", url: CONSTRUCTION_LINK, synopsis: "Um garoto baixinho, Shoyo Hinata, se junta ao time de vôlei da escola para provar que a altura não importa no vôlei.", trailerId: "sFvQk11Xh00" }
+            ],
             recentReleases: [
-                { title: "My Hero Academia Final Season", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/wM05SzhW/IMG-20251111-112503.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para My Hero Academia Final Season." },
-                { title: "Spy × Family S3", subtitle: "Ep. 1 (4 de Out. 2025)", image: "https://i.postimg.cc/NMc3p8GT/IMG-20251111-111133.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Spy × Family S3." },
-                { title: "One‑Punch Man S3", subtitle: "Ep. 1 (12 de Out. 2025)", image: "https://i.postimg.cc/Tw040ZHV/images-2025-11-11T111248-289.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para One‑Punch Man S3." },
-                { title: "Dusk Beyond the End of the World", subtitle: "Ep. 1 (26 de Set. 2025)", image: "https://i.postimg.cc/m2zm1zR8/IMG-20251111-111359.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Dusk Beyond the End of the World." },
-                { title: "This Monster Wants to Eat Me!", subtitle: "Ep. 1 (2 de Out. 2025)", image: "https://i.postimg.cc/bNtRN7H4/IMG-20251111-111459.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para This Monster Wants to Eat Me!." },
-                { title: "May I Ask for One Final Thing?", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/ZY9QpDLk/filters-quality-95-format-webp-6.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para May I Ask for One Final Thing?." },
-                { title: "Kakuriyo: Bed & Breakfast for Spirits S2", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/VLqDFyr0/81lBpKcTSrL.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Kakuriyo: Bed & Breakfast for Spirits S2." },
-                { title: "With You, Our Love Will Make It Through", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/cH3Q4Yfg/images-13.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para With You, Our Love Will Make It Through." },
-                { title: "A Star Brighter than the Sun", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/YSW417jt/images-14.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para A Star Brighter than the Sun." },
-                { title: "Who Made Me a Princess", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/jdDRWXDR/images-15.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Who Made Me a Princess." },
-                { title: "The Banished Court Magician Aims to Become the Strongest", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/yxt4hMkM/images-16.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para The Banished Court Magician Aims to Become the Strongest." },
-                { title: "A Gatherer’s Adventure in Isekai", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/xTGqj5hJ/images-2025-11-11T112830-071.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para A Gatherer’s Adventure in Isekai." },
-                { title: "Dad is a Hero, Mom is a Spirit, I’m a Reincarnator", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/NFWS2Rns/images-2025-11-11T112142-360.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Dad is a Hero, Mom is a Spirit, I’m a Reincarnator." },
-                { title: "Blue Orchestra S2", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/mr5vGxSy/images-2025-11-11T112238-100.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Blue Orchestra S2." },
-                { title: "Kingdom S6", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/LswbbtHN/images-2025-11-11T112334-528.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Kingdom S6." },
-                { title: "To Your Eternity S3", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/nhLSVRr9/images-2025-11-11T112408-236.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para To Your Eternity S3." },
+                // Mantidos os dados originais e trailers IDs placeholder
+                { title: "My Hero Academia Final Season", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/wM05SzhW/IMG-20251111-112503.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para My Hero Academia Final Season.", trailerId: "qI9hDqfC6x0" },
+                { title: "Spy × Family S3", subtitle: "Ep. 1 (4 de Out. 2025)", image: "https://i.postimg.cc/NMc3p8GT/IMG-20251111-111133.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Spy × Family S3.", trailerId: "o9e9P2H9s3c" },
+                { title: "One‑Punch Man S3", subtitle: "Ep. 1 (12 de Out. 2025)", image: "https://i.postimg.cc/Tw040ZHV/images-2025-11-11T111248-289.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para One‑Punch Man S3.", trailerId: "bYg7K64b55c" },
+                { title: "Dusk Beyond the End of the World", subtitle: "Ep. 1 (26 de Set. 2025)", image: "https://i.postimg.cc/m2zm1zR8/IMG-20251111-111359.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Dusk Beyond the End of the World.", trailerId: "placeholder" },
+                { title: "This Monster Wants to Eat Me!", subtitle: "Ep. 1 (2 de Out. 2025)", image: "https://i.postimg.cc/bNtRN7H4/IMG-20251111-111459.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para This Monster Wants to Eat Me!.", trailerId: "placeholder" },
+                { title: "May I Ask for One Final Thing?", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/ZY9QpDLk/filters-quality-95-format-webp-6.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para May I Ask for One Final Thing?.", trailerId: "placeholder" },
+                { title: "Kakuriyo: Bed & Breakfast for Spirits S2", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/VLqDFyr0/81lBpKcTSrL.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Kakuriyo: Bed & Breakfast for Spirits S2.", trailerId: "placeholder" },
+                { title: "With You, Our Love Will Make It Through", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/cH3Q4Yfg/images-13.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para With You, Our Love Will Make It Through.", trailerId: "placeholder" },
+                { title: "A Star Brighter than the Sun", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/YSW417jt/images-14.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para A Star Brighter than the Sun.", trailerId: "placeholder" },
+                { title: "Who Made Me a Princess", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/jdDRWXDR/images-15.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Who Made Me a Princess.", trailerId: "placeholder" },
+                { title: "The Banished Court Magician Aims to Become the Strongest", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/yxt4hMkM/images-16.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para The Banished Court Magician Aims to Become the Strongest.", trailerId: "placeholder" },
+                { title: "A Gatherer’s Adventure in Isekai", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/xTGqj5hJ/images-2025-11-11T112830-071.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para A Gatherer’s Adventure in Isekai.", trailerId: "placeholder" },
+                { title: "Dad is a Hero, Mom is a Spirit, I’m a Reincarnator", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/NFWS2Rns/images-2025-11-11T112142-360.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Dad is a Hero, Mom is a Spirit, I’m a Reincarnator.", trailerId: "placeholder" },
+                { title: "Blue Orchestra S2", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/mr5vGxSy/images-2025-11-11T112238-100.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Blue Orchestra S2.", trailerId: "placeholder" },
+                { title: "Kingdom S6", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/LswbbtHN/images-2025-11-11T112334-528.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Kingdom S6.", trailerId: "placeholder" },
+                { title: "To Your Eternity S3", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/nhLSVRr9/images-2025-11-11T112408-236.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para To Your Eternity S3.", trailerId: "placeholder" },
             ],
             popularAnimes: [
                 {
@@ -893,71 +1007,81 @@ body {
                     subtitle: "500 Episódios",
                     image: "https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg",
                     url: "catalogo/chotto_dake.html", // Link real
-                    synopsis: "Sinopse placeholder para Naruto Shippuden teste."
+                    synopsis: "Sinopse placeholder para Naruto Shippuden teste.",
+                    trailerId: "placeholder"
                 },
                 { 
                     title: "Dragon Ball Super", 
                     subtitle: "131 Episódios", 
                     image: "https://i.postimg.cc/DwDtGPkM/IMG-20251111-101701.jpg", 
                     url: "catalogo/orient.html", // Link real (Exemplo)
-                    synopsis: "Sinopse placeholder para Dragon Ball Super." 
+                    synopsis: "Sinopse placeholder para Dragon Ball Super.",
+                    trailerId: "placeholder"
                 },
-                { title: "Death Note", subtitle: "37 Episódios", image: "https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Death Note." },
-                { title: "Fullmetal Alchemist: Brotherhood", subtitle: "64 Episódios", image: "https://i.postimg.cc/xTRQX4Rc/IMG-20251111-103449.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Fullmetal Alchemist: Brotherhood." },
-                { title: "Hunter x Hunter (2011)", subtitle: "148 Episódios", image: "https://i.postimg.cc/Pr6cssyV/IMG-20251111-103924.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Hunter x Hunter (2011)." },
-                { title: "Haikyuu!!", subtitle: "4 Temporadas + Filmes", image: "https://i.postimg.cc/zGgkd9cK/IMG-20251111-104051.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Haikyuu!!." },
-                { title: "Sword Art Online", subtitle: "T1, T2, T3 + Filmes", image: "https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Sword Art Online." },
-                { title: "One Punch Man", subtitle: "2 Temporadas", image: "https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para One Punch Man." },
-                { title: "Spy x Family", subtitle: "2 Temporadas + Filme", image: "https://i.postimg.cc/nLwBp25K/IMG-20251111-104434.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Spy x Family." },
-                { title: "Vinland Saga", subtitle: "2 Temporadas", image: "https://i.postimg.cc/vBfBkvd3/IMG-20251111-104607.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Vinland Saga." },
-                { title: "Mob Psycho 100", subtitle: "3 Temporadas", image: "https://i.postimg.cc/RhPzD3qC/IMG-20251111-104810.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Mob Psycho 100." },
-                { title: "Steins;Gate", subtitle: "24 Episódios + Filme", image: "https://i.postimg.cc/CKp9JCJH/IMG-20251111-104940.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Steins;Gate." },
-                { title: "Demon Slayer: Kimetsu no Yaiba", subtitle: "Todas as Temporadas", image: "https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Demon Slayer: Kimetsu no Yaiba." },
-                { title: "A Viagem de Chihiro", subtitle: "Filme Clássico", image: "https://i.postimg.cc/mgyKXzq7/IMG-20251111-105228.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para A Viagem de Chihiro." },
-                { title: "Your Name", subtitle: "Filme", image: "https://i.postimg.cc/V6ffZPDN/MV5BOTkzMGIyYzAtMDQyYi00OTkxLWI2ZGMtODNmYjMyMWM3ZGY1XkEyXkFqcGc@._V1_.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Your Name." },
+                { title: "Death Note", subtitle: "37 Episódios", image: "https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Death Note.", trailerId: "Yv2yD9V-13A" },
+                { title: "Fullmetal Alchemist: Brotherhood", subtitle: "64 Episódios", image: "https://i.postimg.cc/xTRQX4Rc/IMG-20251111-103449.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Fullmetal Alchemist: Brotherhood.", trailerId: "qE5Y6u0Gg4M" },
+                { title: "Hunter x Hunter (2011)", subtitle: "148 Episódios", image: "https://i.postimg.cc/Pr6cssyV/IMG-20251111-103924.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Hunter x Hunter (2011).", trailerId: "d6k-tV-3V3w" },
+                { title: "Haikyuu!!", subtitle: "4 Temporadas + Filmes", image: "https://i.postimg.cc/zGgkd9cK/IMG-20251111-104051.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Haikyuu!!.", trailerId: "sFvQk11Xh00" },
+                { title: "Sword Art Online", subtitle: "T1, T2, T3 + Filmes", image: "https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Sword Art Online.", trailerId: "placeholder" },
+                { title: "One Punch Man", subtitle: "2 Temporadas", image: "https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para One Punch Man.", trailerId: "placeholder" },
+                { title: "Spy x Family", subtitle: "2 Temporadas + Filme", image: "https://i.postimg.cc/nLwBp25K/IMG-20251111-104434.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Spy x Family.", trailerId: "placeholder" },
+                { title: "Vinland Saga", subtitle: "2 Temporadas", image: "https://i.postimg.cc/vBfBkvd3/IMG-20251111-104607.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Vinland Saga.", trailerId: "placeholder" },
+                { title: "Mob Psycho 100", subtitle: "3 Temporadas", image: "https://i.postimg.cc/RhPzD3qC/IMG-20251111-104810.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Mob Psycho 100.", trailerId: "placeholder" },
+                { title: "Steins;Gate", subtitle: "24 Episódios + Filme", image: "https://i.postimg.cc/CKp9JCJH/IMG-20251111-104940.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Steins;Gate.", trailerId: "placeholder" },
+                { title: "Demon Slayer: Kimetsu no Yaiba", subtitle: "Todas as Temporadas", image: "https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Demon Slayer: Kimetsu no Yaiba.", trailerId: "placeholder" },
+                { title: "A Viagem de Chihiro", subtitle: "Filme Clássico", image: "https://i.postimg.cc/mgyKXzq7/IMG-20251111-105228.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para A Viagem de Chihiro.", trailerId: "placeholder" },
+                { title: "Your Name", subtitle: "Filme", image: "https://i.postimg.cc/V6ffZPDN/MV5BOTkzMGIyYzAtMDQyYi00OTkxLWI2ZGMtODNmYjMyMWM3ZGY1XkEyXkFqcGc@._V1_.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Your Name.", trailerId: "placeholder" },
             ],
             recentlyAdded: [
                 { 
-                    title: "Solo Leveling", 
+                    title: "Chotto dake Ai ga Omoi Dark Elf ga Isekai kara Oikaketekita ", 
                     subtitle: "12 Episódios", 
-                    image: "https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg", 
-                    url: "catalogo/gachiakuta.html", // Link real (Exemplo)
-                    synopsis: "Sinopse placeholder para Solo Leveling." 
+                    image: "https://i.postimg.cc/1XYJM2Dt/MV5BNjc1MDQ2NWIt-M2Y1My00ZDE5LThl-Yj-Ut-ZTdk-ZTZj-Yzdl-NWZi-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg", 
+                    url: "catalogo/chotto_dake.html", // Link real (Exemplo)
+                    synopsis: "Sinopse Um estudante completa uma missão para derrotar um rei demônio em outro mundo, mas quando ele retorna, é caçado por uma elfa que se apaixonou por ele.",
+                    trailerId: "placeholder"
                 },
                 { 
-                    title: "The Apothecary Diaries", 
-                    subtitle: "24 Episódios", 
-                    image: "https://i.postimg.cc/DwDtGPkM/IMG-20251111-101701.jpg", 
+                    title: "The Faraway Paladin", 
+                    subtitle: "12 Episódios", 
+                    image: "https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg", 
                     url: "catalogo/saihate_no_paradin.html", // Link real (Exemplo)
-                    synopsis: "Sinopse placeholder para The Apothecary Diaries." 
+                    synopsis: "Sinopse Uma cidade dos mortos, destruída há muito tempo... Nesta cidade afastada de todos, há uma única criança viva, Will. O menino é criado por três mortos vivos: Blood, um espadachim esqueleto; Maria, uma freira múmia; e Gus, um mago fantasma. Ele é criado por eles recebendo ensinamentos e amor. Mas um dia o jovem começa a ter dúvidas. Quem é este 'eu'? Assim os mistérios dessa cidade longamente passam a ser vendidos por Will. O amor e a misericórdia dos deuses bons. A paranóia e a loucura dos deuses maus. E ao saber de tudo isso, o jovem começa o caminho rumo a se tornar um paladino.",
+                    trailerId: "placeholder"
                 },
-                { title: "Mushoku Tensei S2", subtitle: "25 Episódios", image: "https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Mushoku Tensei S2." },
-                { title: "Cyberpunk: Edgerunners", subtitle: "10 Episódios", image: "https://i.postimg.cc/xTRQX4Rc/IMG-20251111-103449.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Cyberpunk: Edgerunners." },
-                { title: "Ranking of Kings", subtitle: "23 Episódios", image: "https://i.postimg.cc/Pr6cssyV/IMG-20251111-103924.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Ranking of Kings." },
-                { title: "Spy x Family S1", subtitle: "25 Episódios", image: "https://i.postimg.cc/zGgkd9cK/IMG-20251111-104051.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Spy x Family S1." },
-                { title: "Jojo's Bizarre Adventure: Stone Ocean", subtitle: "38 Episódios", image: "https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Jojo's Bizarre Adventure: Stone Ocean." },
-                { title: "Tengen Toppa Gurren Lagann", subtitle: "27 Episódios", image: "https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Tengen Toppa Gurren Lagann." },
-                { title: "Code Geass", subtitle: "2 Temporadas", image: "https://i.postimg.cc/nLwBp25K/IMG-20251111-104434.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Code Geass." },
-                { title: "Violet Evergarden", subtitle: "13 Episódios + Filme", image: "https://i.postimg.cc/vBfBkvd3/IMG-20251111-104607.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Violet Evergarden." },
-                { title: "Hajime no Ippo", subtitle: "75 Episódios", image: "https://i.postimg.cc/RhPzD3qC/IMG-20251111-104810.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Hajime no Ippo." },
-                { title: "Slam Dunk", subtitle: "101 Episódios", image: "https://i.postimg.cc/CKp9JCJH/IMG-20251111-104940.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Slam Dunk." },
-                { title: "Yu Yu Hakusho", subtitle: "112 Episódios", image: "https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Yu Yu Hakusho." },
-                { title: "Rurouni Kenshin (2023)", subtitle: "24 Episódios", image: "https://i.postimg.cc/mgyKXzq7/IMG-20251111-105228.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Rurouni Kenshin (2023)." },
-                { title: "Trigun Stampede", subtitle: "12 Episódios", image: "https://i.postimg.cc/V6ffZPDN/MV5BOTkzMGIyYzAtMDQyYi00OTkxLWI2ZGMtODNmYjMyMWM3ZGY1XkEyXkFqcGc@._V1_.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Trigun Stampede." },
+                { title: "gachiakuta", subtitle: "25 Episódios", image: "https://i.postimg.cc/mDdgXykx/images-2025-11-11T223742-007.jpg", url: "catalogo/gachiakuta.html", synopsis: "Sinopse Rudo, um jovem órfão que vive em uma favela marginalizada, discriminada pela elite de uma cidade flutuante. Após ser falsamente acusado de assassinato, ele é jogado em um inferno chamado O Poço, um lugar habitado por monstros de lixo. Para sobreviver e buscar vingança, ele precisa dominar um novo poder e se unir aos Limpadores (Cleaners), um grupo que luta contra as criaturas do lixo.", trailerId: "placeholder" },
+                { title: "Cyberpunk: Edgerunners", subtitle: "10 Episódios", image: "https://i.postimg.cc/26PSN8QP/images-17.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse Cyberpunk: Edgerunners conta a história de David Martinez, um garoto de rua que, após perder tudo, decide se tornar um edgerunner, um mercenário fora da lei também conhecido como cyberpunk — para sobreviver em uma distópica cidade futurista obcecada por tecnologia e implantes cibernéticos. A série é uma produção de 10 episódios derivada do videogame Cyberpunk 2077, criada em colaboração com o Studio Trigger e a Netflix. ", trailerId: "placeholder" },
+                { title: "Ranking of Kings", subtitle: "23 Episódios", image: "https://i.postimg.cc/qMpdh3vG/images-18.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse O povo do reino despreza o jovem Principe Bojji que nao consegue ouvir nem falar chamando-o de O Principe Inutil e zombando de sua suposta tolice Contudo embora Bojji nao seja fisicamente forte ele nao falta coracao Um encontro fortuito com uma criatura das sombras que deveria tê-lo traumatizado faz com que ele acredite ter encontrado um amigo em meio a aqueles que so notam suas deficiencias Ele comeca a se encontrar regularmente com Kage a sombra a ponto de ate mesmo a criatura antes aspera comecar a se mostrar mais amigavel A improvavel amizade entre Kage e Bojji lança as bases da jornada do principe uma jornada na qual ele pretende vencer seus medos e inseguranças Apesar do ridiculo constante que enfrenta Bojji esta determinado a realizar seu desejo de se tornar o melhor rei que puder ser", trailerId: "placeholder" },
+                { title: "Spy x Family S1", subtitle: "25 Episódios", image: "https://i.postimg.cc/7YcyLYbj/127508.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse Politicos corruptos nacionalistas fanaticos e outras forcas belicistas ameaçam constantemente a tenue camada de paz entre os paises vizinhos de Ostania e Westalis Apesar de suas conspiraçoes o renomado espiao e mestre dos disfarces Twilight cumpre perigosas missoes uma apos a outra na esperança de que nenhuma crianca tenha que vivenciar os horrores da guerra Na movimentada cidade de Berlint em Ostania Twilight assume o pseudonimo de Loid Forger um estimado psiquiatra No entanto sua verdadeira intencao e coletar informacoes sobre o proeminente politico Donovan Desmond que raramente aparece em publico na escola de seus filhos a prestigiosa Academia Eden Recrutando a ajuda da funcionaria solteira da prefeitura Yor Briar para fingir ser sua esposa e adotando a curiosa orfa de seis anos Anya como sua filha Loid coloca seu plano em açao Ele matriculara Anya na Academia Eden onde espera que ela se destaque e lhe de a oportunidade de conhecer Donovan sem levantar suspeitas Infelizmente para Loid ate mesmo um homem com seus talentos tem dificuldade em representar o papel de pai e marido amoroso E assim como Loid esconde sua verdadeira identidade Yor uma assassina clandestina conhecida como Princesa Espinho e Anya uma esper capaz de ler mentes tambem nao pretendem revelar seus proprios segredos Embora essa familia aparentemente perfeita seja construída sobre a mentira os Forjadores gradualmente compreendem que o amor que compartilham e mais importante do que tudo", trailerId: "placeholder" },
+                { title: "Jojo's Bizarre Adventure: Stone Ocean", subtitle: "38 Episódios", image: "https://i.postimg.cc/NFqpnSMQ/119844.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse Forças conspiradoras incriminam Jolyne Kuujou por um crime imprudente, levando-a à infame Prisão da Rua Green Dolphin. Assim como seu pai, Joutarou, Jolyne é impetuosa, corajosa e justa; ela se revolta contra sua sentença injusta e rapidamente descobre as circunstâncias sinistras que a levaram à prisão. Um presente de seu pai ausente concede a Jolyne o poder de Stone Free, uma habilidade sobrenatural conhecida como Stand, que lhe permite transformar seu corpo em fios. Jolyne usa Stone Free para lutar em sua jornada pela prisão, recrutando novos aliados — Ermes Costello e Foo Fighters — para ajudá-la em sua investigação. Juntas, as destemidas mulheres lutam para desvendar a ameaça por trás de Whitesnake, um Stand inimigo, responsável pelos prisioneiros cada vez mais perigosos que estão atrás da vida de Jolyne. Através de Jolyne, a linhagem Joestar confronta o legado de seu único e verdadeiro inimigo. Jolyne e seus amigos correm contra o tempo para impedir um plano desastroso e pôr fim a um mal crescente.", trailerId: "placeholder" },
+                { title: "Tengen Toppa Gurren Lagann", subtitle: "27 Episódios", image: "https://i.postimg.cc/MTDmsTht/5123.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse Simon e Kamina nasceram e foram criados em uma vila subterrânea profunda, escondida da lendária superfície. Kamina é um espírito livre e impulsivo, determinado a deixar seu nome na história, enquanto Simon é um garoto tímido e sem grandes aspirações. Um dia, ao escavar a terra, Simon encontra um objeto misterioso que acaba sendo a chave de ignição de um antigo artefato de guerra, que a dupla chama de Lagann. Usando sua nova arma, Simon e Kamina repelem um ataque surpresa vindo da superfície com a ajuda de Yoko Littner, uma ruiva destemida e armada com um enorme rifle, que vaga pelo mundo acima. Após a batalha, o céu finalmente se revela diante deles, levando Simon e Kamina a embarcar em uma jornada ao lado de Yoko para explorar as terras devastadas da superfície. Logo, eles se unem à luta contra os Beastmen, criaturas humanoides que aterrorizam os remanescentes da humanidade em poderosos robôs chamados Gunmen. Apesar dos desafios e reveses, o trio luta corajosamente contra esses novos inimigos ao lado de outros sobreviventes para reconquistar a superfície, enquanto aos poucos desvendam um mistério de proporções galácticas.", trailerId: "placeholder" },
+                { title: "Code Geass", subtitle: "2 Temporadas", image: "https://i.postimg.cc/zvwvwbMc/135089.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse Um ano se passou desde a Rebelião Negra, uma tentativa fracassada de levante contra o Sacro Império da Britannia, liderada pelo vigilante mascarado Zero, que agora está desaparecido. Sem seu líder revolucionário, o grupo de resistência da Área 11 — os Cavaleiros Negros — se vê impotente diante da brutalidade imposta aos Elevens por Britannia, que aumentou drasticamente seus esforços para eliminar qualquer esperança de uma nova revolta. Lelouch Lamperouge, tendo perdido toda a memória de sua vida dupla, vive pacificamente ao lado de seus amigos como um estudante do Colégio Ashford. Sua antiga parceira, C.C., incapaz de aceitar essa reviravolta, decide lembrá-lo de seu verdadeiro propósito, na esperança de que o estrategista Zero renasça mais uma vez para concluir o que começou.", trailerId: "placeholder" },
+                { title: "Violet Evergarden", subtitle: "13 Episódios + Filme", image: "https://i.postimg.cc/Kc0djvRG/95088.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse A Grande Guerra finalmente chegou ao fim após quatro longos anos de conflito. Dividido em dois, o continente de Telesis começou lentamente a florescer novamente. Presa no meio do derramamento de sangue estava Violet Evergarden, uma jovem criada com o único propósito de dizimar as linhas inimigas. Hospitalizada e mutilada em uma sangrenta escaramuça durante a fase final da guerra, ela ficou apenas com as palavras da pessoa que mais amava, mas sem entender seu significado. Recuperando-se de seus ferimentos, Violet começa uma nova vida trabalhando nos Correios CH após um desentendimento com sua nova família adotiva. Lá, ela testemunha por acaso o trabalho de uma Boneca de Memória Automática, amanuenses que transcrevem os pensamentos e sentimentos das pessoas em palavras no papel. Comovida pela ideia, Violet decide seguir esse caminho e se torna uma Boneca de Memória Automática, embarcando em uma jornada que transformará a vida de seus clientes e, com sorte, a conduzirá à autodescoberta.", trailerId: "placeholder" },
+                { title: "Hajime no Ippo", subtitle: "75 Episódios", image: "https://i.postimg.cc/RhPzD3qC/IMG-20251111-104810.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Hajime no Ippo.", trailerId: "placeholder" },
+                { title: "Slam Dunk", subtitle: "101 Episódios", image: "https://i.postimg.cc/CKp9JCJH/IMG-20251111-104940.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Slam Dunk.", trailerId: "placeholder" },
+                { title: "Yu Yu Hakusho", subtitle: "112 Episódios", image: "https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Yu Yu Hakusho.", trailerId: "placeholder" },
+                { title: "Rurouni Kenshin (2023)", subtitle: "24 Episódios", image: "https://i.postimg.cc/mgyKXzq7/IMG-20251111-105228.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Rurouni Kenshin (2023).", trailerId: "placeholder" },
+                { title: "Trigun Stampede", subtitle: "12 Episódios", image: "https://i.postimg.cc/V6ffZPDN/MV5BOTkzMGIyYzAtMDQyYi00OTkxLWI2ZGMtODNmYjMyMWM3ZGY1XkEyXkFqcGc@._V1_.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Trigun Stampede.", trailerId: "kupW7eDG48s" },
             ],
             genresAnimes: [
-                { title: "Ação", subtitle: "Animes de Luta e Batalha", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Ação." },
-                { title: "Aventura", subtitle: "Grandes Jornadas", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Aventura." },
-                { title: "Comédia", subtitle: "Para Rir", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Comédia." },
-                { title: "Drama", subtitle: "Histórias Emocionantes", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Drama." },
-                { title: "Fantasia", subtitle: "Mundo de Magia", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Fantasia." },
-                { title: "Isekai", subtitle: "Outros Mundos", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Isekai." },
-                { title: "Romance", subtitle: "Histórias de Amor", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Romance." },
-                { title: "Slice of Life", subtitle: "Vida Cotidiana", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Slice of Life." },
-                { title: "Sci-Fi", subtitle: "Ficção Científica", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Sci-Fi." },
-                { title: "Suspense", subtitle: "Mistério e Tensão", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Suspense." },
-                { title: "Horror", subtitle: "Terror e Sobrenatural", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Horror." },
-                { title: "Esportes", subtitle: "Competição e Paixão", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Esportes." },
+                { title: "Ação", subtitle: "Animes de Luta e Batalha", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Ação.", trailerId: "placeholder" },
+                { title: "Aventura", subtitle: "Grandes Jornadas", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Aventura.", trailerId: "placeholder" },
+                { title: "Comédia", subtitle: "Para Rir", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Comédia.", trailerId: "placeholder" },
+                { title: "Drama", subtitle: "Histórias Emocionantes", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Drama.", trailerId: "placeholder" },
+                { title: "Fantasia", subtitle: "Mundo de Magia", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Fantasia.", trailerId: "placeholder" },
+                { title: "Isekai", subtitle: "Outros Mundos", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Isekai.", trailerId: "placeholder" },
+                { title: "Romance", subtitle: "Histórias de Amor", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Romance.", trailerId: "placeholder" },
+                { title: "Slice of Life", subtitle: "Vida Cotidiana", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Slice of Life.", trailerId: "placeholder" },
+                { title: "Sci-Fi", subtitle: "Ficção Científica", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Sci-Fi.", trailerId: "placeholder" },
+                { title: "Suspense", subtitle: "Mistério e Tensão", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Suspense.", trailerId: "placeholder" },
+                // ✨ NOVOS GÊNEROS SOLICITADOS
+                { title: "Mecha", subtitle: "Robôs Gigantes", url: CONSTRUCTION_LINK, synopsis: "Animes que apresentam robôs gigantes ou máquinas de combate pilotadas.", trailerId: "placeholder" },
+                { title: "Militar", subtitle: "Estratégia e Guerra", url: CONSTRUCTION_LINK, synopsis: "Temas de guerra, exércitos e estratégia militar.", trailerId: "placeholder" },
+                { title: "Música", subtitle: "Melodias e Bandas", url: CONSTRUCTION_LINK, synopsis: "Animes focados em performances musicais e desenvolvimento de talentos.", trailerId: "placeholder" },
+                { title: "Sobrenatural", subtitle: "Poderes Ocultos", url: CONSTRUCTION_LINK, synopsis: "Histórias com elementos como fantasmas, espíritos ou poderes ocultos.", trailerId: "placeholder" },
+                { title: "Terror", subtitle: "Medo e Horror", url: CONSTRUCTION_LINK, synopsis: "Animes com foco em terror, gore e elementos assustadores.", trailerId: "placeholder" },
+                { title: "Horror", subtitle: "Terror e Sobrenatural", url: CONSTRUCTION_LINK, synopsis: "Terror e Sobrenatural", trailerId: "placeholder" },
+                { title: "Esportes", subtitle: "Competição e Paixão", url: CONSTRUCTION_LINK, synopsis: "Competição e Paixão", trailerId: "placeholder" },
             ],
         };
 
@@ -966,10 +1090,11 @@ body {
             ...homepageData.recentReleases,
             ...homepageData.popularAnimes,
             ...homepageData.recentlyAdded,
+            ...homepageData.bingeWatch
         ];
 
         // ==========================================================
-        // ✨ FUNÇÕES DE RENDERIZAÇÃO E LÓGICA
+        // ✨ FUNÇÕES DE RENDERIZAÇÃO E LÓGICA (Com Edições)
         // ==========================================================
 
         window.searchAnimes = async (query) => {
@@ -1018,21 +1143,43 @@ body {
 
         window.showNotification = showNotification;
 
-        function openSynopsisModal(title, synopsis) {
-            const modal = document.getElementById('synopsisModal');
-            const titleElem = document.getElementById('synopsisTitle');
+        // ✨ NOVA FUNÇÃO PARA ABRIR O MODAL DE DETALHES (Sinopse e Trailer)
+        function openDetailsModal(title, synopsis, trailerId) {
+            const modal = document.getElementById('detailsModal');
+            const titleElem = document.getElementById('detailsTitle');
             const textElem = document.getElementById('synopsisText');
-            if (modal && titleElem && textElem) {
+            const trailerFrame = document.getElementById('trailerVideo');
+
+            if (modal && titleElem && textElem && trailerFrame) {
                 titleElem.textContent = title;
                 textElem.textContent = synopsis;
+
+                let trailerUrl = '';
+                if (trailerId && trailerId !== 'placeholder') {
+                    // Monta a URL do YouTube com autoplay e modo sem cookies
+                    trailerUrl = `https://www.youtube-nocookie.com/embed/${trailerId}?autoplay=1&mute=0&controls=1&rel=0&showinfo=0&loop=0`;
+                } else {
+                    // Placeholder ou link de vídeo de erro
+                    trailerUrl = `https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0`; // Rickroll mudo
+                }
+                
+                trailerFrame.src = trailerUrl;
+                
                 modal.style.display = 'flex';
             }
         }
 
-        function closeSynopsisModal() {
-            const modal = document.getElementById('synopsisModal');
-            if (modal) modal.style.display = 'none';
+        // ✨ NOVA FUNÇÃO PARA FECHAR O MODAL DE DETALHES
+        function closeDetailsModal() {
+            const modal = document.getElementById('detailsModal');
+            const trailerFrame = document.getElementById('trailerVideo');
+            if (modal && trailerFrame) {
+                // Para o vídeo limpando o src do iframe
+                trailerFrame.src = '';
+                modal.style.display = 'none';
+            }
         }
+
 
         /**
          * Renderiza os cards de anime no grid/carrossel
@@ -1073,6 +1220,7 @@ body {
                 card.dataset.url = finalUrl;
                 card.dataset.title = anime.title;
                 card.dataset.synopsis = anime.synopsis || 'Sinopse não disponível.';
+                card.dataset.trailerid = anime.trailerId || ''; // ✨ NOVO: Adiciona o ID do trailer
 
                 if (anime.image) {
                     card.innerHTML = `
@@ -1135,16 +1283,12 @@ body {
         /**
          * Lógica para o carrossel "Anime I Geek Recomenda"
          */
-        function setupRecommendCarousel() {
-            const containerId = 'recommend-carousel';
+        function setupAutoScrollCarousel(containerId, animeList) {
             const container = document.getElementById(containerId);
             if (!container) return;
-
-            // Embaralha a lista e pega os 10 primeiros
-            const shuffled = [...allAnimes].sort(() => 0.5 - Math.random());
-            const recommendList = shuffled.slice(0, 10);
-            // Inicializa a renderização horizontal
-            initializeCarousel(containerId, recommendList, true);
+            
+            // Usa a lista fornecida (que pode ser a embaralhada ou a fixa de Maratona)
+            initializeCarousel(containerId, animeList, true);
 
             const cards = container.querySelectorAll('.anime-card');
             if (cards.length === 0) return;
@@ -1157,13 +1301,19 @@ body {
                 clearInterval(intervalId);
                 intervalId = setInterval(() => {
                     const gap = parseInt(getComputedStyle(container).gap) || 0;
-                    const cardWidth = cards[0].offsetWidth + gap;
+                    // Tenta calcular a largura correta, assumindo que todos os cards têm a mesma largura de carrossel
+                    const cardWidth = cards[0] ? cards[0].offsetWidth + gap : 0;
+                    if (cardWidth === 0) return;
+                    
                     currentIndex = (currentIndex + 1) % cards.length;
+                    
                     container.scrollTo({
                         left: currentIndex * cardWidth,
                         behavior: 'smooth'
                     });
-                    if (currentIndex === cards.length - 1) {
+                    
+                    // Se chegar no penúltimo (para não mostrar o último antes de resetar) ou no último se for lista pequena
+                    if (currentIndex >= cards.length - 1) { 
                         setTimeout(() => {
                             container.scrollTo({ left: 0, behavior: 'auto' });
                             currentIndex = 0;
@@ -1182,6 +1332,8 @@ body {
             container.addEventListener('touchstart', userInteractionHandler);
             container.addEventListener('mousedown', userInteractionHandler);
             container.addEventListener('wheel', userInteractionHandler);
+            // Também adiciona event listeners para o scroll
+            container.addEventListener('scroll', userInteractionHandler);
 
             startAutoScroll();
         }
@@ -1193,6 +1345,7 @@ body {
         function buildHomepage() {
             console.log('[HOMEPAGE] Construindo página inicial (Dados Internos)...');
             buildHeroSlider('hero-section', homepageData.hero);
+            
             // Carrosséis estáticos (Grid)
             initializeCarousel('recent-releases-grid', homepageData.recentReleases);
             initializeCarousel('popular-animes-grid', homepageData.popularAnimes);
@@ -1201,7 +1354,12 @@ body {
             initializeCarousel('generos-externo-grid', homepageData.genresAnimes);
 
             // Carrossel de Recomendações (Horizontal e Automático)
-            setupRecommendCarousel();
+            const shuffled = [...allAnimes].sort(() => 0.5 - Math.random());
+            const recommendList = shuffled.slice(0, 10);
+            setupAutoScrollCarousel('recommend-carousel', recommendList);
+
+            // ✨ Carrossel "Para Maratonar em 1 Dia" (Horizontal e Automático, com lista fixa)
+            setupAutoScrollCarousel('binge-watch-carousel', homepageData.bingeWatch);
         }
 
         const INITIAL_ZOOM = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
@@ -1323,8 +1481,7 @@ body {
             });
 
            // ==========================================================
-           // ✨ CORREÇÃO CRÍTICA DO REDIRECIONAMENTO DE CLIQUE
-           // Lógica para single e double click nos anime-cards
+           // ✨ LÓGICA DO CLIQUE DUPLO AGORA ABRE O NOVO MODAL
            // ==========================================================
             let clickTimer = null;
             document.querySelectorAll('.anime-card').forEach(card => {
@@ -1350,18 +1507,21 @@ body {
                     } else {
                         clearTimeout(clickTimer);
                         clickTimer = null;
-                        // Double click: abre modal de sinopse
+                        // Double click: abre modal de DETALHES
                         const title = card.dataset.title;
                         const synopsis = card.dataset.synopsis;
-                        openSynopsisModal(title, synopsis);
+                        const trailerId = card.dataset.trailerid; // ✨ NOVO: pega o ID do trailer
+                        openDetailsModal(title, synopsis, trailerId);
                     }
                 });
             });
 
-            document.getElementById('closeSynopsisModal')?.addEventListener('click', closeSynopsisModal);
-            document.getElementById('synopsisModal')?.addEventListener('click', (e) => {
+            // Listener para fechar o novo modal de detalhes
+            document.getElementById('closeDetailsModal')?.addEventListener('click', closeDetailsModal);
+            document.getElementById('detailsModal')?.addEventListener('click', (e) => {
+                // Fechar se clicar no overlay
                 if (e.target.classList.contains('modal-overlay')) {
-                    closeSynopsisModal();
+                    closeDetailsModal();
                 }
             });
 
