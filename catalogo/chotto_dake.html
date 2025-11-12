@@ -1471,29 +1471,7 @@ body {
             </div>
             <div class="result-card" id="result-card"></div>
         </nav>
-        <!-- MENU LATERAL DINÂMICO -->
-<div id="menu-lateral-container"></div>
-<script>
-  fetch('menu-lateral.html')
-    .then(r => r.text())
-    .then(html => {
-      const container = document.getElementById('menu-lateral-container');
-      container.innerHTML = html;
-
-      // 🔧 Executa todos os scripts contidos no menu-lateral.html
-      container.querySelectorAll('script').forEach(oldScript => {
-        const newScript = document.createElement('script');
-        if (oldScript.src) {
-          newScript.src = oldScript.src;
-        } else {
-          newScript.textContent = oldScript.textContent;
-        }
-        document.body.appendChild(newScript);
-      });
-    })
-    .catch(err => console.error('Erro ao carregar menu-lateral:', err));
-</script>
-<!-- FIM DO MENU LATERAL DINÂMICO -->
+    
     </div>
     <div id="player-screen"></div>
     <div class="episode-cover" id="episodeCover">
