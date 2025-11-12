@@ -1470,23 +1470,7 @@ body {
       <!-- MENU LATERAL (carregado automaticamente) -->
 <div id="menu-lateral-container"></div>
 <script>
-    fetch('menu-lateral.html')
-        .then(r => r.text())
-        .then(html => {
-            const container = document.getElementById('menu-lateral-container');
-            container.innerHTML = html;
-            
-            // 🔧 Executa os scripts do menu-lateral.html após inserir
-            container.querySelectorAll('script').forEach(oldScript => {
-                const newScript = document.createElement('script');
-                if (oldScript.src) newScript.src = oldScript.src;
-                else newScript.textContent = oldScript.textContent;
-                document.body.appendChild(newScript);
-            });
-        })
-        .catch(err => console.error('Erro ao carregar menu-lateral:', err));
-</script>
-<!-- FIM DO MENU LATERAL -->
+
     </div>
     <div id="player-screen"></div>
     <div class="episode-cover" id="episodeCover">
