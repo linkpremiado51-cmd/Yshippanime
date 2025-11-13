@@ -638,6 +638,45 @@ body {
     color: white;
     font-size: 1rem;
 }
+/* Botões direcionais para esticar o frame */
+.resize-controls {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.player-container:hover .resize-controls {
+    opacity: 1;
+}
+.resize-row {
+    display: flex;
+    gap: 5px;
+}
+.resize-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 0px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+.resize-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
 /* Estilo para a seção de informações do episódio */
 .episode-info-section {
     width: 100%;
@@ -781,6 +820,19 @@ body {
                 <iframe class="player-frame" id="player-frame" src="https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <div class="ad-overlay">
                     <a href="https://otieu.com/4/9277353" target="_blank">Anúncio</a>
+                </div>
+                <!-- Botões direcionais para esticar o frame -->
+                <div class="resize-controls">
+                    <div class="resize-row">
+                        <button class="resize-btn" id="resize-up-btn"><i class="fas fa-arrow-up"></i></button>
+                    </div>
+                    <div class="resize-row">
+                        <button class="resize-btn" id="resize-left-btn"><i class="fas fa-arrow-left"></i></button>
+                        <button class="resize-btn" id="resize-right-btn"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                    <div class="resize-row">
+                        <button class="resize-btn" id="resize-down-btn"><i class="fas fa-arrow-down"></i></button>
+                    </div>
                 </div>
                 <!-- Camada dos Botões de Zoom -->
                 <div class="zoom-controls-overlay" id="zoom-controls-overlay">
@@ -944,6 +996,31 @@ body {
             currentFrameScale = parseFloat(currentFrameScale.toFixed(2));
             updateFrameZoom();
         }
+        // Função para redimensionar o frame
+        function resizeFrame(direction) {
+            const playerFrame = document.getElementById('player-frame');
+            if (!playerFrame) return;
+
+            const currentWidth = parseInt(playerFrame.style.width) || playerFrame.offsetWidth;
+            const currentHeight = parseInt(playerFrame.style.height) || playerFrame.offsetHeight;
+
+            switch (direction) {
+                case 'up':
+                    playerFrame.style.height = `${currentHeight + 30}px`;
+                    break;
+                case 'down':
+                    playerFrame.style.height = `${Math.max(100, currentHeight - 30)}px`;
+                    break;
+                case 'left':
+                    playerFrame.style.width = `${currentWidth + 30}px`;
+                    playerFrame.style.marginLeft = `-${(currentWidth + 30 - playerFrame.offsetWidth) / 2}px`;
+                    break;
+                case 'right':
+                    playerFrame.style.width = `${currentWidth + 30}px`;
+                    playerFrame.style.marginLeft = `-${(currentWidth + 30 - playerFrame.offsetWidth) / 2}px`;
+                    break;
+            }
+        }
         // Funções de Event Listener (mantidas do original)
         function setupEventListeners() {
             console.log('13. [EVENTOS] Configurando event listeners...');
@@ -1036,6 +1113,23 @@ body {
             document.getElementById('zoom-out-btn-overlay')?.addEventListener('click', (e) => {
                 e.stopPropagation(); // Impede que o clique no overlay do botão afete o iframe
                 handleFrameZoom('out');
+            });
+            // Adiciona eventos de clique aos botões direcionais
+            document.getElementById('resize-up-btn')?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                resizeFrame('up');
+            });
+            document.getElementById('resize-down-btn')?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                resizeFrame('down');
+            });
+            document.getElementById('resize-left-btn')?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                resizeFrame('left');
+            });
+            document.getElementById('resize-right-btn')?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                resizeFrame('right');
             });
             // Adiciona o evento de clique ao botão de tela cheia
             document.getElementById('fullscreen-btn-overlay')?.addEventListener('click', (e) => {
