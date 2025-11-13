@@ -528,28 +528,36 @@ body {
 /* =====================================================
    ✨ NOVOS ESTILOS PARA A PÁGINA DO EPISÓDIO
    ===================================================== */
-/* Estilo para o player do episódio, ocupando o mesmo espaço da capa */
+/* Estilo para o player do episódio, ocupando o espaço disponível */
 .episode-player-section {
     width: 100%;
     max-width: 1000px;
     margin: 65px auto 0; /* Margem superior para compensar o header fixo */
-    height: 400px; /* Mesma altura da capa original */
     background: var(--surface);
     border-radius: 0px;
     box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
+    /* Ocupa 60% da altura da viewport (ajuste conforme necessário) */
+    height: 60vh;
+    min-height: 400px; /* Altura mínima para desktop */
 }
+/* Container do player com proporção 16:9 */
 .player-container {
     width: 100%;
-    height: 100%;
+    padding-bottom: 56.25%; /* Proporção 16:9 (9/16 = 56.25%) */
     position: relative;
+    height: 0;
+    background: #000; /* Fundo preto para o frame */
 }
+/* Frame do vídeo */
 .player-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: none;
-    background: #000; /* Fundo preto para o frame */
 }
 /* Overlay para o anúncio */
 .ad-overlay {
@@ -748,7 +756,7 @@ body {
         </section>
         <!-- Navegação de Episódios -->
         <section class="episode-navigation">
-            <button class="episode-nav-btn prev" disabled><i class="fas fa-arrow-left"></i> Anterior</button>
+            <a href="saihate_no_paradin.html" class="episode-nav-btn prev"><i class="fas fa-arrow-left"></i> Voltar para o Catálogo</a>
             <button class="episode-nav-btn next" onclick="showNotification('Próximo episódio em breve!')">Próximo <i class="fas fa-arrow-right"></i></button>
         </section>
     </div>
