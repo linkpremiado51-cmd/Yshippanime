@@ -550,7 +550,7 @@ body {
     height: 0;
     background: #000; /* Fundo preto para o frame */
 }
-/* Frame do vídeo */
+/* Frame do vídeo - Widescreen */
 .player-frame {
     position: absolute;
     top: 0;
@@ -558,6 +558,13 @@ body {
     width: 100%;
     height: 100%;
     border: none;
+    /* Estilo Widescreen: Ocupa 100% da largura e altura do container */
+    width: 100%;
+    height: 100%;
+    /* Opções para ajuste de conteúdo se necessário */
+    object-fit: fill; /* Preenche o container, pode cortar as bordas */
+    /* object-fit: contain; Mantém a proporção, pode haver barras pretas */
+    /* object-fit: cover; Mantém a proporção e preenche, cortando os lados ou topo */
 }
 /* Overlay para o anúncio */
 .ad-overlay {
@@ -589,7 +596,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 5px; /* Espaçamento entre os botões */
+    /* INVISÍVEIS MAS EXISTENTES */
+    opacity: 0;
+    pointer-events: none;
 }
+/* Botões de Zoom (mantidos para funcionalidade) */
 .zoom-btn {
     display: flex;
     justify-content: center;
@@ -775,7 +786,7 @@ body {
                 <div class="ad-overlay">
                     <a href="https://otieu.com/4/9277353" target="_blank">Anúncio</a>
                 </div>
-                <!-- Camada dos Botões de Zoom -->
+                <!-- Camada dos Botões de Zoom (Invisíveis) -->
                 <div class="zoom-controls-overlay" id="zoom-controls-overlay">
                     <button class="zoom-btn" id="zoom-in-btn-overlay">
                         <i class="fas fa-search-plus"></i>
