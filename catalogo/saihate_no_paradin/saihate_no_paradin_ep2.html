@@ -1,1 +1,1198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Assista Saihate no Paladin T1.E1 ∙ O Menino da Cidade dos Mortos no Anime I Geek">
+    <title>T1.E1 ∙ O Menino da Cidade dos Mortos - Saihate no Paladin - Anime I Geek</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+/* INÍCIO DO CSS UNIFICADO (Estilo da Página do Episódio, baseado no código fixado) */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+:root {
+    --primary-gradient: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --background: #f5f7fa;
+    --surface: rgba(0, 0, 0, 0.05);
+    --border: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --blur-effect: blur(12px);
+    --transition: all 0.6s ease-in-out;
+    --highlight-color: #E53E3E;
+    --highlight-hover: #C53030;
+    --watch-later-color: #38A169;
+    --watch-later-hover: #2F855A;
+    --episodes-color: #2D3748;
+    --episodes-hover: #4A5568;
+    --report-error-color: #4B5563;
+    --report-error-hover: #6B7280;
+    --menu-background: rgba(255, 255, 255, 0.65);
+    --menu-item-background: rgba(0, 0, 0, 0.05);
+    --menu-item-hover-background: rgba(0, 0, 0, 0.1);
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-section: 40px;
+    --font-size-xs: clamp(0.8rem, 2vw, 1rem);
+    --font-size-sm: clamp(1rem, 2.5vw, 1.1rem);
+    --font-size-md: clamp(1.1rem, 3vw, 1.3rem);
+    --font-size-lg: clamp(1.4rem, 4vw, 1.8rem);
+    --primary: #2d3748;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --menu-bg-light: rgba(255, 255, 255, 0.5);
+    --menu-bg-dark: rgba(45, 55, 72, 0.5);
+    --card-bg: #ffffff;
+    --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --header-bg: var(--surface);
+    --progress-bg: #edf2f7;
+    --zoom-scale: 1.0;
+    --watch-now-button-width: 150px;
+    --cover-button-opacity: 0.8;
+}
+[data-theme="dark"] {
+    --text-primary: #e2e8f0;
+    --text-secondary: #a0aec0;
+    --background: #1a202c;
+    --surface: rgba(255, 255, 255, 0.05);
+    --border: #4a5568;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --menu-background: rgba(45, 55, 72, 0.65);
+    --menu-item-background: rgba(255, 255, 255, 0.05);
+    --menu-item-hover-background: rgba(255, 255, 255, 0.1);
+    --card-bg: #374151;
+    --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --progress-bg: #4a5568;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+body {
+    font-family: 'Jura', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    background: var(--background);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+    overscroll-behavior-x: none;
+}
+.zoom-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
+}
+.header-menu {
+    width: 100%;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    background: var(--header-bg, var(--surface));
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 1001;
+    box-shadow: var(--shadow);
+    transition: background 0.3s ease;
+}
+.header h1 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+}
+:fullscreen .header {
+    display: none !important;
+}
+:-webkit-full-screen .header {
+    display: none !important;
+}
+.top-bar__section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.top-bar__icon {
+    color: var(--text-primary);
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    border-radius: 0px;
+}
+.top-bar__icon i {
+    font-size: 1.125rem;
+}
+.top-bar__icon:hover {
+    background: var(--primary);
+    color: white;
+}
+.top-bar__icon:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+/* NOVO: Menu Hamburguer (Renderizado no próprio código) */
+.hamburger-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 280px;
+    max-width: 80%;
+    height: 100%;
+    background: var(--menu-background);
+    backdrop-filter: var(--blur-effect);
+    z-index: 4000;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -4px 0 12px var(--shadow-color);
+    padding: 65px 20px 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+.hamburger-menu.open {
+    right: 0;
+}
+.menu-item {
+    padding: 15px;
+    margin-bottom: 8px;
+    background: var(--menu-item-background);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0px;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.menu-item:hover {
+    background: var(--menu-item-hover-background);
+}
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 3999;
+    display: none;
+}
+.menu-overlay.active {
+    display: block;
+}
+.menu {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50vh;
+    background: var(--menu-bg-light);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 16px;
+    opacity: 0;
+    pointer-events: none;
+}
+[data-theme="dark"] .menu {
+    background: var(--menu-bg-dark);
+}
+.menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+.search-container {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    margin-bottom: 16px;
+}
+.search-input {
+    width: 100%;
+    padding: 14px 50px 14px 16px;
+    font-size: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0px;
+    background: var(--surface);
+    color: var(--text-primary);
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(45, 55, 72, 0.1);
+}
+.search-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+.result-card {
+    width: 100%;
+    max-width: 600px;
+    background: var(--card-bg);
+    border-radius: 0px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    margin-top: 8px;
+}
+.result-card.show {
+    opacity: 1;
+    transform: translateY(0);
+    display: flex;
+}
+.result-suggestion-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 0px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: background 0.2s ease;
+    width: 100%;
+}
+.result-suggestion-item:hover {
+    background: var(--menu-item-hover-background);
+}
+.result-suggestion-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+.notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2000;
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+    border-radius: 0px;
+}
+[data-theme="light"] .notification {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-primary);
+}
+[data-theme="dark"] .notification {
+    background: rgba(18, 21, 32, 0.95);
+    color: var(--text-primary);
+}
+.notification.show {
+    opacity: 1;
+}
+.footer {
+    width: 100%;
+    background: var(--surface);
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 16px 16px;
+    margin-top: var(--spacing-section);
+    box-shadow: 0 -2px 5px var(--shadow-color);
+    font-size: var(--font-size-xs);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.footer-right {
+    text-align: right;
+}
+.footer a {
+    color: var(--highlight-color);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.2s ease;
+}
+.footer a:hover {
+    color: var(--highlight-hover);
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+@media (max-width: 768px) {
+    :root {
+        --spacing-section: 25px;
+    }
+    .header {
+        padding: 0 12px;
+        height: 55px;
+    }
+    .header h1 {
+        font-size: 1rem;
+    }
+    .top-bar__icon i {
+        font-size: 1rem;
+    }
+    .notification {
+        font-size: var(--font-size-sm);
+        padding: 10px 20px;
+        width: 300px;
+    }
+    .zoom-container {
+        padding-top: 0;
+    }
+    .menu {
+        top: 55px;
+    }
+    .top-bar__icon {
+        padding: 6px;
+    }
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 70px;
+    }
+    .footer-left {
+        width: 100%;
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+    .footer-right {
+        text-align: center;
+        width: 100%;
+    }
+}
+@media (max-width: 480px) {
+   /* Estilos mobile */
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+    .header h1 {
+        font-size: 1.125rem;
+    }
+}
+/* Estilos do modal de Reportar (mantidos) */
+.report-option {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: var(--menu-item-background);
+    border: 1px solid var(--border);
+    border-radius: 0px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: var(--font-size-sm);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.report-option:hover {
+    background: var(--menu-item-hover-background);
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 5000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    padding: 30px;
+    border-radius: 0px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: var(--shadow-lg);
+    animation: fadeIn 0.3s ease-out;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.modal-content h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--highlight-color);
+    padding-bottom: 10px;
+}
+.modal-close-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background: var(--highlight-color);
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.modal-close-btn:hover {
+    background: var(--highlight-hover);
+}
+.fixed-footer-controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: var(--header-bg, var(--surface));
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 1002;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+}
+@media (min-width: 769px) {
+    .fixed-footer-controls {
+        display: none;
+    }
+    .footer {
+        padding: 16px;
+    }
+}
+@media (max-width: 768px) {
+    .zoom-container main {
+        padding-bottom: 120px;
+    }
+}
+/* =====================================================
+   ✨ NOVOS ESTILOS PARA A PÁGINA DO EPISÓDIO
+   ===================================================== */
+/* Estilo para o player do episódio, ocupando o espaço disponível */
+.episode-player-section {
+    width: 100%;
+    max-width: 3000px;
+    margin: 55px auto 0;
+    background: var(--surface);
+    border-radius: 0px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    height: 40vh;
+    min-height: 70px; /* Este valor será atualizado dinamicamente */
+}
+/* Container do player com proporção 16:9 */
+.player-container {
+    width: 100%;
+    padding-bottom: 70.25%;
+    position: relative;
+    height: 0;
+    background: #000;
+}
+/* Frame do vídeo */
+.player-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: contain;
+}
+/* Aplica a proporção ao iframe em tela cheia */
+.player-frame:fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    object-fit: contain;
+    max-width: none !important;
+    max-height: none !important;
+}
+/* Overlay para o anúncio */
+.ad-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    background: var(--card-bg);
+    padding: 5px 10px;
+    border-radius: 0px;
+    box-shadow: var(--shadow);
+    font-size: var(--font-size-xs);
+    color: var(--text-primary);
+}
+.ad-overlay a {
+    color: var(--highlight-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+.ad-overlay a:hover {
+    color: var(--highlight-hover);
+}
+/* Estilo para a seção de informações do episódio */
+.episode-info-section {
+    width: 100%;
+    max-width: 1000px;
+    margin: var(--spacing-md) auto 0;
+    padding: 0 0.75rem;
+    background: var(--card-bg);
+    border-radius: 0px;
+    box-shadow: var(--shadow);
+    color: var(--text-primary);
+}
+.episode-info-content {
+    padding: 20px;
+}
+.episode-info-title {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--highlight-color);
+    padding-bottom: 10px;
+}
+.episode-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+.episode-info-item {
+    display: flex;
+    flex-direction: column;
+}
+.episode-info-label {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.episode-info-value {
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+/* Estilo para a sinopse */
+.episode-synopsis {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+.episode-synopsis h4 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+.episode-synopsis p {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+/* Estilo para botões de navegação de episódios */
+.episode-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--spacing-md);
+    padding: 0 0.75rem;
+    width: 100%;
+    max-width: 1000px;
+}
+.episode-nav-btn {
+    padding: 12px 24px;
+    background: var(--episodes-color);
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+.episode-nav-btn:hover {
+    background: var(--episodes-hover);
+}
+.episode-nav-btn:disabled {
+    background: var(--surface);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+}
+.episode-nav-btn.prev {
+    justify-content: flex-start;
+}
+.episode-nav-btn.next {
+    justify-content: flex-end;
+}
+
+/* NOVO: Camada anti-clique */
+.anti-click-layer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    z-index: 1003;
+    pointer-events: auto;
+    cursor: not-allowed;
+}
+
+/* NOVO: Botão de tela cheia */
+.fullscreen-button-base {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1003;
+    transition: background 0.2s;
+}
+.fullscreen-button-base:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* NOVO: Modal de proporções */
+.aspect-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    padding: 20px;
+    z-index: 5001;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow-lg);
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+}
+.aspect-modal h3 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+.aspect-option {
+    padding: 12px;
+    background: var(--menu-item-background);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.aspect-option:hover {
+    background: var(--menu-item-hover-background);
+}
+.aspect-option span:first-child {
+    font-weight: 600;
+}
+.aspect-option span:last-child {
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
+}
+    </style>
+</head>
+<body data-theme="light">
+    <div class="header-menu">
+        <nav class="header">
+            <div class="top-bar__section">
+                <h1><i class="fas fa-heart-crack" style="color:#E53E3E;"></i>Saihate no Paladin Fan</h1>
+            </div>
+            <div class="top-bar__section">
+                <button aria-label="Abrir busca" class="top-bar__icon" id="menu-icon">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button aria-label="Alternar tema" class="top-bar__icon" id="theme-toggle">
+                    <i class="fas fa-adjust"></i>
+                </button>
+                <button aria-label="Abrir menu" class="top-bar__icon" id="hamburger-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        <nav class="menu" id="main-menu">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Pesquisar anime..." id="search-input">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="result-card" id="result-card"></div>
+        </nav>
+       <div class="hamburger-menu" id="hamburgerMenu">
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-user-plus"></i> Cadastre-se</a>
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-star"></i> Populares</a>
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-sort-alpha-down"></i> A - Z</a>
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-masks-theater"></i> Gêneros</a>
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-info-circle"></i> Sobre</a>
+            <button class="top-bar__icon" id="openReportModalBtn" onclick="openReportModal()">
+                <i class="fas fa-bug"></i> Reportar Erro
+            </button>
+        </div>
+        <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="zoom-container" id="zoom-container">
+        <!-- Seção do Player -->
+        <section class="episode-player-section" id="episode-player-section">
+            <div class="player-container">
+                <iframe class="player-frame" id="player-frame" src="https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="ad-overlay">
+                    <a href="https://otieu.com/4/9277353" target="_blank">Anúncio</a>
+                </div>
+                <!-- Botão de tela cheia dentro do frame -->
+                <div class="fullscreen-button-base" id="fullscreenButtonBase">
+                    <i class="fas fa-expand"></i>
+                </div>
+            </div>
+        </section>
+        <!-- Seção de Informações do Episódio -->
+        <section class="episode-info-section" id="episode-info-section">
+            <div class="episode-info-content">
+                <h3 class="episode-info-title">Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado</h3>
+                <div class="episode-info-grid">
+                    <div class="episode-info-item">
+                        <span class="episode-info-label">Episódio</span>
+                        <p class="episode-info-value">T1.E1 ∙ O Menino da Cidade dos Mortos</p>
+                    </div>
+                    <div class="episode-info-item">
+                        <span class="episode-info-label">Duração</span>
+                        <p class="episode-info-value">9 de out. de 2021 24 min</p>
+                    </div>
+                    <div class="episode-info-item">
+                        <span class="episode-info-label">Temporada</span>
+                        <p class="episode-info-value">1</p>
+                    </div>
+                    <div class="episode-info-item">
+                        <span class="episode-info-label">Número</span>
+                        <p class="episode-info-value">1</p>
+                    </div>
+                </div>
+                <div class="episode-synopsis">
+                    <h4>Sinopse</h4>
+                    <p id="episode-synopsis-text">Will nasceu na cidade dos mortos, onde foi criado por três mortos-vivos. Apesar de ter sido nutrido com amor, Will questiona sua existência neste lugar inóspito, onde é o único humano vivo. Ele descobre que seus três pais escondem algo que pode explicar esse mistério e, como se isso não fosse intrigante o suficiente, ainda precisa descobrir que outros segredos se escondem dentro dele.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Navegação de Episódios -->
+        <section class="episode-navigation">
+            <a href="saihate_no_paradin.html" class="episode-nav-btn prev"><i class="fas fa-arrow-left"></i> Voltar para o Catálogo</a>
+            <button class="episode-nav-btn next" onclick="showNotification('Próximo episódio em breve!')">Próximo <i class="fas fa-arrow-right"></i></button>
+        </section>
+    </div>
+    <div class="footer">
+        <div class="footer-left">
+            </div>
+        <div class="footer-right">
+            <p>© 2025 Fanpage Saihate no Paladin. Desenvolvido por xAI.</p>
+        </div>
+    </div>
+    <div class="fixed-footer-controls">
+        <button aria-label="Diminuir zoom" class="top-bar__icon" id="zoom-out-btn-fixed">
+            <i class="fas fa-search-minus"></i>
+        </button>
+        <button aria-label="Aumentar zoom" class="top-bar__icon" id="zoom-in-btn-fixed">
+            <i class="fas fa-search-plus"></i>
+        </button>
+    </div>
+
+    <!-- NOVO: Camada anti-clique -->
+    <div class="anti-click-layer"></div>
+
+    <!-- NOVO: Botão de tela cheia (removido da posição original) -->
+
+    <!-- NOVO: Modal de proporções -->
+    <div class="aspect-modal" id="aspectModal">
+        <h3>Selecionar Proporção</h3>
+        <div class="aspect-option" data-aspect="16:9">
+            <span>16:9</span>
+            <span>Padrão antigo</span>
+        </div>
+        <div class="aspect-option" data-aspect="18:9">
+            <span>18:9</span>
+            <span>Univisium</span>
+        </div>
+        <div class="aspect-option" data-aspect="19:9">
+            <span>19:9</span>
+            <span>FullView</span>
+        </div>
+        <div class="aspect-option" data-aspect="19.5:9">
+            <span>19.5:9</span>
+            <span>Infinity Display</span>
+        </div>
+        <div class="aspect-option" data-aspect="20:9">
+            <span>20:9</span>
+            <span>Cinemático</span>
+        </div>
+        <div class="aspect-option" data-aspect="21:9">
+            <span>21:9</span>
+            <span>UltraWide</span>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+    <div class="modal-overlay" id="reportErrorModal">
+        <div class="modal-content">
+            <h3><i class="fas fa-exclamation-triangle"></i> Reportar Problema</h3>
+            <p>Selecione o problema encontrado (ex: link quebrado):</p>
+            <button class="report-option" data-error-type="Link Quebrado"><i class="fas fa-link-slash"></i> Link Quebrado</button>
+            <button class="report-option" data-error-type="Imagem Faltando"><i class="fas fa-image-slash"></i> Imagem Faltando</button>
+            <button class="report-option" data-error-type="Outro Problema"><i class="fas fa-puzzle-piece"></i> Outro Problema</button>
+            <button class="modal-close-btn" id="closeReportModal">Cancelar</button>
+        </div>
+    </div>
+
+    <script type="module">
+        // Importações e Configurações de Firebase (Mantidas do original, mas não usadas aqui)
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
+        import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
+        import { getFirestore, collection, getDocs, doc, getDoc, addDoc } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
+        console.log('1. [INICIALIZAÇÃO] Iniciando script...');
+        const firebaseConfig = {
+            apiKey: "AIzaSyA9vB_anmutvZByIhKxsPJbsP0VZ7gyWB0",
+            authDomain: "sorteio-mega-sorte.firebaseapp.com",
+            projectId: "sorteio-mega-sorte",
+            storageBucket: "sorteio-mega-sorte.appspot.com",
+            messagingSenderId: "776750928407",
+            appId: "1:776750928407:web:72da06deb8b97302b5c252",
+            measurementId: "G-GD7D30N0G"
+        };
+        console.log('2. [FIREBASE] Configurações carregadas.');
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+        console.log('3. [FIREBASE] App, Analytics e Firestore inicializados.');
+        // Constantes Globais
+        const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
+        const CONSTRUCTION_SUBTITLE = "Sistema em construção";
+        // Funções de utilidade (mantidas do original)
+        async function getIPAddress() {
+            // Lógica de IP mantida
+        }
+        async function recordReportError(errorType) {
+            // Lógica de reporte de erro mantida
+        }
+        function openHamburgerMenu() {
+            document.getElementById('hamburgerMenu')?.classList.add('open');
+            document.getElementById('menuOverlay')?.classList.add('active');
+        }
+        function closeHamburgerMenu() {
+            document.getElementById('hamburgerMenu')?.classList.remove('open');
+            document.getElementById('menuOverlay')?.classList.remove('active');
+        }
+        window.closeHamburgerMenu = closeHamburgerMenu;
+        function openReportModal() {
+            const modal = document.getElementById('reportErrorModal');
+            if (modal) modal.style.display = 'flex';
+        }
+        function closeReportModal() {
+            const modal = document.getElementById('reportErrorModal');
+            if (modal) modal.style.display = 'none';
+        }
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            if (!notification) return;
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+        window.showNotification = showNotification;
+
+        // NOVO: Função para abrir modal de proporções
+        function openAspectModal() {
+            const modal = document.getElementById('aspectModal');
+            if (modal) modal.style.display = 'block';
+        }
+
+        // NOVO: Função para fechar modal de proporções
+        function closeAspectModal() {
+            const modal = document.getElementById('aspectModal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        // NOVO: Função para aplicar proporção e abrir tela cheia
+        function applyAspectRatio(aspect) {
+            const playerFrame = document.getElementById('player-frame');
+            const playerContainer = document.querySelector('.player-container');
+            const [width, height] = aspect.split(':').map(Number);
+            const ratio = height / width;
+            
+            // Aplica a proporção ao contêiner
+            playerContainer.style.paddingBottom = `${ratio * 100}%`;
+            
+            // Armazena a proporção selecionada para uso em tela cheia
+            playerFrame.dataset.aspectRatio = `${width}:${height}`;
+            
+            // Atualiza a altura mínima da seção do player com base na orientação do dispositivo
+            updatePlayerSectionMinHeight(ratio);
+            
+            closeAspectModal();
+
+            // Força a tela cheia imediatamente após aplicar a proporção
+            if (playerFrame.requestFullscreen) {
+                playerFrame.requestFullscreen();
+            } else if (playerFrame.webkitRequestFullscreen) {
+                playerFrame.webkitRequestFullscreen();
+            } else if (playerFrame.msRequestFullscreen) {
+                playerFrame.msRequestFullscreen();
+            }
+        }
+
+        // NOVO: Função para atualizar a altura mínima da seção do player
+        function updatePlayerSectionMinHeight(ratio) {
+            const playerSection = document.getElementById('episode-player-section');
+            const playerContainer = document.querySelector('.player-container');
+            
+            // Verifica a orientação do dispositivo
+            const isPortrait = window.innerHeight > window.innerWidth;
+            
+            if (isPortrait) {
+                // Modo retrato: a altura mínima deve ser baseada na largura do contêiner
+                const containerWidth = playerContainer.offsetWidth;
+                const minHeight = containerWidth * ratio;
+                playerSection.style.minHeight = `${minHeight}px`;
+            } else {
+                // Modo paisagem: a altura mínima pode ser baseada em uma altura fixa ou na altura da tela
+                // Vamos usar a mesma lógica anterior ou uma altura mínima fixa maior
+                const containerWidth = playerContainer.offsetWidth;
+                const minHeight = containerWidth * ratio;
+                playerSection.style.minHeight = `${minHeight}px`;
+            }
+        }
+
+        // NOVO: Evento para atualizar a altura mínima ao mudar a orientação
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                const playerFrame = document.getElementById('player-frame');
+                const aspectRatio = playerFrame.dataset.aspectRatio;
+                if (aspectRatio) {
+                    const [width, height] = aspectRatio.split(':').map(Number);
+                    const ratio = height / width;
+                    updatePlayerSectionMinHeight(ratio);
+                }
+            }, 300); // Pequeno delay para esperar a orientação ser aplicada
+        });
+
+        // NOVO: Evento para atualizar a altura mínima ao sair da tela cheia
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                // Saiu da tela cheia
+                const playerFrame = document.getElementById('player-frame');
+                const aspectRatio = playerFrame.dataset.aspectRatio;
+                if (aspectRatio) {
+                    const [width, height] = aspectRatio.split(':').map(Number);
+                    const ratio = height / width;
+                    updatePlayerSectionMinHeight(ratio);
+                }
+            }
+        });
+
+        // Funções de Event Listener (mantidas do original)
+        function setupEventListeners() {
+            console.log('13. [EVENTOS] Configurando event listeners...');
+            const searchInput = document.getElementById('search-input');
+            const menuToggle = document.getElementById('menu-icon');
+            const mainMenu = document.getElementById('main-menu');
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const zoomInBtnFixed = document.getElementById('zoom-in-btn-fixed');
+            const zoomOutBtnFixed = document.getElementById('zoom-out-btn-fixed');
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const rootElement = document.documentElement;
+            const fullscreenButtonBase = document.getElementById('fullscreenButtonBase');
+            const aspectOptions = document.querySelectorAll('.aspect-option');
+
+            let currentScale = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
+            const step = 0.05;
+            const baseFontSize = 16;
+
+            function updateZoom(showNotif = true) {
+                rootElement.style.fontSize = `${baseFontSize * currentScale}px`;
+                localStorage.setItem('zoomLevel', currentScale.toFixed(2));
+                const isDisabledMax = currentScale >= 1.5;
+                const isDisabledMin = currentScale <= 0.5;
+                if (zoomInBtnFixed) zoomInBtnFixed.disabled = isDisabledMax;
+                if (zoomOutBtnFixed) zoomOutBtnFixed.disabled = isDisabledMin;
+            }
+
+            function handleZoom(direction) {
+                if (direction === 'in') {
+                    currentScale = Math.min(1.5, currentScale + step);
+                } else if (direction === 'out') {
+                    currentScale = Math.max(0.5, currentScale - step);
+                }
+                currentScale = parseFloat(currentScale.toFixed(2));
+                updateZoom(true);
+            }
+
+            zoomInBtnFixed?.addEventListener('click', () => handleZoom('in'));
+            zoomOutBtnFixed?.addEventListener('click', () => handleZoom('out'));
+            updateZoom(false);
+
+            // Clica no botão de zoom-in após 1 segundo
+            setTimeout(() => {
+                if (zoomInBtnFixed) zoomInBtnFixed.click();
+                // Meio segundo depois, clica no botão de zoom-out
+                setTimeout(() => {
+                    if (zoomOutBtnFixed) zoomOutBtnFixed.click();
+                }, 500);
+            }, 1000);
+
+            hamburgerBtn?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openHamburgerMenu();
+            });
+
+            menuOverlay?.addEventListener('click', closeHamburgerMenu);
+
+            searchInput?.addEventListener('input', (e) => {
+                // window.searchAnimes(e.target.value); // Não aplicável aqui
+            });
+
+            menuToggle?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mainMenu.classList.toggle('open');
+                if (mainMenu.classList.contains('open') && searchInput) {
+                    setTimeout(() => searchInput.focus(), 300);
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (mainMenu && !e.target.closest('#main-menu') && !e.target.closest('#menu-icon') && mainMenu.classList.contains('open')) {
+                    mainMenu.classList.remove('open');
+                }
+            });
+
+            function toggleTheme() {
+                const newTheme = body.dataset.theme === 'light' ? 'dark' : 'light';
+                body.dataset.theme = newTheme;
+                localStorage.setItem('theme', newTheme);
+            }
+
+            themeToggle?.addEventListener('click', toggleTheme);
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.dataset.theme = savedTheme;
+
+            document.getElementById('closeReportModal')?.addEventListener('click', closeReportModal);
+
+            document.getElementById('reportErrorModal')?.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal-overlay')) {
+                    closeReportModal();
+                }
+            });
+
+            document.querySelectorAll('.report-option').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const errorType = e.currentTarget.dataset.errorType;
+                    recordReportError(errorType);
+                });
+            });
+
+            // NOVO: Evento para abrir modal de proporções
+            fullscreenButtonBase?.addEventListener('click', openAspectModal);
+
+            // NOVO: Evento para aplicar proporção
+            aspectOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const aspect = option.dataset.aspect;
+                    applyAspectRatio(aspect);
+                });
+            });
+
+            console.log('14. [EVENTOS] Configuração de event listeners concluída.');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('17. [DOM] DOMContentLoaded. Chamando setupEventListeners().');
+            setupEventListeners();
+        });
+
+        window.addEventListener('beforeunload', () => {
+            console.log('[LIFECYCLE] Evento beforeunload. Salvando estado...');
+            localStorage.setItem('theme', document.body.dataset.theme);
+            localStorage.setItem('zoomLevel', (parseFloat(document.documentElement.style.fontSize) / 16 || 0.75).toFixed(2));
+        });
+
+        console.log('18. [FINAL] Script da Página do Episódio carregado.');
+    </script>
+</body>
+</html>
 
