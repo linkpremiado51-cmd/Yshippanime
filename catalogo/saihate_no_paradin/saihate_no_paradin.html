@@ -1005,12 +1005,12 @@ body {
             <div class="result-card" id="result-card"></div>
         </nav>
        <div class="hamburger-menu" id="hamburgerMenu">
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-user-plus"></i> Cadastre-se</a>
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-sign-in-alt"></i> Login</a>
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-star"></i> Populares</a>
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-sort-alpha-down"></i> A - Z</a>
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-masks-theater"></i> Gêneros</a>
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-info-circle"></i> Sobre</a>
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-user-plus"></i> Cadastre-se</a>
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-star"></i> Populares</a>
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-sort-alpha-down"></i> A - Z</a>
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-masks-theater"></i> Gêneros</a>
+            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-info-circle"></i> Sobre</a>
             <button class="top-bar__icon" id="openReportModalBtn" onclick="openReportModal()">
                 <i class="fas fa-bug"></i> Reportar Erro
             </button>
@@ -1172,7 +1172,7 @@ body {
                     title: "Saihate no Paladin",
                     subtitle: "O Paladino do Fim do Mundo",
                     image: "https://i.postimg.cc/fy65V1NC/57463899dc6945e02bd17e20ea23f0b030f590789c24f52ec820b9aeb5f3bdcc-SX1080-FMjpg.jpg",
-                    url: "catalogo/saihate_no_paradin.html", // Link real
+                    url: "saihate_no_paradin.html", // Link real para a própria página
                     synopsis: "Uma cidade dos mortos... Will é criado por três mortos-vivos e embarca em um caminho para se tornar um paladino.",
                     genre: "Isekai, Aventura, Fantasia",
                     quality: "1080p",
@@ -1190,7 +1190,7 @@ body {
                     title: "E1 ∙ O Menino da Cidade dos Mortos", 
                     subtitle: "Disponível em HD", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: EPISODE_PLAYER_LINK(1),
+                    url: "saihate_no_paradin_ep1.html", // <-- ALTERADO PARA O CAMINHO CORRETO
                     animeTitle: "Saihate no Paladin",
                     description: "Will é encontrado e adotado por três mortos-vivos em uma cidade de mortos. Ele cresce com os três e demonstra um talento mágico extraordinário. Ele decide sair para se tornar um paladino."
                 },
@@ -1198,7 +1198,7 @@ body {
                     title: "Episódio 2: O Reino dos Mortos", 
                     subtitle: "Novo!", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: EPISODE_PLAYER_LINK(2),
+                    url: EPISODE_PLAYER_LINK(2), // <-- Mantém o comportamento original para outros episódios
                     animeTitle: "Saihate no Paladin",
                     description: "Will começa sua jornada e enfrenta os desafios do mundo exterior, aprendendo sobre a vida dos vivos."
                 },
@@ -1206,7 +1206,7 @@ body {
                     title: "Episódio 3: A Batalha Final", 
                     subtitle: "Novo!", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: EPISODE_PLAYER_LINK(3),
+                    url: EPISODE_PLAYER_LINK(3), // <-- Mantém o comportamento original para outros episódios
                     animeTitle: "Saihate no Paladin",
                     description: "Will e seus companheiros enfrentam um inimigo poderoso que ameaça a paz de uma vila."
                 },
@@ -1214,7 +1214,7 @@ body {
                     title: "Episódio 4: O Legado do Herói", 
                     subtitle: "Novo!", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: EPISODE_PLAYER_LINK(4),
+                    url: EPISODE_PLAYER_LINK(4), // <-- Mantém o comportamento original para outros episódios
                     animeTitle: "Saihate no Paladin",
                     description: "Will descobre mais sobre seu passado e o legado de seus pais adotivos."
                 },
@@ -1222,7 +1222,7 @@ body {
                     title: "Episódio 5: O Fim do Mundo", 
                     subtitle: "Pré-lançamento", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: CONSTRUCTION_LINK,
+                    url: CONSTRUCTION_LINK, // <-- Mantém o comportamento original para outros episódios
                     animeTitle: "Saihate no Paladin",
                     description: "Will e seus amigos descobrem uma antiga profecia sobre o fim do mundo."
                 },
@@ -1230,7 +1230,7 @@ body {
                     title: "Episódio 6: O Paladino Eterno", 
                     subtitle: "Em breve", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: CONSTRUCTION_LINK,
+                    url: CONSTRUCTION_LINK, // <-- Mantém o comportamento original para outros episódios
                     animeTitle: "Saihate no Paladin",
                     description: "Will finalmente alcança seu objetivo de se tornar um verdadeiro paladino."
                 },
@@ -1263,7 +1263,7 @@ body {
             ],
             // Outros animes (Mantidos)
             isekaiAnimes: [
-                { title: "The Faraway Paladin", subtitle: "12 Episódios (Isekai)", image: "https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg", url: "catalogo/saihate_no_paradin.html", synopsis: "Uma cidade dos mortos... Will é criado por três mortos-vivos e embarca em um caminho para se tornar um paladino.", trailerId: "placeholder", genre: "Isekai, Aventura, Fantasia", quality: "1080p", audio: "Legendado", episodes: "12" },
+                { title: "The Faraway Paladin", subtitle: "12 Episódios (Isekai)", image: "https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg", url: "saihate_no_paradin.html", synopsis: "Uma cidade dos mortos... Will é criado por três mortos-vivos e embarca em um caminho para se tornar um paladino.", trailerId: "placeholder", genre: "Isekai, Aventura, Fantasia", quality: "1080p", audio: "Legendado", episodes: "12" },
                 { title: "Mushoku Tensei", subtitle: "2 Temporadas (Isekai)", image: "https://i.postimg.cc/yxt4hMkM/images-16.webp", url: CONSTRUCTION_LINK, synopsis: "Um NEET recluso é reencarnado em um mundo de fantasia com memórias intactas e decide viver sua nova vida ao máximo.", trailerId: "placeholder", genre: "Isekai, Aventura, Drama", quality: "720p", audio: "Dublado", episodes: "23" },
                 { title: "Overlord", subtitle: "4 Temporadas (Isekai)", image: "https://i.postimg.cc/Tw040ZHV/images-2025-11-11T111248-289.jpg", url: CONSTRUCTION_LINK, synopsis: "Um jogador de MMO é transportado para o mundo do seu jogo, tornando-se o poderoso Ainz Ooal Gown.", trailerId: "placeholder", genre: "Isekai, Ação, Fantasia", quality: "1080p", audio: "Legendado", episodes: "50" },
                 { title: "The Rising of the Shield Hero", subtitle: "3 Temporadas (Isekai)", image: "https://i.postimg.cc/m2zm1zR8/IMG-20251111-111359.jpg", url: CONSTRUCTION_LINK, synopsis: "O herói do escudo, um dos quatro heróis lendários, é traído e precisa reconstruir sua reputação.", trailerId: "placeholder", genre: "Isekai, Aventura, Ação", quality: "1080p", audio: "Dublado", episodes: "40" },
@@ -1271,15 +1271,11 @@ body {
                 { title: "Konosuba", subtitle: "3 Temporadas (Isekai Comédia)", image: "https://i.postimg.cc/ZY9QpDLk/filters-quality-95-format-webp-6.jpg", url: CONSTRUCTION_LINK, synopsis: "Um NEET é reencarnado em um mundo de RPG com uma deusa inútil e uma missão para derrotar o Rei Demônio.", trailerId: "placeholder", genre: "Isekai, Comédia, Fantasia", quality: "720p", audio: "Dublado", episodes: "30" },
                 { title: "That Time I Got Reincarnated as a Slime", subtitle: "2 Temporadas (Isekai)", image: "https://i.postimg.cc/VLqDFyr0/81lBpKcTSrL.jpg", url: CONSTRUCTION_LINK, synopsis: "Um trabalhador é esfaqueado e reencarna como um slime com habilidades únicas.", trailerId: "placeholder", genre: "Isekai, Aventura, Comédia", quality: "1080p", audio: "Legendado", episodes: "47" },
             ],
-            // romanceAnimes: [ ... ], // REMOVIDO
-            // bingeWatch: [ ... ], // REMOVIDO
         };
         // Combina animes relevantes para o Carrossel de Recomendações (horizontal no topo)
         const allAnimes = [
             ...homepageData.saiHateDetails,
             ...homepageData.isekaiAnimes,
-            // ...homepageData.romanceAnimes, // REMOVIDO
-            // ...homepageData.bingeWatch // REMOVIDO
         ];
         // ==========================================================
         // ✨ FUNÇÕES DE RENDERIZAÇÃO E LÓGICA (Com Edições)
