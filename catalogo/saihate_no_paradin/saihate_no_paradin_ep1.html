@@ -580,6 +580,30 @@ body {
 .ad-overlay a:hover {
     color: var(--highlight-hover);
 }
+/* Botão de Tela Cheia */
+.fullscreen-btn-overlay {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 0px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.fullscreen-btn-overlay:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+.fullscreen-btn {
+    color: white;
+    font-size: 1rem;
+}
 /* Estilo para a seção de informações do episódio */
 .episode-info-section {
     width: 100%;
@@ -724,6 +748,10 @@ body {
                 <div class="ad-overlay">
                     <a href="https://otieu.com/4/9277353" target="_blank">Anúncio</a>
                 </div>
+                <!-- Camada do Botão de Tela Cheia -->
+                <div class="fullscreen-btn-overlay" id="fullscreen-btn-overlay">
+                    <i class="fas fa-expand fullscreen-btn" id="fullscreen-btn"></i>
+                </div>
             </div>
         </section>
         <!-- Seção de Informações do Episódio -->
@@ -843,6 +871,17 @@ body {
             }, 4000);
         }
         window.showNotification = showNotification;
+        // Função para alternar o modo de tela cheia
+        function toggleFullscreen(element) {
+            if (!document.fullscreenElement) {
+                element.requestFullscreen().catch(err => {
+                    console.error('Erro ao tentar entrar em tela cheia:', err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
         // Funções de Event Listener (mantidas do original)
         function setupEventListeners() {
             console.log('13. [EVENTOS] Configurando event listeners...');
@@ -926,6 +965,16 @@ body {
                     const errorType = e.currentTarget.dataset.errorType;
                     recordReportError(errorType);
                 });
+            });
+            // Adiciona o evento de clique ao botão de tela cheia
+            document.getElementById('fullscreen-btn-overlay')?.addEventListener('click', (e) => {
+                e.stopPropagation(); // Impede que o clique no overlay do botão afete o iframe
+                const playerSection = document.getElementById('episode-player-section');
+                if (playerSection) {
+                    toggleFullscreen(playerSection);
+                } else {
+                    console.warn("Elemento 'episode-player-section' não encontrado.");
+                }
             });
             console.log('14. [EVENTOS] Configuração de event listeners concluída.');
         }
