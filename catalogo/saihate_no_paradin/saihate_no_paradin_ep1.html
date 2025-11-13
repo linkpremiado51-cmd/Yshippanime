@@ -531,20 +531,20 @@ body {
 /* Estilo para o player do episódio, ocupando o espaço disponível */
 .episode-player-section {
     width: 100%;
-    max-width: 1000px;
-    margin: 65px auto 0;
+    max-width: 3000px;
+    margin: 55px auto 0;
     background: var(--surface);
     border-radius: 0px;
     box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
-    height: 60vh;
-    min-height: 400px;
+    height: 40vh;
+    min-height: 70px; /* Este valor será atualizado dinamicamente */
 }
 /* Container do player com proporção 16:9 */
 .player-container {
     width: 100%;
-    padding-bottom: 56.25%;
+    padding-bottom: 70.25%;
     position: relative;
     height: 0;
     background: #000;
@@ -557,6 +557,15 @@ body {
     width: 100%;
     height: 100%;
     border: none;
+    object-fit: contain;
+}
+/* Aplica a proporção ao iframe em tela cheia */
+.player-frame:fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    object-fit: contain;
+    max-width: none !important;
+    max-height: none !important;
 }
 /* Overlay para o anúncio */
 .ad-overlay {
@@ -691,9 +700,9 @@ body {
 
 /* NOVO: Botão de tela cheia */
 .fullscreen-button-base {
-    position: fixed;
-    bottom: 60px;
-    right: 0;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
     width: 60px;
     height: 60px;
     background: var(--surface);
@@ -805,6 +814,10 @@ body {
                 <div class="ad-overlay">
                     <a href="https://otieu.com/4/9277353" target="_blank">Anúncio</a>
                 </div>
+                <!-- Botão de tela cheia dentro do frame -->
+                <div class="fullscreen-button-base" id="fullscreenButtonBase">
+                    <i class="fas fa-expand"></i>
+                </div>
             </div>
         </section>
         <!-- Seção de Informações do Episódio -->
@@ -860,10 +873,7 @@ body {
     <!-- NOVO: Camada anti-clique -->
     <div class="anti-click-layer"></div>
 
-    <!-- NOVO: Botão de tela cheia -->
-    <div class="fullscreen-button-base" id="fullscreenButtonBase">
-        <i class="fas fa-expand"></i>
-    </div>
+    <!-- NOVO: Botão de tela cheia (removido da posição original) -->
 
     <!-- NOVO: Modal de proporções -->
     <div class="aspect-modal" id="aspectModal">
@@ -982,8 +992,19 @@ body {
             const playerContainer = document.querySelector('.player-container');
             const [width, height] = aspect.split(':').map(Number);
             const ratio = height / width;
+            
+            // Aplica a proporção ao contêiner
             playerContainer.style.paddingBottom = `${ratio * 100}%`;
+            
+            // Armazena a proporção selecionada para uso em tela cheia
+            playerFrame.dataset.aspectRatio = `${width}:${height}`;
+            
+            // Atualiza a altura mínima da seção do player com base na orientação do dispositivo
+            updatePlayerSectionMinHeight(ratio);
+            
             closeAspectModal();
+
+            // Força a tela cheia imediatamente após aplicar a proporção
             if (playerFrame.requestFullscreen) {
                 playerFrame.requestFullscreen();
             } else if (playerFrame.webkitRequestFullscreen) {
@@ -992,6 +1013,55 @@ body {
                 playerFrame.msRequestFullscreen();
             }
         }
+
+        // NOVO: Função para atualizar a altura mínima da seção do player
+        function updatePlayerSectionMinHeight(ratio) {
+            const playerSection = document.getElementById('episode-player-section');
+            const playerContainer = document.querySelector('.player-container');
+            
+            // Verifica a orientação do dispositivo
+            const isPortrait = window.innerHeight > window.innerWidth;
+            
+            if (isPortrait) {
+                // Modo retrato: a altura mínima deve ser baseada na largura do contêiner
+                const containerWidth = playerContainer.offsetWidth;
+                const minHeight = containerWidth * ratio;
+                playerSection.style.minHeight = `${minHeight}px`;
+            } else {
+                // Modo paisagem: a altura mínima pode ser baseada em uma altura fixa ou na altura da tela
+                // Vamos usar a mesma lógica anterior ou uma altura mínima fixa maior
+                const containerWidth = playerContainer.offsetWidth;
+                const minHeight = containerWidth * ratio;
+                playerSection.style.minHeight = `${minHeight}px`;
+            }
+        }
+
+        // NOVO: Evento para atualizar a altura mínima ao mudar a orientação
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                const playerFrame = document.getElementById('player-frame');
+                const aspectRatio = playerFrame.dataset.aspectRatio;
+                if (aspectRatio) {
+                    const [width, height] = aspectRatio.split(':').map(Number);
+                    const ratio = height / width;
+                    updatePlayerSectionMinHeight(ratio);
+                }
+            }, 300); // Pequeno delay para esperar a orientação ser aplicada
+        });
+
+        // NOVO: Evento para atualizar a altura mínima ao sair da tela cheia
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                // Saiu da tela cheia
+                const playerFrame = document.getElementById('player-frame');
+                const aspectRatio = playerFrame.dataset.aspectRatio;
+                if (aspectRatio) {
+                    const [width, height] = aspectRatio.split(':').map(Number);
+                    const ratio = height / width;
+                    updatePlayerSectionMinHeight(ratio);
+                }
+            }
+        });
 
         // Funções de Event Listener (mantidas do original)
         function setupEventListeners() {
@@ -1125,3 +1195,4 @@ body {
     </script>
 </body>
 </html>
+
