@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Animes de Romance - Anime I Geek</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* MESMO CSS... (idêntico ao anterior, omitido para brevidade — cole igual ao de acao.html) */
+        html{scroll-behavior:smooth;font-size:16px}
+        :root{
+            --primary-gradient:linear-gradient(135deg,#2d3748 0%,#4a5568 100%);
+            --text-primary:#1a202c;--text-secondary:#4a5568;--background:#f5f7fa;--surface:rgba(0,0,0,.05);
+            --border:rgba(0,0,0,.1);--shadow-color:rgba(0,0,0,.2);--blur-effect:blur(12px);--transition:all .6s ease-in-out;
+            --highlight-color:#E53E3E;--highlight-hover:#C53030;--spacing-sm:12px;--spacing-md:20px;--spacing-section:40px;
+            --font-size-xs:clamp(.8rem,2vw,1rem);--font-size-sm:clamp(1rem,2.5vw,1.1rem);--font-size-md:clamp(1.1rem,3vw,1.3rem);
+            --font-size-lg:clamp(1.4rem,4vw,1.8rem);--primary:#2d3748;--shadow:0 1px 3px rgba(0,0,0,.1);
+            --shadow-lg:0 4px 12px rgba(0,0,0,.15);--card-bg:#fff;--card-shadow:0 4px 16px rgba(0,0,0,.1);
+            --header-bg:var(--surface);--progress-bg:#edf2f7;--linha-comprimento:238px;--linha-cor:#E53E3E;--linha-espessura:.7px;
+        }
+        [data-theme=dark]{
+            --text-primary:#e2e8f0;--text-secondary:#a0aec0;--background:#1a202c;--surface:rgba(255,255,255,.05);
+            --border:#4a5568;--shadow-color:rgba(0,0,0,.4);--card-bg:#374151;--card-shadow:0 4px 16px rgba(0,0,0,.3);
+            --shadow:0 1px 3px rgba(0,0,0,.3);--shadow-lg:0 4px 12px rgba(0,0,0,.4);--progress-bg:#4a5568;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;user-select:text!important;-webkit-user-select:text!important}
+        body{font-family:'Jura',sans-serif;font-weight:400;line-height:1.5;background:var(--background);color:var(--text-primary);
+            min-height:100vh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;transition:background .3s ease,color .3s ease}
+        .zoom-container{width:100%;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding-top:0}
+        .hero-section{width:100%;max-width:1000px;margin:0 auto 0;height:400px;background:var(--surface);border-radius:0;
+            box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+        .hero-slide{width:100%;height:100%;position:absolute;opacity:0;transition:opacity 1s ease-in-out;text-decoration:none}
+        .hero-slide.active{opacity:1}
+        .hero-slide img{width:100%;height:100%;object-fit:cover}
+        .hero-info{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(0,0,0,.8) 0%,transparent 100%);
+            padding:var(--spacing-md);color:#fff}
+        .hero-info h2{font-size:var(--font-size-lg);font-weight:700;text-shadow:0 2px 4px rgba(0,0,0,.5)}
+        .hero-info p{font-size:var(--font-size-sm);text-shadow:0 1px 2px rgba(0,0,0,.5)}
+        .anime-carousel-section{width:100%;max-width:1000px;margin:var(--spacing-section) auto 0;padding:0 .75rem;position:relative}
+        .carousel-title{position:relative;display:inline-block;font-family:'Ubuntu',sans-serif;font-size:var(--font-size-lg);
+            font-weight:700;color:var(--text-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:15px;
+            padding:5px 0;line-height:1;cursor:pointer;width:fit-content;z-index:1}
+        .carousel-title::after{content:'';position:absolute;left:0;bottom:0;height:var(--linha-espessura);
+            background:var(--linha-cor);width:var(--linha-comprimento);z-index:-1}
+        .carousel-horizontal{display:flex;overflow-x:scroll;gap:var(--spacing-md);scroll-snap-type:x mandatory;
+            -webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;padding-bottom:15px}
+        .carousel-horizontal .anime-card{scroll-snap-align:start;flex-shrink:0;width:calc((100% - 2*var(--spacing-md))/3)}
+        .anime-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:var(--spacing-md)}
+        .anime-card{background:var(--card-bg);border-radius:0;box-shadow:var(--shadow);transition:var(--transition);
+            text-decoration:none;color:var(--text-primary);overflow:hidden;opacity:0;transform:translateY(10px);
+            animation:fadeIn .5s ease-out forwards}
+        .anime-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+        .anime-card-image{width:100%;padding-bottom:140%;background-size:cover;background-position:center;
+            background-color:var(--surface)}
+        .anime-card-info{padding:var(--spacing-sm)}
+        .anime-card-title{font-size:var(--font-size-sm);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .anime-card-subtitle{font-size:var(--font-size-xs);color:var(--text-secondary)}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+        @media(max-width:768px){
+            .hero-section{height:300px}
+            .anime-grid{grid-template-columns:repeat(4,1fr);gap:calc(var(--spacing-sm)/1.5)}
+            .carousel-horizontal .anime-card{width:calc((100% - 2*var(--spacing-md))/3)}
+        }
+        @media(max-width:480px){
+            .hero-section{height:250px}
+            .anime-grid{grid-template-columns:repeat(4,1fr);gap:calc(var(--spacing-sm)/2)}
+        }
+    </style>
+</head>
+<body data-theme="light">
+<div class="zoom-container">
+
+    <section class="hero-section" id="hero-section">
+        <div class="hero-slide active">
+            <img src="https://i.postimg.cc/nLwBp25K/IMG-20251111-104434.jpg" alt="Romance" loading="eager">
+            <div class="hero-info">
+                <h2>Animes de Romance</h2>
+                <p>Amor, paixão, dilemas e corações apaixonados!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="anime-carousel-section">
+        <h2 class="carousel-title">Recomendados em Romance</h2>
+        <div id="recomendados-romance" class="carousel-horizontal"></div>
+    </section>
+
+    <section class="anime-carousel-section">
+        <h2 class="carousel-title">Lançamentos de Romance</h2>
+        <div id="lancamentos-romance" class="carousel-horizontal"></div>
+    </section>
+
+    <section class="anime-carousel-section">
+        <h2 class="carousel-title">Clássicos Imperdíveis</h2>
+        <div id="classicos-romance" class="anime-grid"></div>
+    </section>
+
+</div>
+
+<script type="module">
+    const romanceData = {
+        hero: { title: "Animes de Romance", subtitle: "Amor, paixão, dilemas e corações apaixonados!", image: "https://i.postimg.cc/nLwBp25K/IMG-20251111-104434.jpg" },
+        recomendados: [
+            {title:"Kaguya-sama: Love is War",subtitle:"T3",image:"https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg",url:"catalogo/kaguya_sama.html",synopsis:"Dois gênios travam batalha psicológica para fazer o outro declarar amor.",trailerId:"Yv2yD9V-13A"},
+            {title:"Your Name",subtitle:"Filme",image:"https://i.postimg.cc/V6ffZPDN/MV5BOTkzMGIyYzAtMDQyYi00OTkxLWI2ZGMtODNmYjMyMWM3ZGY1XkEyXkFqcGc@._V1_.jpg",url:"catalogo/your_name.html",synopsis:"Conexão sobrenatural entre dois adolescentes.",trailerId:"xU47nhruS5Y"},
+            {title:"Toradora!",subtitle:"25 eps",image:"https://i.postimg.cc/7YcyLYbj/127508.webp",url:"catalogo/toradora.html",synopsis:"Parceiria inusitada para conquistar seus amores.",trailerId:"placeholder"},
+            {title:"Wotakoi",subtitle:"11 eps",image:"https://i.postimg.cc/mgyKXzq7/IMG-20251111-105228.jpg",url:"catalogo/wotakoi.html",synopsis:"Relacionamento no mundo de nerds e otakus.",trailerId:"placeholder"},
+            {title:"Horimiya",subtitle:"T1",image:"https://i.postimg.cc/RhPzD3qC/IMG-20251111-104810.jpg",url:"catalogo/horimiya.html",synopsis:"Garota popular e garoto quieto se apaixonam.",trailerId:"placeholder"}
+        ],
+        lancamentos: [
+            {title:"Oshi no Ko S2",subtitle:"Jul 2025",image:"https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg",url:"javascript:showNotification('Em breve')",synopsis:"Indústria do entretenimento e segredos sombrios.",trailerId:""},
+            {title:"Cherry Magic! S2",subtitle:"2025",image:"https://i.postimg.cc/DwDtGPkM/IMG-20251111-101701.jpg",url:"javascript:showNotification('Em breve')",synopsis:"Homem ganha poder de ler mentes quando toca em outro homem.",trailerId:""},
+            {title:"My Love Story with Yamada-kun",subtitle:"Out 2025",image:"https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg",url:"javascript:showNotification('Em breve')",synopsis:"Romance escolar com toque mágico.",trailerId:""}
+        ],
+        classicos: [
+            {title:"Clannad + After Story",subtitle:"47 eps",image:"https://i.postimg.cc/CKp9JCJH/IMG-20251111-104940.jpg",url:"catalogo/clannad.html",synopsis:"História emocionante de amor e família.",trailerId:"placeholder"},
+            {title:"Fruits Basket (2019)",subtitle:"3 Temp",image:"https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg",url:"catalogo/fruits_basket.html",synopsis:"Menina entra em lar com segredo sobrenatural.",trailerId:"placeholder"},
+            {title:"Nana",subtitle:"47 eps",image:"https://i.postimg.cc/zGgkd9cK/IMG-20251111-104051.jpg",url:"catalogo/nana.html",synopsis:"Duas mulheres com mesmo nome mudam de vida.",trailerId:"placeholder"},
+            {title:"Lovely Complex",subtitle:"24 eps",image:"https://i.postimg.cc/xTRQX4Rc/IMG-20251111-103449.jpg",url:"catalogo/lovely_complex.html",synopsis:"Casal de extremos físicos se apaixona.",trailerId:"placeholder"},
+            {title:"Ao Haru Ride",subtitle:"12 eps",image:"https://i.postimg.cc/Pr6cssyV/IMG-20251111-103924.jpg",url:"catalogo/ao_haru_ride.html",synopsis:"Reencontro no ensino médio após promessa de infância.",trailerId:"placeholder"}
+        ]
+    };
+
+    const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
+    const CONSTRUCTION_SUBTITLE = "Sistema em construção";
+
+    function showNotification(msg){
+        const n = document.createElement('div');
+        n.textContent=msg; n.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:15px 30px;background:rgba(0,0,0,.9);color:#fff;border-radius:0;z-index:9999;font-size:1rem;';
+        document.body.appendChild(n);
+        setTimeout(()=>{n.remove()},3000);
+    }
+    window.showNotification = showNotification;
+
+    function renderAnimeCards(containerId, list, horizontal=false){
+        const c = document.getElementById(containerId);
+        if(!c) return;
+        c.innerHTML='';
+        if(horizontal) c.className='carousel-horizontal';
+        else c.className='anime-grid';
+
+        const unique = list.filter((a,i,self)=>i===self.findIndex(b=>b.title===a.title));
+        unique.forEach((a,i)=>{
+            const card=document.createElement('div');
+            const url = a.url||CONSTRUCTION_LINK;
+            const sub = url.startsWith('javascript:')?CONSTRUCTION_SUBTITLE:a.subtitle;
+            card.className='anime-card';
+            card.style.animationDelay=`${i*50}ms`;
+            card.dataset.url=url;
+            card.dataset.title=a.title;
+            card.dataset.synopsis=a.synopsis||'Sinopse não disponível.';
+            card.dataset.trailerid=a.trailerId||'';
+            card.innerHTML=`
+                <div class="anime-card-image" style="background-image:url('${a.image}')"></div>
+                <div class="anime-card-info">
+                    <div class="anime-card-title">${a.title}</div>
+                    <div class="anime-card-subtitle">${sub}</div>
+                </div>`;
+            c.appendChild(card);
+        });
+    }
+
+    function buildHero(){
+        const h=document.getElementById('hero-section');
+        if(!h) return;
+        h.innerHTML=`
+            <div class="hero-slide active">
+                <img src="${romanceData.hero.image}" alt="${romanceData.hero.title}" loading="eager">
+                <div class="hero-info">
+                    <h2>${romanceData.hero.title}</h2>
+                    <p>${romanceData.hero.subtitle}</p>
+                </div>
+            </div>`;
+    }
+
+    function setupAutoScroll(id, data){
+        renderAnimeCards(id, data, true);
+        const container=document.getElementById(id);
+        if(!container) return;
+        const cards=container.querySelectorAll('.anime-card');
+        if(cards.length===0) return;
+        let idx=0, tid;
+        const gap=parseInt(getComputedStyle(container).gap)||0;
+        const w=cards[0].offsetWidth+gap;
+        const start=()=>{
+            clearInterval(tid);
+            tid=setInterval(()=>{
+                idx=(idx+1)%cards.length;
+                container.scrollTo({left:idx*w,behavior:'smooth'});
+                if(idx>=cards.length-1){
+                    setTimeout(()=>{container.scrollTo({left:0,behavior:'auto'});idx=0;},300);
+                }
+            },5000);
+        };
+        const stop=()=>clearInterval(tid);
+        const resume=()=>{stop();setTimeout(start,5000);};
+        container.addEventListener('touchstart',resume);
+        container.addEventListener('mousedown',resume);
+        container.addEventListener('wheel',resume);
+        start();
+    }
+
+    function openDetailsModal(t,s,id){
+        const m=document.createElement('div');
+        m.className='modal-overlay'; m.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:flex;justify-content:center;align-items:center;z-index:5000;';
+        const url=id && id!=='placeholder'?`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=0&controls=1&rel=0`:`https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0`;
+        m.innerHTML=`
+            <div class="modal-content" style="background:var(--card-bg);color:var(--text-primary);padding:30px;border-radius:0;width:90%;max-width:800px;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto;">
+                <h3 style="font-size:var(--font-size-lg);font-weight:700;margin-bottom:20px;border-bottom:2px solid var(--highlight-color);padding-bottom:10px;">${t}</h3>
+                <div style="display:flex;gap:20px;">
+                    <div style="flex:1;min-width:300px;position:relative;padding-bottom:calc(56.25%+30px);height:0;overflow:hidden;background:#000;">
+                        <iframe src="${url}" class="trailer-video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe>
+                    </div>
+                    <div style="flex:1;max-height:400px;overflow-y:auto;padding-right:10px;">
+                        <h4>Sinopse:</h4>
+                        <p style="font-size:var(--font-size-sm);line-height:1.6;color:var(--text-secondary);">${s}</p>
+                    </div>
+                </div>
+                <button class="modal-close-btn" style="width:100%;margin-top:20px;padding:10px;background:var(--highlight-color);color:#fff;border:none;border-radius:0;cursor:pointer;font-weight:bold;">Fechar</button>
+            </div>`;
+        document.body.appendChild(m);
+        m.querySelector('.modal-close-btn').onclick=()=>{m.remove();};
+        m.onclick=e=>{if(e.target===m) m.remove();};
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>{
+        buildHero();
+        setupAutoScroll('recomendados-romance', romanceData.recomendados);
+        setupAutoScroll('lancamentos-romance', romanceData.lancamentos);
+        renderAnimeCards('classicos-romance', romanceData.classicos);
+
+        let timer=null;
+        document.querySelectorAll('.anime-card').forEach(card=>{
+            card.addEventListener('click',e=>{
+                e.preventDefault();
+                if(timer===null){
+                    timer=setTimeout(()=>{
+                        timer=null;
+                        const u=card.dataset.url;
+                        if(u.startsWith('javascript:')) eval(u);
+                        else if(u) location.href=u;
+                    },300);
+                }else{
+                    clearTimeout(timer); timer=null;
+                    openDetailsModal(card.dataset.title, card.dataset.synopsis, card.dataset.trailerid);
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
