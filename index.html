@@ -1,3 +1,7 @@
+<a href="${CONSTRUCTION_LINK}" class="menu-item"></a>
+
+<body data-theme="light">
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -1100,6 +1104,7 @@ body:not(.loading) #initial-loader {
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
         import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
         import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
+
         const firebaseConfig = {
             apiKey: "AIzaSyA9vB_anmutvZByIhKxsPJbsP0VZ7gyWB0",
             authDomain: "sorteio-mega-sorte.firebaseapp.com",
@@ -1112,8 +1117,10 @@ body:not(.loading) #initial-loader {
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
+
         const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
         const CONSTRUCTION_SUBTITLE = "Sistema em construção";
+
         const homepageData = {
             hero: [
                 { title: "Spy-Famyli", subtitle: "Todos têm um lado oculto...", image: "https://i.postimg.cc/pL6hhZQs/28325-1-9_8b.webp", url: "catalogo/chotto_dake.html" },
@@ -1165,7 +1172,7 @@ body:not(.loading) #initial-loader {
             ],
             recentlyAdded: [
                 { title: "Chotto dake Ai ga Omoi Dark Elf ga Isekai kara Oikaketekita ", subtitle: "12 Episódios", image: "https://i.postimg.cc/1XYJM2Dt/MV5BNjc1MDQ2NWIt-M2Y1My00ZDE5LThl-Yj-Ut-ZTdk-ZTZj-Yzdl-NWZiXk-EyXkFqc-Gc-V1-FMjpg-UX1000.jpg", url: "catalogo/chotto_dake.html", synopsis: "Sinopse Um estudante completa uma missão para derrotar um rei demônio em outro mundo, mas quando ele retorna, é caçado por uma elfa que se apaixonou por ele.", trailerId: "placeholder" },
-                { title: "The Faraway Paladin", subtitle: "12 Episódios", image: "https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg", url: "https://linkpremiado51-cmd.github.io/Yshippanime/catalogo/saihate_no_paradin/saihate_no_paradin.html?ep=1", synopsis: "Sinopse Uma cidade dos mortos, destruída há muito tempo... Nesta cidade afastada de todos, há uma única criança viva, Will. O menino é criado por três mortos vivos: Blood, um espadachim esqueleto; Maria, uma freira múmia; e Gus, um mago fantasma. Ele é criado por eles recebendo ensinamentos e amor. Mas um dia o jovem começa a ter dúvidas. Quem é este 'eu'? Assim os mistérios dessa cidade longamente passam a ser vendidos por Will. O amor e a misericórdia dos deuses bons. A paranóia e a loucura dos deuses maus. E ao saber de tudo isso, o jovem começa o caminho rumo a se tornar um paladino.", trailerId: "placeholder" },
+                { title: "The Faraway Paladin", subtitle: "12 Episódios", image: "https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg", url: "catalogo/saihate_no_paradin/saihate_no_paradin.html", synopsis: "Sinopse Uma cidade dos mortos, destruída há muito tempo... Nesta cidade afastada de todos, há uma única criança viva, Will. O menino é criado por três mortos vivos: Blood, um espadachim esqueleto; Maria, uma freira múmia; e Gus, um mago fantasma. Ele é criado por eles recebendo ensinamentos e amor. Mas um dia o jovem começa a ter dúvidas. Quem é este 'eu'? Assim os mistérios dessa cidade longamente passam a ser vendidos por Will. O amor e a misericórdia dos deuses bons. A paranóia e a loucura dos deuses maus. E ao saber de tudo isso, o jovem começa o caminho rumo a se tornar um paladino.", trailerId: "placeholder" },
                 { title: "gachiakuta", subtitle: "25 Episódios", image: "https://i.postimg.cc/mDdgXykx/images-2025-11-11T223742-007.jpg", url: "catalogo/gachiakuta.html", synopsis: "Sinopse Rudo, um jovem órfão que vive em uma favela marginalizada, discriminada pela elite de uma cidade flutuante. Após ser falsamente acusado de assassinato, ele é jogado em um inferno chamado O Poço, um lugar habitado por monstros de lixo. Para sobreviver e buscar vingança, ele precisa dominar um novo poder e se unir aos Limpadores (Cleaners), um grupo que luta contra as criaturas do lixo.", trailerId: "placeholder" },
                 { title: "Cyberpunk: Edgerunners", subtitle: "10 Episódios", image: "https://i.postimg.cc/26PSN8QP/images-17.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse Cyberpunk: Edgerunners conta a história de David Martinez, um garoto de rua que, após perder tudo, decide se tornar um edgerunner, um mercenário fora da lei também conhecido como cyberpunk — para sobreviver em uma distópica cidade futurista obcecada por tecnologia e implantes cibernéticos. A série é uma produção de 10 episódios derivada do videogame Cyberpunk 2077, criada em colaboração com o Studio Trigger e a Netflix. ", trailerId: "placeholder" },
                 { title: "Ranking of Kings", subtitle: "23 Episódios", image: "https://i.postimg.cc/qMpdh3vG/images-18.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse O povo do reino despreza o jovem Principe Bojji que nao consegue ouvir nem falar chamando-o de O Principe Inutil e zombando de sua suposta tolice Contudo embora Bojji nao seja fisicamente forte ele nao falta coracao Um encontro fortuito com uma criatura das sombras que deveria tê-lo traumatizado faz com que ele acredite ter encontrado um amigo em meio a aqueles que so notam suas deficiencias Ele comeca a se encontrar regularmente com Kage a sombra a ponto de ate mesmo a criatura antes aspera comecar a se mostrar mais amigavel A improvavel amizade entre Kage e Bojji lança as bases da jornada do principe uma jornada na qual ele pretende vencer seus medos e inseguranças Apesar do ridiculo constante que enfrenta Bojji esta determinado a realizar seu desejo de se tornar o melhor rei que puder ser", trailerId: "placeholder" },
@@ -1200,15 +1207,18 @@ body:not(.loading) #initial-loader {
                 { title: "Esportes", subtitle: "Competição e Paixão", url: CONSTRUCTION_LINK, synopsis: "Competição e Paixão", trailerId: "placeholder" },
             ],
         };
+
         const allAnimes = [
             ...homepageData.recentReleases,
             ...homepageData.popularAnimes,
             ...homepageData.recentlyAdded,
             ...homepageData.bingeWatch
         ];
+
         window.searchAnimes = async (query) => {};
         async function getIPAddress() {}
         async function recordReportError(errorType) {}
+
         function openHamburgerMenu() {
             document.getElementById('hamburgerMenu')?.classList.add('open');
             document.getElementById('menuOverlay')?.classList.add('active');
@@ -1218,6 +1228,7 @@ body:not(.loading) #initial-loader {
             document.getElementById('menuOverlay')?.classList.remove('active');
         }
         window.closeHamburgerMenu = closeHamburgerMenu;
+
         function openReportModal() {
             const modal = document.getElementById('reportErrorModal');
             if (modal) modal.style.display = 'flex';
@@ -1226,6 +1237,7 @@ body:not(.loading) #initial-loader {
             const modal = document.getElementById('reportErrorModal');
             if (modal) modal.style.display = 'none';
         }
+
         function showNotification(message) {
             const notification = document.getElementById('notification');
             if (!notification) return;
@@ -1236,6 +1248,7 @@ body:not(.loading) #initial-loader {
             }, 4000);
         }
         window.showNotification = showNotification;
+
         function openDetailsModal(title, synopsis, trailerId) {
             const modal = document.getElementById('detailsModal');
             const titleElem = document.getElementById('detailsTitle');
@@ -1254,6 +1267,7 @@ body:not(.loading) #initial-loader {
                 modal.style.display = 'flex';
             }
         }
+
         function closeDetailsModal() {
             const modal = document.getElementById('detailsModal');
             const trailerFrame = document.getElementById('trailerVideo');
@@ -1262,6 +1276,7 @@ body:not(.loading) #initial-loader {
                 modal.style.display = 'none';
             }
         }
+
         function renderAnimeCards(containerId, animeList, isHorizontal = false) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1304,9 +1319,11 @@ body:not(.loading) #initial-loader {
                 container.appendChild(card);
             });
         }
+
         function initializeCarousel(containerId, data, isHorizontal = false) {
             renderAnimeCards(containerId, data, isHorizontal);
         }
+
         function buildHeroSlider(containerId, heroList) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1334,6 +1351,7 @@ body:not(.loading) #initial-loader {
                 slides[currentHero].classList.add('active');
             }, 5000);
         }
+
         function setupAutoScrollCarousel(containerId, animeList) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1373,6 +1391,7 @@ body:not(.loading) #initial-loader {
             container.addEventListener('scroll', userInteractionHandler);
             startAutoScroll();
         }
+
         function loadCategoryContent(category) {
             const containerId = `${category}-content-container`;
             const container = document.getElementById(containerId);
@@ -1399,6 +1418,7 @@ body:not(.loading) #initial-loader {
             };
             container.appendChild(iframe);
         }
+
         function showCategory(category) {
             document.querySelectorAll('.nav-menu-item').forEach(item => {
                 if (item.dataset.category === category) {
@@ -1417,9 +1437,8 @@ body:not(.loading) #initial-loader {
                     content.classList.remove('active');
                 }
             });
-            // ✅ Salva a categoria ativa
-            localStorage.setItem('lastActiveCategory', category);
         }
+
         function buildHomepage() {
             buildHeroSlider('hero-section', homepageData.hero);
             initializeCarousel('recent-releases-grid', homepageData.recentReleases);
@@ -1430,16 +1449,12 @@ body:not(.loading) #initial-loader {
             const recommendList = shuffled.slice(0, 10);
             setupAutoScrollCarousel('recommend-carousel', recommendList);
             setupAutoScrollCarousel('binge-watch-carousel', homepageData.bingeWatch);
-            // ✅ Remove a tela de carregamento APÓS tudo renderizar
-            setTimeout(() => {
-                document.body.classList.remove('loading');
-                const loader = document.getElementById('initial-loader');
-                if (loader) loader.style.display = 'none';
-            }, 150);
         }
+
         const INITIAL_ZOOM = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
         const MIN_ZOOM = 0.5;
         const MAX_ZOOM = 1.5;
+
         function setupEventListeners() {
             const searchInput = document.getElementById('search-input');
             const menuToggle = document.getElementById('menu-icon');
@@ -1454,6 +1469,7 @@ body:not(.loading) #initial-loader {
             let currentScale = INITIAL_ZOOM;
             const step = 0.05;
             const baseFontSize = 16;
+
             function updateZoom(showNotif = true) {
                 rootElement.style.fontSize = `${baseFontSize * currentScale}px`;
                 localStorage.setItem('zoomLevel', currentScale.toFixed(2));
@@ -1462,6 +1478,7 @@ body:not(.loading) #initial-loader {
                 if (zoomInBtnFixed) zoomInBtnFixed.disabled = isDisabledMax;
                 if (zoomOutBtnFixed) zoomOutBtnFixed.disabled = isDisabledMin;
             }
+
             function handleZoom(direction) {
                 if (direction === 'in') {
                     currentScale = Math.min(MAX_ZOOM, currentScale + step);
@@ -1471,15 +1488,18 @@ body:not(.loading) #initial-loader {
                 currentScale = parseFloat(currentScale.toFixed(2));
                 updateZoom(true);
             }
+
             zoomInBtnFixed?.addEventListener('click', () => handleZoom('in'));
             zoomOutBtnFixed?.addEventListener('click', () => handleZoom('out'));
             updateZoom(false);
+
             setTimeout(() => {
                 if (zoomInBtnFixed) zoomInBtnFixed.click();
                 setTimeout(() => {
                     if (zoomOutBtnFixed) zoomOutBtnFixed.click();
                 }, 500);
             }, 1000);
+
             hamburgerBtn?.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openHamburgerMenu();
@@ -1506,9 +1526,9 @@ body:not(.loading) #initial-loader {
                 localStorage.setItem('theme', newTheme);
             }
             themeToggle?.addEventListener('click', toggleTheme);
-            // ✅ Aplica o tema salvo no carregamento da página
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.dataset.theme = savedTheme;
+
             document.getElementById('closeReportModal')?.addEventListener('click', closeReportModal);
             document.getElementById('reportErrorModal')?.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal-overlay')) {
@@ -1526,9 +1546,11 @@ body:not(.loading) #initial-loader {
                     const linkId = e.currentTarget.dataset.linkId;
                     if (linkId && linkId !== 'none') {
                         showNotification(`Redirecionando para o Catálogo Completo de: ${e.currentTarget.textContent.trim()}`);
+                        // Aqui você pode redirecionar para uma página real no futuro
                     }
                 });
             });
+
             let clickTimer = null;
             document.querySelectorAll('.anime-card').forEach(card => {
                 card.addEventListener('click', (e) => {
@@ -1538,12 +1560,14 @@ body:not(.loading) #initial-loader {
                             clickTimer = null;
                             const url = card.dataset.url;
                             if (url && url.startsWith('javascript:')) {
-                                // ✅ Evita eval() → usa new Function()
-                                const code = url.replace('javascript:', '');
-                                try {
-                                    new Function(code)();
-                                } catch (err) {
-                                    console.error("Erro ao executar:", err);
+                                // Extrai e executa a função sem usar eval
+                                const fnMatch = url.match(/javascript:(.*)/);
+                                if (fnMatch && fnMatch[1]) {
+                                    try {
+                                        new Function(fnMatch[1])();
+                                    } catch (err) {
+                                        console.error("Erro ao executar função:", err);
+                                    }
                                 }
                             } else if (url && url !== "") {
                                 window.location.href = url;
@@ -1561,12 +1585,14 @@ body:not(.loading) #initial-loader {
                     }
                 });
             });
+
             document.getElementById('closeDetailsModal')?.addEventListener('click', closeDetailsModal);
             document.getElementById('detailsModal')?.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal-overlay')) {
                     closeDetailsModal();
                 }
             });
+
             document.querySelectorAll('.nav-menu-item').forEach(item => {
                 item.addEventListener('click', (e) => {
                     const category = e.currentTarget.dataset.category;
@@ -1574,18 +1600,26 @@ body:not(.loading) #initial-loader {
                 });
             });
         }
-        // ✅ NOVO: Restaura a última categoria ao carregar
+
+        // ✅ Garantir que a tela de carregamento seja removida mesmo se houver erro
+        function finalizeLoading() {
+            document.body.classList.remove('loading');
+            const loader = document.getElementById('initial-loader');
+            if (loader) loader.style.display = 'none';
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            setupEventListeners();
-            buildHomepage();
-            const lastCategory = localStorage.getItem('lastActiveCategory') || 'home';
-            if (lastCategory !== 'home') {
-                // Aguarda um pouco para garantir que os listeners estejam prontos
-                setTimeout(() => {
-                    showCategory(lastCategory);
-                }, 200);
+            try {
+                buildHomepage();
+                setupEventListeners();
+            } catch (error) {
+                console.error("Erro durante a inicialização:", error);
+            } finally {
+                // Sempre remove a tela de carregamento após um pequeno delay
+                setTimeout(finalizeLoading, 300);
             }
         });
+
         window.addEventListener('beforeunload', () => {
             localStorage.setItem('theme', document.body.dataset.theme);
             localStorage.setItem('zoomLevel', (parseFloat(document.documentElement.style.fontSize) / 16 || INITIAL_ZOOM).toFixed(2));
@@ -1593,4 +1627,3 @@ body:not(.loading) #initial-loader {
     </script>
 </body>
 </html>
-
