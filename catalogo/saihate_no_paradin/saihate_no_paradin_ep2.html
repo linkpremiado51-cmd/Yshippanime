@@ -648,6 +648,33 @@ body {
     line-height: 1.6;
     color: var(--text-secondary);
 }
+
+/* Estilo para os botões de download */
+.download-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.download-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background: var(--episodes-color);
+    color: white;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.download-btn:hover {
+    background: var(--episodes-hover);
+}
+
 /* Estilo para botões de navegação de episódios */
 .episode-navigation {
     display: flex;
@@ -656,9 +683,12 @@ body {
     padding: 0 0.75rem;
     width: 100%;
     max-width: 1000px;
+    gap: 15px; /* Espaçamento entre os botões */
 }
+
 .episode-nav-btn {
-    padding: 12px 24px;
+    flex: 1; /* Faz os botões ocuparem o mesmo espaço */
+    padding: 12px 20px; /* Ajuste de padding para manter consistência */
     background: var(--episodes-color);
     color: white;
     border: none;
@@ -668,45 +698,43 @@ body {
     transition: background 0.2s;
     display: flex;
     align-items: center;
+    justify-content: center; /* Centraliza o conteúdo */
     gap: 8px;
     text-decoration: none;
+    min-height: 44px; /* Garante altura mínima consistente */
 }
+
 .episode-nav-btn:hover {
     background: var(--episodes-hover);
 }
+
 .episode-nav-btn:disabled {
     background: var(--surface);
     color: var(--text-secondary);
     cursor: not-allowed;
 }
-.episode-nav-btn.prev {
-    justify-content: flex-start;
-}
-.episode-nav-btn.next {
-    justify-content: flex-end;
-}
 
 /* NOVO: Camada anti-clique */
 .anti-click-layer {
     position: fixed;
-    bottom: 0;
+    top: 25px; /* Deslocado 25px para baixo */
     right: 0;
-    width: 60px;
-    height: 60px;
+    width: 90px; /* Aumentado de 60 para 90 (60 + 30) */
+    height: 90px; /* Aumentado de 60 para 90 (60 + 30) */
     z-index: 1003;
     pointer-events: auto;
     cursor: not-allowed;
 }
 
-/* NOVO: Botão de tela cheia */
+/* NOVO: Botão de tela cheia invisível */
 .fullscreen-button-base {
     position: absolute;
     bottom: 10px;
     right: 10px;
     width: 60px;
     height: 60px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: transparent; /* Fundo transparente */
+    border: none; /* Sem borda */
     border-radius: 0;
     display: flex;
     justify-content: center;
@@ -714,10 +742,12 @@ body {
     cursor: pointer;
     z-index: 1003;
     transition: background 0.2s;
+    opacity: 0; /* Torna o botão invisível */
+    pointer-events: auto; /* Mantém os eventos de clique funcionando */
 }
 .fullscreen-button-base:hover {
-    background: var(--primary);
-    color: white;
+    background: transparent; /* Fundo transparente no hover */
+    opacity: 0; /* Mantém invisível no hover */
 }
 
 /* NOVO: Modal de proporções */
@@ -801,6 +831,7 @@ body {
             <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-sort-alpha-down"></i> A - Z</a>
             <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-masks-theater"></i> Gêneros</a>
             <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-info-circle"></i> Sobre</a>
+            <a href="https://linkpremiado51-cmd.github.io/Yshippanime/" class="menu-item"><i class="fas fa-home"></i> Anime I Geek Home</a>
             <button class="top-bar__icon" id="openReportModalBtn" onclick="openReportModal()">
                 <i class="fas fa-bug"></i> Reportar Erro
             </button>
@@ -811,10 +842,8 @@ body {
         <section class="episode-player-section" id="episode-player-section">
             <div class="player-container">
                 <iframe class="player-frame" id="player-frame" src="https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <div class="ad-overlay">
-                    <a href="https://otieu.com/4/9277353" target="_blank">Anúncio</a>
-                </div>
-                <!-- Botão de tela cheia dentro do frame -->
+                <!-- Overlay para o anúncio removido -->
+                <!-- Botão de tela cheia dentro do frame (invisível) -->
                 <div class="fullscreen-button-base" id="fullscreenButtonBase">
                     <i class="fas fa-expand"></i>
                 </div>
@@ -827,7 +856,7 @@ body {
                 <div class="episode-info-grid">
                     <div class="episode-info-item">
                         <span class="episode-info-label">Episódio</span>
-                        <p class="episode-info-value">T1.E2 ∙ O Sabio Errante</p>
+                        <p class="episode-info-value">T1.E1 ∙ O Menino da Cidade dos Mortos</p>
                     </div>
                     <div class="episode-info-item">
                         <span class="episode-info-label">Duração</span>
@@ -846,12 +875,18 @@ body {
                     <h4>Sinopse</h4>
                     <p id="episode-synopsis-text">Will nasceu na cidade dos mortos, onde foi criado por três mortos-vivos. Apesar de ter sido nutrido com amor, Will questiona sua existência neste lugar inóspito, onde é o único humano vivo. Ele descobre que seus três pais escondem algo que pode explicar esse mistério e, como se isso não fosse intrigante o suficiente, ainda precisa descobrir que outros segredos se escondem dentro dele.</p>
                 </div>
+                
+                <!-- Botões de download -->
+                <div class="download-buttons">
+                    <a href="#" class="download-btn">Download direto</a>
+                    <a href="#" class="download-btn">Download drive</a>
+                </div>
             </div>
         </section>
         <!-- Navegação de Episódios -->
         <section class="episode-navigation">
             <a href="saihate_no_paradin.html" class="episode-nav-btn prev"><i class="fas fa-arrow-left"></i> Voltar para o Catálogo</a>
-            <button class="episode-nav-btn next" onclick="showNotification('Próximo episódio em breve!')">Próximo <i class="fas fa-arrow-right"></i></button>
+            <a href="https://linkpremiado51-cmd.github.io/Yshippanime/catalogo/saihate_no_paradin/saihate_no_paradin_ep1.html" class="episode-nav-btn next">Próximo <i class="fas fa-arrow-right"></i></a>
         </section>
     </div>
     <div class="footer">
