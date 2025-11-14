@@ -1457,7 +1457,9 @@ body {
             container.innerHTML = '';
             // Cria um iframe para carregar o conteúdo externo
             const iframe = document.createElement('iframe');
-            iframe.src = `${category}.html`;
+            const currentTheme = document.body.dataset.theme || 'light';
+const currentZoom = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
+iframe.src = `${category}.html?theme=${encodeURIComponent(currentTheme)}&zoom=${currentZoom.toFixed(2)}`;
             iframe.title = `Conteúdo de ${category}`;
             iframe.style.width = '100%';
             iframe.style.height = '100%';
