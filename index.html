@@ -1,3 +1,7 @@
+<a href="${CONSTRUCTION_LINK}" class="menu-item"></a>
+
+<body data-theme="light">
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -426,7 +430,6 @@ body {
         text-align: center;
         width: 100%;
     }
-    /* Estilo do modal em telas menores */
     .modal-content {
         max-width: 95%;
         margin: 20px;
@@ -466,18 +469,17 @@ body {
     justify-content: center;
     align-items: center;
 }
-/* ✨ NOVO ESTILO DO MODAL DE DETALHES (Sinopse + Trailer) */
 .modal-content {
-    background: var(--card-bg); /* Fundo claro ou escuro do card */
+    background: var(--card-bg);
     color: var(--text-primary);
     padding: 30px;
     border-radius: 0px;
     width: 90%;
-    max-width: 800px; /* Aumenta a largura máxima para acomodar trailer */
+    max-width: 800px;
     box-shadow: var(--shadow-lg);
     animation: fadeIn 0.3s ease-out;
     max-height: 90vh;
-    overflow-y: auto; /* Permite scroll se o conteúdo for muito grande */
+    overflow-y: auto;
 }
 .modal-content h3 {
     font-size: var(--font-size-lg);
@@ -490,12 +492,11 @@ body {
     display: flex;
     gap: 20px;
 }
-/* ✨ Aumento de 30px na altura do frame do YouTube */
 .modal-trailer-container {
     flex: 1;
     min-width: 300px;
     position: relative;
-    padding-bottom: calc(56.25% + 30px); /* 16:9 Aspect Ratio + 30px */
+    padding-bottom: calc(56.25% + 30px);
     height: 0;
     overflow: hidden;
     background: #000;
@@ -510,7 +511,7 @@ body {
 }
 .modal-synopsis-container {
     flex: 1;
-    max-height: 400px; /* Limita altura da sinopse no desktop */
+    max-height: 400px;
     overflow-y: auto;
     padding-right: 10px;
 }
@@ -520,12 +521,10 @@ body {
     margin-bottom: 10px;
     color: var(--text-secondary);
 }
-/* Scrollbar customizada para Firefox */
 .modal-synopsis-container {
     scrollbar-width: thin;
     scrollbar-color: var(--highlight-color) var(--surface);
 }
-/* Scrollbar customizada para Webkit */
 .modal-synopsis-container::-webkit-scrollbar {
     width: 8px;
 }
@@ -536,7 +535,6 @@ body {
 .modal-synopsis-container::-webkit-scrollbar-track {
     background: var(--surface);
 }
-/* Estilos do modal de Reportar (mantidos) */
 .report-option {
     display: block;
     width: 100%;
@@ -601,9 +599,6 @@ body {
         padding-bottom: 120px;
     }
 }
-/* =====================================================
-   ✨ NOVOS ESTILOS PARA A PÁGINA INICIAL
-   ===================================================== */
 .hero-section {
     width: 100%;
     max-width: 1000px;
@@ -657,14 +652,11 @@ body {
     padding: 0 0.75rem;
     position: relative;
 }
-/* ===== CONFIGURAÇÃO FÁCIL: MUDE SÓ AQUI ===== */
 :root {
-    --linha-comprimento: 238px;  /* <<--- MUDE AQUI PARA CONTROLAR TODAS AS LINHAS */
+    --linha-comprimento: 238px;
     --linha-cor: var(--highlight-color);
     --linha-espessura: 0.7px;
 }
-/* ============================================ */
-/* Estilo do título */
 .carousel-title {
     position: relative;
     display: inline-block;
@@ -681,7 +673,6 @@ body {
     width: fit-content;
     z-index: 1;
 }
-/* Linha vermelha com tamanho fixo */
 .carousel-title::after {
     content: '';
     position: absolute;
@@ -689,10 +680,9 @@ body {
     bottom: 0;
     height: var(--linha-espessura);
     background: var(--linha-cor);
-    width: var(--linha-comprimento); /* <<--- MESMO TAMANHO PARA TODOS */
+    width: var(--linha-comprimento);
     z-index: -1;
 }
-/* Estilo para carrossel com movimento lateral */
 .carousel-horizontal {
     display: flex;
     overflow-x: scroll;
@@ -707,7 +697,6 @@ body {
     flex-shrink: 0;
     width: calc((100% - 2 * var(--spacing-md)) / 3);
 }
-/* O carrossel normal deve ser estático (grid) */
 .anime-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -750,9 +739,6 @@ body {
     font-size: var(--font-size-xs);
     color: var(--text-secondary);
 }
-/* ==========================================================
-   ✨ ALTERAÇÕES PARA 4 COLUNAS NO MOBILE (SOLICITADO)
-   ========================================================== */
 @media (max-width: 768px) {
     .hero-section {
         height: 300px;
@@ -767,15 +753,15 @@ body {
     .anime-card {
         width: 100%;
         flex-shrink: 1;
-        .anime-card-info {
-             padding: calc(var(--spacing-sm) / 2);
-        }
-        .anime-card-title {
-             font-size: calc(var(--font-size-xs) * 0.9);
-        }
-        .anime-card-subtitle {
-             font-size: calc(var(--font-size-xs) * 0.8);
-        }
+    }
+    .anime-card .anime-card-info {
+        padding: calc(var(--spacing-sm) / 2);
+    }
+    .anime-card .anime-card-title {
+        font-size: calc(var(--font-size-xs) * 0.9);
+    }
+    .anime-card .anime-card-subtitle {
+        font-size: calc(var(--font-size-xs) * 0.8);
     }
     .carousel-horizontal .anime-card {
         width: calc((100% - 2 * var(--spacing-md)) / 3);
@@ -790,7 +776,6 @@ body {
         gap: calc(var(--spacing-sm) / 2);
     }
 }
-/* NOVO ESTILO PARA O MENU DE NAVEGAÇÃO */
 .nav-menu-container {
     position: fixed;
     top: 65px;
@@ -845,12 +830,11 @@ body {
     border-bottom: 2px solid var(--highlight-color);
     background: var(--menu-item-background);
 }
-/* ESTILO PARA CONTEÚDO DAS CATEGORIAS */
 .category-content {
     display: none;
     width: 100%;
     min-height: 100vh;
-    padding-top: 115px; /* Espaço para header + menu de navegação */
+    padding-top: 115px;
 }
 .category-content.active {
     display: block;
@@ -874,43 +858,85 @@ body {
     border: none;
     display: block;
 }
-/* Estilo para carregar conteúdo externo */
 .category-content iframe {
     width: 100%;
     height: 100%;
     border: none;
 }
-/* Ajuste do hero-section para aparecer abaixo do menu de navegação */
 #home-content .hero-section {
-    margin-top: 115px; /* 65px header + 50px menu de navegação */
+    margin-top: 115px;
 }
 #home-content main {
     padding-top: 0;
 }
-/* NOVO ESTILO PARA A PÁGINA DE CATEGORIAS */
-/* Ajuste do hero-section para categorias */
 .category-content .hero-section {
-    margin-top: 120px; /* 65px header + 50px menu de navegação + 5px extra */
+    margin-top: 120px;
 }
-/* Estilo específico para o carrossel de gêneros na home */
 #generos-externo-grid {
-    margin-top: 5px; /* Espaçamento de 5px para a home */
+    margin-top: 5px;
 }
-/* Estilo específico para o carrossel de gêneros nas categorias */
 #acao-content #generos-externo-grid,
 #aventura-content #generos-externo-grid,
 #romance-content #generos-externo-grid,
 #isekai-content #generos-externo-grid,
 #fantasia-content #generos-externo-grid {
-    margin-top: 5px; /* Espaçamento de 5px para categorias */
+    margin-top: 5px;
 }
-/* Ajuste para garantir que o grid fique colado ao menu */
 .anime-carousel-section {
-    margin-top: 5px; /* Espaçamento padrão de 5px entre o menu e a seção */
+    margin-top: 5px;
+}
+body.loading #home-content > *:not(.hero-section),
+body.loading .hero-info,
+body.loading .anime-carousel-section,
+body.loading .anime-card {
+    opacity: 0;
+    visibility: hidden;
+    transition: none;
+}
+body.loading .hero-section {
+    background: var(--surface);
+    min-height: 400px;
+}
+body.loading .hero-section img {
+    display: none;
+}
+body.loading .hero-info {
+    display: none;
+}
+#initial-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+#initial-loader i {
+    font-size: 3rem;
+    color: var(--highlight-color);
+    margin-bottom: 1rem;
+}
+#initial-loader p {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+body:not(.loading) #initial-loader {
+    opacity: 0;
+    pointer-events: none;
 }
     </style>
 </head>
-<body data-theme="light">
+<body data-theme="light" class="loading">
+    <div id="initial-loader" class="loading-spinner">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Carregando...</p>
+    </div>
     <div class="header-menu">
         <nav class="header">
             <div class="top-bar__section">
@@ -928,7 +954,6 @@ body {
                 </button>
             </div>
         </nav>
-        <!-- NOVO MENU DE NAVEGAÇÃO -->
         <nav class="nav-menu-container" id="nav-menu">
             <div class="nav-menu-item active" data-category="home">
                 <i class="fas fa-home"></i> Home
@@ -957,12 +982,24 @@ body {
             <div class="result-card" id="result-card"></div>
         </nav>
        <div class="hamburger-menu" id="hamburgerMenu">
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-user-plus"></i> Cadastre-se</a>
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-sign-in-alt"></i> Login</a>
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-star"></i> Populares</a>
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-sort-alpha-down"></i> A - Z</a>
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-masks-theater"></i> Gêneros</a>
-            <a href="${CONSTRUCTION_LINK}" class="menu-item"><i class="fas fa-info-circle"></i> Sobre</a>
+            <button class="menu-item" onclick="showNotification('Sistema em construção, volte mais tarde.')">
+                <i class="fas fa-user-plus"></i> Cadastre-se
+            </button>
+            <button class="menu-item" onclick="showNotification('Sistema em construção, volte mais tarde.')">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+            <button class="menu-item" onclick="showNotification('Sistema em construção, volte mais tarde.')">
+                <i class="fas fa-star"></i> Populares
+            </button>
+            <button class="menu-item" onclick="showNotification('Sistema em construção, volte mais tarde.')">
+                <i class="fas fa-sort-alpha-down"></i> A - Z
+            </button>
+            <button class="menu-item" onclick="showNotification('Sistema em construção, volte mais tarde.')">
+                <i class="fas fa-masks-theater"></i> Gêneros
+            </button>
+            <button class="menu-item" onclick="showNotification('Sistema em construção, volte mais tarde.')">
+                <i class="fas fa-info-circle"></i> Sobre
+            </button>
             <button class="top-bar__icon" id="openReportModalBtn" onclick="openReportModal()">
                 <i class="fas fa-bug"></i> Reportar Erro
             </button>
@@ -970,7 +1007,6 @@ body {
         <div class="menu-overlay" id="menuOverlay"></div>
     </div>
     <div class="zoom-container" id="zoom-container">
-        <!-- Conteúdo da Home (mantido como está) -->
         <div class="category-content active" id="home-content">
             <section class="hero-section" id="hero-section">
                 <div class="hero-slide active">
@@ -984,37 +1020,30 @@ body {
             <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
                 <section class="anime-carousel-section" id="recommend-section">
                     <h2 class="carousel-title" data-link-id="none">Anime I Geek Recomenda</h2>
-                    <div id="recommend-carousel">
-                    </div>
+                    <div id="recommend-carousel"></div>
                 </section>
                 <section class="anime-carousel-section" id="genres-section">
                     <h2 class="carousel-title" data-link-id="genres">Gêneros</h2>
-                    <div class="anime-grid" id="generos-externo-grid">
-                    </div>
+                    <div class="anime-grid" id="generos-externo-grid"></div>
                 </section>
                 <section class="anime-carousel-section" id="releases-section">
                     <h2 class="carousel-title" data-link-id="releases">Lançamentos</h2>
-                    <div class="anime-grid" id="recent-releases-grid">
-                    </div>
+                    <div class="anime-grid" id="recent-releases-grid"></div>
                 </section>
                 <section class="anime-carousel-section" id="popular-section">
                     <h2 class="carousel-title" data-link-id="popular">Populares</h2>
-                    <div class="anime-grid" id="popular-animes-grid">
-                    </div>
+                    <div class="anime-grid" id="popular-animes-grid"></div>
                 </section>
                 <section class="anime-carousel-section" id="added-section">
                     <h2 class="carousel-title" data-link-id="added">Adicionados Recentemente</h2>
-                    <div class="anime-grid" id="recently-added-grid">
-                    </div>
+                    <div class="anime-grid" id="recently-added-grid"></div>
                 </section>
                 <section class="anime-carousel-section" id="binge-watch-section">
                     <h2 class="carousel-title" data-link-id="binge-watch">Para Maratonar em 1 Dia</h2>
-                    <div id="binge-watch-carousel">
-                    </div>
+                    <div id="binge-watch-carousel"></div>
                 </section>
             </main>
         </div>
-        <!-- Conteúdo das outras categorias -->
         <div class="category-content" id="acao-content">
             <div id="acao-content-container"></div>
         </div>
@@ -1032,8 +1061,7 @@ body {
         </div>
     </div>
     <div class="footer">
-        <div class="footer-left">
-            </div>
+        <div class="footer-left"></div>
         <div class="footer-right">
             <p>© 2025 Anime I Geek. Todos os direitos reservados. Desenvolvido por xAI.</p>
         </div>
@@ -1073,11 +1101,10 @@ body {
         </div>
     </div>
     <script type="module">
-        // Importações e Configurações de Firebase
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
-        import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
-        import { getFirestore, collection, getDocs, doc, getDoc, addDoc } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
-        console.log('1. [INICIALIZAÇÃO] Iniciando script...');
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
+
         const firebaseConfig = {
             apiKey: "AIzaSyA9vB_anmutvZByIhKxsPJbsP0VZ7gyWB0",
             authDomain: "sorteio-mega-sorte.firebaseapp.com",
@@ -1087,21 +1114,16 @@ body {
             appId: "1:776750928407:web:72da06deb8b97302b5c252",
             measurementId: "G-GD7D30N0G"
         };
-        console.log('2. [FIREBASE] Configurações carregadas.');
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
-        console.log('3. [FIREBASE] App, Analytics e Firestore inicializados.');
+
         const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
         const CONSTRUCTION_SUBTITLE = "Sistema em construção";
+
         const homepageData = {
             hero: [
-                {
-                    title: "Spy-Famyli",
-                    subtitle: "Todos têm um lado oculto...",
-                    image: "https://i.postimg.cc/pL6hhZQs/28325-1-9_8b.webp",
-                    url: "catalogo/chotto_dake.html"
-                },
+                { title: "Spy-Famyli", subtitle: "Todos têm um lado oculto...", image: "https://i.postimg.cc/pL6hhZQs/28325-1-9_8b.webp", url: "catalogo/chotto_dake.html" },
                 { title: "My Hero Academy final", subtitle: "A nova temporada está aqui!", image: "https://i.postimg.cc/5yTTQD0f/28328-1_9_8b.webp", url: CONSTRUCTION_LINK },
                 { title: "L9999", subtitle: "Ele quase foi morto nas profundezas da masmorra...", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp", url: CONSTRUCTION_LINK }
             ],
@@ -1185,15 +1207,18 @@ body {
                 { title: "Esportes", subtitle: "Competição e Paixão", url: CONSTRUCTION_LINK, synopsis: "Competição e Paixão", trailerId: "placeholder" },
             ],
         };
+
         const allAnimes = [
             ...homepageData.recentReleases,
             ...homepageData.popularAnimes,
             ...homepageData.recentlyAdded,
             ...homepageData.bingeWatch
         ];
+
         window.searchAnimes = async (query) => {};
         async function getIPAddress() {}
         async function recordReportError(errorType) {}
+
         function openHamburgerMenu() {
             document.getElementById('hamburgerMenu')?.classList.add('open');
             document.getElementById('menuOverlay')?.classList.add('active');
@@ -1203,6 +1228,7 @@ body {
             document.getElementById('menuOverlay')?.classList.remove('active');
         }
         window.closeHamburgerMenu = closeHamburgerMenu;
+
         function openReportModal() {
             const modal = document.getElementById('reportErrorModal');
             if (modal) modal.style.display = 'flex';
@@ -1211,6 +1237,7 @@ body {
             const modal = document.getElementById('reportErrorModal');
             if (modal) modal.style.display = 'none';
         }
+
         function showNotification(message) {
             const notification = document.getElementById('notification');
             if (!notification) return;
@@ -1221,6 +1248,7 @@ body {
             }, 4000);
         }
         window.showNotification = showNotification;
+
         function openDetailsModal(title, synopsis, trailerId) {
             const modal = document.getElementById('detailsModal');
             const titleElem = document.getElementById('detailsTitle');
@@ -1239,6 +1267,7 @@ body {
                 modal.style.display = 'flex';
             }
         }
+
         function closeDetailsModal() {
             const modal = document.getElementById('detailsModal');
             const trailerFrame = document.getElementById('trailerVideo');
@@ -1247,6 +1276,7 @@ body {
                 modal.style.display = 'none';
             }
         }
+
         function renderAnimeCards(containerId, animeList, isHorizontal = false) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1289,9 +1319,11 @@ body {
                 container.appendChild(card);
             });
         }
+
         function initializeCarousel(containerId, data, isHorizontal = false) {
             renderAnimeCards(containerId, data, isHorizontal);
         }
+
         function buildHeroSlider(containerId, heroList) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1319,6 +1351,7 @@ body {
                 slides[currentHero].classList.add('active');
             }, 5000);
         }
+
         function setupAutoScrollCarousel(containerId, animeList) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1339,7 +1372,7 @@ body {
                         left: currentIndex * cardWidth,
                         behavior: 'smooth'
                     });
-                    if (currentIndex >= cards.length - 1) { 
+                    if (currentIndex >= cards.length - 1) {
                         setTimeout(() => {
                             container.scrollTo({ left: 0, behavior: 'auto' });
                             currentIndex = 0;
@@ -1358,7 +1391,7 @@ body {
             container.addEventListener('scroll', userInteractionHandler);
             startAutoScroll();
         }
-        // ✅ FUNÇÃO ATUALIZADA: CARREGA CATEGORIA COM TEMA + ZOOM + PRÉ-CARREGAMENTO
+
         function loadCategoryContent(category) {
             const containerId = `${category}-content-container`;
             const container = document.getElementById(containerId);
@@ -1385,6 +1418,7 @@ body {
             };
             container.appendChild(iframe);
         }
+
         function showCategory(category) {
             document.querySelectorAll('.nav-menu-item').forEach(item => {
                 if (item.dataset.category === category) {
@@ -1404,20 +1438,8 @@ body {
                 }
             });
         }
-        // ✅ PRÉ-CARREGAMENTO DAS CATEGORIAS
-        function preloadCategoryPages() {
-            const categories = ['acao', 'aventura', 'romance', 'isekai', 'fantasia'];
-            categories.forEach(cat => {
-                const link = document.createElement('link');
-                link.rel = 'prefetch';
-                link.href = `${cat}.html`;
-                link.as = 'document';
-                document.head.appendChild(link);
-            });
-            console.log('[PRELOAD] Categorias pré-carregadas para navegação rápida.');
-        }
+
         function buildHomepage() {
-            console.log('[HOMEPAGE] Construindo página inicial...');
             buildHeroSlider('hero-section', homepageData.hero);
             initializeCarousel('recent-releases-grid', homepageData.recentReleases);
             initializeCarousel('popular-animes-grid', homepageData.popularAnimes);
@@ -1428,11 +1450,12 @@ body {
             setupAutoScrollCarousel('recommend-carousel', recommendList);
             setupAutoScrollCarousel('binge-watch-carousel', homepageData.bingeWatch);
         }
+
         const INITIAL_ZOOM = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
         const MIN_ZOOM = 0.5;
         const MAX_ZOOM = 1.5;
+
         function setupEventListeners() {
-            console.log('13. [EVENTOS] Configurando event listeners...');
             const searchInput = document.getElementById('search-input');
             const menuToggle = document.getElementById('menu-icon');
             const mainMenu = document.getElementById('main-menu');
@@ -1446,6 +1469,7 @@ body {
             let currentScale = INITIAL_ZOOM;
             const step = 0.05;
             const baseFontSize = 16;
+
             function updateZoom(showNotif = true) {
                 rootElement.style.fontSize = `${baseFontSize * currentScale}px`;
                 localStorage.setItem('zoomLevel', currentScale.toFixed(2));
@@ -1454,6 +1478,7 @@ body {
                 if (zoomInBtnFixed) zoomInBtnFixed.disabled = isDisabledMax;
                 if (zoomOutBtnFixed) zoomOutBtnFixed.disabled = isDisabledMin;
             }
+
             function handleZoom(direction) {
                 if (direction === 'in') {
                     currentScale = Math.min(MAX_ZOOM, currentScale + step);
@@ -1463,15 +1488,18 @@ body {
                 currentScale = parseFloat(currentScale.toFixed(2));
                 updateZoom(true);
             }
+
             zoomInBtnFixed?.addEventListener('click', () => handleZoom('in'));
             zoomOutBtnFixed?.addEventListener('click', () => handleZoom('out'));
             updateZoom(false);
+
             setTimeout(() => {
                 if (zoomInBtnFixed) zoomInBtnFixed.click();
                 setTimeout(() => {
                     if (zoomOutBtnFixed) zoomOutBtnFixed.click();
                 }, 500);
             }, 1000);
+
             hamburgerBtn?.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openHamburgerMenu();
@@ -1500,6 +1528,7 @@ body {
             themeToggle?.addEventListener('click', toggleTheme);
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.dataset.theme = savedTheme;
+
             document.getElementById('closeReportModal')?.addEventListener('click', closeReportModal);
             document.getElementById('reportErrorModal')?.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal-overlay')) {
@@ -1516,12 +1545,12 @@ body {
                 titleElement.addEventListener('click', (e) => {
                     const linkId = e.currentTarget.dataset.linkId;
                     if (linkId && linkId !== 'none') {
-                        const catalogUrl = `${CONSTRUCTION_LINK}#catalog-${linkId}`;
-                        window.location.href = catalogUrl;
                         showNotification(`Redirecionando para o Catálogo Completo de: ${e.currentTarget.textContent.trim()}`);
+                        // Aqui você pode redirecionar para uma página real no futuro
                     }
                 });
             });
+
             let clickTimer = null;
             document.querySelectorAll('.anime-card').forEach(card => {
                 card.addEventListener('click', (e) => {
@@ -1531,7 +1560,15 @@ body {
                             clickTimer = null;
                             const url = card.dataset.url;
                             if (url && url.startsWith('javascript:')) {
-                                eval(url);
+                                // Extrai e executa a função sem usar eval
+                                const fnMatch = url.match(/javascript:(.*)/);
+                                if (fnMatch && fnMatch[1]) {
+                                    try {
+                                        new Function(fnMatch[1])();
+                                    } catch (err) {
+                                        console.error("Erro ao executar função:", err);
+                                    }
+                                }
                             } else if (url && url !== "") {
                                 window.location.href = url;
                             } else {
@@ -1548,32 +1585,46 @@ body {
                     }
                 });
             });
+
             document.getElementById('closeDetailsModal')?.addEventListener('click', closeDetailsModal);
             document.getElementById('detailsModal')?.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal-overlay')) {
                     closeDetailsModal();
                 }
             });
+
             document.querySelectorAll('.nav-menu-item').forEach(item => {
                 item.addEventListener('click', (e) => {
                     const category = e.currentTarget.dataset.category;
                     showCategory(category);
                 });
             });
-            console.log('14. [EVENTOS] Configuração de event listeners concluída.');
         }
+
+        // ✅ Garantir que a tela de carregamento seja removida mesmo se houver erro
+        function finalizeLoading() {
+            document.body.classList.remove('loading');
+            const loader = document.getElementById('initial-loader');
+            if (loader) loader.style.display = 'none';
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('17. [DOM] DOMContentLoaded. Chamando buildHomepage() e setupEventListeners().');
-            buildHomepage();
-            setupEventListeners();
-            preloadCategoryPages(); // ✅ PRÉ-CARREGA AS CATEGORIAS AO INICIAR
+            try {
+                buildHomepage();
+                setupEventListeners();
+            } catch (error) {
+                console.error("Erro durante a inicialização:", error);
+            } finally {
+                // Sempre remove a tela de carregamento após um pequeno delay
+                setTimeout(finalizeLoading, 300);
+            }
         });
+
         window.addEventListener('beforeunload', () => {
-            console.log('[LIFECYCLE] Evento beforeunload. Salvando estado...');
             localStorage.setItem('theme', document.body.dataset.theme);
             localStorage.setItem('zoomLevel', (parseFloat(document.documentElement.style.fontSize) / 16 || INITIAL_ZOOM).toFixed(2));
         });
-        console.log('18. [FINAL] Script da Homepage carregado.');
     </script>
 </body>
 </html>
+
