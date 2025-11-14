@@ -536,8 +536,6 @@ body {
 .modal-synopsis-container::-webkit-scrollbar-track {
     background: var(--surface);
 }
-
-
 /* Estilos do modal de Reportar (mantidos) */
 .report-option {
     display: block;
@@ -574,8 +572,6 @@ body {
 .modal-close-btn:hover {
     background: var(--highlight-hover);
 }
-
-
 .fixed-footer-controls {
     position: fixed;
     bottom: 0;
@@ -618,6 +614,7 @@ body {
     box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
+    transform: translateY(-100px);
 }
 .hero-slide {
     width: 100%;
@@ -667,7 +664,6 @@ body {
     --linha-espessura: 0.7px;
 }
 /* ============================================ */
-
 /* Estilo do título */
 .carousel-title {
     position: relative;
@@ -685,7 +681,6 @@ body {
     width: fit-content;
     z-index: 1;
 }
-
 /* Linha vermelha com tamanho fixo */
 .carousel-title::after {
     content: '';
@@ -795,6 +790,111 @@ body {
         gap: calc(var(--spacing-sm) / 2);
     }
 }
+/* NOVO ESTILO PARA O MENU DE NAVEGAÇÃO */
+.nav-menu-container {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: var(--header-bg, var(--surface));
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 1000;
+    overflow-x: auto;
+    box-shadow: var(--shadow);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--highlight-color) var(--surface);
+}
+.nav-menu-container::-webkit-scrollbar {
+    height: 6px;
+}
+.nav-menu-container::-webkit-scrollbar-thumb {
+    background-color: var(--highlight-color);
+    border-radius: 3px;
+}
+.nav-menu-container::-webkit-scrollbar-track {
+    background: var(--surface);
+}
+.nav-menu-item {
+    padding: 8px 16px;
+    margin-right: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 0px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid transparent;
+}
+.nav-menu-item:hover {
+    color: var(--text-primary);
+    background: var(--menu-item-background);
+}
+.nav-menu-item.active {
+    color: var(--highlight-color);
+    border-bottom: 2px solid var(--highlight-color);
+    background: var(--menu-item-background);
+}
+/* ESTILO PARA CONTEÚDO DAS CATEGORIAS */
+.category-content {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 115px; /* Espaço para header + menu de navegação */
+}
+.category-content.active {
+    display: block;
+}
+.category-content main {
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 0.75rem 120px;
+    margin: 0 auto;
+}
+/* Estilo para carregar conteúdo externo */
+.category-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+/* Ajuste do hero-section para aparecer abaixo do menu de navegação */
+#home-content .hero-section {
+    margin-top: 115px; /* 65px header + 50px menu de navegação */
+}
+#home-content main {
+    padding-top: 0;
+}
+/* NOVO ESTILO PARA A PÁGINA DE CATEGORIAS */
+/* Ajuste do hero-section para categorias */
+.category-content .hero-section {
+    margin-top: 120px; /* 65px header + 50px menu de navegação + 5px extra */
+}
+/* Estilo específico para o carrossel de gêneros na home */
+#generos-externo-grid {
+    margin-top: 5px; /* Espaçamento de 5px para a home */
+}
+/* Estilo específico para o carrossel de gêneros nas categorias */
+#acao-content #generos-externo-grid,
+#aventura-content #generos-externo-grid,
+#romance-content #generos-externo-grid,
+#isekai-content #generos-externo-grid,
+#fantasia-content #generos-externo-grid {
+    margin-top: 5px; /* Espaçamento de 5px para categorias */
+}
+/* Ajuste para garantir que o grid fique colado ao menu */
+.anime-carousel-section {
+    margin-top: 5px; /* Espaçamento padrão de 5px entre o menu e a seção */
+}
     </style>
 </head>
 <body data-theme="light">
@@ -813,6 +913,27 @@ body {
                 <button aria-label="Abrir menu" class="top-bar__icon" id="hamburger-btn">
                     <i class="fas fa-bars"></i>
                 </button>
+            </div>
+        </nav>
+        <!-- NOVO MENU DE NAVEGAÇÃO -->
+        <nav class="nav-menu-container" id="nav-menu">
+            <div class="nav-menu-item active" data-category="home">
+                <i class="fas fa-home"></i> Home
+            </div>
+            <div class="nav-menu-item" data-category="acao">
+                <i class="fas fa-bolt"></i> Ação
+            </div>
+            <div class="nav-menu-item" data-category="aventura">
+                <i class="fas fa-compass"></i> Aventura
+            </div>
+            <div class="nav-menu-item" data-category="romance">
+                <i class="fas fa-heart"></i> Romance
+            </div>
+            <div class="nav-menu-item" data-category="isekai">
+                <i class="fas fa-globe"></i> Isekai
+            </div>
+            <div class="nav-menu-item" data-category="fantasia">
+                <i class="fas fa-magic"></i> Fantasia
             </div>
         </nav>
         <nav class="menu" id="main-menu">
@@ -834,50 +955,103 @@ body {
             </button>
         </div>
         <div class="menu-overlay" id="menuOverlay"></div>
+    </div>
     <div class="zoom-container" id="zoom-container">
-        <section class="hero-section" id="hero-section">
-            <div class="hero-slide active">
-                <img src="https://i.postimg.cc/1XXm0m8R/GP5HJ84P7-backdrop-wide.jpg" alt="Destaque" />
-                <div class="hero-info">
-                    <h2>Carregando destaques...</h2>
-                    <p>Aguarde um momento.</p>
-                </div>
-            </div>
-        </section>
-        <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
-            <section class="anime-carousel-section" id="recommend-section">
-                <h2 class="carousel-title" data-link-id="none">Anime I Geek Recomenda</h2>
-                <div id="recommend-carousel">
+        <!-- Conteúdo da Home (mantido como está) -->
+        <div class="category-content active" id="home-content">
+            <section class="hero-section" id="hero-section">
+                <div class="hero-slide active">
+                    <img src="https://i.postimg.cc/1XXm0m8R/GP5HJ84P7-backdrop-wide.jpg" alt="Destaque" />
+                    <div class="hero-info">
+                        <h2>Carregando destaques...</h2>
+                        <p>Aguarde um momento.</p>
+                    </div>
                 </div>
             </section>
-            <section class="anime-carousel-section" id="genres-section">
-                <h2 class="carousel-title" data-link-id="genres">Gêneros</h2>
-                <div class="anime-grid" id="generos-externo-grid">
-                </div>
-            </section>
-            <section class="anime-carousel-section" id="releases-section">
-                <h2 class="carousel-title" data-link-id="releases">Lançamentos</h2>
-                <div class="anime-grid" id="recent-releases-grid">
-                </div>
-            </section>
-            
-            <section class="anime-carousel-section" id="popular-section">
-                <h2 class="carousel-title" data-link-id="popular">Populares</h2>
-                <div class="anime-grid" id="popular-animes-grid">
-                </div>
-            </section>
-            <section class="anime-carousel-section" id="added-section">
-                <h2 class="carousel-title" data-link-id="added">Adicionados Recentemente</h2>
-                <div class="anime-grid" id="recently-added-grid">
-                </div>
-            </section>
-            <section class="anime-carousel-section" id="binge-watch-section">
-                <h2 class="carousel-title" data-link-id="binge-watch">Para Maratonar em 1 Dia</h2>
-                <div id="binge-watch-carousel">
-                </div>
-            </section>
-          
+            <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
+                <section class="anime-carousel-section" id="recommend-section">
+                    <h2 class="carousel-title" data-link-id="none">Anime I Geek Recomenda</h2>
+                    <div id="recommend-carousel">
+                    </div>
+                </section>
+                <section class="anime-carousel-section" id="genres-section">
+                    <h2 class="carousel-title" data-link-id="genres">Gêneros</h2>
+                    <div class="anime-grid" id="generos-externo-grid">
+                    </div>
+                </section>
+                <section class="anime-carousel-section" id="releases-section">
+                    <h2 class="carousel-title" data-link-id="releases">Lançamentos</h2>
+                    <div class="anime-grid" id="recent-releases-grid">
+                    </div>
+                </section>
+                <section class="anime-carousel-section" id="popular-section">
+                    <h2 class="carousel-title" data-link-id="popular">Populares</h2>
+                    <div class="anime-grid" id="popular-animes-grid">
+                    </div>
+                </section>
+                <section class="anime-carousel-section" id="added-section">
+                    <h2 class="carousel-title" data-link-id="added">Adicionados Recentemente</h2>
+                    <div class="anime-grid" id="recently-added-grid">
+                    </div>
+                </section>
+                <section class="anime-carousel-section" id="binge-watch-section">
+                    <h2 class="carousel-title" data-link-id="binge-watch">Para Maratonar em 1 Dia</h2>
+                    <div id="binge-watch-carousel">
+                    </div>
+                </section>
             </main>
+        </div>
+        <!-- Conteúdo das outras categorias -->
+        <div class="category-content" id="acao-content">
+            <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
+                <section class="anime-carousel-section">
+                    <h2 class="carousel-title">Animes de Ação</h2>
+                    <div id="acao-content-container">
+                        <!-- Conteúdo será carregado dinamicamente -->
+                    </div>
+                </section>
+            </main>
+        </div>
+        <div class="category-content" id="aventura-content">
+            <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
+                <section class="anime-carousel-section">
+                    <h2 class="carousel-title">Animes de Aventura</h2>
+                    <div id="aventura-content-container">
+                        <!-- Conteúdo será carregado dinamicamente -->
+                    </div>
+                </section>
+            </main>
+        </div>
+        <div class="category-content" id="romance-content">
+            <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
+                <section class="anime-carousel-section">
+                    <h2 class="carousel-title">Animes de Romance</h2>
+                    <div id="romance-content-container">
+                        <!-- Conteúdo será carregado dinamicamente -->
+                    </div>
+                </section>
+            </main>
+        </div>
+        <div class="category-content" id="isekai-content">
+            <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
+                <section class="anime-carousel-section">
+                    <h2 class="carousel-title">Animes Isekai</h2>
+                    <div id="isekai-content-container">
+                        <!-- Conteúdo será carregado dinamicamente -->
+                    </div>
+                </section>
+            </main>
+        </div>
+        <div class="category-content" id="fantasia-content">
+            <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
+                <section class="anime-carousel-section">
+                    <h2 class="carousel-title">Animes de Fantasia</h2>
+                    <div id="fantasia-content-container">
+                        <!-- Conteúdo será carregado dinamicamente -->
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
     <div class="footer">
         <div class="footer-left">
@@ -940,11 +1114,9 @@ body {
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
         console.log('3. [FIREBASE] App, Analytics e Firestore inicializados.');
-
         // Constantes Globais
         const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
         const CONSTRUCTION_SUBTITLE = "Sistema em construção";
-
         // ==========================================================
         // ✨ DADOS ATUALIZADOS E NOVOS DADOS
         // ==========================================================
@@ -1052,7 +1224,7 @@ body {
                 { title: "gachiakuta", subtitle: "25 Episódios", image: "https://i.postimg.cc/mDdgXykx/images-2025-11-11T223742-007.jpg", url: "catalogo/gachiakuta.html", synopsis: "Sinopse Rudo, um jovem órfão que vive em uma favela marginalizada, discriminada pela elite de uma cidade flutuante. Após ser falsamente acusado de assassinato, ele é jogado em um inferno chamado O Poço, um lugar habitado por monstros de lixo. Para sobreviver e buscar vingança, ele precisa dominar um novo poder e se unir aos Limpadores (Cleaners), um grupo que luta contra as criaturas do lixo.", trailerId: "placeholder" },
                 { title: "Cyberpunk: Edgerunners", subtitle: "10 Episódios", image: "https://i.postimg.cc/26PSN8QP/images-17.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse Cyberpunk: Edgerunners conta a história de David Martinez, um garoto de rua que, após perder tudo, decide se tornar um edgerunner, um mercenário fora da lei também conhecido como cyberpunk — para sobreviver em uma distópica cidade futurista obcecada por tecnologia e implantes cibernéticos. A série é uma produção de 10 episódios derivada do videogame Cyberpunk 2077, criada em colaboração com o Studio Trigger e a Netflix. ", trailerId: "placeholder" },
                 { title: "Ranking of Kings", subtitle: "23 Episódios", image: "https://i.postimg.cc/qMpdh3vG/images-18.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse O povo do reino despreza o jovem Principe Bojji que nao consegue ouvir nem falar chamando-o de O Principe Inutil e zombando de sua suposta tolice Contudo embora Bojji nao seja fisicamente forte ele nao falta coracao Um encontro fortuito com uma criatura das sombras que deveria tê-lo traumatizado faz com que ele acredite ter encontrado um amigo em meio a aqueles que so notam suas deficiencias Ele comeca a se encontrar regularmente com Kage a sombra a ponto de ate mesmo a criatura antes aspera comecar a se mostrar mais amigavel A improvavel amizade entre Kage e Bojji lança as bases da jornada do principe uma jornada na qual ele pretende vencer seus medos e inseguranças Apesar do ridiculo constante que enfrenta Bojji esta determinado a realizar seu desejo de se tornar o melhor rei que puder ser", trailerId: "placeholder" },
-                { title: "Spy x Family S1", subtitle: "25 Episódios", image: "https://i.postimg.cc/7YcyLYbj/127508.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse Politicos corruptos nacionalistas fanaticos e outras forcas belicistas ameaçam constantemente a tenue camada de paz entre os paises vizinhos de Ostania e Westalis Apesar de suas conspiraçoes o renomado espiao e mestre dos disfarces Twilight cumpre perigosas missoes uma apos a outra na esperança de que nenhuma crianca tenha que vivenciar os horrores da guerra Na movimentada cidade de Berlint em Ostania Twilight assume o pseudonimo de Loid Forger um estimado psiquiatra No entanto sua verdadeira intencao e coletar informacoes sobre o proeminente politico Donovan Desmond que raramente aparece em publico na escola de seus filhos a prestigiosa Academia Eden Recrutando a ajuda da funcionaria solteira da prefeitura Yor Briar para fingir ser sua esposa e adotando a curiosa orfa de seis anos Anya como sua filha Loid coloca seu plano em açao Ele matriculara Anya na Academia Eden onde espera que ela se destaque e lhe de a oportunidade de conhecer Donovan sem levantar suspeitas Infelizmente para Loid ate mesmo um homem com seus talentos tem dificuldade em representar o papel de pai e marido amoroso E assim como Loid esconde sua verdadeira identidade Yor uma assassina clandestina conhecida como Princesa Espinho e Anya uma esper capaz de ler mentes tambem nao pretendem revelar seus proprios segredos Embora essa familia aparentemente perfeita seja construída sobre a mentira os Forjadores gradualmente compreendem que o amor que compartilham e mais importante do que tudo", trailerId: "placeholder" },
+                { title: "Spy x Family S1", subtitle: "25 Episódios", image: "https://i.postimg.cc/7YcyLYbj/127508.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse Politicos corruptos nacionalistas fanaticos e outras forcas belicistas amecaçam constantemente a tenue camada de paz entre os paises vizinhos de Ostania e Westalis Apesar de suas conspiraçoes o renomado espiao e mestre dos disfarces Twilight cumpre perigosas missoes uma apos a outra na esperança de que nenhuma crianca tenha que vivenciar os horrores da guerra Na movimentada cidade de Berlint em Ostania Twilight assume o pseudonimo de Loid Forger um estimado psiquiatra No entanto sua verdadeira intencao e coletar informacoes sobre o proeminente politico Donovan Desmond que raramente aparece em publico na escola de seus filhos a prestigiosa Academia Eden Recrutando a ajuda da funcionaria solteira da prefeitura Yor Briar para fingir ser sua esposa e adotando a curiosa orfa de seis anos Anya como sua filha Loid coloca seu plano em açao Ele matriculara Anya na Academia Eden onde espera que ela se destaque e lhe de a oportunidade de conhecer Donovan sem levantar suspeitas Infelizmente para Loid ate mesmo um homem com seus talentos tem dificuldade em representar o papel de pai e marido amoroso E assim como Loid esconde sua verdadeira identidade Yor uma assassina clandestina conhecida como Princesa Espinho e Anya uma esper capaz de ler mentes tambem nao pretendem revelar seus proprios segredos Embora essa familia aparentemente perfeita seja construída sobre a mentira os Forjadores gradualmente compreendem que o amor que compartilham e mais importante do que tudo", trailerId: "placeholder" },
                 { title: "Jojo's Bizarre Adventure: Stone Ocean", subtitle: "38 Episódios", image: "https://i.postimg.cc/NFqpnSMQ/119844.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse Forças conspiradoras incriminam Jolyne Kuujou por um crime imprudente, levando-a à infame Prisão da Rua Green Dolphin. Assim como seu pai, Joutarou, Jolyne é impetuosa, corajosa e justa; ela se revolta contra sua sentença injusta e rapidamente descobre as circunstâncias sinistras que a levaram à prisão. Um presente de seu pai ausente concede a Jolyne o poder de Stone Free, uma habilidade sobrenatural conhecida como Stand, que lhe permite transformar seu corpo em fios. Jolyne usa Stone Free para lutar em sua jornada pela prisão, recrutando novos aliados — Ermes Costello e Foo Fighters — para ajudá-la em sua investigação. Juntas, as destemidas mulheres lutam para desvendar a ameaça por trás de Whitesnake, um Stand inimigo, responsável pelos prisioneiros cada vez mais perigosos que estão atrás da vida de Jolyne. Através de Jolyne, a linhagem Joestar confronta o legado de seu único e verdadeiro inimigo. Jolyne e seus amigos correm contra o tempo para impedir um plano desastroso e pôr fim a um mal crescente.", trailerId: "placeholder" },
                 { title: "Tengen Toppa Gurren Lagann", subtitle: "27 Episódios", image: "https://i.postimg.cc/MTDmsTht/5123.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse Simon e Kamina nasceram e foram criados em uma vila subterrânea profunda, escondida da lendária superfície. Kamina é um espírito livre e impulsivo, determinado a deixar seu nome na história, enquanto Simon é um garoto tímido e sem grandes aspirações. Um dia, ao escavar a terra, Simon encontra um objeto misterioso que acaba sendo a chave de ignição de um antigo artefato de guerra, que a dupla chama de Lagann. Usando sua nova arma, Simon e Kamina repelem um ataque surpresa vindo da superfície com a ajuda de Yoko Littner, uma ruiva destemida e armada com um enorme rifle, que vaga pelo mundo acima. Após a batalha, o céu finalmente se revela diante deles, levando Simon e Kamina a embarcar em uma jornada ao lado de Yoko para explorar as terras devastadas da superfície. Logo, eles se unem à luta contra os Beastmen, criaturas humanoides que aterrorizam os remanescentes da humanidade em poderosos robôs chamados Gunmen. Apesar dos desafios e reveses, o trio luta corajosamente contra esses novos inimigos ao lado de outros sobreviventes para reconquistar a superfície, enquanto aos poucos desvendam um mistério de proporções galácticas.", trailerId: "placeholder" },
                 { title: "Code Geass", subtitle: "2 Temporadas", image: "https://i.postimg.cc/zvwvwbMc/135089.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse Um ano se passou desde a Rebelião Negra, uma tentativa fracassada de levante contra o Sacro Império da Britannia, liderada pelo vigilante mascarado Zero, que agora está desaparecido. Sem seu líder revolucionário, o grupo de resistência da Área 11 — os Cavaleiros Negros — se vê impotente diante da brutalidade imposta aos Elevens por Britannia, que aumentou drasticamente seus esforços para eliminar qualquer esperança de uma nova revolta. Lelouch Lamperouge, tendo perdido toda a memória de sua vida dupla, vive pacificamente ao lado de seus amigos como um estudante do Colégio Ashford. Sua antiga parceira, C.C., incapaz de aceitar essa reviravolta, decide lembrá-lo de seu verdadeiro propósito, na esperança de que o estrategista Zero renasça mais uma vez para concluir o que começou.", trailerId: "placeholder" },
@@ -1084,7 +1256,6 @@ body {
                 { title: "Esportes", subtitle: "Competição e Paixão", url: CONSTRUCTION_LINK, synopsis: "Competição e Paixão", trailerId: "placeholder" },
             ],
         };
-
         // Combina todos os animes em uma única lista para o carrossel de Recomendações
         const allAnimes = [
             ...homepageData.recentReleases,
@@ -1092,45 +1263,35 @@ body {
             ...homepageData.recentlyAdded,
             ...homepageData.bingeWatch
         ];
-
         // ==========================================================
         // ✨ FUNÇÕES DE RENDERIZAÇÃO E LÓGICA (Com Edições)
         // ==========================================================
-
         window.searchAnimes = async (query) => {
             // Lógica de busca mantida
         };
-
         async function getIPAddress() {
             // Lógica de IP mantida
         }
-
         async function recordReportError(errorType) {
             // Lógica de reporte de erro mantida
         }
-
         function openHamburgerMenu() {
             document.getElementById('hamburgerMenu')?.classList.add('open');
             document.getElementById('menuOverlay')?.classList.add('active');
         }
-
         function closeHamburgerMenu() {
             document.getElementById('hamburgerMenu')?.classList.remove('open');
             document.getElementById('menuOverlay')?.classList.remove('active');
         }
-
         window.closeHamburgerMenu = closeHamburgerMenu;
-
         function openReportModal() {
             const modal = document.getElementById('reportErrorModal');
             if (modal) modal.style.display = 'flex';
         }
-
         function closeReportModal() {
             const modal = document.getElementById('reportErrorModal');
             if (modal) modal.style.display = 'none';
         }
-
         function showNotification(message) {
             const notification = document.getElementById('notification');
             if (!notification) return;
@@ -1140,20 +1301,16 @@ body {
                 notification.classList.remove('show');
             }, 4000);
         }
-
         window.showNotification = showNotification;
-
         // ✨ NOVA FUNÇÃO PARA ABRIR O MODAL DE DETALHES (Sinopse e Trailer)
         function openDetailsModal(title, synopsis, trailerId) {
             const modal = document.getElementById('detailsModal');
             const titleElem = document.getElementById('detailsTitle');
             const textElem = document.getElementById('synopsisText');
             const trailerFrame = document.getElementById('trailerVideo');
-
             if (modal && titleElem && textElem && trailerFrame) {
                 titleElem.textContent = title;
                 textElem.textContent = synopsis;
-
                 let trailerUrl = '';
                 if (trailerId && trailerId !== 'placeholder') {
                     // Monta a URL do YouTube com autoplay e modo sem cookies
@@ -1162,13 +1319,10 @@ body {
                     // Placeholder ou link de vídeo de erro
                     trailerUrl = `https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0`; // Rickroll mudo
                 }
-                
                 trailerFrame.src = trailerUrl;
-                
                 modal.style.display = 'flex';
             }
         }
-
         // ✨ NOVA FUNÇÃO PARA FECHAR O MODAL DE DETALHES
         function closeDetailsModal() {
             const modal = document.getElementById('detailsModal');
@@ -1179,8 +1333,6 @@ body {
                 modal.style.display = 'none';
             }
         }
-
-
         /**
          * Renderiza os cards de anime no grid/carrossel
          * @param {string} containerId ID do elemento onde os cards serão renderizados
@@ -1190,7 +1342,6 @@ body {
         function renderAnimeCards(containerId, animeList, isHorizontal = false) {
             const container = document.getElementById(containerId);
             if (!container) return;
-
             if (isHorizontal) {
                 container.classList.add('carousel-horizontal');
                 container.classList.remove('anime-grid');
@@ -1198,30 +1349,25 @@ body {
                 container.classList.add('anime-grid');
                 container.classList.remove('carousel-horizontal');
             }
-
             // Limpa o conteúdo
             container.innerHTML = '';
-
             // Garante que não haja repetição de cards com os mesmos nomes
             const uniqueAnimes = animeList.filter((anime, index, self) =>
                 index === self.findIndex((a) => (
                     a.title === anime.title
                 ))
             );
-
             uniqueAnimes.forEach((anime, index) => {
                 const card = document.createElement('div');
                 // Mantém a URL do data set (CONSTRUCTION_LINK ou catalogo/*.html)
                 const finalUrl = (anime.url === '#' || !anime.url) ? CONSTRUCTION_LINK : anime.url;
                 const finalSubtitle = finalUrl.startsWith('javascript:') ? CONSTRUCTION_SUBTITLE : anime.subtitle;
-                
                 card.className = 'anime-card';
                 card.style.animationDelay = `${index * 50}ms`;
                 card.dataset.url = finalUrl;
                 card.dataset.title = anime.title;
                 card.dataset.synopsis = anime.synopsis || 'Sinopse não disponível.';
                 card.dataset.trailerid = anime.trailerId || ''; // ✨ NOVO: Adiciona o ID do trailer
-
                 if (anime.image) {
                     card.innerHTML = `
                         <div class="anime-card-image" style="background-image: url('${anime.image}')"></div>
@@ -1237,11 +1383,9 @@ body {
                         </div>
                     `;
                 }
-
                 container.appendChild(card);
             });
         }
-
         /**
          * Inicializa a renderização do carrossel
          * @param {string} containerId ID do elemento DOM onde renderizar
@@ -1251,7 +1395,6 @@ body {
         function initializeCarousel(containerId, data, isHorizontal = false) {
             renderAnimeCards(containerId, data, isHorizontal);
         }
-
         function buildHeroSlider(containerId, heroList) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1279,24 +1422,19 @@ body {
                 slides[currentHero].classList.add('active');
             }, 5000);
         }
-
         /**
          * Lógica para o carrossel "Anime I Geek Recomenda"
          */
         function setupAutoScrollCarousel(containerId, animeList) {
             const container = document.getElementById(containerId);
             if (!container) return;
-            
             // Usa a lista fornecida (que pode ser a embaralhada ou a fixa de Maratona)
             initializeCarousel(containerId, animeList, true);
-
             const cards = container.querySelectorAll('.anime-card');
             if (cards.length === 0) return;
-
             let currentIndex = 0;
             let intervalId;
             const scrollInterval = 5000; // every second
-
             const startAutoScroll = () => {
                 clearInterval(intervalId);
                 intervalId = setInterval(() => {
@@ -1304,14 +1442,11 @@ body {
                     // Tenta calcular a largura correta, assumindo que todos os cards têm a mesma largura de carrossel
                     const cardWidth = cards[0] ? cards[0].offsetWidth + gap : 0;
                     if (cardWidth === 0) return;
-                    
                     currentIndex = (currentIndex + 1) % cards.length;
-                    
                     container.scrollTo({
                         left: currentIndex * cardWidth,
                         behavior: 'smooth'
                     });
-                    
                     // Se chegar no penúltimo (para não mostrar o último antes de resetar) ou no último se for lista pequena
                     if (currentIndex >= cards.length - 1) { 
                         setTimeout(() => {
@@ -1321,54 +1456,101 @@ body {
                     }
                 }, scrollInterval);
             };
-
             const stopAutoScroll = () => clearInterval(intervalId);
-
             const userInteractionHandler = () => {
                 stopAutoScroll();
                 setTimeout(startAutoScroll, 5000); // resume after 5 seconds of inactivity
             };
-
             container.addEventListener('touchstart', userInteractionHandler);
             container.addEventListener('mousedown', userInteractionHandler);
             container.addEventListener('wheel', userInteractionHandler);
             // Também adiciona event listeners para o scroll
             container.addEventListener('scroll', userInteractionHandler);
-
             startAutoScroll();
         }
-
+        // ==========================================================
+        // ✨ FUNÇÕES PARA CARREGAR CONTEÚDO EXTERNO
+        // ==========================================================
+        function loadCategoryContent(category) {
+            const containerId = `${category}-content-container`;
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            // Limpa o conteúdo anterior
+            container.innerHTML = '';
+            // Cria um iframe para carregar o conteúdo externo
+            const iframe = document.createElement('iframe');
+            iframe.src = `${category}.html`;
+            iframe.title = `Conteúdo de ${category}`;
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.minHeight = '500px';
+            iframe.style.border = 'none';
+            // Adiciona um fallback caso o iframe não carregue
+            iframe.onload = function() {
+                // Verifica se o conteúdo foi carregado
+                if (this.contentDocument && this.contentDocument.body) {
+                    // Conteúdo carregado com sucesso
+                    console.log(`Conteúdo de ${category} carregado com sucesso.`);
+                } else {
+                    // Conteúdo não carregado - mostra mensagem de fallback
+                    container.innerHTML = `<p>Conteúdo de ${category} ainda não disponível. Volte mais tarde!</p>`;
+                }
+            };
+            iframe.onerror = function() {
+                // Erro ao carregar o iframe - mostra mensagem de fallback
+                container.innerHTML = `<p>Erro ao carregar o conteúdo de ${category}. Volte mais tarde!</p>`;
+            };
+            container.appendChild(iframe);
+        }
+        // ==========================================================
+        // ✨ FUNÇÕES PARA NAVEGAÇÃO ENTRE CATEGORIAS
+        // ==========================================================
+        function showCategory(category) {
+            // Atualiza o menu de navegação
+            document.querySelectorAll('.nav-menu-item').forEach(item => {
+                if (item.dataset.category === category) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            // Mostra o conteúdo da categoria selecionada
+            document.querySelectorAll('.category-content').forEach(content => {
+                if (content.id === `${category}-content`) {
+                    content.classList.add('active');
+                    // Carrega o conteúdo externo se for uma categoria diferente de home
+                    if (category !== 'home') {
+                        loadCategoryContent(category);
+                    }
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        }
         // ==========================================================
         // ✨ CONSTRUÇÃO DA PÁGINA E EVENT LISTENERS
         // ==========================================================
-
         function buildHomepage() {
             console.log('[HOMEPAGE] Construindo página inicial (Dados Internos)...');
             buildHeroSlider('hero-section', homepageData.hero);
-            
             // Carrosséis estáticos (Grid)
             initializeCarousel('recent-releases-grid', homepageData.recentReleases);
             initializeCarousel('popular-animes-grid', homepageData.popularAnimes);
             initializeCarousel('recently-added-grid', homepageData.recentlyAdded);
             // Reutiliza 'generos-externo-grid' para o carrossel de Gêneros
             initializeCarousel('generos-externo-grid', homepageData.genresAnimes);
-
             // Carrossel de Recomendações (Horizontal e Automático)
             const shuffled = [...allAnimes].sort(() => 0.5 - Math.random());
             const recommendList = shuffled.slice(0, 10);
             setupAutoScrollCarousel('recommend-carousel', recommendList);
-
             // ✨ Carrossel "Para Maratonar em 1 Dia" (Horizontal e Automático, com lista fixa)
             setupAutoScrollCarousel('binge-watch-carousel', homepageData.bingeWatch);
         }
-
         const INITIAL_ZOOM = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
         const MIN_ZOOM = 0.5;
         const MAX_ZOOM = 1.5;
-
         function setupEventListeners() {
             console.log('13. [EVENTOS] Configurando event listeners...');
-
             const searchInput = document.getElementById('search-input');
             const menuToggle = document.getElementById('menu-icon');
             const mainMenu = document.getElementById('main-menu');
@@ -1382,19 +1564,14 @@ body {
             let currentScale = INITIAL_ZOOM;
             const step = 0.05;
             const baseFontSize = 16;
-
             function updateZoom(showNotif = true) {
                 rootElement.style.fontSize = `${baseFontSize * currentScale}px`;
-                
                 localStorage.setItem('zoomLevel', currentScale.toFixed(2));
-
                 const isDisabledMax = currentScale >= MAX_ZOOM;
                 const isDisabledMin = currentScale <= MIN_ZOOM;
-
                 if (zoomInBtnFixed) zoomInBtnFixed.disabled = isDisabledMax;
                 if (zoomOutBtnFixed) zoomOutBtnFixed.disabled = isDisabledMin;
             }
-
             function handleZoom(direction) {
                 if (direction === 'in') {
                     currentScale = Math.min(MAX_ZOOM, currentScale + step);
@@ -1404,33 +1581,25 @@ body {
                 currentScale = parseFloat(currentScale.toFixed(2));
                 updateZoom(true);
             }
-
             zoomInBtnFixed?.addEventListener('click', () => handleZoom('in'));
             zoomOutBtnFixed?.addEventListener('click', () => handleZoom('out'));
             updateZoom(false);
-
           // Clica no botão de zoom-in após 1 segundo
             setTimeout(() => {
                 if (zoomInBtnFixed) zoomInBtnFixed.click();
-                
                 // Meio segundo depois, clica no botão de zoom-out
                 setTimeout(() => {
                     if (zoomOutBtnFixed) zoomOutBtnFixed.click();
                 }, 500);
-                
             }, 1000);
-
             hamburgerBtn?.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openHamburgerMenu();
             });
-
             menuOverlay?.addEventListener('click', closeHamburgerMenu);
-
             searchInput?.addEventListener('input', (e) => {
                 window.searchAnimes(e.target.value);
             });
-
             menuToggle?.addEventListener('click', (e) => {
                 e.stopPropagation();
                 mainMenu.classList.toggle('open');
@@ -1438,37 +1607,31 @@ body {
                     setTimeout(() => searchInput.focus(), 300);
                 }
             });
-
             document.addEventListener('click', (e) => {
                 if (mainMenu && !e.target.closest('#main-menu') && !e.target.closest('#menu-icon') && mainMenu.classList.contains('open')) {
                     mainMenu.classList.remove('open');
                 }
             });
-
             function toggleTheme() {
                 const newTheme = body.dataset.theme === 'light' ? 'dark' : 'light';
                 body.dataset.theme = newTheme;
                 localStorage.setItem('theme', newTheme);
             }
-
             themeToggle?.addEventListener('click', toggleTheme);
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.dataset.theme = savedTheme;
-
             document.getElementById('closeReportModal')?.addEventListener('click', closeReportModal);
             document.getElementById('reportErrorModal')?.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal-overlay')) {
                     closeReportModal();
                 }
             });
-
             document.querySelectorAll('.report-option').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const errorType = e.currentTarget.dataset.errorType;
                     recordReportError(errorType);
                 });
             });
-
             document.querySelectorAll('.carousel-title').forEach(titleElement => {
                 titleElement.addEventListener('click', (e) => {
                     const linkId = e.currentTarget.dataset.linkId;
@@ -1479,7 +1642,6 @@ body {
                     }
                 });
             });
-
            // ==========================================================
            // ✨ LÓGICA DO CLIQUE DUPLO AGORA ABRE O NOVO MODAL
            // ==========================================================
@@ -1492,7 +1654,6 @@ body {
                             clickTimer = null;
                             // Single click:
                             const url = card.dataset.url;
-                            
                             if (url && url.startsWith('javascript:')) {
                                 // 1. EXECUTA JS (Dispara a notificação de "Sistema em construção")
                                 eval(url);
@@ -1502,7 +1663,6 @@ body {
                             } else {
                                 console.warn("URL do anime não definida:", card.dataset.title);
                             }
-
                         }, 300); // Tempo para detectar double click
                     } else {
                         clearTimeout(clickTimer);
@@ -1515,7 +1675,6 @@ body {
                     }
                 });
             });
-
             // Listener para fechar o novo modal de detalhes
             document.getElementById('closeDetailsModal')?.addEventListener('click', closeDetailsModal);
             document.getElementById('detailsModal')?.addEventListener('click', (e) => {
@@ -1524,23 +1683,29 @@ body {
                     closeDetailsModal();
                 }
             });
-
+            // ==========================================================
+            // ✨ EVENT LISTENERS PARA O MENU DE NAVEGAÇÃO
+            // ==========================================================
+            document.querySelectorAll('.nav-menu-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const category = e.currentTarget.dataset.category;
+                    showCategory(category);
+                });
+            });
             console.log('14. [EVENTOS] Configuração de event listeners concluída.');
         }
-
         document.addEventListener('DOMContentLoaded', () => {
             console.log('17. [DOM] DOMContentLoaded. Chamando buildHomepage() e setupEventListeners().');
             buildHomepage();
             setupEventListeners();
         });
-
         window.addEventListener('beforeunload', () => {
             console.log('[LIFECYCLE] Evento beforeunload. Salvando estado...');
             localStorage.setItem('theme', document.body.dataset.theme);
             localStorage.setItem('zoomLevel', (parseFloat(document.documentElement.style.fontSize) / 16 || INITIAL_ZOOM).toFixed(2));
         });
-
         console.log('18. [FINAL] Script da Homepage carregado.');
     </script>
 </body>
 </html>
+
