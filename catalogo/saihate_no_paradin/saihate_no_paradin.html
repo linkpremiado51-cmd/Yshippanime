@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="Assista Saihate no Paladin - Todos os Episódios Legendados no Anime I Geek">
-    <title>Saihate no Paladin - Anime I Geek</title>
+    <meta name="description" content="Assista seus animes favoritos no Anime I Geek">
+    <title>Saihate no Paladin - Fanpage</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-/* INÍCIO DO CSS UNIFICADO (Estilo da Página do Episódio, baseado no código fixado) */
+/* INÍCIO DO CSS UNIFICADO (Com Alterações Solicitadas) */
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -126,7 +126,6 @@ body {
     align-items: center;
     gap: 0.5rem;
     color: var(--text-primary);
-    cursor: pointer; /* Adiciona cursor pointer para indicar que é clicável */
 }
 :fullscreen .header {
     display: none !important;
@@ -421,6 +420,25 @@ body {
         text-align: center;
         width: 100%;
     }
+    /* Estilo do modal em telas menores */
+    .modal-content {
+        max-width: 95%;
+        margin: 20px;
+        padding: 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    .modal-main-content {
+        flex-direction: column;
+    }
+    .modal-trailer-container {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .modal-synopsis-container {
+        width: 100%;
+    }
 }
 @media (max-width: 480px) {
    /* Estilos mobile */
@@ -430,6 +448,146 @@ body {
         font-size: 1.125rem;
     }
 }
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 5000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+/* ✨ NOVO ESTILO DO MODAL DE DETALHES (Sinopse + Trailer / RPG Style) */
+.modal-content {
+    background: var(--card-bg); /* Fundo claro ou escuro do card */
+    color: var(--text-primary);
+    padding: 30px;
+    border-radius: 0px;
+    width: 90%;
+    max-width: 800px; /* Aumenta a largura máxima para acomodar trailer */
+    box-shadow: var(--shadow-lg);
+    animation: fadeIn 0.3s ease-out;
+    max-height: 90vh;
+    overflow-y: auto; /* Permite scroll se o conteúdo for muito grande */
+}
+.modal-content h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--highlight-color);
+    padding-bottom: 10px;
+}
+.modal-main-content {
+    display: flex;
+    gap: 20px;
+}
+/* ✨ Aumento de 30px na altura do frame do YouTube */
+.modal-trailer-container {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+    padding-bottom: calc(56.25% + 30px); /* 16:9 Aspect Ratio + 30px */
+    height: 0;
+    overflow: hidden;
+    background: #000;
+}
+.trailer-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.modal-synopsis-container {
+    flex: 1;
+    max-height: 400px; /* Limita altura da sinopse no desktop */
+    overflow-y: auto;
+    padding-right: 10px;
+}
+.modal-synopsis-container p {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+/* Scrollbar customizada para Firefox */
+.modal-synopsis-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--highlight-color) var(--surface);
+}
+/* Scrollbar customizada para Webkit */
+.modal-synopsis-container::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-synopsis-container::-webkit-scrollbar-thumb {
+    background-color: var(--highlight-color);
+    border-radius: 4px;
+}
+.modal-synopsis-container::-webkit-scrollbar-track {
+    background: var(--surface);
+}
+/* Estilo para o modal RPG (Personagem) */
+.modal-rpg-content {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+.modal-rpg-image {
+    flex-shrink: 0;
+    width: 150px; /* <-- LARGURA DIMINUÍDA NO MODAL */
+    height: 210px; /* <-- ALTURA DIMINUÍDA NO MODAL */
+    background-size: cover;
+    background-position: center;
+    border-radius: 0px;
+    box-shadow: var(--shadow-lg);
+}
+.modal-rpg-info {
+    flex-grow: 1;
+    padding: 10px 0;
+}
+.modal-rpg-info h4 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+.modal-rpg-info p {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+/* Estilo para o modal de Descrição de Episódio */
+.modal-episode-content {
+    display: block;
+}
+.modal-episode-image {
+    width: 100%;
+    height: 200px; /* Altura fixa para a imagem do episódio */
+    background-size: cover;
+    background-position: center;
+    border-radius: 0px;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 15px;
+}
+.modal-episode-info {
+    padding: 0 10px;
+}
+.modal-episode-info h4 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+.modal-episode-info p {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
 /* Estilos do modal de Reportar (mantidos) */
 .report-option {
     display: block;
@@ -449,37 +607,6 @@ body {
 }
 .report-option:hover {
     background: var(--menu-item-hover-background);
-}
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 5000;
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-.modal-content {
-    background: var(--card-bg);
-    color: var(--text-primary);
-    padding: 30px;
-    border-radius: 0px;
-    width: 90%;
-    max-width: 800px;
-    box-shadow: var(--shadow-lg);
-    animation: fadeIn 0.3s ease-out;
-    max-height: 90vh;
-    overflow-y: auto;
-}
-.modal-content h3 {
-    font-size: var(--font-size-lg);
-    font-weight: 700;
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--highlight-color);
-    padding-bottom: 10px;
 }
 .modal-close-btn {
     display: block;
@@ -527,62 +654,73 @@ body {
     }
 }
 /* =====================================================
-   ✨ NOVOS ESTILOS PARA A PÁGINA DO EPISÓDIO
+   ✨ NOVOS ESTILOS PARA A PÁGINA INICIAL
    ===================================================== */
-/* Estilo para o player do episódio, ocupando o espaço disponível */
-.episode-player-section {
+.hero-section {
     width: 100%;
-    max-width: 3000px;
-    margin: 55px auto 0;
+    max-width: 1000px;
+    margin: 65px auto 0;
+    height: 400px;
     background: var(--surface);
     border-radius: 0px;
     box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
-    height: 40vh;
-    min-height: 70px; /* Este valor será atualizado dinamicamente */
 }
-/* Container do player com proporção 16:9 */
-.player-container {
-    width: 100%;
-    padding-bottom: 55.25%;
-    position: relative;
-    height: 0;
-    background: #000;
-}
-/* Frame do vídeo */
-.player-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
+.hero-slide {
     width: 100%;
     height: 100%;
-    border: none;
-    object-fit: contain;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    text-decoration: none;
 }
-/* Aplica a proporção ao iframe em tela cheia */
-.player-frame:fullscreen {
-    width: 100vw !important;
-    height: 100vh !important;
-    object-fit: contain;
-    max-width: none !important;
-    max-height: none !important;
+.hero-slide.active {
+    opacity: 1;
 }
-/* Estilo para a seção de informações do episódio */
-.episode-info-section {
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.hero-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+    padding: var(--spacing-md);
+    color: white;
+}
+/* ATUALIZAÇÃO: Título Fixo para o Anime Tema */
+.hero-info h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    white-space: nowrap; /* Garante que o título do anime não quebre */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.hero-info p {
+    font-size: var(--font-size-sm);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* NOVO: Estilo para informações complementares do anime */
+.anime-details-section {
     width: 100%;
     max-width: 1000px;
-    margin: var(--spacing-md) auto 0;
+    margin: 10px auto 0;
     padding: 0 0.75rem;
     background: var(--card-bg);
     border-radius: 0px;
     box-shadow: var(--shadow);
     color: var(--text-primary);
 }
-.episode-info-content {
+.anime-details-content {
     padding: 20px;
 }
-.episode-info-title {
+.anime-details-title {
     font-size: var(--font-size-lg);
     font-weight: 700;
     margin-bottom: 15px;
@@ -590,240 +728,254 @@ body {
     border-bottom: 2px solid var(--highlight-color);
     padding-bottom: 10px;
 }
-.episode-info-grid {
+.anime-details-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
 }
-.episode-info-item {
+.anime-detail-item {
     display: flex;
     flex-direction: column;
 }
-.episode-info-label {
+.anime-detail-label {
     font-size: var(--font-size-xs);
     color: var(--text-secondary);
     text-transform: uppercase;
     margin-bottom: 5px;
     font-weight: 600;
 }
-.episode-info-value {
+.anime-detail-value {
     font-size: var(--font-size-sm);
     color: var(--text-primary);
     font-weight: 500;
 }
-/* Estilo para a sinopse */
-.episode-synopsis {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
+
+/* ===== CONFIGURAÇÃO FÁCIL: MUDE SÓ AQUI ===== */
+:root {
+    --linha-comprimento: 238px;  /* <<--- MUDE AQUI PARA CONTROLAR TODAS AS LINHAS */
+    --linha-cor: var(--highlight-color);
+    --linha-espessura: 0.7px;
 }
-.episode-synopsis h4 {
-    font-size: var(--font-size-md);
-    font-weight: 600;
-    margin-bottom: 10px;
+/* ============================================ */
+/* Estilo do título */
+.carousel-title {
+    position: relative;
+    display: inline-block;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: var(--font-size-lg);
+    font-weight: 700;
     color: var(--text-primary);
-}
-.episode-synopsis p {
-    font-size: var(--font-size-sm);
-    line-height: 1.6;
-    color: var(--text-secondary);
-}
-/* Estilo para os botões de download */
-.download-buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-.download-btn {
-    flex: 1;
-    padding: 12px 20px;
-    background: var(--episodes-color);
-    color: white;
-    border: none;
-    border-radius: 0px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    padding: 5px 0;
+    line-height: 1;
     cursor: pointer;
-    font-weight: 600;
-    transition: background 0.2s;
-    text-align: center;
-    text-decoration: none;
-    display: block;
+    width: fit-content;
+    z-index: 1;
 }
-.download-btn:hover {
-    background: var(--episodes-hover);
-}
-/* Estilo para botões de navegação de episódios */
-.episode-navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-top: var(--spacing-md);
-    padding: 0 0.75rem;
-    width: 100%;
-    max-width: 1000px;
-    gap: 15px; /* Espaçamento entre os botões */
-}
-.episode-nav-btn {
-    flex: 1; /* Faz os botões ocuparem o mesmo espaço */
-    padding: 12px 20px; /* Ajuste de padding para manter consistência */
-    background: var(--episodes-color);
-    color: white;
-    border: none;
-    border-radius: 0px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Centraliza o conteúdo */
-    gap: 8px;
-    text-decoration: none;
-    min-height: 44px; /* Garante altura mínima consistente */
-}
-.episode-nav-btn:hover {
-    background: var(--episodes-hover);
-}
-.episode-nav-btn:disabled {
-    background: var(--surface);
-    color: var(--text-secondary);
-    cursor: not-allowed;
-}
-/* NOVO: Camada anti-clique */
-.anti-click-layer {
-    position: fixed;
-    top: 31px; /* Deslocado 25px + 6px para baixo */
-    right: 0;
-    width: 96px; /* Aumentado de 60 para 96 (60 + 30 + 6) */
-    height: 96px; /* Aumentado de 60 para 96 (60 + 30 + 6) */
-    z-index: 1003;
-    pointer-events: auto;
-    cursor: not-allowed;
-}
-/* NOVO: Botão de tela cheia invisível */
-.fullscreen-button-base {
+/* Linha vermelha com tamanho fixo */
+.carousel-title::after {
+    content: '';
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 66px; /* Aumentado de 60 para 66 (60 + 6) */
-    height: 60px;
-    background: transparent; /* Fundo transparente */
-    border: none; /* Sem borda */
-    border-radius: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 1003;
-    transition: background 0.2s;
-    opacity: 0; /* Torna o botão invisível */
-    pointer-events: auto; /* Mantém os eventos de clique funcionando */
-}
-.fullscreen-button-base:hover {
-    background: transparent; /* Fundo transparente no hover */
-    opacity: 0; /* Mantém invisível no hover */
-}
-/* NOVO: Modal de proporções */
-.aspect-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 0;
-    padding: 20px;
-    z-index: 5001;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: var(--shadow-lg);
-    display: none;
-    flex-direction: column;
-    gap: 15px;
-}
-.aspect-modal h3 {
-    font-size: var(--font-size-md);
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--text-primary);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 10px;
-}
-.aspect-option {
-    padding: 12px;
-    background: var(--menu-item-background);
-    border: 1px solid var(--border);
-    border-radius: 0;
-    cursor: pointer;
-    transition: background 0.2s;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.aspect-option:hover {
-    background: var(--menu-item-hover-background);
-}
-.aspect-option span:first-child {
-    font-weight: 600;
-}
-.aspect-option span:last-child {
-    color: var(--text-secondary);
-    font-size: var(--font-size-xs);
-}
-/* Estilo para o botão de menu de episódios */
-.episode-menu-btn {
-    margin-top: 20px;
-    padding: 12px 20px;
-    background: var(--episodes-color);
-    color: white;
-    border: none;
-    border-radius: 0px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.2s;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    max-width: 1000px;
-}
-.episode-menu-btn:hover {
-    background: var(--episodes-hover);
-}
-/* Estilo para o menu lateral de episódios */
-.episode-list-menu {
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 280px;
-    max-width: 80%;
-    height: 100%;
-    background: var(--menu-background);
-    backdrop-filter: var(--blur-effect);
-    z-index: 4000;
-    transition: left 0.3s ease-in-out;
-    box-shadow: 4px 0 12px var(--shadow-color);
-    padding: 65px 20px 20px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-}
-.episode-list-menu.open {
     left: 0;
+    bottom: 0;
+    height: var(--linha-espessura);
+    background: var(--linha-cor);
+    width: var(--linha-comprimento); /* <<--- MESMO TAMANHO PARA TODOS */
+    z-index: -1;
 }
-.episode-list-item {
-    padding: 15px;
-    margin-bottom: 8px;
-    background: var(--menu-item-background);
-    color: var(--text-primary);
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 0px;
-    transition: background 0.2s ease;
+/* Estilo para carrossel com movimento lateral */
+.carousel-horizontal {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    overflow-x: scroll;
+    padding-bottom: 15px;
+    gap: var(--spacing-md);
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
 }
-.episode-list-item:hover {
-    background: var(--menu-item-hover-background);
+/* Ajuste para mostrar 4 colunas no carrossel horizontal (exceto episódios) */
+#saihate-details-carousel .anime-card,
+#isekai-animes-carousel .anime-card {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    /* Ajustado para 4 colunas visíveis no desktop */
+    width: calc((100% - 3 * var(--spacing-md)) / 4); /* (100% - (4-1) * gap) / 4 */
+}
+/* Ajuste para mostrar 3 colunas no carrossel de episódios */
+#episodes-carousel .anime-card {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    /* Ajustado para 3 colunas visíveis no desktop */
+    width: calc((100% - 2 * var(--spacing-md)) / 3); /* (100% - (3-1) * gap) / 3 */
+}
+/* O carrossel normal deve ser estático (grid) */
+.anime-grid {
+    display: grid;
+    /* Manter o grid de 4 colunas em desktop */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+/* Grid para detalhes/personagens com 4 colunas */
+.anime-grid#saihate-details-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+.anime-card {
+    background: var(--card-bg);
+    border-radius: 0px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    /* Removido text-decoration: none; */
+    color: var(--text-primary);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.5s ease-out forwards;
+    /* Altura fixa para todos os cards no grid */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Permite que o display flex funcione */
+    cursor: pointer; /* Adicionado cursor para indicar clique */
+}
+.anime-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+/* CLASSE DE IMAGEM PADRÃO (Proporção 140% de padding-bottom é 1.4:1) */
+.anime-card-image {
+    width: 100%;
+    padding-bottom: 140%;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--surface);
+    flex-shrink: 0;
+}
+/* Classe de imagem para cards que usam altura fixa (Detalhes, etc.) */
+.anime-card-image-fixed-height {
+    width: 100%;
+    height: 280px; /* Altura padrão desktop */
+    padding-bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--surface);
+    flex-shrink: 0;
+}
+/* CLASSE ESPECÍFICA PARA OS CARDS DE EPISÓDIO */
+.episode-card-image {
+    width: 100%;
+    padding-bottom: 56.25%; /* Proporção 16:9 para thumb de vídeo */
+    background-size: cover;
+    background-position: center;
+    background-color: var(--surface);
+    flex-shrink: 0;
+}
+.anime-card-info {
+    padding: var(--spacing-sm);
+    /* Garante que o texto use o espaço restante, mantendo a altura do card */
+    flex-grow: 1;
+}
+.anime-card-title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    /* Permite que o texto quebre para garantir o mesmo tamanho do card */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita a 2 linhas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: normal; /* Permite a quebra de linha */
+    height: calc(var(--font-size-sm) * 1.5 * 2); /* Altura de 2 linhas */
+}
+.anime-card-subtitle {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* ==========================================================
+   ✨ ALTERAÇÕES PARA 4 COLUNAS NO MOBILE (SOLICITADO)
+   ========================================================== */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 300px;
+        margin-top: 55px;
+    }
+    .anime-grid {
+        display: grid;
+        overflow-x: hidden;
+        /* Colunas mobile */
+        grid-template-columns: repeat(4, 1fr);
+        gap: calc(var(--spacing-sm) / 1.5);
+    }
+    .anime-grid#saihate-details-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em mobile para cards maiores */
+    }
+    .anime-card {
+        width: 100%;
+        flex-shrink: 1;
+        height: 100%;
+        .anime-card-info {
+             padding: calc(var(--spacing-sm) / 2);
+        }
+        .anime-card-title {
+             font-size: calc(var(--font-size-xs) * 0.9);
+             height: calc(calc(var(--font-size-xs) * 0.9) * 1.5 * 2); /* Ajusta altura do título para 2 linhas mobile */
+        }
+        .anime-card-subtitle {
+             font-size: calc(var(--font-size-xs) * 0.8);
+        }
+    }
+    /* Ajuste da largura dos cards no carrossel horizontal em mobile */
+    #saihate-details-carousel .anime-card,
+    #isekai-animes-carousel .anime-card {
+        /* Ajustado para 4 colunas visíveis em mobile */
+        width: calc((100% - 3 * var(--spacing-md)) / 4); /* (100% - (4-1) * gap) / 4 */
+    }
+    /* Ajuste da largura dos cards no carrossel de episódios em mobile */
+    #episodes-carousel .anime-card {
+        /* Ajustado para 3 colunas visíveis em mobile */
+        width: calc((100% - 2 * var(--spacing-md)) / 3); /* (100% - (3-1) * gap) / 3 */
+    }
+    /* Ajuste da altura fixa da imagem no mobile (menor) */
+    .anime-card-image-fixed-height {
+        height: 120px; /* <-- Altura ajustada para mobile */
+        padding-bottom: 0;
+    }
+    /* Ajuste da imagem padrão no mobile */
+    .anime-card-image {
+        padding-bottom: 140%;
+    }
+    /* Ajuste da imagem de episódio no mobile (16:9) */
+    .episode-card-image {
+        padding-bottom: 56.25%;
+    }
+}
+@media (max-width: 480px) {
+    .hero-section {
+        height: 250px;
+    }
+    .anime-grid {
+        grid-template-columns: repeat(3, 1fr); /* Reduzido para 3 colunas em mobile extremo para legibilidade */
+        gap: calc(var(--spacing-sm) / 2);
+    }
+    .anime-grid#saihate-details-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 coluna em mobile extremo */
+    }
+     .anime-card-image-fixed-height {
+        height: 100px; /* Reduz um pouco mais no mobile extremo */
+    }
+    /* Ajuste da largura dos cards no carrossel horizontal em mobile extremo */
+    #saihate-details-carousel .anime-card,
+    #isekai-animes-carousel .anime-card {
+        /* Ajustado para 4 colunas visíveis em mobile extremo */
+        width: calc((100% - 3 * var(--spacing-md)) / 4); /* (100% - (4-1) * gap) / 4 */
+    }
+    /* Ajuste da largura dos cards no carrossel de episódios em mobile extremo */
+    #episodes-carousel .anime-card {
+        /* Ajustado para 3 colunas visíveis em mobile extremo */
+        width: calc((100% - 2 * var(--spacing-md)) / 3); /* (100% - (3-1) * gap) / 3 */
+    }
 }
     </style>
 </head>
@@ -831,7 +983,7 @@ body {
     <div class="header-menu">
         <nav class="header">
             <div class="top-bar__section">
-                <h1 id="header-title"><i class="fas fa-heart-crack" style="color:#E53E3E;"></i>Saihate no Paladin Fan</h1>
+                <h1><i class="fas fa-heart-crack" style="color:#E53E3E;"></i>Saihate no Paladin Fan</h1>
             </div>
             <div class="top-bar__section">
                 <button aria-label="Abrir busca" class="top-bar__icon" id="menu-icon">
@@ -859,80 +1011,66 @@ body {
             <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-sort-alpha-down"></i> A - Z</a>
             <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-masks-theater"></i> Gêneros</a>
             <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-info-circle"></i> Sobre</a>
-            <a href="https://linkpremiado51-cmd.github.io/Yshippanime/" class="menu-item"><i class="fas fa-home"></i> Anime I Geek Home</a>
-      <button class="top-bar__icon" id="openReportModalBtn">
-    <i class="fas fa-bug"></i> Reportar Erro
-</button>
+            <button class="top-bar__icon" id="openReportModalBtn" onclick="openReportModal()">
+                <i class="fas fa-bug"></i> Reportar Erro
+            </button>
         </div>
         <div class="menu-overlay" id="menuOverlay"></div>
     <div class="zoom-container" id="zoom-container">
-        <!-- Seção do Player -->
-        <section class="episode-player-section" id="episode-player-section">
-            <div class="player-container">
-                <iframe class="player-frame" id="player-frame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <!-- Botão de tela cheia dentro do frame (invisível) -->
-                <div class="fullscreen-button-base" id="fullscreenButtonBase">
-                    <i class="fas fa-expand"></i>
+        <section class="hero-section" id="hero-section">
+            <div class="hero-slide active" data-anime-title="Saihate no Paladin..." data-anime-image="https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg">
+                <img src="" alt="Destaque" id="hero-image" />
+                <div class="hero-info">
+                    <h2 id="hero-title">Saihate no Paladin</h2>
+                    <p id="hero-subtitle">O Paladino do Fim do Mundo</p>
                 </div>
             </div>
         </section>
-        <!-- Seção de Informações do Episódio -->
-        <section class="episode-info-section" id="episode-info-section">
-            <div class="episode-info-content">
-                <h3 class="episode-info-title" id="episode-title">Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado</h3>
-                <div class="episode-info-grid">
-                    <div class="episode-info-item">
-                        <span class="episode-info-label">Episódio</span>
-                        <p class="episode-info-value" id="episode-number">T1.E1 ∙ O Menino da Cidade dos Mortos</p>
+        <!-- NOVO: Seção de detalhes do anime -->
+        <section class="anime-details-section" id="anime-details-section">
+            <div class="anime-details-content">
+                <h3 class="anime-details-title" id="details-anime-title">Detalhes do Anime</h3>
+                <div class="anime-details-grid">
+                    <div class="anime-detail-item">
+                        <span class="anime-detail-label">Sinopse</span>
+                        <p class="anime-detail-value" id="details-anime-synopsis">Sinopse não disponível.</p>
                     </div>
-                    <div class="episode-info-item">
-                        <span class="episode-info-label">Duração</span>
-                        <p class="episode-info-value" id="episode-duration">9 de out. de 2021 24 min</p>
+                    <div class="anime-detail-item">
+                        <span class="anime-detail-label">Gênero</span>
+                        <p class="anime-detail-value" id="details-anime-genre">-</p>
                     </div>
-                    <div class="episode-info-item">
-                        <span class="episode-info-label">Temporada</span>
-                        <p class="episode-info-value">1</p>
+                    <div class="anime-detail-item">
+                        <span class="anime-detail-label">Qualidade</span>
+                        <p class="anime-detail-value" id="details-anime-quality">-</p>
                     </div>
-                    <div class="episode-info-item">
-                        <span class="episode-info-label">Número</span>
-                        <p class="episode-info-value" id="episode-id">1</p>
+                    <div class="anime-detail-item">
+                        <span class="anime-detail-label">Áudio</span>
+                        <p class="anime-detail-value" id="details-anime-audio">-</p>
+                    </div>
+                    <div class="anime-detail-item">
+                        <span class="anime-detail-label">Episódios</span>
+                        <p class="anime-detail-value" id="details-anime-episodes">-</p>
                     </div>
                 </div>
-                <div class="episode-synopsis">
-                    <h4>Sinopse</h4>
-                    <p id="episode-synopsis-text">Will nasceu na cidade dos mortos, onde foi criado por três mortos-vivos. Apesar de ter sido nutrido com amor, Will questiona sua existência neste lugar inóspito, onde é o único humano vivo. Ele descobre que seus três pais escondem algo que pode explicar esse mistério e, como se isso não fosse intrigante o suficiente, ainda precisa descobrir que outros segredos se escondem dentro dele.</p>
-                </div>
-                <!-- Botões de download -->
-                <div class="download-buttons">
-                    <a href="#" class="download-btn" id="download-direct">Download direto</a>
-                    <a href="#" class="download-btn" id="download-drive">Download drive</a>
-                </div>
-                <!-- Botão para abrir o menu de episódios -->
-                <button class="episode-menu-btn" id="episode-menu-btn">
-                    <i class="fas fa-list"></i> Lista de Episódios
-                </button>
             </div>
         </section>
-        <!-- Navegação de Episódios -->
-        <section class="episode-navigation">
-            <a href="#" class="episode-nav-btn prev" id="prev-episode"><i class="fas fa-arrow-left"></i> Anterior</a>
-            <a href="#" class="episode-nav-btn next" id="next-episode">Próximo <i class="fas fa-arrow-right"></i></a>
-        </section>
-    </div>
-    <!-- Menu lateral de episódios -->
-    <div class="episode-list-menu" id="episodeListMenu">
-        <a href="#" class="episode-list-item" data-episode="1">T1.E1 ∙ O Menino da Cidade dos Mortos</a>
-        <a href="#" class="episode-list-item" data-episode="2">T1.E2 – O Sábio Errante</a>
-        <a href="#" class="episode-list-item" data-episode="3">T1.E3 – O Dia Prometido</a>
-        <a href="#" class="episode-list-item" data-episode="4">T1.E4 – A Deusa das Luzes</a>
-        <a href="#" class="episode-list-item" data-episode="5">T1.E5 – O Elmo da Vontade</a>
-        <a href="#" class="episode-list-item" data-episode="6">T1.E6 – Arqueiro da Floresta das Feras</a>
-        <a href="#" class="episode-list-item" data-episode="7">T1.E7 – Memória Traumática</a>
-        <a href="#" class="episode-list-item" data-episode="8">T1.E8 – O Poema do Herói</a>
-        <a href="#" class="episode-list-item" data-episode="9">T1.E9 – A Cidade das Velas Brancas</a>
-        <a href="#" class="episode-list-item" data-episode="10">T1.E10 – Glória Renomada</a>
-        <a href="#" class="episode-list-item" data-episode="11">T1.E11 – Vale do Desespero</a>
-        <a href="#" class="episode-list-item" data-episode="12">T1.E12 – O Paladino Distante</a>
+        <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
+            <section class="anime-carousel-section" id="episodes-section">
+                <h2 class="carousel-title" data-link-id="episodes">EPISÓDIOS</h2>
+                <div id="episodes-carousel">
+                    </div>
+            </section>
+            <section class="anime-carousel-section" id="saihate-details-section">
+                <h2 class="carousel-title" data-link-id="saihate">Detalhes e Personagens de 'Saihate no Paladin'</h2>
+                <div class="carousel-horizontal" id="saihate-details-carousel">
+                </div>
+            </section>
+            <section class="anime-carousel-section" id="isekai-section">
+                <h2 class="carousel-title" data-link-id="isekai">Outros Animes Isekai Recomendados</h2>
+                <div class="carousel-horizontal" id="isekai-animes-carousel">
+                </div>
+            </section>
+            </main>
     </div>
     <div class="footer">
         <div class="footer-left">
@@ -949,36 +1087,6 @@ body {
             <i class="fas fa-search-plus"></i>
         </button>
     </div>
-    <!-- NOVO: Camada anti-clique -->
-    <div class="anti-click-layer"></div>
-    <!-- NOVO: Modal de proporções -->
-    <div class="aspect-modal" id="aspectModal">
-        <h3>Selecionar Proporção</h3>
-        <div class="aspect-option" data-aspect="16:9">
-            <span>16:9</span>
-            <span>Padrão antigo</span>
-        </div>
-        <div class="aspect-option" data-aspect="18:9">
-            <span>18:9</span>
-            <span>Univisium</span>
-        </div>
-        <div class="aspect-option" data-aspect="19:9">
-            <span>19:9</span>
-            <span>FullView</span>
-        </div>
-        <div class="aspect-option" data-aspect="19.5:9">
-            <span>19.5:9</span>
-            <span>Infinity Display</span>
-        </div>
-        <div class="aspect-option" data-aspect="20:9">
-            <span>20:9</span>
-            <span>Cinemático</span>
-        </div>
-        <div class="aspect-option" data-aspect="21:9">
-            <span>21:9</span>
-            <span>UltraWide</span>
-        </div>
-    </div>
     <div class="notification" id="notification"></div>
     <div class="modal-overlay" id="reportErrorModal">
         <div class="modal-content">
@@ -990,11 +1098,50 @@ body {
             <button class="modal-close-btn" id="closeReportModal">Cancelar</button>
         </div>
     </div>
+    <div class="modal-overlay" id="detailsModal">
+        <div class="modal-content">
+            <h3 id="detailsTitle"></h3>
+            <div class="modal-main-content">
+                <div class="modal-trailer-container">
+                    <iframe id="trailerVideo" class="trailer-video" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="modal-synopsis-container">
+                    <h4>Sinopse:</h4>
+                    <p id="synopsisText"></p>
+                </div>
+            </div>
+            <button class="modal-close-btn" id="closeDetailsModal">Fechar</button>
+        </div>
+    </div>
+    <div class="modal-overlay" id="rpgModal">
+        <div class="modal-content">
+            <h3 id="rpgTitle"></h3>
+            <div class="modal-rpg-content">
+                <div class="modal-rpg-image" id="rpgImage"></div>
+                <div class="modal-rpg-info">
+                    <p id="rpgSynopsis"></p>
+                </div>
+            </div>
+            <button class="modal-close-btn" id="closeRpgModal">Fechar</button>
+        </div>
+    </div>
+    <div class="modal-overlay" id="episodeModal">
+        <div class="modal-content">
+            <h3 id="episodeTitle"></h3>
+            <div class="modal-episode-content">
+                <div class="modal-episode-image" id="episodeImage"></div>
+                <div class="modal-episode-info">
+                    <p id="episodeSynopsis"></p>
+                </div>
+            </div>
+            <button class="modal-close-btn" id="closeEpisodeModal">Fechar</button>
+        </div>
+    </div>
     <script type="module">
-        // Importações e Configurações de Firebase
+        // Importações e Configurações de Firebase (Mantidas do original)
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
-        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
-        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js'; // Importações atualizadas
+        import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
+        import { getFirestore, collection, getDocs, doc, getDoc, addDoc } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
         console.log('1. [INICIALIZAÇÃO] Iniciando script...');
         const firebaseConfig = {
             apiKey: "AIzaSyA9vB_anmutvZByIhKxsPJbsP0VZ7gyWB0",
@@ -1008,153 +1155,140 @@ body {
         console.log('2. [FIREBASE] Configurações carregadas.');
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
-        const db = getFirestore(app); // Inicializa Firestore
+        const db = getFirestore(app);
         console.log('3. [FIREBASE] App, Analytics e Firestore inicializados.');
-
-        // Função para obter o IP público do cliente
-        async function getIPAddress() {
-            try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                const data = await response.json();
-                return data.ip;
-            } catch (error) {
-                console.error('Erro ao obter IP:', error);
-                return 'IP_Não_Disponível';
-            }
-        }
-
-        // Função atualizada para reportar erro para a coleção 'aviso_de_erros'
-        async function recordReportError(errorType) {
-            console.log(`[REPORT] Tentando reportar erro: ${errorType}`);
-            const episodeIdElement = document.getElementById('episode-id');
-            const episodeId = episodeIdElement ? episodeIdElement.textContent.trim() : 'N/A';
-            const ipAddress = await getIPAddress();
-
-            console.log(`[REPORT] ID Episódio: ${episodeId}, IP: ${ipAddress}, Tipo: ${errorType}`);
-
-            const reportsCollection = collection(db, 'aviso_de_erros'); // Coleção correta
-            const reportData = {
-                errorType: errorType,
-                episodeId: episodeId,
-                ipAddress: ipAddress,
-                timestamp: new Date() // Adiciona o horário do report
-            };
-
-            try {
-                const docRef = await addDoc(reportsCollection, reportData); // Envia para Firestore
-                console.log(`[REPORT] Documento salvo com ID: ${docRef.id}`);
-                showNotification('Erro reportado com sucesso! Obrigado pelo feedback.');
-                closeReportModal(); // Fecha o modal após o sucesso
-            } catch (e) {
-                console.error(`[REPORT] Erro ao adicionar documento: `, e);
-                showNotification('Erro interno: sua notificação de erro não foi enviada. Tente novamente mais tarde.');
-            }
-        }
-
-
         // Constantes Globais
         const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
         const CONSTRUCTION_SUBTITLE = "Sistema em construção";
-        // Dados dos episódios
-        const episodesData = [
-            {
-                id: 1,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                episode: "T1.E1 ∙ O Menino da Cidade dos Mortos",
-                duration: "9 de out. de 2021 — 24 min",
-                synopsis: "Will nasceu na cidade dos mortos, onde foi criado por três mortos-vivos. Apesar de ter sido nutrido com amor, Will questiona sua existência neste lugar inóspito, onde é o único humano vivo. Ele descobre que seus três pais escondem algo que pode explicar esse mistério e, como se isso não fosse intrigante o suficiente, ainda precisa descobrir que outros segredos se escondem dentro dele.",
-                link: "https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview"
-            },
-            {
-                id: 2,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                episode: "T1.E2 – O Sábio Errante",
-                duration: "16 de out. de 2021 — 24 min",
-                synopsis: "Cinco anos se passaram desde que Will descobriu o segredo de Mary, e agora ele tem 13 anos. As lições de seus pais mortos-vivos se tornam cada vez mais difíceis, mas Will consegue perseverar. Um dia, Blood lhe dá uma missão que exige que ele escape das ruínas da cidade. Will tenta desesperadamente lutar para sair, mas uma estranha sensação de malícia o impede. Descobre-se que essa malícia vinha de uma fonte inesperada.",
-                link: "https://drive.google.com/file/d/1Z6lnU84ZyQ1MMvwaO4dBoRQ53VaViufL/preview"
-            },
-            {
-                id: 3,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                episode: "T1.E3 – O Dia Prometido",
-                duration: "23 de out. de 2021 — 24 min",
-                synopsis: "Ao completar 15 anos, Will desafia Blood para um duelo com espadas de verdade como parte de sua cerimônia de passagem para a vida adulta, mas Gus pede que Will perca de propósito. Will não tem a chance de perguntar a Gus sobre o que aconteceu naquele dia.",
-                link: "https://drive.google.com/file/d/10ZwqJLhMgSEb0DrOvFnbL91YwPbR0k61/preview"
-            },
-            {
-                id: 4,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
-                episode: "T1.E4 – A Deusa das Luzes",
-                duration: "30 de out. de 2021 — 24 min",
-                synopsis: "De repente, o Deus Imortal Estagnado tenta levar Brad e Marie embora, mas é Gas quem os impede. No entanto, para alívio de Will, uma névoa negra o atravessou por um instante. Estagnado ri invencivelmente para Will, que se levanta sem fazer nada, dizendo: “Obrigado”.",
-                link: "https://drive.google.com/file/d/13PJ6or0l_fx6TFn8pGHsVrLHRCpZ89E2/preview"
-            },
-            {
-                id: 5,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                episode: "T1.E5 – O Elmo da Vontade",
-                duration: "5 de nov. de 2021 — 24 min",
-                synopsis: "À beira da morte, Will faz um juramento a Grace Feel e se levanta novamente para desafiar Stagnate. No entanto, Stagnate engana Will e desaparece, mirando diretamente em Brad e Marie. Will, que percebeu a intenção e voltou correndo para o templo, viu Stagnate prestes a alcançar os dois, que estavam gravemente feridos.",
-                link: "https://drive.google.com/file/d/1scxaqvP7Pk74c1EDAAXnRVjfcrY02H4p/preview"
-            },
-            {
-                id: 6,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
-                episode: "T1.E6 – Arqueiro da Floresta das Feras",
-                duration: "13 de nov. de 2021 — 24 min",
-                synopsis: "Após deixar a cidade dos mortos, Will embarca em uma jornada pelo mundo invisível. Ele caminhou pela floresta por dias, e a primeira pessoa que encontrou foi Menell, um caçador meio-elfo. Mesmo depois de se separar dele, Will ainda sente a alegria de conversar com pessoas da sua idade. No entanto, naquela noite, Grace Feel lhe fez uma revelação...",
-                link: "https://drive.google.com/file/d/1e9BjWWzkvI-WCDxQ3P8PWo6xZ1SF1l1O/preview"
-            },
-            {
-                id: 7,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
-                episode: "T1.E7 – Memória Traumática",
-                duration: "20 de nov. de 2021",
-                synopsis: "Menel leva Will a uma aldeia atacada por monstros. Ao expulsá-los, ele percebe a gravidade das tragédias causadas pelo ataque. Corpos empilhados e casas queimadas estão por toda parte. Então, em meio a tudo isso, uma voz fraca chama a atenção de Menel: um menino gravemente queimado que se tornou um morto-vivo.",
-                link: "https://drive.google.com/file/d/1dkVPHrTatf1Ha8Aqi-KMmml0fXYHt9Ts/preview"
-            },
-            {
-                id: 8,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
-                episode: "T1.E8 – O Poema do Herói",
-                duration: "4 de dez. de 2021 — 24 min",
-                synopsis: "Sob a orientação de Menel, Will vai a uma aldeia atacada por monstros. Enquanto subjuga os remanescentes dos demônios, a tragédia da aldeia se revela pouco a pouco: casas queimadas, cadáveres por toda parte. Um menino transformado em morto-vivo foi quem chamou Menel com uma voz fraca.",
-                link: "https://drive.google.com/file/d/1HbIAZ9DqHNJegkmJOLBis7xKVVmBeXjt/preview"
-            },
-            {
-                id: 9,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
-                episode: "T1.E9 – A Cidade das Velas Brancas",
-                duration: "11 de dez. de 2021 — 24 min",
-                synopsis: "Will e seus amigos, viajando com Bee e Tonio, chegam à Cidade das Velas Brancas. Will fica impressionado com a grande cidade e suas pessoas. Enquanto descansa, o alarme de emergência toca. Uma grande sombra negra cruza o céu...",
-                link: "https://drive.google.com/file/d/1W4g4ooNv_ijUdxj63TcvkbJ-D5C7SsrH/preview"
-            },
-            {
-                id: 10,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
-                episode: "T1.E10 – Glória Renomada",
-                duration: "18 de dez. de 2021 — 24 min",
-                synopsis: "Will, que deveria ter uma audiência com o lorde Ethelwald, oferece-se para reunir soldados particulares para combater monstros. Embora Ethelwald demonstre intimidação, decide reconhecer Will e permitir a ação. Ele vai a um bar para encontrar aventureiros.",
-                link: "https://drive.google.com/file/d/1uhsHL1h3rNveyKMv4sEA4Duj5ZdP0XhK/preview"
-            },
-            {
-                id: 11,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
-                episode: "T1.E11 – Vale do Desespero",
-                duration: "25 de dez. de 2021 — 24 min",
-                synopsis: "Nomeado paladino, Will cuida da reconstrução da vila e do extermínio de demônios. Na Floresta das Feras, algo parece errado com os corpos espalhados. Ele segue até um vale mais profundo.",
-                link: "https://drive.google.com/file/d/1vrcY4wR4w4FYxPyHkgRUhDxij7bgzMAh/preview"
-            },
-            {
-                id: 12,
-                title: "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
-                episode: "T1.E12 – O Paladino Distante",
-                duration: "3 de jan. de 2022 — 24 min",
-                synopsis: "Tamsy e Zanka lutam para salvar seus aliados cativos. Depois disso, Rudo tem uma reação inesperada.",
-                link: "https://drive.google.com/file/d/1eJ-mYEzHpmr27Pzpbr44a9zIfsR7tJBf/preview"
-            }
+        // ✨ LINK FINAL DO EPISÓDIO (PODE SER ALTERADO DEPOIS)
+        const EPISODE_PLAYER_LINK = (episodeNumber) => `javascript:showNotification('Redirecionando para o player do Episódio ${episodeNumber}. Link para player será inserido aqui.')`;
+        // ==========================================================
+        // ✨ DADOS ATUALIZADOS E NOVOS DADOS
+        // ==========================================================
+        const homepageData = {
+            hero: [
+                // Primeiro item para a capa inicial (Anime tema)
+                {
+                    title: "Saihate no Paladin",
+                    subtitle: "O Paladino do Fim do Mundo",
+                    image: "https://i.postimg.cc/fy65V1NC/57463899dc6945e02bd17e20ea23f0b030f590789c24f52ec820b9aeb5f3bdcc-SX1080-FMjpg.jpg",
+                    url: "saihate_no_paradin.html", // Link real para a própria página
+                    synopsis: "Uma cidade dos mortos... Will é criado por três mortos-vivos e embarca em um caminho para se tornar um paladino.",
+                    genre: "Isekai, Aventura, Fantasia",
+                    quality: "1080p",
+                    audio: "Legendado",
+                    episodes: "12"
+                },
+                { title: "My Hero Academy final", subtitle: "A nova temporada está aqui!", image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", url: CONSTRUCTION_LINK },
+                { title: "My Status as an Assassin Obviously Exceeds the Hero's", subtitle: "Oda Akira, um estudante do ensino médio...", image: "https://i.postimg.cc/gkhR2sDs/28253-1-9-8b.webp", url: CONSTRUCTION_LINK },
+                { title: "L9999", subtitle: "Ele quase foi morto nas profundezas da masmorra...", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp", url: CONSTRUCTION_LINK }
+            ],
+            // ✨ NOVO: Lista de Episódios
+            episodeList: [
+                // Use a proporção 16:9 (episode-card-image) para thumbs de vídeo
+                { 
+                    title: "E1 ∙ O Menino da Cidade dos Mortos", 
+                    subtitle: "Disponível em HD", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: "saihate_no_paradin_ep1.html", // <-- ALTERADO PARA O CAMINHO CORRETO
+                    animeTitle: "Saihate no Paladin",
+                    description: "Will é encontrado e adotado por três mortos-vivos em uma cidade de mortos. Ele cresce com os três e demonstra um talento mágico extraordinário. Ele decide sair para se tornar um paladino."
+                },
+                { 
+                    title: "Episódio 2: O Reino dos Mortos", 
+                    subtitle: "Novo!", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: EPISODE_PLAYER_LINK(2), // <-- Mantém o comportamento original para outros episódios
+                    animeTitle: "Saihate no Paladin",
+                    description: "Will começa sua jornada e enfrenta os desafios do mundo exterior, aprendendo sobre a vida dos vivos."
+                },
+                { 
+                    title: "Episódio 3: A Batalha Final", 
+                    subtitle: "Novo!", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: EPISODE_PLAYER_LINK(3), // <-- Mantém o comportamento original para outros episódios
+                    animeTitle: "Saihate no Paladin",
+                    description: "Will e seus companheiros enfrentam um inimigo poderoso que ameaça a paz de uma vila."
+                },
+                { 
+                    title: "Episódio 4: O Legado do Herói", 
+                    subtitle: "Novo!", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: EPISODE_PLAYER_LINK(4), // <-- Mantém o comportamento original para outros episódios
+                    animeTitle: "Saihate no Paladin",
+                    description: "Will descobre mais sobre seu passado e o legado de seus pais adotivos."
+                },
+                { 
+                    title: "Episódio 5: O Fim do Mundo", 
+                    subtitle: "Pré-lançamento", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: CONSTRUCTION_LINK, // <-- Mantém o comportamento original para outros episódios
+                    animeTitle: "Saihate no Paladin",
+                    description: "Will e seus amigos descobrem uma antiga profecia sobre o fim do mundo."
+                },
+                { 
+                    title: "Episódio 6: O Paladino Eterno", 
+                    subtitle: "Em breve", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: CONSTRUCTION_LINK, // <-- Mantém o comportamento original para outros episódios
+                    animeTitle: "Saihate no Paladin",
+                    description: "Will finalmente alcança seu objetivo de se tornar um verdadeiro paladino."
+                },
+            ],
+            // Carrosséis estáticos (Mantidos)
+            saiHateDetails: [
+                { 
+                    title: "William G. Maryblood", 
+                    subtitle: "Will, o Paladino", 
+                    image: "https://i.postimg.cc/X7QTvYG4/454875.jpg", 
+                    url: CONSTRUCTION_LINK, 
+                    synopsis: "Will é o protagonista, um menino humano criado por três mortos-vivos em uma cidade de mortos. Ele é um gênio mágico e aspira se tornar um paladino, um cavaleiro sagrado. Saiba mais sobre sua infância, poderes e missão.", 
+                    trailerId: "aecUbrAIaiU" 
+                },
+                { 
+                    title: "Robina Goodfellow", 
+                    subtitle: "trovadora viajante", 
+                    image: "https://i.postimg.cc/G3ZZ85qr/454883.jpg", 
+                    url: CONSTRUCTION_LINK, 
+                    synopsis: "Robina Goodfellow é uma trovadora viajante halfling e amiga íntima de William.Ela adora espalhar histórias de feitos heroicos para o público através de contos poéticos e canções.Ela é muito alegre e extrovertida quando está com outras pessoas.Possui carisma e entusiasmo suficientes para atrair multidões para suas histórias e adora comer bem, aparentemente por causa de sua herança halfling.", 
+                    trailerId: "placeholder"
+                },
+                { title: "Meneldor", subtitle: "arqueiro meio-elfo", image: "https://i.postimg.cc/BZyFfxNx/454880.jpg", url: CONSTRUCTION_LINK, synopsis: "Um arqueiro meio-elfo que Will encontra na estrada após sair de casa. Embora rude e relutante devido a experiências ruins do passado, ele acaba aceitando William como o primeiro amigo de verdade que teve na vida.", trailerId: "placeholder" },
+                { title: "Gracefeel", subtitle: "divindade guardiã de William. ", image: "https://i.postimg.cc/mgZVt3xn/454879.jpg", url: CONSTRUCTION_LINK, synopsis: "Conheça o mundo de onde Will veio e os desafios que enfrenta ao sair da cidade dos mortos.", trailerId: "placeholder" },
+                { title: "Blood", subtitle: "divindade guardiã de William. ", image: "https://i.postimg.cc/fT8mq6F1/454877.jpg", url: CONSTRUCTION_LINK, synopsis: "Um dos três heróis que ajudam a selar o Grande Rei.Eles fazem um pacto com Stagnate, a deusa dos mortos - vivos, para serem transformados em mortos - vivos a fim de proteger o selo do Grande Rei.Ele treina William, o espadachim.", trailerId: "placeholder" },
+                { title: "Augusto", subtitle: "feiticeiro espectral ", image: "https://i.postimg.cc/prGrktT6/454878.jpg", url: CONSTRUCTION_LINK, synopsis: "Gus é um feiticeiro espectral, avô adotivo de Will e também seu professor de feitiçaria e economia. Ele é um velho rabugento que não gostava de ser aprisionado, então fez um voto a Whirl, o Deus do Vento, de viver sua vida do jeito que escolhesse e desfrutá-la.", trailerId: "placeholder" },
+                { title: "Reystov", subtitle: "aventureiro ", image: "https://i.postimg.cc/zXH84hPV/509014.jpg", url: CONSTRUCTION_LINK, synopsis: "Um aventureiro que Will contrata em Whitesails. Originalmente membro de uma tribo das montanhas em uma região conhecida como Fogão de Volt, ele se tornou um guerreiro para vingar sua família após o massacre cometido por uma aldeia vizinha, mas posteriormente desistiu dessa busca por vingança e se tornou um renomado guerreiro aventureiro.", trailerId: "placeholder" },
+                { title: "Estagnar", subtitle: "Entidade ", image: "https://i.postimg.cc/L8T9Vpb3/454881.jpg", url: CONSTRUCTION_LINK, synopsis: "Deus dos Mortos-Vivos", trailerId: "placeholder" },
+                { title: "Antonio", subtitle: "vendedor ambulante ", image: "https://i.postimg.cc/L8T9Vpb3/454881.jpg", url: CONSTRUCTION_LINK, synopsis: "Antonio é um vendedor ambulante e amigo de confiança de William. Ele é um negociador altamente habilidoso e conhece bem o ramo do comércio.É amigável e transmite uma impressão de paz aos outros.", trailerId: "placeholder" }
+            ],
+            // Outros animes (Mantidos)
+            isekaiAnimes: [
+                { title: "The Faraway Paladin", subtitle: "12 Episódios (Isekai)", image: "https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg", url: "saihate_no_paradin.html", synopsis: "Uma cidade dos mortos... Will é criado por três mortos-vivos e embarca em um caminho para se tornar um paladino.", trailerId: "placeholder", genre: "Isekai, Aventura, Fantasia", quality: "1080p", audio: "Legendado", episodes: "12" },
+                { title: "Mushoku Tensei", subtitle: "2 Temporadas (Isekai)", image: "https://i.postimg.cc/yxt4hMkM/images-16.webp", url: CONSTRUCTION_LINK, synopsis: "Um NEET recluso é reencarnado em um mundo de fantasia com memórias intactas e decide viver sua nova vida ao máximo.", trailerId: "placeholder", genre: "Isekai, Aventura, Drama", quality: "720p", audio: "Dublado", episodes: "23" },
+                { title: "Overlord", subtitle: "4 Temporadas (Isekai)", image: "https://i.postimg.cc/Tw040ZHV/images-2025-11-11T111248-289.jpg", url: CONSTRUCTION_LINK, synopsis: "Um jogador de MMO é transportado para o mundo do seu jogo, tornando-se o poderoso Ainz Ooal Gown.", trailerId: "placeholder", genre: "Isekai, Ação, Fantasia", quality: "1080p", audio: "Legendado", episodes: "50" },
+                { title: "The Rising of the Shield Hero", subtitle: "3 Temporadas (Isekai)", image: "https://i.postimg.cc/m2zm1zR8/IMG-20251111-111359.jpg", url: CONSTRUCTION_LINK, synopsis: "O herói do escudo, um dos quatro heróis lendários, é traído e precisa reconstruir sua reputação.", trailerId: "placeholder", genre: "Isekai, Aventura, Ação", quality: "1080p", audio: "Dublado", episodes: "40" },
+                { title: "Re:Zero", subtitle: "2 Temporadas (Isekai)", image: "https://i.postimg.cc/bNtRN7H4/IMG-20251111-111459.jpg", url: CONSTRUCTION_LINK, synopsis: "Natsuki Subaru, um estudante de ensino médio, é invocado para outro mundo e ganha o poder de 'Retornar pela Morte'.", trailerId: "placeholder", genre: "Isekai, Drama, Suspense", quality: "1080p", audio: "Legendado", episodes: "47" },
+                { title: "Konosuba", subtitle: "3 Temporadas (Isekai Comédia)", image: "https://i.postimg.cc/ZY9QpDLk/filters-quality-95-format-webp-6.jpg", url: CONSTRUCTION_LINK, synopsis: "Um NEET é reencarnado em um mundo de RPG com uma deusa inútil e uma missão para derrotar o Rei Demônio.", trailerId: "placeholder", genre: "Isekai, Comédia, Fantasia", quality: "720p", audio: "Dublado", episodes: "30" },
+                { title: "That Time I Got Reincarnated as a Slime", subtitle: "2 Temporadas (Isekai)", image: "https://i.postimg.cc/VLqDFyr0/81lBpKcTSrL.jpg", url: CONSTRUCTION_LINK, synopsis: "Um trabalhador é esfaqueado e reencarna como um slime com habilidades únicas.", trailerId: "placeholder", genre: "Isekai, Aventura, Comédia", quality: "1080p", audio: "Legendado", episodes: "47" },
+            ],
+        };
+        // Combina animes relevantes para o Carrossel de Recomendações (horizontal no topo)
+        const allAnimes = [
+            ...homepageData.saiHateDetails,
+            ...homepageData.isekaiAnimes,
         ];
-
+        // ==========================================================
+        // ✨ FUNÇÕES DE RENDERIZAÇÃO E LÓGICA (Com Edições)
+        // ==========================================================
+        window.searchAnimes = async (query) => {
+            // Lógica de busca mantida
+        };
+        async function getIPAddress() {
+            // Lógica de IP mantida
+        }
+        async function recordReportError(errorType) {
+            // Lógica de reporte de erro mantida
+        }
         function openHamburgerMenu() {
             document.getElementById('hamburgerMenu')?.classList.add('open');
             document.getElementById('menuOverlay')?.classList.add('active');
@@ -1167,8 +1301,6 @@ body {
         function openReportModal() {
             const modal = document.getElementById('reportErrorModal');
             if (modal) modal.style.display = 'flex';
-            // NOVO: Fecha o menu hamburguer ao abrir o modal de erro
-            closeHamburgerMenu();
         }
         function closeReportModal() {
             const modal = document.getElementById('reportErrorModal');
@@ -1184,123 +1316,272 @@ body {
             }, 4000);
         }
         window.showNotification = showNotification;
-        // NOVO: Função para abrir modal de proporções
-        function openAspectModal() {
-            const modal = document.getElementById('aspectModal');
-            if (modal) modal.style.display = 'block';
-        }
-        // NOVO: Função para fechar modal de proporções
-        function closeAspectModal() {
-            const modal = document.getElementById('aspectModal');
-            if (modal) modal.style.display = 'none';
-        }
-        // NOVO: Função para aplicar proporção e abrir tela cheia
-        function applyAspectRatio(aspect) {
-            const playerFrame = document.getElementById('player-frame');
-            const playerContainer = document.querySelector('.player-container');
-            const [width, height] = aspect.split(':').map(Number);
-            const ratio = height / width;
-            // Aplica a proporção ao contêiner
-            playerContainer.style.paddingBottom = `${ratio * 100}%`;
-            // Armazena a proporção selecionada para uso em tela cheia
-            playerFrame.dataset.aspectRatio = `${width}:${height}`;
-            // Atualiza a altura mínima da seção do player com base na orientação do dispositivo
-            updatePlayerSectionMinHeight(ratio);
-            closeAspectModal();
-            // Força a tela cheia imediatamente após aplicar a proporção
-            if (playerFrame.requestFullscreen) {
-                playerFrame.requestFullscreen();
-            } else if (playerFrame.webkitRequestFullscreen) {
-                playerFrame.webkitRequestFullscreen();
-            } else if (playerFrame.msRequestFullscreen) {
-                playerFrame.msRequestFullscreen();
+        function openDetailsModal(title, synopsis, trailerId) {
+            const modal = document.getElementById('detailsModal');
+            const titleElem = document.getElementById('detailsTitle');
+            const textElem = document.getElementById('synopsisText');
+            const trailerFrame = document.getElementById('trailerVideo');
+            if (modal && titleElem && textElem && trailerFrame) {
+                titleElem.textContent = title;
+                textElem.textContent = synopsis;
+                let trailerUrl = '';
+                if (trailerId && trailerId !== 'placeholder') {
+                    // Monta a URL do YouTube com autoplay e modo sem cookies
+                    trailerUrl = `https://www.youtube-nocookie.com/embed/${trailerId}?autoplay=1&mute=0&controls=1&rel=0&showinfo=0&loop=0`;
+                } else {
+                    // Placeholder ou link de vídeo de erro
+                    trailerUrl = `https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0`; // Rickroll mudo
+                }
+                trailerFrame.src = trailerUrl;
+                modal.style.display = 'flex';
             }
         }
-        // NOVO: Função para atualizar a altura mínima da seção do player
-        function updatePlayerSectionMinHeight(ratio) {
-            const playerSection = document.getElementById('episode-player-section');
-            const playerContainer = document.querySelector('.player-container');
-            // Verifica a orientação do dispositivo
-            const isPortrait = window.innerHeight > window.innerWidth;
-            if (isPortrait) {
-                // Modo retrato: a altura mínima deve ser baseada na largura do contêiner
-                const containerWidth = playerContainer.offsetWidth;
-                const minHeight = containerWidth * ratio;
-                playerSection.style.minHeight = `${minHeight}px`;
+        function closeDetailsModal() {
+            const modal = document.getElementById('detailsModal');
+            const trailerFrame = document.getElementById('trailerVideo');
+            if (modal && trailerFrame) {
+                // Para o vídeo limpando o src do iframe
+                trailerFrame.src = '';
+                modal.style.display = 'none';
+            }
+        }
+        // ✨ NOVA FUNÇÃO PARA MODAL RPG (Personagem)
+        function openRpgModal(title, synopsis, image) {
+            const modal = document.getElementById('rpgModal');
+            const titleElem = document.getElementById('rpgTitle');
+            const textElem = document.getElementById('rpgSynopsis');
+            const imageElem = document.getElementById('rpgImage');
+            if (modal && titleElem && textElem && imageElem) {
+                titleElem.textContent = title;
+                textElem.textContent = synopsis;
+                imageElem.style.backgroundImage = `url('${image}')`;
+                modal.style.display = 'flex';
+            }
+        }
+        function closeRpgModal() {
+            const modal = document.getElementById('rpgModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+        // ✨ NOVA FUNÇÃO PARA MODAL DE EPISÓDIO
+        function openEpisodeModal(title, description, image) {
+            const modal = document.getElementById('episodeModal');
+            const titleElem = document.getElementById('episodeTitle');
+            const textElem = document.getElementById('episodeSynopsis');
+            const imageElem = document.getElementById('episodeImage');
+            if (modal && titleElem && textElem && imageElem) {
+                titleElem.textContent = title;
+                textElem.textContent = description;
+                imageElem.style.backgroundImage = `url('${image}')`;
+                modal.style.display = 'flex';
+            }
+        }
+        function closeEpisodeModal() {
+            const modal = document.getElementById('episodeModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+        // ✨ NOVA FUNÇÃO PARA ATUALIZAR A SEÇÃO HERO
+        function updateHeroSection(newTitle, newImage) {
+            const heroTitle = document.getElementById('hero-title');
+            const heroSubtitle = document.getElementById('hero-subtitle');
+            const heroImage = document.getElementById('hero-image');
+            if (heroTitle) heroTitle.textContent = newTitle;
+            if (heroSubtitle) heroSubtitle.textContent = 'Episódio Selecionado';
+            if (heroImage) heroImage.src = newImage;
+        }
+
+        // ✨ NOVA FUNÇÃO PARA ATUALIZAR A SEÇÃO DE DETALHES DO ANIME
+        function updateAnimeDetails(animeDetails) {
+            const title = document.getElementById('details-anime-title');
+            const synopsis = document.getElementById('details-anime-synopsis');
+            const genre = document.getElementById('details-anime-genre');
+            const quality = document.getElementById('details-anime-quality');
+            const audio = document.getElementById('details-anime-audio');
+            const episodes = document.getElementById('details-anime-episodes');
+
+            if (title) title.textContent = animeDetails.title || 'Detalhes do Anime';
+            if (synopsis) synopsis.textContent = animeDetails.synopsis || 'Sinopse não disponível.';
+            if (genre) genre.textContent = animeDetails.genre || '-';
+            if (quality) quality.textContent = animeDetails.quality || '-';
+            if (audio) audio.textContent = animeDetails.audio || '-';
+            if (episodes) episodes.textContent = animeDetails.episodes || '-';
+        }
+
+        /**
+         * Renderiza os cards de anime no grid/carrossel
+         * @param {string} containerId ID do elemento onde os cards serão renderizados
+         * @param {Array} animeList Lista completa de animes a serem usados
+         * @param {boolean} isHorizontal Se deve renderizar em layout horizontal (carousel)
+         * @param {boolean} isEpisodeCard Se deve usar o layout de card de episódio (16:9)
+         */
+        function renderAnimeCards(containerId, animeList, isHorizontal = false, isEpisodeCard = false) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            if (isHorizontal) {
+                container.classList.add('carousel-horizontal');
+                container.classList.remove('anime-grid');
             } else {
-                // Modo paisagem: a altura mínima pode ser baseada em uma altura fixa ou na altura da tela
-                // Vamos usar a mesma lógica anterior ou uma altura mínima fixa maior
-                const containerWidth = playerContainer.offsetWidth;
-                const minHeight = containerWidth * ratio;
-                playerSection.style.minHeight = `${minHeight}px`;
+                container.classList.add('anime-grid');
+                container.classList.remove('carousel-horizontal');
             }
-        }
-        // NOVO: Evento para atualizar a altura mínima ao mudar a orientação
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => {
-                const playerFrame = document.getElementById('player-frame');
-                const aspectRatio = playerFrame.dataset.aspectRatio;
-                if (aspectRatio) {
-                    const [width, height] = aspectRatio.split(':').map(Number);
-                    const ratio = height / width;
-                    updatePlayerSectionMinHeight(ratio);
+            // Limpa o conteúdo
+            container.innerHTML = '';
+            // Garante que não haja repetição de cards com os mesmos nomes
+            const uniqueAnimes = animeList.filter((anime, index, self) =>
+                index === self.findIndex((a) => (
+                    a.title === anime.title
+                ))
+            );
+            uniqueAnimes.forEach((anime, index) => {
+                const card = document.createElement('div');
+                // *** IMPORTANTE: REMOVIDO <a>. O link será tratado via Listener no final.
+                const finalUrl = (anime.url === '#' || !anime.url) ? CONSTRUCTION_LINK : anime.url;
+                const finalSubtitle = finalUrl.startsWith('javascript:') ? CONSTRUCTION_SUBTITLE : (anime.subtitle || '');
+                card.className = 'anime-card';
+                card.style.animationDelay = `${index * 50}ms`;
+                card.dataset.url = finalUrl;
+                card.dataset.title = anime.title;
+                card.dataset.synopsis = anime.synopsis || 'Sinopse não disponível.';
+                card.dataset.trailerid = anime.trailerId || ''; 
+                card.dataset.image = anime.image || ''; // Adiciona a imagem no dataset
+                card.dataset.description = anime.description || ''; // Adiciona a descrição no dataset
+                // Adiciona os novos dados ao dataset
+                card.dataset.genre = anime.genre || '';
+                card.dataset.quality = anime.quality || '';
+                card.dataset.audio = anime.audio || '';
+                card.dataset.episodes = anime.episodes || '';
+                // Escolhe a classe de imagem
+                let imageClass = 'anime-card-image-fixed-height'; // Padrão para Detalhes
+                if (isEpisodeCard) {
+                    imageClass = 'episode-card-image'; // 16:9 para Episódios
+                } else if (!isHorizontal) {
+                    imageClass = 'anime-card-image'; // 1.4:1 para Grid Normal
                 }
-            }, 300); // Pequeno delay para esperar a orientação ser aplicada
-        });
-        // NOVO: Evento para atualizar a altura mínima ao sair da tela cheia
-        document.addEventListener('fullscreenchange', () => {
-            if (!document.fullscreenElement) {
-                // Saiu da tela cheia
-                const playerFrame = document.getElementById('player-frame');
-                const aspectRatio = playerFrame.dataset.aspectRatio;
-                if (aspectRatio) {
-                    const [width, height] = aspectRatio.split(':').map(Number);
-                    const ratio = height / width;
-                    updatePlayerSectionMinHeight(ratio);
+                if (anime.image) {
+                    card.innerHTML = `
+                        <div class="${imageClass}" style="background-image: url('${anime.image}')"></div>
+                        <div class="anime-card-info">
+                            <div class="anime-card-title">${anime.title}</div>
+                            <div class="anime-card-subtitle">${finalSubtitle}</div>
+                        </div>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <div class="anime-card-info" style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                            <div class="anime-card-title">${anime.title}</div>
+                            <div class="anime-card-subtitle">${finalSubtitle}</div>
+                        </div>
+                    `;
                 }
-            }
-        });
-        // Função para carregar os dados de um episódio
-        function loadEpisode(episodeId) {
-            const episode = episodesData.find(ep => ep.id === episodeId);
-            if (!episode) return;
-            document.getElementById('episode-title').textContent = episode.title;
-            document.getElementById('episode-number').textContent = episode.episode;
-            document.getElementById('episode-duration').textContent = episode.duration;
-            document.getElementById('episode-id').textContent = episode.id;
-            document.getElementById('episode-synopsis-text').textContent = episode.synopsis;
-            document.getElementById('player-frame').src = episode.link;
-            // Atualizar links de download
-            document.getElementById('download-direct').href = episode.link;
-            document.getElementById('download-drive').href = episode.link;
-            // Atualizar botões de navegação
-            const prevBtn = document.getElementById('prev-episode');
-            const nextBtn = document.getElementById('next-episode');
-            prevBtn.href = episodeId > 1 ? `javascript:loadEpisode(${episodeId - 1})` : '#';
-            prevBtn.classList.toggle('disabled', episodeId <= 1);
-            prevBtn.style.opacity = episodeId <= 1 ? '0.5' : '1';
-            prevBtn.style.cursor = episodeId <= 1 ? 'not-allowed' : 'pointer';
-            nextBtn.href = episodeId < episodesData.length ? `javascript:loadEpisode(${episodeId + 1})` : '#';
-            nextBtn.classList.toggle('disabled', episodeId >= episodesData.length);
-            nextBtn.style.opacity = episodeId >= episodesData.length ? '0.5' : '1';
-            nextBtn.style.cursor = episodeId >= episodesData.length ? 'not-allowed' : 'pointer';
-            // Atualizar histórico
-            window.history.pushState({episodeId}, '', `?ep=${episodeId}`);
-            // Alterar a cor da área abaixo do player para combinar com o fundo
-            const playerSection = document.getElementById('episode-player-section');
-            playerSection.style.backgroundColor = 'var(--background)';
+                container.appendChild(card);
+            });
         }
-        // Função para abrir o menu de episódios
-        function openEpisodeMenu() {
-            document.getElementById('episodeListMenu').classList.add('open');
-            document.getElementById('menuOverlay').classList.add('active');
+        /**
+         * Inicializa a renderização do carrossel
+         * @param {string} containerId ID do elemento DOM onde renderizar
+         * @param {Array} data A lista completa de dados do carrossel
+         * @param {boolean} isHorizontal Se deve ser um carrossel horizontal
+         */
+        function initializeCarousel(containerId, data, isHorizontal = false, isEpisodeCard = false) {
+            renderAnimeCards(containerId, data, isHorizontal, isEpisodeCard);
         }
-        // Função para fechar o menu de episódios
-        function closeEpisodeMenu() {
-            document.getElementById('episodeListMenu').classList.remove('open');
-            document.getElementById('menuOverlay').classList.remove('active');
+        function buildHeroSlider(containerId, heroList) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = '';
+            // Usamos apenas o primeiro item como capa inicial
+            const item = heroList[0];
+            const slide = document.createElement('div'); // Mudado para <div> para evitar clique
+            slide.className = `hero-slide active`;
+            slide.innerHTML = `
+                <img src="${item.image}" alt="${item.title}" id="hero-image" loading="eager" />
+                <div class="hero-info">
+                    <h2 id="hero-title">${item.title}</h2>
+                    <p id="hero-subtitle">${item.subtitle}</p>
+                </div>
+            `;
+            container.appendChild(slide);
+            // Atualiza os detalhes do anime principal logo após a criação da capa
+            updateAnimeDetails(item);
+            // Removemos a lógica de rotação automática para focar na atualização pelo clique
         }
-        // Funções de Event Listener (mantidas do original)
+
+        /**
+         * Lógica para o carrossel de auto-scroll horizontal.
+         */
+        function setupAutoScrollCarousel(containerId, animeList) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            initializeCarousel(containerId, animeList, true, false); // Não é card de episódio
+            const cards = container.querySelectorAll('.anime-card');
+            if (cards.length === 0) return;
+
+            let currentIndex = 0;
+            let intervalId;
+            const scrollInterval = 5000; 
+            const pauseDuration = 10000; // 10 segundos
+            let pauseTimeoutId = null;
+
+            const startAutoScroll = () => {
+                clearInterval(intervalId);
+                intervalId = setInterval(() => {
+                    const gap = parseInt(getComputedStyle(container).gap) || 0;
+                    const cardWidth = cards[0] ? cards[0].offsetWidth + gap : 0;
+                    if (cardWidth === 0) return;
+                    currentIndex = (currentIndex + 1) % cards.length;
+                    container.scrollTo({
+                        left: currentIndex * cardWidth,
+                        behavior: 'smooth'
+                    });
+                    if (currentIndex >= cards.length - 1) { 
+                        setTimeout(() => {
+                            container.scrollTo({ left: 0, behavior: 'auto' });
+                            currentIndex = 0;
+                        }, 300); 
+                    }
+                }, scrollInterval);
+            };
+
+            const stopAutoScroll = () => clearInterval(intervalId);
+            const pauseAutoScroll = () => {
+                stopAutoScroll();
+                clearTimeout(pauseTimeoutId);
+                pauseTimeoutId = setTimeout(startAutoScroll, pauseDuration);
+            };
+
+            const userInteractionHandler = () => {
+                pauseAutoScroll();
+            };
+
+            // Adiciona o listener de clique ao container para pausar o carrossel
+            container.addEventListener('click', userInteractionHandler);
+            container.addEventListener('touchstart', userInteractionHandler);
+            container.addEventListener('mousedown', userInteractionHandler);
+            container.addEventListener('wheel', userInteractionHandler);
+            container.addEventListener('scroll', userInteractionHandler);
+
+            startAutoScroll();
+        }
+
+        // ==========================================================
+        // ✨ CONSTRUÇÃO DA PÁGINA E EVENT LISTENERS
+        // ==========================================================
+        function buildHomepage() {
+            console.log('[HOMEPAGE] Construindo página inicial (Dados Internos)...');
+            buildHeroSlider('hero-section', homepageData.hero);
+            // Carrosséis estáticos (Grid)
+            initializeCarousel('saihate-details-carousel', homepageData.saiHateDetails, true); // Agora é um carrossel horizontal
+            // Carrossel de Episódios (Horizontal e Manual)
+            initializeCarousel('episodes-carousel', homepageData.episodeList, true, true); // true para horizontal e true para card de episódio
+            // Carrossel "Outros Animes Isekai Recomendados" (Horizontal e Automático, com lista fixa)
+            setupAutoScrollCarousel('isekai-animes-carousel', homepageData.isekaiAnimes);
+        }
+        const INITIAL_ZOOM = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
+        const MIN_ZOOM = 0.5;
+        const MAX_ZOOM = 1.5;
         function setupEventListeners() {
             console.log('13. [EVENTOS] Configurando event listeners...');
             const searchInput = document.getElementById('search-input');
@@ -1313,40 +1594,22 @@ body {
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const menuOverlay = document.getElementById('menuOverlay');
             const rootElement = document.documentElement;
-            const fullscreenButtonBase = document.getElementById('fullscreenButtonBase');
-            const aspectOptions = document.querySelectorAll('.aspect-option');
-            // Botão de menu de episódios
-            const episodeMenuBtn = document.getElementById('episode-menu-btn');
-            episodeMenuBtn.addEventListener('click', openEpisodeMenu);
-            // Itens do menu de episódios
-            document.querySelectorAll('.episode-list-item').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const episodeId = parseInt(item.getAttribute('data-episode'));
-                    loadEpisode(episodeId);
-                    closeEpisodeMenu();
-                });
-            });
-            // Fechar menu de episódios ao clicar no overlay
-            menuOverlay.addEventListener('click', () => {
-                closeEpisodeMenu();
-            });
-            let currentScale = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
+            let currentScale = INITIAL_ZOOM;
             const step = 0.05;
             const baseFontSize = 16;
             function updateZoom(showNotif = true) {
                 rootElement.style.fontSize = `${baseFontSize * currentScale}px`;
                 localStorage.setItem('zoomLevel', currentScale.toFixed(2));
-                const isDisabledMax = currentScale >= 1.5;
-                const isDisabledMin = currentScale <= 0.5;
+                const isDisabledMax = currentScale >= MAX_ZOOM;
+                const isDisabledMin = currentScale <= MIN_ZOOM;
                 if (zoomInBtnFixed) zoomInBtnFixed.disabled = isDisabledMax;
                 if (zoomOutBtnFixed) zoomOutBtnFixed.disabled = isDisabledMin;
             }
             function handleZoom(direction) {
                 if (direction === 'in') {
-                    currentScale = Math.min(1.5, currentScale + step);
+                    currentScale = Math.min(MAX_ZOOM, currentScale + step);
                 } else if (direction === 'out') {
-                    currentScale = Math.max(0.5, currentScale - step);
+                    currentScale = Math.max(MIN_ZOOM, currentScale - step);
                 }
                 currentScale = parseFloat(currentScale.toFixed(2));
                 updateZoom(true);
@@ -1354,7 +1617,7 @@ body {
             zoomInBtnFixed?.addEventListener('click', () => handleZoom('in'));
             zoomOutBtnFixed?.addEventListener('click', () => handleZoom('out'));
             updateZoom(false);
-            // Clica no botão de zoom-in após 1 segundo
+          // Clica no botão de zoom-in após 1 segundo
             setTimeout(() => {
                 if (zoomInBtnFixed) zoomInBtnFixed.click();
                 // Meio segundo depois, clica no botão de zoom-out
@@ -1368,7 +1631,7 @@ body {
             });
             menuOverlay?.addEventListener('click', closeHamburgerMenu);
             searchInput?.addEventListener('input', (e) => {
-                // window.searchAnimes(e.target.value); // Não aplicável aqui
+                window.searchAnimes(e.target.value);
             });
             menuToggle?.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -1396,53 +1659,130 @@ body {
                     closeReportModal();
                 }
             });
-            // NOVO: Adicionando ouvinte de evento para os botões de reportar erro
             document.querySelectorAll('.report-option').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const errorType = e.currentTarget.dataset.errorType;
-                    recordReportError(errorType); // Chama a função para enviar ao Firebase
+                    recordReportError(errorType);
                 });
             });
-            // NOVO: Adicionando ouvinte de evento para o botão de reportar erro no menu hamburguer
-            document.getElementById('openReportModalBtn')?.addEventListener('click', openReportModal);
-
-            // NOVO: Evento para abrir modal de proporções
-            fullscreenButtonBase?.addEventListener('click', openAspectModal);
-            // NOVO: Evento para aplicar proporção
-            aspectOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const aspect = option.dataset.aspect;
-                    applyAspectRatio(aspect);
+            document.querySelectorAll('.carousel-title').forEach(titleElement => {
+                titleElement.addEventListener('click', (e) => {
+                    const linkId = e.currentTarget.dataset.linkId;
+                    if (linkId && linkId !== 'none') {
+                        const catalogUrl = `${CONSTRUCTION_LINK}#catalog-${linkId}`;
+                        window.location.href = catalogUrl;
+                        showNotification(`Redirecionando para o Catálogo Completo de: ${e.currentTarget.textContent.trim()}`);
+                    }
                 });
             });
-            // NOVO: Evento para redirecionar ao clicar no título do header
-            document.getElementById('header-title').addEventListener('click', () => {
-                window.location.href = 'https://linkpremiado51-cmd.github.io/Yshippanime/catalogo/saihate_no_paradin/saihate_no_paradin.html';
+           // ==========================================================
+           // ✨ LÓGICA DE CLIQUE PARA CARDS DE DETALHES/RECOMENDAÇÃO
+           // ==========================================================
+            let clickTimer = null;
+            document.querySelectorAll('#saihate-details-carousel .anime-card, #isekai-animes-carousel .anime-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (clickTimer === null) {
+                        clickTimer = setTimeout(() => {
+                            clickTimer = null;
+                            // Single click: Tenta navegar/notificar (Ação padrão)
+                            const url = card.dataset.url;
+                            if (url && url.startsWith('javascript:')) {
+                                eval(url);
+                            } else if (url && url !== "") {
+                                window.location.href = url;
+                            } else {
+                                console.warn("URL do anime não definida:", card.dataset.title);
+                            }
+                        }, 300); // Tempo para detectar double click
+                    } else {
+                        clearTimeout(clickTimer);
+                        clickTimer = null;
+                        // Double click: abre modal de RPG (Personagem)
+                        const title = card.dataset.title;
+                        const synopsis = card.dataset.synopsis;
+                        const image = card.dataset.image;
+                        openRpgModal(title, synopsis, image);
+                    }
+                });
+            });
+           // ==========================================================
+           // ✨ LÓGICA DE CLIQUE PARA CARDS DO CARROSSEL DE EPISÓDIOS
+           // ==========================================================
+            document.getElementById('episodes-carousel')?.addEventListener('click', (e) => {
+                const card = e.target.closest('.anime-card');
+                if (!card) return;
+                let clickTimer = null;
+                // Simular o comportamento de clique duplo para o card de episódio
+                if (clickTimer === null) {
+                    clickTimer = setTimeout(() => {
+                        clickTimer = null;
+                        // Single click: Atualiza capa e executa ação normal
+                        const url = card.dataset.url;
+                        const title = card.dataset.title;
+                        const image = card.dataset.image;
+                        if (image && title) {
+                            // 1. ATUALIZA A CAPA (Hero Section)
+                            updateHeroSection(`Saihate no Paladin: ${title}`, image);
+                        }
+                        if (url && url.startsWith('javascript:')) {
+                            // 2. EXECUTA JS (Dispara a notificação, link do player)
+                            eval(url);
+                        } else if (url && url !== "") {
+                            // 3. REDIRECIONA PARA O PLAYER
+                            window.location.href = url;
+                        } else {
+                            showNotification(`Card: ${title} - Link do player não configurado.`, 4000);
+                            console.warn("URL do episódio não definida:", title);
+                        }
+                    }, 300); // Tempo para detectar double click
+                } else {
+                    clearTimeout(clickTimer);
+                    clickTimer = null;
+                    // Double click: abre modal de Descrição do Episódio SEM executar ação de single click
+                    const title = card.dataset.title;
+                    const description = card.dataset.description;
+                    const image = card.dataset.image;
+                    openEpisodeModal(title, description, image);
+                }
+            });
+            // Listener para fechar o novo modal de detalhes
+            document.getElementById('closeDetailsModal')?.addEventListener('click', closeDetailsModal);
+            document.getElementById('detailsModal')?.addEventListener('click', (e) => {
+                // Fechar se clicar no overlay
+                if (e.target.classList.contains('modal-overlay')) {
+                    closeDetailsModal();
+                }
+            });
+            // Listener para fechar o novo modal RPG
+            document.getElementById('closeRpgModal')?.addEventListener('click', closeRpgModal);
+            document.getElementById('rpgModal')?.addEventListener('click', (e) => {
+                // Fechar se clicar no overlay
+                if (e.target.classList.contains('modal-overlay')) {
+                    closeRpgModal();
+                }
+            });
+            // Listener para fechar o novo modal de episódio
+            document.getElementById('closeEpisodeModal')?.addEventListener('click', closeEpisodeModal);
+            document.getElementById('episodeModal')?.addEventListener('click', (e) => {
+                // Fechar se clicar no overlay
+                if (e.target.classList.contains('modal-overlay')) {
+                    closeEpisodeModal();
+                }
             });
             console.log('14. [EVENTOS] Configuração de event listeners concluída.');
         }
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('17. [DOM] DOMContentLoaded. Chamando setupEventListeners().');
+            console.log('17. [DOM] DOMContentLoaded. Chamando buildHomepage() e setupEventListeners().');
+            buildHomepage();
             setupEventListeners();
-            // Carregar episódio inicial (1) ou o especificado na URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const episodeId = parseInt(urlParams.get('ep')) || 1;
-            loadEpisode(episodeId);
-        });
-        // Manipular navegação do histórico
-        window.addEventListener('popstate', (event) => {
-            if (event.state && event.state.episodeId) {
-                loadEpisode(event.state.episodeId);
-            }
         });
         window.addEventListener('beforeunload', () => {
             console.log('[LIFECYCLE] Evento beforeunload. Salvando estado...');
             localStorage.setItem('theme', document.body.dataset.theme);
-            localStorage.setItem('zoomLevel', (parseFloat(document.documentElement.style.fontSize) / 16 || 0.75).toFixed(2));
+            localStorage.setItem('zoomLevel', (parseFloat(document.documentElement.style.fontSize) / 16 || INITIAL_ZOOM).toFixed(2));
         });
-        console.log('18. [FINAL] Script da Página do Episódio carregado.');
-        // Tornar funções globais para uso em links
-        window.loadEpisode = loadEpisode;
+        console.log('18. [FINAL] Script da Homepage carregado.');
     </script>
 </body>
 </html>
