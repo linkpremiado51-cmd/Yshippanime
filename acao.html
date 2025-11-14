@@ -29,6 +29,51 @@
         body{font-family:'Jura',sans-serif;font-weight:400;line-height:1.5;background:var(--background);color:var(--text-primary);
             min-height:100vh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;transition:background .3s ease,color .3s ease}
         .zoom-container{width:100%;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding-top:0}
+
+        /* === ESTILOS DE CARREGAMENTO (copiados da homepage) === */
+        body.loading .hero-section,
+        body.loading .anime-carousel-section,
+        body.loading .anime-card {
+            opacity: 0;
+            visibility: hidden;
+        }
+        body.loading .hero-section {
+            background: var(--surface);
+            min-height: 400px;
+        }
+        body.loading .hero-section img,
+        body.loading .hero-info {
+            display: none;
+        }
+        #initial-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+        #initial-loader i {
+            font-size: 3rem;
+            color: var(--highlight-color);
+            margin-bottom: 1rem;
+        }
+        #initial-loader p {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+        body:not(.loading) #initial-loader {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* === Restante dos estilos === */
         .hero-section{width:100%;max-width:1000px;margin:0 auto 0;height:400px;background:var(--surface);border-radius:0;
             box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
         .hero-slide{width:100%;height:100%;position:absolute;opacity:0;transition:opacity 1s ease-in-out;text-decoration:none}
@@ -69,212 +114,228 @@
         }
     </style>
 </head>
-<body data-theme="light">
-<div class="zoom-container">
+<body data-theme="light" class="loading">
+    <!-- Tela de carregamento -->
+    <div id="initial-loader" class="loading-spinner">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Carregando...</p>
+    </div>
 
-    <!-- HERO (Capa da categoria Ação) -->
-    <section class="hero-section" id="hero-section">
-        <div class="hero-slide active">
-            <img src="https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp" alt="Ação" loading="eager">
-            <div class="hero-info">
-                <h2>Animes de Ação</h2>
-                <p>Batalhas épicas, lutas intensas e adrenalina pura!</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CARROSSEL 1 – Ação Recomendada -->
-    <section class="anime-carousel-section">
-        <h2 class="carousel-title">Recomendados em Ação</h2>
-        <div id="recomendados-acao" class="carousel-horizontal"></div>
-    </section>
-
-    <!-- CARROSSEL 2 – Lançamentos de Ação -->
-    <section class="anime-carousel-section">
-        <h2 class="carousel-title">Lançamentos de Ação</h2>
-        <div id="lancamentos-acao" class="carousel-horizontal"></div>
-    </section>
-
-    <!-- CARROSSEL 3 – Clássicos de Ação -->
-    <section class="anime-carousel-section">
-        <h2 class="carousel-title">Clássicos Imperdíveis</h2>
-        <div id="classicos-acao" class="anime-grid"></div>
-    </section>
-
-</div>
-
-<script type="module">
-    // =============== ✨ SINCRONIZAÇÃO DE TEMA E ZOOM (INÍCIO) ===============
-    const urlParams = new URLSearchParams(window.location.search);
-    const themeFromParent = urlParams.get('theme') || localStorage.getItem('theme') || 'light';
-    const zoomFromParent = parseFloat(urlParams.get('zoom')) || parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
-
-    // Aplica o tema
-    document.body.dataset.theme = themeFromParent;
-
-    // Aplica o zoom
-    document.documentElement.style.fontSize = `${16 * zoomFromParent}px`;
-
-    // Salva no localStorage da categoria (caso o usuário recarregue diretamente)
-    localStorage.setItem('theme', themeFromParent);
-    localStorage.setItem('zoomLevel', zoomFromParent.toFixed(2));
-    // =============== ✨ SINCRONIZAÇÃO DE TEMA E ZOOM (FIM) ===============
-
-    // Dados específicos da categoria Ação
-    const acaoData = {
-        hero: { title: "Animes de Ação", subtitle: "Batalhas épicas, lutas intensas e adrenalina pura!", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp" },
-        recomendados: [
-            {title:"Attack on Titan",subtitle:"T4 Final",image:"https://i.postimg.cc/0y4rN5wV/aot.jpg",url:"catalogo/attack_on_titan.html",synopsis:"Humanidade luta contra titãs gigantes.",trailerId:"MJv1kiqPKfY"},
-            {title:"Jujutsu Kaisen",subtitle:"T2",image:"https://i.postimg.cc/3xV5V5nJ/jjk.jpg",url:"catalogo/jujutsu_kaisen.html",synopsis:"Estudante ingere dedo amaldiçoado.",trailerId:"PkYf0Gkoe6c"},
-            {title:"Demon Slayer",subtitle:"T4",image:"https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg",url:"catalogo/demon_slayer.html",synopsis:"Tanjiro caça demônios.",trailerId:"VQGCPM-2NqQ"},
-            {title:"One Punch Man",subtitle:"T3",image:"https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg",url:"catalogo/one_punch_man.html",synopsis:"Saitama derrota qualquer um com um soco.",trailerId:"bYg7K64b55c"},
-            {title:"My Hero Academia",subtitle:"T7",image:"https://i.postimg.cc/wM05SzhW/IMG-20251111-112503.jpg",url:"catalogo/my_hero_academia.html",synopsis:"Deku sonha ser herói.",trailerId:"qI9hDqfC6x0"}
-        ],
-        lancamentos: [
-            {title:"Solo Leveling S2",subtitle:"Jan 2026",image:"https://i.postimg.cc/3w5w5w5W/solo-leveling-s2.jpg",url:"javascript:showNotification('Em breve')",synopsis:"Sung Jin-Woo evolui.",trailerId:""},
-            {title:"Chainsaw Man Movie",subtitle:"2026",image:"https://i.postimg.cc/9f9f9f9F/chainsaw-movie.jpg",url:"javascript:showNotification('Em breve')",synopsis:"Denji vira Chainsaw Man.",trailerId:""},
-            {title:"Bleach TYBW Part 3",subtitle:"Out 2025",image:"https://i.postimg.cc/4d4d4d4D/bleach-tybw3.jpg",url:"javascript:showNotification('Em breve')",synopsis:"Guerra dos Mil Anos.",trailerId:""}
-        ],
-        classicos: [
-            {title:"Naruto Shippuden",subtitle:"500 eps",image:"https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg",url:"catalogo/naruto_shippuden.html",synopsis:"Ninja quer ser Hokage.",trailerId:""},
-            {title:"Dragon Ball Z",subtitle:"291 eps",image:"https://i.postimg.cc/DwDtGPkM/IMG-20251111-101701.jpg",url:"catalogo/dragon_ball_z.html",synopsis:"Goku protege a Terra.",trailerId:""},
-            {title:"Fullmetal Alchemist: Brotherhood",subtitle:"64 eps",image:"https://i.postimg.cc/xTRQX4Rc/IMG-20251111-103449.jpg",url:"catalogo/fmab.html",synopsis:"Irmãos buscam pedra filosofal.",trailerId:"qE5Y6u0Gg4M"},
-            {title:"Hunter x Hunter (2011)",subtitle:"148 eps",image:"https://i.postimg.cc/Pr6cssyV/IMG-20251111-103924.jpg",url:"catalogo/hxh.html",synopsis:"Gon vira caçador.",trailerId:"d6k-tV-3V3w"},
-            {title:"Code Geass",subtitle:"2 Temp",image:"https://i.postimg.cc/zvwvwbMc/135089.jpg",url:"catalogo/code_geass.html",synopsis:"Lelouch usa Geass.",trailerId:"X_xT6KjJgq0"}
-        ]
-    };
-
-    // Funções reutilizáveis (mesmas da homepage)
-    const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
-    const CONSTRUCTION_SUBTITLE = "Sistema em construção";
-
-    function showNotification(msg){
-        const n = document.createElement('div');
-        n.textContent=msg; n.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:15px 30px;background:rgba(0,0,0,.9);color:#fff;border-radius:0;z-index:9999;font-size:1rem;';
-        document.body.appendChild(n);
-        setTimeout(()=>{n.remove()},3000);
-    }
-    window.showNotification = showNotification;
-
-    function renderAnimeCards(containerId, list, horizontal=false){
-        const c = document.getElementById(containerId);
-        if(!c) return;
-        c.innerHTML='';
-        if(horizontal) c.className='carousel-horizontal';
-        else c.className='anime-grid';
-
-        const unique = list.filter((a,i,self)=>i===self.findIndex(b=>b.title===a.title));
-        unique.forEach((a,i)=>{
-            const card=document.createElement('div');
-            const url = a.url||CONSTRUCTION_LINK;
-            const sub = url.startsWith('javascript:')?CONSTRUCTION_SUBTITLE:a.subtitle;
-            card.className='anime-card';
-            card.style.animationDelay=`${i*50}ms`;
-            card.dataset.url=url;
-            card.dataset.title=a.title;
-            card.dataset.synopsis=a.synopsis||'Sinopse não disponível.';
-            card.dataset.trailerid=a.trailerId||'';
-            card.innerHTML=`
-                <div class="anime-card-image" style="background-image:url('${a.image}')"></div>
-                <div class="anime-card-info">
-                    <div class="anime-card-title">${a.title}</div>
-                    <div class="anime-card-subtitle">${sub}</div>
-                </div>`;
-            c.appendChild(card);
-        });
-    }
-
-    function buildHero(){
-        const h=document.getElementById('hero-section');
-        if(!h) return;
-        h.innerHTML=`
+    <div class="zoom-container">
+        <!-- HERO (Capa da categoria Ação) -->
+        <section class="hero-section" id="hero-section">
             <div class="hero-slide active">
-                <img src="${acaoData.hero.image}" alt="${acaoData.hero.title}" loading="eager">
+                <img src="https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp" alt="Ação" loading="eager">
                 <div class="hero-info">
-                    <h2>${acaoData.hero.title}</h2>
-                    <p>${acaoData.hero.subtitle}</p>
+                    <h2>Animes de Ação</h2>
+                    <p>Batalhas épicas, lutas intensas e adrenalina pura!</p>
                 </div>
-            </div>`;
-    }
+            </div>
+        </section>
 
-    function setupAutoScroll(id, data){
-        renderAnimeCards(id, data, true);
-        const container=document.getElementById(id);
-        if(!container) return;
-        const cards=container.querySelectorAll('.anime-card');
-        if(cards.length===0) return;
-        let idx=0, tid;
-        const gap=parseInt(getComputedStyle(container).gap)||0;
-        const w=cards[0].offsetWidth+gap;
-        const start=()=>{
-            clearInterval(tid);
-            tid=setInterval(()=>{
-                idx=(idx+1)%cards.length;
-                container.scrollTo({left:idx*w,behavior:'smooth'});
-                if(idx>=cards.length-1){
-                    setTimeout(()=>{container.scrollTo({left:0,behavior:'auto'});idx=0;},300);
-                }
-            },5000);
+        <!-- CARROSSEL 1 – Ação Recomendada -->
+        <section class="anime-carousel-section">
+            <h2 class="carousel-title">Recomendados em Ação</h2>
+            <div id="recomendados-acao" class="carousel-horizontal"></div>
+        </section>
+
+        <!-- CARROSSEL 2 – Lançamentos de Ação -->
+        <section class="anime-carousel-section">
+            <h2 class="carousel-title">Lançamentos de Ação</h2>
+            <div id="lancamentos-acao" class="carousel-horizontal"></div>
+        </section>
+
+        <!-- CARROSSEL 3 – Clássicos de Ação -->
+        <section class="anime-carousel-section">
+            <h2 class="carousel-title">Clássicos Imperdíveis</h2>
+            <div id="classicos-acao" class="anime-grid"></div>
+        </section>
+    </div>
+
+    <script type="module">
+        // =============== ✨ SINCRONIZAÇÃO DE TEMA E ZOOM (INÍCIO) ===============
+        const urlParams = new URLSearchParams(window.location.search);
+        const themeFromParent = urlParams.get('theme') || localStorage.getItem('theme') || 'light';
+        const zoomFromParent = parseFloat(urlParams.get('zoom')) || parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
+
+        document.body.dataset.theme = themeFromParent;
+        document.documentElement.style.fontSize = `${16 * zoomFromParent}px`;
+
+        localStorage.setItem('theme', themeFromParent);
+        localStorage.setItem('zoomLevel', zoomFromParent.toFixed(2));
+        // =============== ✨ SINCRONIZAÇÃO DE TEMA E ZOOM (FIM) ===============
+
+        const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
+        const CONSTRUCTION_SUBTITLE = "Sistema em construção";
+
+        const acaoData = {
+            hero: { title: "Animes de Ação", subtitle: "Batalhas épicas, lutas intensas e adrenalina pura!", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp" },
+            recomendados: [
+                {title:"Attack on Titan",subtitle:"T4 Final",image:"https://i.postimg.cc/0y4rN5wV/aot.jpg",url:"catalogo/attack_on_titan.html",synopsis:"Humanidade luta contra titãs gigantes.",trailerId:"MJv1kiqPKfY"},
+                {title:"Jujutsu Kaisen",subtitle:"T2",image:"https://i.postimg.cc/3xV5V5nJ/jjk.jpg",url:"catalogo/jujutsu_kaisen.html",synopsis:"Estudante ingere dedo amaldiçoado.",trailerId:"PkYf0Gkoe6c"},
+                {title:"Demon Slayer",subtitle:"T4",image:"https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg",url:"catalogo/demon_slayer.html",synopsis:"Tanjiro caça demônios.",trailerId:"VQGCPM-2NqQ"},
+                {title:"One Punch Man",subtitle:"T3",image:"https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg",url:"catalogo/one_punch_man.html",synopsis:"Saitama derrota qualquer um com um soco.",trailerId:"bYg7K64b55c"},
+                {title:"My Hero Academia",subtitle:"T7",image:"https://i.postimg.cc/wM05SzhW/IMG-20251111-112503.jpg",url:"catalogo/my_hero_academia.html",synopsis:"Deku sonha ser herói.",trailerId:"qI9hDqfC6x0"}
+            ],
+            lancamentos: [
+                {title:"Solo Leveling S2",subtitle:"Jan 2026",image:"https://i.postimg.cc/3w5w5w5W/solo-leveling-s2.jpg",url:"javascript:showNotification('Em breve')",synopsis:"Sung Jin-Woo evolui.",trailerId:""},
+                {title:"Chainsaw Man Movie",subtitle:"2026",image:"https://i.postimg.cc/9f9f9f9F/chainsaw-movie.jpg",url:"javascript:showNotification('Em breve')",synopsis:"Denji vira Chainsaw Man.",trailerId:""},
+                {title:"Bleach TYBW Part 3",subtitle:"Out 2025",image:"https://i.postimg.cc/4d4d4d4D/bleach-tybw3.jpg",url:"javascript:showNotification('Em breve')",synopsis:"Guerra dos Mil Anos.",trailerId:""}
+            ],
+            classicos: [
+                {title:"Naruto Shippuden",subtitle:"500 eps",image:"https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg",url:"catalogo/naruto_shippuden.html",synopsis:"Ninja quer ser Hokage.",trailerId:""},
+                {title:"Dragon Ball Z",subtitle:"291 eps",image:"https://i.postimg.cc/DwDtGPkM/IMG-20251111-101701.jpg",url:"catalogo/dragon_ball_z.html",synopsis:"Goku protege a Terra.",trailerId:""},
+                {title:"Fullmetal Alchemist: Brotherhood",subtitle:"64 eps",image:"https://i.postimg.cc/xTRQX4Rc/IMG-20251111-103449.jpg",url:"catalogo/fmab.html",synopsis:"Irmãos buscam pedra filosofal.",trailerId:"qE5Y6u0Gg4M"},
+                {title:"Hunter x Hunter (2011)",subtitle:"148 eps",image:"https://i.postimg.cc/Pr6cssyV/IMG-20251111-103924.jpg",url:"catalogo/hxh.html",synopsis:"Gon vira caçador.",trailerId:"d6k-tV-3V3w"},
+                {title:"Code Geass",subtitle:"2 Temp",image:"https://i.postimg.cc/zvwvwbMc/135089.jpg",url:"catalogo/code_geass.html",synopsis:"Lelouch usa Geass.",trailerId:"X_xT6KjJgq0"}
+            ]
         };
-        const stop=()=>clearInterval(tid);
-        const resume=()=>{stop();setTimeout(start,5000);};
-        container.addEventListener('touchstart',resume);
-        container.addEventListener('mousedown',resume);
-        container.addEventListener('wheel',resume);
-        start();
-    }
 
-    // Clique duplo → modal (mesmo da homepage)
-    function openDetailsModal(t,s,id){
-        const m=document.createElement('div');
-        m.className='modal-overlay'; m.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:flex;justify-content:center;align-items:center;z-index:5000;';
-        const url=id && id!=='placeholder'?`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=0&controls=1&rel=0`:`https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0`;
-        m.innerHTML=`
-            <div class="modal-content" style="background:var(--card-bg);color:var(--text-primary);padding:30px;border-radius:0;width:90%;max-width:800px;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto;">
-                <h3 style="font-size:var(--font-size-lg);font-weight:700;margin-bottom:20px;border-bottom:2px solid var(--highlight-color);padding-bottom:10px;">${t}</h3>
-                <div style="display:flex;gap:20px;">
-                    <div style="flex:1;min-width:300px;position:relative;padding-bottom:calc(56.25%+30px);height:0;overflow:hidden;background:#000;">
-                        <iframe src="${url}" class="trailer-video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe>
-                    </div>
-                    <div style="flex:1;max-height:400px;overflow-y:auto;padding-right:10px;">
-                        <h4>Sinopse:</h4>
-                        <p style="font-size:var(--font-size-sm);line-height:1.6;color:var(--text-secondary);">${s}</p>
-                    </div>
-                </div>
-                <button class="modal-close-btn" style="width:100%;margin-top:20px;padding:10px;background:var(--highlight-color);color:#fff;border:none;border-radius:0;cursor:pointer;font-weight:bold;">Fechar</button>
-            </div>`;
-        document.body.appendChild(m);
-        m.querySelector('.modal-close-btn').onclick=()=>{m.remove();};
-        m.onclick=e=>{if(e.target===m) m.remove();};
-    }
+        function showNotification(msg){
+            const n = document.createElement('div');
+            n.textContent=msg; n.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);padding:15px 30px;background:rgba(0,0,0,.9);color:#fff;border-radius:0;z-index:9999;font-size:1rem;';
+            document.body.appendChild(n);
+            setTimeout(()=>{n.remove()},3000);
+        }
+        window.showNotification = showNotification;
 
-    // Inicialização
-    document.addEventListener('DOMContentLoaded',()=>{
-        buildHero();
-        renderAnimeCards('recomendados-acao', acaoData.recomendados, true);
-        setupAutoScroll('recomendados-acao', acaoData.recomendados);
-        setupAutoScroll('lancamentos-acao', acaoData.lancamentos);
-        renderAnimeCards('classicos-acao', acaoData.classicos);
+        function renderAnimeCards(containerId, list, horizontal=false){
+            const c = document.getElementById(containerId);
+            if(!c) return;
+            c.innerHTML='';
+            if(horizontal) c.className='carousel-horizontal';
+            else c.className='anime-grid';
 
-        // Clique único/duplo nos cards
-        let timer=null;
-        document.querySelectorAll('.anime-card').forEach(card=>{
-            card.addEventListener('click',e=>{
-                e.preventDefault();
-                if(timer===null){
-                    timer=setTimeout(()=>{
-                        timer=null;
-                        const u=card.dataset.url;
-                        if(u.startsWith('javascript:')) eval(u);
-                        else if(u) location.href=u;
-                    },300);
-                }else{
-                    clearTimeout(timer); timer=null;
-                    openDetailsModal(card.dataset.title, card.dataset.synopsis, card.dataset.trailerid);
-                }
+            const unique = list.filter((a,i,self)=>i===self.findIndex(b=>b.title===a.title));
+            unique.forEach((a,i)=>{
+                const card=document.createElement('div');
+                const url = a.url||CONSTRUCTION_LINK;
+                const sub = url.startsWith('javascript:')?CONSTRUCTION_SUBTITLE:a.subtitle;
+                card.className='anime-card';
+                card.style.animationDelay=`${i*50}ms`;
+                card.dataset.url=url;
+                card.dataset.title=a.title;
+                card.dataset.synopsis=a.synopsis||'Sinopse não disponível.';
+                card.dataset.trailerid=a.trailerId||'';
+                card.innerHTML=`
+                    <div class="anime-card-image" style="background-image:url('${a.image}')"></div>
+                    <div class="anime-card-info">
+                        <div class="anime-card-title">${a.title}</div>
+                        <div class="anime-card-subtitle">${sub}</div>
+                    </div>`;
+                c.appendChild(card);
             });
+        }
+
+        function buildHero(){
+            const h=document.getElementById('hero-section');
+            if(!h) return;
+            h.innerHTML=`
+                <div class="hero-slide active">
+                    <img src="${acaoData.hero.image}" alt="${acaoData.hero.title}" loading="eager">
+                    <div class="hero-info">
+                        <h2>${acaoData.hero.title}</h2>
+                        <p>${acaoData.hero.subtitle}</p>
+                    </div>
+                </div>`;
+        }
+
+        function setupAutoScroll(id, data){
+            renderAnimeCards(id, data, true);
+            const container=document.getElementById(id);
+            if(!container) return;
+            const cards=container.querySelectorAll('.anime-card');
+            if(cards.length===0) return;
+            let idx=0, tid;
+            const gap=parseInt(getComputedStyle(container).gap)||0;
+            const w=cards[0].offsetWidth+gap;
+            const start=()=>{
+                clearInterval(tid);
+                tid=setInterval(()=>{
+                    idx=(idx+1)%cards.length;
+                    container.scrollTo({left:idx*w,behavior:'smooth'});
+                    if(idx>=cards.length-1){
+                        setTimeout(()=>{container.scrollTo({left:0,behavior:'auto'});idx=0;},300);
+                    }
+                },5000);
+            };
+            const stop=()=>clearInterval(tid);
+            const resume=()=>{stop();setTimeout(start,5000);};
+            container.addEventListener('touchstart',resume);
+            container.addEventListener('mousedown',resume);
+            container.addEventListener('wheel',resume);
+            start();
+        }
+
+        function openDetailsModal(t,s,id){
+            const m=document.createElement('div');
+            m.className='modal-overlay'; m.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:flex;justify-content:center;align-items:center;z-index:5000;';
+            const url=id && id!=='placeholder'?`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=0&controls=1&rel=0`:`https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0`;
+            m.innerHTML=`
+                <div class="modal-content" style="background:var(--card-bg);color:var(--text-primary);padding:30px;border-radius:0;width:90%;max-width:800px;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto;">
+                    <h3 style="font-size:var(--font-size-lg);font-weight:700;margin-bottom:20px;border-bottom:2px solid var(--highlight-color);padding-bottom:10px;">${t}</h3>
+                    <div style="display:flex;gap:20px;">
+                        <div style="flex:1;min-width:300px;position:relative;padding-bottom:calc(56.25%+30px);height:0;overflow:hidden;background:#000;">
+                            <iframe src="${url}" class="trailer-video" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen></iframe>
+                        </div>
+                        <div style="flex:1;max-height:400px;overflow-y:auto;padding-right:10px;">
+                            <h4>Sinopse:</h4>
+                            <p style="font-size:var(--font-size-sm);line-height:1.6;color:var(--text-secondary);">${s}</p>
+                        </div>
+                    </div>
+                    <button class="modal-close-btn" style="width:100%;margin-top:20px;padding:10px;background:var(--highlight-color);color:#fff;border:none;border-radius:0;cursor:pointer;font-weight:bold;">Fechar</button>
+                </div>`;
+            document.body.appendChild(m);
+            m.querySelector('.modal-close-btn').onclick=()=>{m.remove();};
+            m.onclick=e=>{if(e.target===m) m.remove();};
+        }
+
+        // ✅ Inicialização com remoção da tela de carregamento
+        document.addEventListener('DOMContentLoaded',()=>{
+            buildHero();
+            renderAnimeCards('recomendados-acao', acaoData.recomendados, true);
+            renderAnimeCards('lancamentos-acao', acaoData.lancamentos, true);
+            renderAnimeCards('classicos-acao', acaoData.classicos);
+
+            setupAutoScroll('recomendados-acao', acaoData.recomendados);
+            setupAutoScroll('lancamentos-acao', acaoData.lancamentos);
+
+            // Clique único/duplo
+            let timer=null;
+            document.querySelectorAll('.anime-card').forEach(card=>{
+                card.addEventListener('click',e=>{
+                    e.preventDefault();
+                    if(timer===null){
+                        timer=setTimeout(()=>{
+                            timer=null;
+                            const u=card.dataset.url;
+                            if(u && u.startsWith('javascript:')){
+                                try {
+                                    // Extrai e executa de forma segura
+                                    const code = u.replace('javascript:', '');
+                                    new Function(code)();
+                                } catch (err) {
+                                    console.error("Erro ao executar:", err);
+                                }
+                            } else if(u && u !== "") {
+                                window.location.href = u;
+                            }
+                        },300);
+                    }else{
+                        clearTimeout(timer); timer=null;
+                        openDetailsModal(card.dataset.title, card.dataset.synopsis, card.dataset.trailerid);
+                    }
+                });
+            });
+
+            // ✅ Remove a tela de carregamento após renderização
+            setTimeout(() => {
+                document.body.classList.remove('loading');
+                const loader = document.getElementById('initial-loader');
+                if (loader) loader.style.display = 'none';
+            }, 150);
         });
-    });
-</script>
+    </script>
 </body>
 </html>
+
