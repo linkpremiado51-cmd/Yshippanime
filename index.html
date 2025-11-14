@@ -855,11 +855,24 @@ body {
 .category-content.active {
     display: block;
 }
-.category-content main {
+.category-content:not(#home-content) {
+    padding-top: 115px !important;
+}
+.category-content:not(#home-content) #acao-content-container,
+.category-content:not(#home-content) #aventura-content-container,
+.category-content:not(#home-content) #romance-content-container,
+.category-content:not(#home-content) #isekai-content-container,
+.category-content:not(#home-content) #fantasia-content-container {
     width: 100%;
-    max-width: 1000px;
-    padding: 0 0.75rem 120px;
-    margin: 0 auto;
+    height: calc(100vh - 115px);
+    min-height: 500px;
+}
+.category-content:not(#home-content) iframe {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: calc(100vh - 115px) !important;
+    border: none;
+    display: block;
 }
 /* Estilo para carregar conteúdo externo */
 .category-content iframe {
@@ -1003,54 +1016,19 @@ body {
         </div>
         <!-- Conteúdo das outras categorias -->
         <div class="category-content" id="acao-content">
-            <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
-                <section class="anime-carousel-section">
-                    <h2 class="carousel-title">Animes de Ação</h2>
-                    <div id="acao-content-container">
-                        <!-- Conteúdo será carregado dinamicamente -->
-                    </div>
-                </section>
-            </main>
+            <div id="acao-content-container"></div>
         </div>
         <div class="category-content" id="aventura-content">
-            <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
-                <section class="anime-carousel-section">
-                    <h2 class="carousel-title">Animes de Aventura</h2>
-                    <div id="aventura-content-container">
-                        <!-- Conteúdo será carregado dinamicamente -->
-                    </div>
-                </section>
-            </main>
+            <div id="aventura-content-container"></div>
         </div>
         <div class="category-content" id="romance-content">
-            <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
-                <section class="anime-carousel-section">
-                    <h2 class="carousel-title">Animes de Romance</h2>
-                    <div id="romance-content-container">
-                        <!-- Conteúdo será carregado dinamicamente -->
-                    </div>
-                </section>
-            </main>
+            <div id="romance-content-container"></div>
         </div>
         <div class="category-content" id="isekai-content">
-            <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
-                <section class="anime-carousel-section">
-                    <h2 class="carousel-title">Animes Isekai</h2>
-                    <div id="isekai-content-container">
-                        <!-- Conteúdo será carregado dinamicamente -->
-                    </div>
-                </section>
-            </main>
+            <div id="isekai-content-container"></div>
         </div>
         <div class="category-content" id="fantasia-content">
-            <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
-                <section class="anime-carousel-section">
-                    <h2 class="carousel-title">Animes de Fantasia</h2>
-                    <div id="fantasia-content-container">
-                        <!-- Conteúdo será carregado dinamicamente -->
-                    </div>
-                </section>
-            </main>
+            <div id="fantasia-content-container"></div>
         </div>
     </div>
     <div class="footer">
@@ -1483,7 +1461,7 @@ body {
             iframe.title = `Conteúdo de ${category}`;
             iframe.style.width = '100%';
             iframe.style.height = '100%';
-            iframe.style.minHeight = '500px';
+            iframe.style.minHeight = 'calc(100vh - 115px)';
             iframe.style.border = 'none';
             // Adiciona um fallback caso o iframe não carregue
             iframe.onload = function() {
@@ -1708,4 +1686,3 @@ body {
     </script>
 </body>
 </html>
-
