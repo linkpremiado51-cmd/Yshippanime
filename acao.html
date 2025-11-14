@@ -104,6 +104,22 @@
 </div>
 
 <script type="module">
+    // =============== ✨ SINCRONIZAÇÃO DE TEMA E ZOOM (INÍCIO) ===============
+    const urlParams = new URLSearchParams(window.location.search);
+    const themeFromParent = urlParams.get('theme') || localStorage.getItem('theme') || 'light';
+    const zoomFromParent = parseFloat(urlParams.get('zoom')) || parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
+
+    // Aplica o tema
+    document.body.dataset.theme = themeFromParent;
+
+    // Aplica o zoom
+    document.documentElement.style.fontSize = `${16 * zoomFromParent}px`;
+
+    // Salva no localStorage da categoria (caso o usuário recarregue diretamente)
+    localStorage.setItem('theme', themeFromParent);
+    localStorage.setItem('zoomLevel', zoomFromParent.toFixed(2));
+    // =============== ✨ SINCRONIZAÇÃO DE TEMA E ZOOM (FIM) ===============
+
     // Dados específicos da categoria Ação
     const acaoData = {
         hero: { title: "Animes de Ação", subtitle: "Batalhas épicas, lutas intensas e adrenalina pura!", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp" },
