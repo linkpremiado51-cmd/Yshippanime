@@ -1,0 +1,80 @@
+<!-- Use o mesmo <head> e CSS do acao.html -->
+<!-- Substitua apenas o corpo e o script, como nos exemplos anteriores -->
+<!-- Abaixo está o corpo e script para isekai.html -->
+<body data-theme="light">
+<div class="zoom-container">
+    <section class="hero-section" id="hero-section">
+        <div class="hero-slide active">
+            <img src="https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp" alt="Isekai" loading="eager">
+            <div class="hero-info">
+                <h2>Animes de Isekai</h2>
+                <p>Transportados para mundos mágicos, reinos e realidades paralelas!</p>
+            </div>
+        </div>
+    </section>
+    <section class="anime-carousel-section">
+        <h2 class="carousel-title">Recomendados em Isekai</h2>
+        <div id="recomendados-isekai" class="carousel-horizontal"></div>
+    </section>
+    <section class="anime-carousel-section">
+        <h2 class="carousel-title">Lançamentos de Isekai</h2>
+        <div id="lancamentos-isekai" class="carousel-horizontal"></div>
+    </section>
+    <section class="anime-carousel-section">
+        <h2 class="carousel-title">Clássicos Imperdíveis</h2>
+        <div id="classicos-isekai" class="anime-grid"></div>
+    </section>
+</div>
+
+<script type="module">
+    const isekaiData = {
+        hero: { title: "Animes de Isekai", subtitle: "Transportados para mundos mágicos, reinos e realidades paralelas!", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp" },
+        recomendados: [
+            {title:"Mushoku Tensei",subtitle:"T2",image:"https://i.postimg.cc/bNtRN7H4/IMG-20251111-111459.jpg",url:"catalogo/mushoku_tensei.html",synopsis:"Reencarnação de um NEET em mundo de magia.",trailerId:"placeholder"},
+            {title:"Re:Zero",subtitle:"T2",image:"https://i.postimg.cc/mDdgXykx/images-2025-11-11T223742-007.jpg",url:"catalogo/re_zero.html",synopsis:"Retorno à morte para salvar seus amigos.",trailerId:"placeholder"},
+            {title:"Sword Art Online",subtitle:"T1",image:"https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg",url:"catalogo/sao.html",synopsis:"Presos em jogo de realidade virtual.",trailerId:"placeholder"},
+            {title:"That Time I Got Reincarnated as a Slime",subtitle:"T3",image:"https://i.postimg.cc/nLwBp25K/IMG-20251111-104434.jpg",url:"catalogo/slime.html",synopsis:"Homem renasce como slime inteligente.",trailerId:"placeholder"},
+            {title:"Konosuba",subtitle:"T2",image:"https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg",url:"catalogo/konosuba.html",synopsis:"Comédia absurda em mundo de fantasia.",trailerId:"Yv2yD9V-13A"}
+        ],
+        lancamentos: [
+            {title:"The Banished Court Magician",subtitle:"Out 2025",image:"https://i.postimg.cc/yxt4hMkM/images-16.webp",url:"javascript:showNotification('Em breve')",synopsis:"Mago exilado busca se tornar o mais forte.",trailerId:""},
+            {title:"A Gatherer’s Adventure in Isekai",subtitle:"Out 2025",image:"https://i.postimg.cc/xTGqj5hJ/images-2025-11-11T112830-071.jpg",url:"javascript:showNotification('Em breve')",synopsis:"Coletor de recursos em mundo perigoso.",trailerId:""},
+            {title:"Dad is a Hero, Mom is a Spirit",subtitle:"Out 2025",image:"https://i.postimg.cc/NFWS2Rns/images-2025-11-11T112142-360.jpg",url:"javascript:showNotification('Em breve')",synopsis:"Filho de herói e espírito em novo mundo.",trailerId:""}
+        ],
+        classicos: [
+            {title:"Frieren: Beyond Journey's End",subtitle:"T1",image:"https://i.postimg.cc/m2zm1zR8/IMG-20251111-111359.jpg",url:"catalogo/frieren.html",synopsis:"Maga reflete após vitória do grupo.",trailerId:"placeholder"},
+            {title:"Sword Art Online",subtitle:"T1",image:"https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg",url:"catalogo/sao.html",synopsis:"Início do gênero moderno de isekai.",trailerId:"placeholder"},
+            {title:"No Game No Life",subtitle:"12 eps",image:"https://i.postimg.cc/DwDtGPkM/IMG-20251111-101701.jpg",url:"catalogo/ngnl.html",synopsis:"Irmãos brilhantes em mundo regido por jogos.",trailerId:"placeholder"},
+            {title:"Overlord",subtitle:"T4",image:"https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg",url:"catalogo/overlord.html",synopsis:"Jogador fica preso como vilão supremo.",trailerId:"placeholder"},
+            {title:"The Rising of the Shield Hero",subtitle:"T3",image:"https://i.postimg.cc/Pr6cssyV/IMG-20251111-103924.jpg",url:"catalogo/shield_hero.html",synopsis:"Herói do escudo é traído e busca redenção.",trailerId:"placeholder"}
+        ]
+    };
+
+    // ... (cole o mesmo código JS das funções showNotification, renderAnimeCards, buildHero, setupAutoScroll, openDetailsModal)
+
+    document.addEventListener('DOMContentLoaded',()=>{
+        buildHero();
+        setupAutoScroll('recomendados-isekai', isekaiData.recomendados);
+        setupAutoScroll('lancamentos-isekai', isekaiData.lancamentos);
+        renderAnimeCards('classicos-isekai', isekaiData.classicos);
+
+        let timer=null;
+        document.querySelectorAll('.anime-card').forEach(card=>{
+            card.addEventListener('click',e=>{
+                e.preventDefault();
+                if(timer===null){
+                    timer=setTimeout(()=>{
+                        timer=null;
+                        const u=card.dataset.url;
+                        if(u.startsWith('javascript:')) eval(u);
+                        else if(u) location.href=u;
+                    },300);
+                }else{
+                    clearTimeout(timer); timer=null;
+                    openDetailsModal(card.dataset.title, card.dataset.synopsis, card.dataset.trailerid);
+                }
+            });
+        });
+    });
+</script>
+</body>
