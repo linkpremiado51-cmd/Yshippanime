@@ -1073,7 +1073,7 @@ body {
         </div>
     </div>
     <script type="module">
-        // Importações e Configurações de Firebase (Mantidas do original)
+        // Importações e Configurações de Firebase
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
         import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
         import { getFirestore, collection, getDocs, doc, getDoc, addDoc } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
@@ -1092,48 +1092,28 @@ body {
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
         console.log('3. [FIREBASE] App, Analytics e Firestore inicializados.');
-        // Constantes Globais
         const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
         const CONSTRUCTION_SUBTITLE = "Sistema em construção";
-        // ==========================================================
-        // ✨ DADOS ATUALIZADOS E NOVOS DADOS
-        // ==========================================================
         const homepageData = {
             hero: [
                 {
                     title: "Spy-Famyli",
                     subtitle: "Todos têm um lado oculto...",
                     image: "https://i.postimg.cc/pL6hhZQs/28325-1-9_8b.webp",
-                    url: "catalogo/chotto_dake.html" // Link real
+                    url: "catalogo/chotto_dake.html"
                 },
                 { title: "My Hero Academy final", subtitle: "A nova temporada está aqui!", image: "https://i.postimg.cc/5yTTQD0f/28328-1_9_8b.webp", url: CONSTRUCTION_LINK },
                 { title: "L9999", subtitle: "Ele quase foi morto nas profundezas da masmorra...", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp", url: CONSTRUCTION_LINK }
             ],
-            // ✨ NOVO CARROSSEL: Para Maratonar em 1 Dia
             bingeWatch: [
-                { 
-                    title: "Another", 
-                    subtitle: "12 Episódios (Terror)", 
-                    image: "https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg", 
-                    url: CONSTRUCTION_LINK, 
-                    synopsis: "Em 1998, um estudante transferido, Koichi Sakakibara, se aproxima da misteriosa Misaki Mei, mas descobre que ela e o resto de sua classe escondem um segredo terrível ligado a uma série de mortes.", 
-                    trailerId: "wG2c27b0X-E" // ID do trailer do YouTube (Exemplo)
-                },
-                { 
-                    title: "Death Note", 
-                    subtitle: "37 Episódios (Suspense)", 
-                    image: "https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg", 
-                    url: CONSTRUCTION_LINK, 
-                    synopsis: "Um estudante do ensino médio encontra um caderno sobrenatural que lhe permite matar qualquer pessoa escrevendo seu nome. Ele decide criar um mundo sem o mal, mas seus planos são frustrados por um detetive gênio.", 
-                    trailerId: "Yv2yD9V-13A" // ID do trailer do YouTube (Exemplo)
-                },
+                { title: "Another", subtitle: "12 Episódios (Terror)", image: "https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg", url: CONSTRUCTION_LINK, synopsis: "Em 1998, um estudante transferido, Koichi Sakakibara, se aproxima da misteriosa Misaki Mei, mas descobre que ela e o resto de sua classe escondem um segredo terrível ligado a uma série de mortes.", trailerId: "wG2c27b0X-E" },
+                { title: "Death Note", subtitle: "37 Episódios (Suspense)", image: "https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg", url: CONSTRUCTION_LINK, synopsis: "Um estudante do ensino médio encontra um caderno sobrenatural que lhe permite matar qualquer pessoa escrevendo seu nome. Ele decide criar um mundo sem o mal, mas seus planos são frustrados por um detetive gênio.", trailerId: "Yv2yD9V-13A" },
                 { title: "Code Geass: Lelouch of the Rebellion", subtitle: "25 Episódios (Mecha, Militar)", image: "https://i.postimg.cc/zvwvwbMc/135089.jpg", url: CONSTRUCTION_LINK, synopsis: "O exilado príncipe Lelouch vi Britannia ganha um poder misterioso chamado Geass, que lhe permite dar ordens absolutas. Ele usa esse poder para liderar uma rebelião contra seu império tirânico.", trailerId: "X_xT6KjJgq0" },
                 { title: "Cowboy Bebop", subtitle: "26 Episódios (Sci-Fi, Ação)", image: "https://i.postimg.cc/yxt4hMkM/images-16.webp", url: CONSTRUCTION_LINK, synopsis: "Acompanha as desventuras de um grupo de caçadores de recompensas viajando pela galáxia a bordo da nave espacial Bebop no ano de 2071.", trailerId: "O9-H-Y13b4w" },
                 { title: "Puella Magi Madoka Magica", subtitle: "12 Episódios (Drama, Mágica)", image: "https://i.postimg.cc/7YcyLYbj/127508.webp", url: CONSTRUCTION_LINK, synopsis: "Duas garotas se deparam com uma criatura mágica que se oferece para realizar qualquer desejo delas. Em troca, elas devem se tornar 'garotas mágicas' e lutar contra bruxas.", trailerId: "C1J6iG3c18E" },
                 { title: "Haikyuu!! T1", subtitle: "25 Episódios (Esportes)", image: "https://i.postimg.cc/zGgkd9cK/IMG-20251111-104051.jpg", url: CONSTRUCTION_LINK, synopsis: "Um garoto baixinho, Shoyo Hinata, se junta ao time de vôlei da escola para provar que a altura não importa no vôlei.", trailerId: "sFvQk11Xh00" }
             ],
             recentReleases: [
-                // Mantidos os dados originais e trailers IDs placeholder
                 { title: "My Hero Academia Final Season", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/wM05SzhW/IMG-20251111-112503.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para My Hero Academia Final Season.", trailerId: "qI9hDqfC6x0" },
                 { title: "Spy × Family S3", subtitle: "Ep. 1 (4 de Out. 2025)", image: "https://i.postimg.cc/NMc3p8GT/IMG-20251111-111133.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Spy × Family S3.", trailerId: "o9e9P2H9s3c" },
                 { title: "One‑Punch Man S3", subtitle: "Ep. 1 (12 de Out. 2025)", image: "https://i.postimg.cc/Tw040ZHV/images-2025-11-11T111248-289.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para One‑Punch Man S3.", trailerId: "bYg7K64b55c" },
@@ -1152,22 +1132,8 @@ body {
                 { title: "To Your Eternity S3", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/nhLSVRr9/images-2025-11-11T112408-236.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para To Your Eternity S3.", trailerId: "placeholder" },
             ],
             popularAnimes: [
-                {
-                    title: "Naruto Shippuden",
-                    subtitle: "500 Episódios",
-                    image: "https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg",
-                    url: "catalogo/chotto_dake.html", // Link real
-                    synopsis: "Sinopse placeholder para Naruto Shippuden teste.",
-                    trailerId: "placeholder"
-                },
-                { 
-                    title: "Dragon Ball Super", 
-                    subtitle: "131 Episódios", 
-                    image: "https://i.postimg.cc/DwDtGPkM/IMG-20251111-101701.jpg", 
-                    url: "catalogo/orient.html", // Link real (Exemplo)
-                    synopsis: "Sinopse placeholder para Dragon Ball Super.",
-                    trailerId: "placeholder"
-                },
+                { title: "Naruto Shippuden", subtitle: "500 Episódios", image: "https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg", url: "catalogo/chotto_dake.html", synopsis: "Sinopse placeholder para Naruto Shippuden teste.", trailerId: "placeholder" },
+                { title: "Dragon Ball Super", subtitle: "131 Episódios", image: "https://i.postimg.cc/DwDtGPkM/IMG-20251111-101701.jpg", url: "catalogo/orient.html", synopsis: "Sinopse placeholder para Dragon Ball Super.", trailerId: "placeholder" },
                 { title: "Death Note", subtitle: "37 Episódios", image: "https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Death Note.", trailerId: "Yv2yD9V-13A" },
                 { title: "Fullmetal Alchemist: Brotherhood", subtitle: "64 Episódios", image: "https://i.postimg.cc/xTRQX4Rc/IMG-20251111-103449.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Fullmetal Alchemist: Brotherhood.", trailerId: "qE5Y6u0Gg4M" },
                 { title: "Hunter x Hunter (2011)", subtitle: "148 Episódios", image: "https://i.postimg.cc/Pr6cssyV/IMG-20251111-103924.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Hunter x Hunter (2011).", trailerId: "d6k-tV-3V3w" },
@@ -1183,22 +1149,8 @@ body {
                 { title: "Your Name", subtitle: "Filme", image: "https://i.postimg.cc/V6ffZPDN/MV5BOTkzMGIyYzAtMDQyYi00OTkxLWI2ZGMtODNmYjMyMWM3ZGY1XkEyXkFqcGc@._V1_.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Your Name.", trailerId: "placeholder" },
             ],
             recentlyAdded: [
-                { 
-                    title: "Chotto dake Ai ga Omoi Dark Elf ga Isekai kara Oikaketekita ", 
-                    subtitle: "12 Episódios", 
-                    image: "https://i.postimg.cc/1XYJM2Dt/MV5BNjc1MDQ2NWIt-M2Y1My00ZDE5LThl-Yj-Ut-ZTdk-ZTZj-Yzdl-NWZi-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg", 
-                    url: "catalogo/chotto_dake.html", // Link real (Exemplo)
-                    synopsis: "Sinopse Um estudante completa uma missão para derrotar um rei demônio em outro mundo, mas quando ele retorna, é caçado por uma elfa que se apaixonou por ele.",
-                    trailerId: "placeholder"
-                },
-                { 
-                    title: "The Faraway Paladin", 
-                    subtitle: "12 Episódios", 
-                    image: "https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg", 
-                    url: "catalogo/saihate_no_paradin/saihate_no_paradin.html", // Link real (Exemplo)
-                    synopsis: "Sinopse Uma cidade dos mortos, destruída há muito tempo... Nesta cidade afastada de todos, há uma única criança viva, Will. O menino é criado por três mortos vivos: Blood, um espadachim esqueleto; Maria, uma freira múmia; e Gus, um mago fantasma. Ele é criado por eles recebendo ensinamentos e amor. Mas um dia o jovem começa a ter dúvidas. Quem é este 'eu'? Assim os mistérios dessa cidade longamente passam a ser vendidos por Will. O amor e a misericórdia dos deuses bons. A paranóia e a loucura dos deuses maus. E ao saber de tudo isso, o jovem começa o caminho rumo a se tornar um paladino.",
-                    trailerId: "placeholder"
-                },
+                { title: "Chotto dake Ai ga Omoi Dark Elf ga Isekai kara Oikaketekita ", subtitle: "12 Episódios", image: "https://i.postimg.cc/1XYJM2Dt/MV5BNjc1MDQ2NWIt-M2Y1My00ZDE5LThl-Yj-Ut-ZTdk-ZTZj-Yzdl-NWZiXk-EyXkFqc-Gc-V1-FMjpg-UX1000.jpg", url: "catalogo/chotto_dake.html", synopsis: "Sinopse Um estudante completa uma missão para derrotar um rei demônio em outro mundo, mas quando ele retorna, é caçado por uma elfa que se apaixonou por ele.", trailerId: "placeholder" },
+                { title: "The Faraway Paladin", subtitle: "12 Episódios", image: "https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg", url: "catalogo/saihate_no_paradin/saihate_no_paradin.html", synopsis: "Sinopse Uma cidade dos mortos, destruída há muito tempo... Nesta cidade afastada de todos, há uma única criança viva, Will. O menino é criado por três mortos vivos: Blood, um espadachim esqueleto; Maria, uma freira múmia; e Gus, um mago fantasma. Ele é criado por eles recebendo ensinamentos e amor. Mas um dia o jovem começa a ter dúvidas. Quem é este 'eu'? Assim os mistérios dessa cidade longamente passam a ser vendidos por Will. O amor e a misericórdia dos deuses bons. A paranóia e a loucura dos deuses maus. E ao saber de tudo isso, o jovem começa o caminho rumo a se tornar um paladino.", trailerId: "placeholder" },
                 { title: "gachiakuta", subtitle: "25 Episódios", image: "https://i.postimg.cc/mDdgXykx/images-2025-11-11T223742-007.jpg", url: "catalogo/gachiakuta.html", synopsis: "Sinopse Rudo, um jovem órfão que vive em uma favela marginalizada, discriminada pela elite de uma cidade flutuante. Após ser falsamente acusado de assassinato, ele é jogado em um inferno chamado O Poço, um lugar habitado por monstros de lixo. Para sobreviver e buscar vingança, ele precisa dominar um novo poder e se unir aos Limpadores (Cleaners), um grupo que luta contra as criaturas do lixo.", trailerId: "placeholder" },
                 { title: "Cyberpunk: Edgerunners", subtitle: "10 Episódios", image: "https://i.postimg.cc/26PSN8QP/images-17.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse Cyberpunk: Edgerunners conta a história de David Martinez, um garoto de rua que, após perder tudo, decide se tornar um edgerunner, um mercenário fora da lei também conhecido como cyberpunk — para sobreviver em uma distópica cidade futurista obcecada por tecnologia e implantes cibernéticos. A série é uma produção de 10 episódios derivada do videogame Cyberpunk 2077, criada em colaboração com o Studio Trigger e a Netflix. ", trailerId: "placeholder" },
                 { title: "Ranking of Kings", subtitle: "23 Episódios", image: "https://i.postimg.cc/qMpdh3vG/images-18.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse O povo do reino despreza o jovem Principe Bojji que nao consegue ouvir nem falar chamando-o de O Principe Inutil e zombando de sua suposta tolice Contudo embora Bojji nao seja fisicamente forte ele nao falta coracao Um encontro fortuito com uma criatura das sombras que deveria tê-lo traumatizado faz com que ele acredite ter encontrado um amigo em meio a aqueles que so notam suas deficiencias Ele comeca a se encontrar regularmente com Kage a sombra a ponto de ate mesmo a criatura antes aspera comecar a se mostrar mais amigavel A improvavel amizade entre Kage e Bojji lança as bases da jornada do principe uma jornada na qual ele pretende vencer seus medos e inseguranças Apesar do ridiculo constante que enfrenta Bojji esta determinado a realizar seu desejo de se tornar o melhor rei que puder ser", trailerId: "placeholder" },
@@ -1224,7 +1176,6 @@ body {
                 { title: "Slice of Life", subtitle: "Vida Cotidiana", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Slice of Life.", trailerId: "placeholder" },
                 { title: "Sci-Fi", subtitle: "Ficção Científica", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Sci-Fi.", trailerId: "placeholder" },
                 { title: "Suspense", subtitle: "Mistério e Tensão", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Suspense.", trailerId: "placeholder" },
-                // ✨ NOVOS GÊNEROS SOLICITADOS
                 { title: "Mecha", subtitle: "Robôs Gigantes", url: CONSTRUCTION_LINK, synopsis: "Animes que apresentam robôs gigantes ou máquinas de combate pilotadas.", trailerId: "placeholder" },
                 { title: "Militar", subtitle: "Estratégia e Guerra", url: CONSTRUCTION_LINK, synopsis: "Temas de guerra, exércitos e estratégia militar.", trailerId: "placeholder" },
                 { title: "Música", subtitle: "Melodias e Bandas", url: CONSTRUCTION_LINK, synopsis: "Animes focados em performances musicais e desenvolvimento de talentos.", trailerId: "placeholder" },
@@ -1234,25 +1185,15 @@ body {
                 { title: "Esportes", subtitle: "Competição e Paixão", url: CONSTRUCTION_LINK, synopsis: "Competição e Paixão", trailerId: "placeholder" },
             ],
         };
-        // Combina todos os animes em uma única lista para o carrossel de Recomendações
         const allAnimes = [
             ...homepageData.recentReleases,
             ...homepageData.popularAnimes,
             ...homepageData.recentlyAdded,
             ...homepageData.bingeWatch
         ];
-        // ==========================================================
-        // ✨ FUNÇÕES DE RENDERIZAÇÃO E LÓGICA (Com Edições)
-        // ==========================================================
-        window.searchAnimes = async (query) => {
-            // Lógica de busca mantida
-        };
-        async function getIPAddress() {
-            // Lógica de IP mantida
-        }
-        async function recordReportError(errorType) {
-            // Lógica de reporte de erro mantida
-        }
+        window.searchAnimes = async (query) => {};
+        async function getIPAddress() {}
+        async function recordReportError(errorType) {}
         function openHamburgerMenu() {
             document.getElementById('hamburgerMenu')?.classList.add('open');
             document.getElementById('menuOverlay')?.classList.add('active');
@@ -1280,7 +1221,6 @@ body {
             }, 4000);
         }
         window.showNotification = showNotification;
-        // ✨ NOVA FUNÇÃO PARA ABRIR O MODAL DE DETALHES (Sinopse e Trailer)
         function openDetailsModal(title, synopsis, trailerId) {
             const modal = document.getElementById('detailsModal');
             const titleElem = document.getElementById('detailsTitle');
@@ -1291,32 +1231,22 @@ body {
                 textElem.textContent = synopsis;
                 let trailerUrl = '';
                 if (trailerId && trailerId !== 'placeholder') {
-                    // Monta a URL do YouTube com autoplay e modo sem cookies
                     trailerUrl = `https://www.youtube-nocookie.com/embed/${trailerId}?autoplay=1&mute=0&controls=1&rel=0&showinfo=0&loop=0`;
                 } else {
-                    // Placeholder ou link de vídeo de erro
-                    trailerUrl = `https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0`; // Rickroll mudo
+                    trailerUrl = `https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0`;
                 }
                 trailerFrame.src = trailerUrl;
                 modal.style.display = 'flex';
             }
         }
-        // ✨ NOVA FUNÇÃO PARA FECHAR O MODAL DE DETALHES
         function closeDetailsModal() {
             const modal = document.getElementById('detailsModal');
             const trailerFrame = document.getElementById('trailerVideo');
             if (modal && trailerFrame) {
-                // Para o vídeo limpando o src do iframe
                 trailerFrame.src = '';
                 modal.style.display = 'none';
             }
         }
-        /**
-         * Renderiza os cards de anime no grid/carrossel
-         * @param {string} containerId ID do elemento onde os cards serão renderizados
-         * @param {Array} animeList Lista completa de animes a serem usados
-         * @param {boolean} isHorizontal Se deve renderizar em layout horizontal (carousel)
-         */
         function renderAnimeCards(containerId, animeList, isHorizontal = false) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1327,17 +1257,12 @@ body {
                 container.classList.add('anime-grid');
                 container.classList.remove('carousel-horizontal');
             }
-            // Limpa o conteúdo
             container.innerHTML = '';
-            // Garante que não haja repetição de cards com os mesmos nomes
             const uniqueAnimes = animeList.filter((anime, index, self) =>
-                index === self.findIndex((a) => (
-                    a.title === anime.title
-                ))
+                index === self.findIndex((a) => a.title === anime.title)
             );
             uniqueAnimes.forEach((anime, index) => {
                 const card = document.createElement('div');
-                // Mantém a URL do data set (CONSTRUCTION_LINK ou catalogo/*.html)
                 const finalUrl = (anime.url === '#' || !anime.url) ? CONSTRUCTION_LINK : anime.url;
                 const finalSubtitle = finalUrl.startsWith('javascript:') ? CONSTRUCTION_SUBTITLE : anime.subtitle;
                 card.className = 'anime-card';
@@ -1345,7 +1270,7 @@ body {
                 card.dataset.url = finalUrl;
                 card.dataset.title = anime.title;
                 card.dataset.synopsis = anime.synopsis || 'Sinopse não disponível.';
-                card.dataset.trailerid = anime.trailerId || ''; // ✨ NOVO: Adiciona o ID do trailer
+                card.dataset.trailerid = anime.trailerId || '';
                 if (anime.image) {
                     card.innerHTML = `
                         <div class="anime-card-image" style="background-image: url('${anime.image}')"></div>
@@ -1364,12 +1289,6 @@ body {
                 container.appendChild(card);
             });
         }
-        /**
-         * Inicializa a renderização do carrossel
-         * @param {string} containerId ID do elemento DOM onde renderizar
-         * @param {Array} data A lista completa de dados do carrossel
-         * @param {boolean} isHorizontal Se deve ser um carrossel horizontal
-         */
         function initializeCarousel(containerId, data, isHorizontal = false) {
             renderAnimeCards(containerId, data, isHorizontal);
         }
@@ -1400,24 +1319,19 @@ body {
                 slides[currentHero].classList.add('active');
             }, 5000);
         }
-        /**
-         * Lógica para o carrossel "Anime I Geek Recomenda"
-         */
         function setupAutoScrollCarousel(containerId, animeList) {
             const container = document.getElementById(containerId);
             if (!container) return;
-            // Usa a lista fornecida (que pode ser a embaralhada ou a fixa de Maratona)
             initializeCarousel(containerId, animeList, true);
             const cards = container.querySelectorAll('.anime-card');
             if (cards.length === 0) return;
             let currentIndex = 0;
             let intervalId;
-            const scrollInterval = 5000; // every second
+            const scrollInterval = 5000;
             const startAutoScroll = () => {
                 clearInterval(intervalId);
                 intervalId = setInterval(() => {
                     const gap = parseInt(getComputedStyle(container).gap) || 0;
-                    // Tenta calcular a largura correta, assumindo que todos os cards têm a mesma largura de carrossel
                     const cardWidth = cards[0] ? cards[0].offsetWidth + gap : 0;
                     if (cardWidth === 0) return;
                     currentIndex = (currentIndex + 1) % cards.length;
@@ -1425,68 +1339,53 @@ body {
                         left: currentIndex * cardWidth,
                         behavior: 'smooth'
                     });
-                    // Se chegar no penúltimo (para não mostrar o último antes de resetar) ou no último se for lista pequena
                     if (currentIndex >= cards.length - 1) { 
                         setTimeout(() => {
                             container.scrollTo({ left: 0, behavior: 'auto' });
                             currentIndex = 0;
-                        }, 300); // timing for smooth transition
+                        }, 300);
                     }
                 }, scrollInterval);
             };
             const stopAutoScroll = () => clearInterval(intervalId);
             const userInteractionHandler = () => {
                 stopAutoScroll();
-                setTimeout(startAutoScroll, 5000); // resume after 5 seconds of inactivity
+                setTimeout(startAutoScroll, 5000);
             };
             container.addEventListener('touchstart', userInteractionHandler);
             container.addEventListener('mousedown', userInteractionHandler);
             container.addEventListener('wheel', userInteractionHandler);
-            // Também adiciona event listeners para o scroll
             container.addEventListener('scroll', userInteractionHandler);
             startAutoScroll();
         }
-        // ==========================================================
-        // ✨ FUNÇÕES PARA CARREGAR CONTEÚDO EXTERNO
-        // ==========================================================
+        // ✅ FUNÇÃO ATUALIZADA: CARREGA CATEGORIA COM TEMA + ZOOM + PRÉ-CARREGAMENTO
         function loadCategoryContent(category) {
             const containerId = `${category}-content-container`;
             const container = document.getElementById(containerId);
             if (!container) return;
-            // Limpa o conteúdo anterior
             container.innerHTML = '';
-            // Cria um iframe para carregar o conteúdo externo
-            const iframe = document.createElement('iframe');
             const currentTheme = document.body.dataset.theme || 'light';
-const currentZoom = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
-iframe.src = `${category}.html?theme=${encodeURIComponent(currentTheme)}&zoom=${currentZoom.toFixed(2)}`;
+            const currentZoom = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
+            const iframe = document.createElement('iframe');
+            iframe.src = `${category}.html?theme=${encodeURIComponent(currentTheme)}&zoom=${currentZoom.toFixed(2)}`;
             iframe.title = `Conteúdo de ${category}`;
             iframe.style.width = '100%';
             iframe.style.height = '100%';
             iframe.style.minHeight = 'calc(100vh - 115px)';
             iframe.style.border = 'none';
-            // Adiciona um fallback caso o iframe não carregue
             iframe.onload = function() {
-                // Verifica se o conteúdo foi carregado
                 if (this.contentDocument && this.contentDocument.body) {
-                    // Conteúdo carregado com sucesso
-                    console.log(`Conteúdo de ${category} carregado com sucesso.`);
+                    console.log(`Conteúdo de ${category} carregado.`);
                 } else {
-                    // Conteúdo não carregado - mostra mensagem de fallback
-                    container.innerHTML = `<p>Conteúdo de ${category} ainda não disponível. Volte mais tarde!</p>`;
+                    container.innerHTML = `<p>Conteúdo de ${category} indisponível.</p>`;
                 }
             };
             iframe.onerror = function() {
-                // Erro ao carregar o iframe - mostra mensagem de fallback
-                container.innerHTML = `<p>Erro ao carregar o conteúdo de ${category}. Volte mais tarde!</p>`;
+                container.innerHTML = `<p>Erro ao carregar ${category}.</p>`;
             };
             container.appendChild(iframe);
         }
-        // ==========================================================
-        // ✨ FUNÇÕES PARA NAVEGAÇÃO ENTRE CATEGORIAS
-        // ==========================================================
         function showCategory(category) {
-            // Atualiza o menu de navegação
             document.querySelectorAll('.nav-menu-item').forEach(item => {
                 if (item.dataset.category === category) {
                     item.classList.add('active');
@@ -1494,11 +1393,9 @@ iframe.src = `${category}.html?theme=${encodeURIComponent(currentTheme)}&zoom=${
                     item.classList.remove('active');
                 }
             });
-            // Mostra o conteúdo da categoria selecionada
             document.querySelectorAll('.category-content').forEach(content => {
                 if (content.id === `${category}-content`) {
                     content.classList.add('active');
-                    // Carrega o conteúdo externo se for uma categoria diferente de home
                     if (category !== 'home') {
                         loadCategoryContent(category);
                     }
@@ -1507,23 +1404,28 @@ iframe.src = `${category}.html?theme=${encodeURIComponent(currentTheme)}&zoom=${
                 }
             });
         }
-        // ==========================================================
-        // ✨ CONSTRUÇÃO DA PÁGINA E EVENT LISTENERS
-        // ==========================================================
+        // ✅ PRÉ-CARREGAMENTO DAS CATEGORIAS
+        function preloadCategoryPages() {
+            const categories = ['acao', 'aventura', 'romance', 'isekai', 'fantasia'];
+            categories.forEach(cat => {
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = `${cat}.html`;
+                link.as = 'document';
+                document.head.appendChild(link);
+            });
+            console.log('[PRELOAD] Categorias pré-carregadas para navegação rápida.');
+        }
         function buildHomepage() {
-            console.log('[HOMEPAGE] Construindo página inicial (Dados Internos)...');
+            console.log('[HOMEPAGE] Construindo página inicial...');
             buildHeroSlider('hero-section', homepageData.hero);
-            // Carrosséis estáticos (Grid)
             initializeCarousel('recent-releases-grid', homepageData.recentReleases);
             initializeCarousel('popular-animes-grid', homepageData.popularAnimes);
             initializeCarousel('recently-added-grid', homepageData.recentlyAdded);
-            // Reutiliza 'generos-externo-grid' para o carrossel de Gêneros
             initializeCarousel('generos-externo-grid', homepageData.genresAnimes);
-            // Carrossel de Recomendações (Horizontal e Automático)
             const shuffled = [...allAnimes].sort(() => 0.5 - Math.random());
             const recommendList = shuffled.slice(0, 10);
             setupAutoScrollCarousel('recommend-carousel', recommendList);
-            // ✨ Carrossel "Para Maratonar em 1 Dia" (Horizontal e Automático, com lista fixa)
             setupAutoScrollCarousel('binge-watch-carousel', homepageData.bingeWatch);
         }
         const INITIAL_ZOOM = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
@@ -1564,10 +1466,8 @@ iframe.src = `${category}.html?theme=${encodeURIComponent(currentTheme)}&zoom=${
             zoomInBtnFixed?.addEventListener('click', () => handleZoom('in'));
             zoomOutBtnFixed?.addEventListener('click', () => handleZoom('out'));
             updateZoom(false);
-          // Clica no botão de zoom-in após 1 segundo
             setTimeout(() => {
                 if (zoomInBtnFixed) zoomInBtnFixed.click();
-                // Meio segundo depois, clica no botão de zoom-out
                 setTimeout(() => {
                     if (zoomOutBtnFixed) zoomOutBtnFixed.click();
                 }, 500);
@@ -1622,9 +1522,6 @@ iframe.src = `${category}.html?theme=${encodeURIComponent(currentTheme)}&zoom=${
                     }
                 });
             });
-           // ==========================================================
-           // ✨ LÓGICA DO CLIQUE DUPLO AGORA ABRE O NOVO MODAL
-           // ==========================================================
             let clickTimer = null;
             document.querySelectorAll('.anime-card').forEach(card => {
                 card.addEventListener('click', (e) => {
@@ -1632,40 +1529,31 @@ iframe.src = `${category}.html?theme=${encodeURIComponent(currentTheme)}&zoom=${
                     if (clickTimer === null) {
                         clickTimer = setTimeout(() => {
                             clickTimer = null;
-                            // Single click:
                             const url = card.dataset.url;
                             if (url && url.startsWith('javascript:')) {
-                                // 1. EXECUTA JS (Dispara a notificação de "Sistema em construção")
                                 eval(url);
                             } else if (url && url !== "") {
-                                // 2. NAVEGA (Redireciona para catalogo/anime.html)
                                 window.location.href = url;
                             } else {
                                 console.warn("URL do anime não definida:", card.dataset.title);
                             }
-                        }, 300); // Tempo para detectar double click
+                        }, 300);
                     } else {
                         clearTimeout(clickTimer);
                         clickTimer = null;
-                        // Double click: abre modal de DETALHES
                         const title = card.dataset.title;
                         const synopsis = card.dataset.synopsis;
-                        const trailerId = card.dataset.trailerid; // ✨ NOVO: pega o ID do trailer
+                        const trailerId = card.dataset.trailerid;
                         openDetailsModal(title, synopsis, trailerId);
                     }
                 });
             });
-            // Listener para fechar o novo modal de detalhes
             document.getElementById('closeDetailsModal')?.addEventListener('click', closeDetailsModal);
             document.getElementById('detailsModal')?.addEventListener('click', (e) => {
-                // Fechar se clicar no overlay
                 if (e.target.classList.contains('modal-overlay')) {
                     closeDetailsModal();
                 }
             });
-            // ==========================================================
-            // ✨ EVENT LISTENERS PARA O MENU DE NAVEGAÇÃO
-            // ==========================================================
             document.querySelectorAll('.nav-menu-item').forEach(item => {
                 item.addEventListener('click', (e) => {
                     const category = e.currentTarget.dataset.category;
@@ -1678,6 +1566,7 @@ iframe.src = `${category}.html?theme=${encodeURIComponent(currentTheme)}&zoom=${
             console.log('17. [DOM] DOMContentLoaded. Chamando buildHomepage() e setupEventListeners().');
             buildHomepage();
             setupEventListeners();
+            preloadCategoryPages(); // ✅ PRÉ-CARREGA AS CATEGORIAS AO INICIAR
         });
         window.addEventListener('beforeunload', () => {
             console.log('[LIFECYCLE] Evento beforeunload. Salvando estado...');
