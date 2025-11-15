@@ -1502,7 +1502,15 @@ body:not(.loading) #initial-loader {
                 }
                 currentScale = parseFloat(currentScale.toFixed(2));
                 updateZoom(true);
-            }
+            // 📢 Enviar atualização de zoom + tema para todos os iframes
+document.querySelectorAll('.category-content:not(#home-content) iframe').forEach(iframe => {
+    iframe.contentWindow.postMessage({
+        type: 'THEME_UPDATE',
+        theme: document.body.dataset.theme,
+        zoom: currentScale
+    }, '*');
+});
+}
             zoomInBtnFixed?.addEventListener('click', () => handleZoom('in'));
             zoomOutBtnFixed?.addEventListener('click', () => handleZoom('out'));
             updateZoom(false);
@@ -1533,10 +1541,19 @@ body:not(.loading) #initial-loader {
                 }
             });
             function toggleTheme() {
-                const newTheme = body.dataset.theme === 'light' ? 'dark' : 'light';
-                body.dataset.theme = newTheme;
-                localStorage.setItem('theme', newTheme);
-            }
+    const newTheme = body.dataset.theme === 'light' ? 'dark' : 'light';
+    body.dataset.theme = newTheme;
+    localStorage.setItem('theme', newTheme);
+    
+    // 📢 Enviar mensagem para todos os iframes filhos
+    document.querySelectorAll('.category-content:not(#home-content) iframe').forEach(iframe => {
+        iframe.contentWindow.postMessage({
+            type: 'THEME_UPDATE',
+            theme: newTheme,
+            zoom: parseFloat(localStorage.getItem('zoomLevel')) || 0.75
+        }, '*');
+    });
+}
             themeToggle?.addEventListener('click', toggleTheme);
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.dataset.theme = savedTheme;
