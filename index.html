@@ -641,6 +641,91 @@ body {
     font-size: var(--font-size-sm);
     text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
+/* NOVO: Estilo para o carrossel de capa com deslizamento e barras de progresso */
+.hero-carousel-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 65px auto 0;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-100px);
+}
+.hero-carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+}
+.hero-carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    text-decoration: none;
+    display: block;
+}
+.hero-carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.hero-carousel-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+    padding: var(--spacing-md);
+    color: white;
+}
+.hero-carousel-info h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+.hero-carousel-info p {
+    font-size: var(--font-size-sm);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+.progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.5);
+}
+.progress-bar {
+    width: 30px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 0px;
+    overflow: hidden;
+}
+.progress-bar.active {
+    background: rgba(255, 255, 255, 0.6);
+}
+.progress-bar.active::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: loading 6s linear forwards;
+}
+@keyframes loading {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
 .anime-carousel-section {
     width: 100%;
     max-width: 1000px;
@@ -736,7 +821,8 @@ body {
     color: var(--text-secondary);
 }
 @media (max-width: 768px) {
-    .hero-section {
+    .hero-section,
+    .hero-carousel-container {
         height: 300px;
         margin-top: 55px;
     }
@@ -764,7 +850,8 @@ body {
     }
 }
 @media (max-width: 480px) {
-    .hero-section {
+    .hero-section,
+    .hero-carousel-container {
         height: 250px;
     }
     .anime-grid {
@@ -772,6 +859,71 @@ body {
         gap: calc(var(--spacing-sm) / 2);
     }
 }
+
+/* NOVO: Estilo para o carrossel de imagens retangulares */
+.image-carousel-section {
+    width: 100%;
+    max-width: 1000px;
+    margin: var(--spacing-section) auto 0;
+    padding: 0 5px; /* 5px de margem lateral */
+    position: relative;
+}
+.image-carousel-container {
+    display: flex;
+    overflow-x: hidden; /* Oculta o scroll horizontal */
+    padding: 0;
+    gap: var(--spacing-md);
+    position: relative;
+    width: 100%;
+}
+.image-carousel-track {
+    display: flex;
+    transition: transform 0.8s ease-in-out; /* Transição suave para o movimento */
+    width: 100%;
+    gap: var(--spacing-md); /* Espaçamento entre os cards */
+}
+.image-carousel-card {
+    flex: 0 0 auto; /* Impede que o card se redimensione */
+    width: calc(100% - 10px); /* Largura quase total da tela, menos espaçamento */
+    max-width: 960px; /* Limita a largura máxima */
+    height: 95px; /* Altura fixa de 45px */
+    background: var(--card-bg);
+    border-radius: 0px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.image-carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Preenche o card mantendo proporção */
+}
+.image-carousel-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 90%);
+    padding: 8px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.image-carousel-title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.image-carousel-comment {
+    font-size: var(--font-size-xs);
+    color: #ccc; /* Cor clara para o comentário */
+}
+
 .nav-menu-container {
     position: fixed;
     top: 65px;
@@ -859,13 +1011,13 @@ body {
     height: 100%;
     border: none;
 }
-#home-content .hero-section {
+#home-content .hero-carousel-container {
     margin-top: 115px;
 }
 #home-content main {
     padding-top: 0;
 }
-.category-content .hero-section {
+.category-content .hero-carousel-container {
     margin-top: 120px;
 }
 #generos-externo-grid {
@@ -881,22 +1033,23 @@ body {
 .anime-carousel-section {
     margin-top: 5px;
 }
-body.loading #home-content > *:not(.hero-section),
-body.loading .hero-info,
+body.loading #home-content > *:not(.hero-carousel-container),
+body.loading .hero-carousel-container,
+body.loading .hero-carousel-info,
 body.loading .anime-carousel-section,
 body.loading .anime-card {
     opacity: 0;
     visibility: hidden;
     transition: none;
 }
-body.loading .hero-section {
+body.loading .hero-carousel-container {
     background: var(--surface);
     min-height: 400px;
 }
-body.loading .hero-section img {
+body.loading .hero-carousel-container img {
     display: none;
 }
-body.loading .hero-info {
+body.loading .hero-carousel-info {
     display: none;
 }
 #initial-loader {
@@ -926,7 +1079,6 @@ body:not(.loading) #initial-loader {
     opacity: 0;
     pointer-events: none;
 }
-
 /* NOVO: Estilo para os iframes persistidos */
 .iframe-container {
     display: none;
@@ -1020,13 +1172,13 @@ body:not(.loading) #initial-loader {
     </div>
     <div class="zoom-container" id="zoom-container">
         <div class="category-content active" id="home-content">
-            <section class="hero-section" id="hero-section">
-                <div class="hero-slide active">
-                    <img src="https://i.postimg.cc/1XXm0m8R/GP5HJ84P7-backdrop-wide.jpg" alt="Destaque" />
-                    <div class="hero-info">
-                        <h2>Carregando destaques...</h2>
-                        <p>Aguarde um momento.</p>
-                    </div>
+            <!-- NOVO: Substituído por hero-carousel-container -->
+            <section class="hero-carousel-container" id="hero-carousel-container">
+                <div class="hero-carousel-track" id="hero-carousel-track">
+                    <!-- Slides serão gerados via JS -->
+                </div>
+                <div class="progress-container" id="progress-container">
+                    <!-- Barras de progresso serão geradas via JS -->
                 </div>
             </section>
             <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
@@ -1037,6 +1189,14 @@ body:not(.loading) #initial-loader {
                 <section class="anime-carousel-section" id="genres-section">
                     <h2 class="carousel-title" data-link-id="genres">Gêneros</h2>
                     <div class="anime-grid" id="generos-externo-grid"></div>
+                </section>
+                <!-- NOVO: Carrossel de Imagens -->
+                <section class="image-carousel-section" id="image-carousel-section">
+                    <div class="image-carousel-container">
+                        <div class="image-carousel-track" id="image-carousel-track">
+                            <!-- Os cards serão gerados via JS -->
+                        </div>
+                    </div>
                 </section>
                 <section class="anime-carousel-section" id="releases-section">
                     <h2 class="carousel-title" data-link-id="releases">Lançamentos</h2>
@@ -1155,7 +1315,7 @@ body:not(.loading) #initial-loader {
                 { title: "Haikyuu!! T1", subtitle: "25 Episódios (Esportes)", image: "https://i.postimg.cc/zGgkd9cK/IMG-20251111-104051.jpg", url: CONSTRUCTION_LINK, synopsis: "Um garoto baixinho, Shoyo Hinata, se junta ao time de vôlei da escola para provar que a altura não importa no vôlei.", trailerId: "sFvQk11Xh00" }
             ],
             recentReleases: [
-                { title: "My Hero Academia Final Season", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/wM05SzhW/IMG-20251111-112503.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para My Hero Academia Final Season.", trailerId: "qI9hDqfC6x0" },
+                { title: "My Hero Academia Final Season", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/wM05SzhW/IMG-20251111-112503.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para My Hero Academia Final Season.", trailerId: "qI9hDqfC6x0" },
                 { title: "Spy × Family S3", subtitle: "Ep. 1 (4 de Out. 2025)", image: "https://i.postimg.cc/NMc3p8GT/IMG-20251111-111133.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Spy × Family S3.", trailerId: "o9e9P2H9s3c" },
                 { title: "One‑Punch Man S3", subtitle: "Ep. 1 (12 de Out. 2025)", image: "https://i.postimg.cc/Tw040ZHV/images-2025-11-11T111248-289.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para One‑Punch Man S3.", trailerId: "bYg7K64b55c" },
                 { title: "Dusk Beyond the End of the World", subtitle: "Ep. 1 (26 de Set. 2025)", image: "https://i.postimg.cc/m2zm1zR8/IMG-20251111-111359.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Dusk Beyond the End of the World.", trailerId: "placeholder" },
@@ -1226,6 +1386,16 @@ body:not(.loading) #initial-loader {
                 { title: "Esportes", subtitle: "Competição e Paixão", url: CONSTRUCTION_LINK, synopsis: "Competição e Paixão", trailerId: "placeholder" },
             ],
         };
+
+        // Dados para o novo carrossel de imagens
+        const imageCarouselData = [
+            { title: "Imagem 1", comment: "Comentário sobre a imagem 1", image: "https://i.postimg.cc/KjWxFhB4/Im-Getting-Marriedtoa-Girl-IHatein-My-Class-S1-KV1-Banner-2100x700-PT.png", url: CONSTRUCTION_LINK },
+            { title: "Imagem 2", comment: "Comentário sobre a imagem 2", image: "https://i.postimg.cc/KjWxFhB4/Im-Getting-Marriedtoa-Girl-IHatein-My-Class-S1-KV1-Banner-2100x700-PT.png", url: CONSTRUCTION_LINK },
+            { title: "Imagem 3", comment: "Comentário sobre a imagem 3", image: "https://i.postimg.cc/KjWxFhB4/Im-Getting-Marriedtoa-Girl-IHatein-My-Class-S1-KV1-Banner-2100x700-PT.png", url: CONSTRUCTION_LINK },
+            { title: "Imagem 4", comment: "Comentário sobre a imagem 4", image: "https://i.postimg.cc/KjWxFhB4/Im-Getting-Marriedtoa-Girl-IHatein-My-Class-S1-KV1-Banner-2100x700-PT.png", url: CONSTRUCTION_LINK },
+            { title: "Imagem 5", comment: "Comentário sobre a imagem 5", image: "https://i.postimg.cc/KjWxFhB4/Im-Getting-Marriedtoa-Girl-IHatein-My-Class-S1-KV1-Banner-2100x700-PT.png", url: CONSTRUCTION_LINK }
+        ];
+
         const allAnimes = [
             ...homepageData.recentReleases,
             ...homepageData.popularAnimes,
@@ -1364,6 +1534,65 @@ body:not(.loading) #initial-loader {
                 container.appendChild(card);
             });
         }
+
+        // NOVO: Função para renderizar o carrossel de imagens
+        function renderImageCarousel(containerId, imageData) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = ''; // Limpa o container
+
+            imageData.forEach((item, index) => {
+                const card = document.createElement('a');
+                card.href = (item.url === '#' || !item.url) ? CONSTRUCTION_LINK : item.url;
+                card.className = 'image-carousel-card';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="image-carousel-image" />
+                    <div class="image-carousel-info">
+                        <div class="image-carousel-title">${item.title}</div>
+                        <div class="image-carousel-comment">${item.comment}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // NOVO: Função para inicializar o carrossel automático
+        function initializeImageCarousel(trackId, imageData) {
+            renderImageCarousel(trackId, imageData);
+
+            const track = document.getElementById(trackId);
+            if (!track) return;
+
+            const cards = track.querySelectorAll('.image-carousel-card');
+            if (cards.length === 0) return;
+
+            let currentIndex = 0;
+            const totalCards = cards.length;
+
+            const updateCarousel = () => {
+                const offset = -currentIndex * 100; // 100% para cada card
+                track.style.transform = `translateX(${offset}%)`;
+            };
+
+            // Função para avançar o carrossel
+            const nextSlide = () => {
+                currentIndex = (currentIndex + 1) % totalCards;
+                updateCarousel();
+            };
+
+            // Inicia o intervalo automático
+            const intervalId = setInterval(nextSlide, 6000); // 6 segundos
+
+            // Opcional: Pausar o carrossel ao passar o mouse por cima
+            track.addEventListener('mouseenter', () => {
+                clearInterval(intervalId);
+            });
+            track.addEventListener('mouseleave', () => {
+                setInterval(nextSlide, 6000);
+            });
+        }
+
         function initializeCarousel(containerId, data, isHorizontal = false) {
             renderAnimeCards(containerId, data, isHorizontal);
         }
@@ -1371,29 +1600,109 @@ body:not(.loading) #initial-loader {
             const container = document.getElementById(containerId);
             if (!container) return;
             container.innerHTML = '';
-            heroList.forEach((item, index) => {
+            // Limita a 10 slides
+            const limitedHeroList = heroList.slice(0, 10);
+            limitedHeroList.forEach((item, index) => {
                 const finalUrl = (item.url === '#' || !item.url) ? CONSTRUCTION_LINK : item.url;
                 const slide = document.createElement('a');
                 slide.href = finalUrl;
-                slide.className = `hero-slide ${index === 0 ? 'active' : ''}`;
+                slide.className = `hero-carousel-slide ${index === 0 ? 'active' : ''}`;
                 slide.innerHTML = `
                     <img src="${item.image}" alt="${item.title}" loading="${index === 0 ? 'eager' : 'lazy'}" />
-                    <div class="hero-info">
+                    <div class="hero-carousel-info">
                         <h2>${item.title}</h2>
                         <p>${item.subtitle}</p>
                     </div>
                 `;
-                container.appendChild(slide);
+                container.querySelector('.hero-carousel-track').appendChild(slide);
             });
-            let currentHero = 0;
-            setInterval(() => {
-                const slides = container.querySelectorAll('.hero-slide');
-                if (slides.length <= 1) return;
-                slides[currentHero].classList.remove('active');
-                currentHero = (currentHero + 1) % slides.length;
-                slides[currentHero].classList.add('active');
-            }, 5000);
         }
+
+        // NOVO: Função para construir o carrossel de capa com deslizamento e barras de progresso
+        function buildHeroCarouselWithProgress(containerId, progressContainerId, heroList) {
+            const container = document.getElementById(containerId);
+            const progressContainer = document.getElementById(progressContainerId);
+            if (!container || !progressContainer) return;
+
+            // Limpa os elementos anteriores
+            container.querySelector('.hero-carousel-track').innerHTML = '';
+            progressContainer.innerHTML = '';
+
+            // Limita a 10 slides
+            const limitedHeroList = heroList.slice(0, 10);
+            const totalSlides = limitedHeroList.length;
+
+            if (totalSlides === 0) return;
+
+            limitedHeroList.forEach((item, index) => {
+                const finalUrl = (item.url === '#' || !item.url) ? CONSTRUCTION_LINK : item.url;
+                const slide = document.createElement('a');
+                slide.href = finalUrl;
+                slide.className = `hero-carousel-slide ${index === 0 ? 'active' : ''}`;
+                slide.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" loading="${index === 0 ? 'eager' : 'lazy'}" />
+                    <div class="hero-carousel-info">
+                        <h2>${item.title}</h2>
+                        <p>${item.subtitle}</p>
+                    </div>
+                `;
+                container.querySelector('.hero-carousel-track').appendChild(slide);
+
+                // Cria barra de progresso
+                const progressBar = document.createElement('div');
+                progressBar.className = `progress-bar ${index === 0 ? 'active' : ''}`;
+                progressBar.dataset.index = index;
+                progressContainer.appendChild(progressBar);
+            });
+
+            let currentSlide = 0;
+            let intervalId;
+
+            const updateCarousel = (newIndex) => {
+                const slides = container.querySelectorAll('.hero-carousel-slide');
+                const progressBars = progressContainer.querySelectorAll('.progress-bar');
+                if (newIndex >= 0 && newIndex < slides.length) {
+                    // Atualiza slide
+                    const offset = -newIndex * 100;
+                    container.querySelector('.hero-carousel-track').style.transform = `translateX(${offset}%)`;
+                    // Atualiza barras
+                    progressBars.forEach((bar, i) => {
+                        bar.classList.remove('active');
+                        if (i === newIndex) {
+                            bar.classList.add('active');
+                        }
+                    });
+                    currentSlide = newIndex;
+                }
+            };
+
+            const startAutoSlide = () => {
+                clearInterval(intervalId);
+                intervalId = setInterval(() => {
+                    const nextSlide = (currentSlide + 1) % totalSlides;
+                    updateCarousel(nextSlide);
+                }, 6000); // 6 segundos
+            };
+
+            // Eventos de usuário para pausar/resumir
+            container.addEventListener('mouseenter', () => {
+                clearInterval(intervalId);
+            });
+            container.addEventListener('mouseleave', startAutoSlide);
+
+            // Inicia o carrossel automático
+            startAutoSlide();
+
+            // Opcional: Adicionar funcionalidade de clique nas barras de progresso
+            progressContainer.querySelectorAll('.progress-bar').forEach(bar => {
+                bar.addEventListener('click', () => {
+                    const index = parseInt(bar.dataset.index);
+                    updateCarousel(index);
+                    startAutoSlide(); // Reinicia o timer após clique
+                });
+            });
+        }
+
         function setupAutoScrollCarousel(containerId, animeList) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1461,7 +1770,8 @@ body:not(.loading) #initial-loader {
             localStorage.setItem('lastActiveCategory', category);
         }
         function buildHomepage() {
-            buildHeroSlider('hero-section', homepageData.hero);
+            //buildHeroSlider('hero-carousel-container', homepageData.hero); // Removido
+            buildHeroCarouselWithProgress('hero-carousel-container', 'progress-container', homepageData.hero); // Novo
             initializeCarousel('recent-releases-grid', homepageData.recentReleases);
             initializeCarousel('popular-animes-grid', homepageData.popularAnimes);
             initializeCarousel('recently-added-grid', homepageData.recentlyAdded);
@@ -1470,6 +1780,10 @@ body:not(.loading) #initial-loader {
             const recommendList = shuffled.slice(0, 10);
             setupAutoScrollCarousel('recommend-carousel', recommendList);
             setupAutoScrollCarousel('binge-watch-carousel', homepageData.bingeWatch);
+
+            // Inicializa o novo carrossel de imagens
+            initializeImageCarousel('image-carousel-track', imageCarouselData);
+
             setTimeout(() => {
                 document.body.classList.remove('loading');
                 const loader = document.getElementById('initial-loader');
@@ -1622,3 +1936,4 @@ body:not(.loading) #initial-loader {
     </script>
 </body>
 </html>
+
