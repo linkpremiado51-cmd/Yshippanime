@@ -30,16 +30,18 @@
             min-height:100vh;display:flex;flex-direction:column;align-items:center;overflow-x:hidden;transition:background .3s ease,color .3s ease}
         .zoom-container{width:100%;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding-top:0}
 
-        /* === ESTILOS DE CARREGAMENTO (copiados da homepage) === */
+        /* === ESTILOS DE CARREGAMENTO === */
         body.loading .hero-section,
         body.loading .anime-carousel-section,
         body.loading .anime-card {
             opacity: 0;
             visibility: hidden;
         }
+
+        /* 🔴 EDITAR AQUI: altura durante o carregamento (deve ser igual à altura final que você quer) */
         body.loading .hero-section {
             background: var(--surface);
-            min-height: 400px;
+            min-height: 150px; /* ← ALTERE ESTE VALOR PARA SUA ALTURA DESEJADA (ex: 200px, 300px) */
         }
         body.loading .hero-section img,
         body.loading .hero-info {
@@ -74,43 +76,174 @@
         }
 
         /* === Restante dos estilos === */
-        .hero-section{width:100%;max-width:1000px;margin:0 auto 0;height:400px;background:var(--surface);border-radius:0;
-            box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
-        .hero-slide{width:100%;height:100%;position:absolute;opacity:0;transition:opacity 1s ease-in-out;text-decoration:none}
-        .hero-slide.active{opacity:1}
-        .hero-slide img{width:100%;height:100%;object-fit:cover}
-        .hero-info{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(0,0,0,.8) 0%,transparent 100%);
-            padding:var(--spacing-md);color:#fff}
-        .hero-info h2{font-size:var(--font-size-lg);font-weight:700;text-shadow:0 2px 4px rgba(0,0,0,.5)}
-        .hero-info p{font-size:var(--font-size-sm);text-shadow:0 1px 2px rgba(0,0,0,.5)}
-        .anime-carousel-section{width:100%;max-width:1000px;margin:var(--spacing-section) auto 0;padding:0 .75rem;position:relative}
-        .carousel-title{position:relative;display:inline-block;font-family:'Ubuntu',sans-serif;font-size:var(--font-size-lg);
-            font-weight:700;color:var(--text-primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:15px;
-            padding:5px 0;line-height:1;cursor:pointer;width:fit-content;z-index:1}
-        .carousel-title::after{content:'';position:absolute;left:0;bottom:0;height:var(--linha-espessura);
-            background:var(--linha-cor);width:var(--linha-comprimento);z-index:-1}
-        .carousel-horizontal{display:flex;overflow-x:scroll;gap:var(--spacing-md);scroll-snap-type:x mandatory;
-            -webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;padding-bottom:15px}
-        .carousel-horizontal .anime-card{scroll-snap-align:start;flex-shrink:0;width:calc((100% - 2*var(--spacing-md))/3)}
-        .anime-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:var(--spacing-md)}
-        .anime-card{background:var(--card-bg);border-radius:0;box-shadow:var(--shadow);transition:var(--transition);
-            text-decoration:none;color:var(--text-primary);overflow:hidden;opacity:0;transform:translateY(10px);
-            animation:fadeIn .5s ease-out forwards}
-        .anime-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
-        .anime-card-image{width:100%;padding-bottom:140%;background-size:cover;background-position:center;
-            background-color:var(--surface)}
-        .anime-card-info{padding:var(--spacing-sm)}
-        .anime-card-title{font-size:var(--font-size-sm);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .anime-card-subtitle{font-size:var(--font-size-xs);color:var(--text-secondary)}
-        @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-        @media(max-width:768px){
-            .hero-section{height:300px}
-            .anime-grid{grid-template-columns:repeat(4,1fr);gap:calc(var(--spacing-sm)/1.5)}
-            .carousel-horizontal .anime-card{width:calc((100% - 2*var(--spacing-md))/3)}
+
+        /* 🔴 EDITAR AQUI: altura padrão (desktop/large) */
+        .hero-section {
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto 0; /* ← AGORA ESTÁ CERTO! */
+    height: 150px;
+    min-height: 150px;
+    background: var(--surface);
+    border-radius: 0;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+        .hero-slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            text-decoration: none;
         }
-        @media(max-width:480px){
-            .hero-section{height:250px}
-            .anime-grid{grid-template-columns:repeat(4,1fr);gap:calc(var(--spacing-sm)/2)}
+        .hero-slide.active { opacity: 1; }
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,.8) 0%, transparent 100%);
+            padding: var(--spacing-md);
+            color: #fff;
+        }
+        .hero-info h2 {
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,.5);
+        }
+        .hero-info p {
+            font-size: var(--font-size-sm);
+            text-shadow: 0 1px 2px rgba(0,0,0,.5);
+        }
+
+        /* ... demais estilos mantidos iguais ... */
+        .anime-carousel-section {
+            width: 100%;
+            max-width: 1000px;
+            margin: var(--spacing-section) auto 0;
+            padding: 0 .75rem;
+            position: relative;
+        }
+        .carousel-title {
+            position: relative;
+            display: inline-block;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: var(--font-size-lg);
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            padding: 5px 0;
+            line-height: 1;
+            cursor: pointer;
+            width: fit-content;
+            z-index: 1;
+        }
+        .carousel-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: var(--linha-espessura);
+            background: var(--linha-cor);
+            width: var(--linha-comprimento);
+            z-index: -1;
+        }
+        .carousel-horizontal {
+            display: flex;
+            overflow-x: scroll;
+            gap: var(--spacing-md);
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+            padding-bottom: 15px;
+        }
+        .carousel-horizontal .anime-card {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            width: calc((100% - 2 * var(--spacing-md)) / 3);
+        }
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: var(--spacing-md);
+        }
+        .anime-card {
+            background: var(--card-bg);
+            border-radius: 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--text-primary);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn .5s ease-out forwards;
+        }
+        .anime-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .anime-card-image {
+            width: 100%;
+            padding-bottom: 140%;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--surface);
+        }
+        .anime-card-info {
+            padding: var(--spacing-sm);
+        }
+        .anime-card-title {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .anime-card-subtitle {
+            font-size: var(--font-size-xs);
+            color: var(--text-secondary);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 🔴 EDITAR AQUI: altura em tablets (até 768px) */
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 300px;      /* ← ALTERE ESTE VALOR */
+                min-height: 300px;  /* ← MANTENHA IGUAL */
+            }
+            .anime-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: calc(var(--spacing-sm) / 1.5);
+            }
+            .carousel-horizontal .anime-card {
+                width: calc((100% - 2 * var(--spacing-md)) / 3);
+            }
+        }
+
+        /* 🔴 EDITAR AQUI: altura em celulares (até 480px) */
+        @media (max-width: 480px) {
+            .hero-section {
+                height: 250px;      /* ← ALTERE ESTE VALOR */
+                min-height: 250px;  /* ← MANTENHA IGUAL */
+            }
+            .anime-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: calc(var(--spacing-sm) / 2);
+            }
         }
     </style>
 </head>
@@ -133,19 +266,17 @@
             </div>
         </section>
 
-        <!-- CARROSSEL 1 – Ação Recomendada -->
+        <!-- CARROSSEIS -->
         <section class="anime-carousel-section">
             <h2 class="carousel-title">Recomendados em Ação</h2>
             <div id="recomendados-acao" class="carousel-horizontal"></div>
         </section>
 
-        <!-- CARROSSEL 2 – Lançamentos de Ação -->
         <section class="anime-carousel-section">
             <h2 class="carousel-title">Lançamentos de Ação</h2>
             <div id="lancamentos-acao" class="carousel-horizontal"></div>
         </section>
 
-        <!-- CARROSSEL 3 – Clássicos de Ação -->
         <section class="anime-carousel-section">
             <h2 class="carousel-title">Clássicos Imperdíveis</h2>
             <div id="classicos-acao" class="anime-grid"></div>
@@ -290,7 +421,6 @@
             m.onclick=e=>{if(e.target===m) m.remove();};
         }
 
-        // ✅ Inicialização com remoção da tela de carregamento
         document.addEventListener('DOMContentLoaded',()=>{
             buildHero();
             renderAnimeCards('recomendados-acao', acaoData.recomendados, true);
@@ -300,7 +430,6 @@
             setupAutoScroll('recomendados-acao', acaoData.recomendados);
             setupAutoScroll('lancamentos-acao', acaoData.lancamentos);
 
-            // Clique único/duplo
             let timer=null;
             document.querySelectorAll('.anime-card').forEach(card=>{
                 card.addEventListener('click',e=>{
@@ -311,7 +440,6 @@
                             const u=card.dataset.url;
                             if(u && u.startsWith('javascript:')){
                                 try {
-                                    // Extrai e executa de forma segura
                                     const code = u.replace('javascript:', '');
                                     new Function(code)();
                                 } catch (err) {
@@ -328,7 +456,6 @@
                 });
             });
 
-            // ✅ Remove a tela de carregamento após renderização
             setTimeout(() => {
                 document.body.classList.remove('loading');
                 const loader = document.getElementById('initial-loader');
@@ -338,4 +465,3 @@
     </script>
 </body>
 </html>
-
