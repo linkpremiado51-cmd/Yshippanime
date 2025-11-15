@@ -1,7 +1,3 @@
-<a href="${CONSTRUCTION_LINK}" class="menu-item"></a>
-
-<body data-theme="light">
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -1104,7 +1100,6 @@ body:not(.loading) #initial-loader {
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
         import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
         import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
-
         const firebaseConfig = {
             apiKey: "AIzaSyA9vB_anmutvZByIhKxsPJbsP0VZ7gyWB0",
             authDomain: "sorteio-mega-sorte.firebaseapp.com",
@@ -1117,13 +1112,11 @@ body:not(.loading) #initial-loader {
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
-
         const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
         const CONSTRUCTION_SUBTITLE = "Sistema em construção";
-
         const homepageData = {
             hero: [
-                { title: "Spy-Famyli", subtitle: "Todos têm um lado oculto...", image: "https://i.postimg.cc/pL6hhZQs/28325-1-9_8b.webp", url: "catalogo/chotto_dake.html" },
+                { title: "Spy-Famyli", subtitle: "Todos têm um lado oculto...", image: "https://i.postimg.cc/pL6hhZQs/28325-1_9_8b.webp", url: "catalogo/chotto_dake.html" },
                 { title: "My Hero Academy final", subtitle: "A nova temporada está aqui!", image: "https://i.postimg.cc/5yTTQD0f/28328-1_9_8b.webp", url: CONSTRUCTION_LINK },
                 { title: "L9999", subtitle: "Ele quase foi morto nas profundezas da masmorra...", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp", url: CONSTRUCTION_LINK }
             ],
@@ -1141,17 +1134,17 @@ body:not(.loading) #initial-loader {
                 { title: "One‑Punch Man S3", subtitle: "Ep. 1 (12 de Out. 2025)", image: "https://i.postimg.cc/Tw040ZHV/images-2025-11-11T111248-289.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para One‑Punch Man S3.", trailerId: "bYg7K64b55c" },
                 { title: "Dusk Beyond the End of the World", subtitle: "Ep. 1 (26 de Set. 2025)", image: "https://i.postimg.cc/m2zm1zR8/IMG-20251111-111359.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Dusk Beyond the End of the World.", trailerId: "placeholder" },
                 { title: "This Monster Wants to Eat Me!", subtitle: "Ep. 1 (2 de Out. 2025)", image: "https://i.postimg.cc/bNtRN7H4/IMG-20251111-111459.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para This Monster Wants to Eat Me!.", trailerId: "placeholder" },
-                { title: "May I Ask for One Final Thing?", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/ZY9QpDLk/filters-quality-95-format-webp-6.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para May I Ask for One Final Thing?.", trailerId: "placeholder" },
-                { title: "Kakuriyo: Bed & Breakfast for Spirits S2", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/VLqDFyr0/81lBpKcTSrL.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Kakuriyo: Bed & Breakfast for Spirits S2.", trailerId: "placeholder" },
-                { title: "With You, Our Love Will Make It Through", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/cH3Q4Yfg/images-13.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para With You, Our Love Will Make It Through.", trailerId: "placeholder" },
-                { title: "A Star Brighter than the Sun", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/YSW417jt/images-14.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para A Star Brighter than the Sun.", trailerId: "placeholder" },
-                { title: "Who Made Me a Princess", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/jdDRWXDR/images-15.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Who Made Me a Princess.", trailerId: "placeholder" },
-                { title: "The Banished Court Magician Aims to Become the Strongest", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/yxt4hMkM/images-16.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para The Banished Court Magician Aims to Become the Strongest.", trailerId: "placeholder" },
-                { title: "A Gatherer’s Adventure in Isekai", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/xTGqj5hJ/images-2025-11-11T112830-071.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para A Gatherer’s Adventure in Isekai.", trailerId: "placeholder" },
-                { title: "Dad is a Hero, Mom is a Spirit, I’m a Reincarnator", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/NFWS2Rns/images-2025-11-11T112142-360.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Dad is a Hero, Mom is a Spirit, I’m a Reincarnator.", trailerId: "placeholder" },
-                { title: "Blue Orchestra S2", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/mr5vGxSy/images-2025-11-11T112238-100.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Blue Orchestra S2.", trailerId: "placeholder" },
-                { title: "Kingdom S6", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/LswbbtHN/images-2025-11-11T112334-528.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Kingdom S6.", trailerId: "placeholder" },
-                { title: "To Your Eternity S3", subtitle: "Ep. 1 (Outono 2025)", image: "https://i.postimg.cc/nhLSVRr9/images-2025-11-11T112408-236.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para To Your Eternity S3.", trailerId: "placeholder" },
+                { title: "May I Ask for One Final Thing?", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/ZY9QpDLk/filters-quality-95-format-webp-6.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para May I Ask for One Final Thing?.", trailerId: "placeholder" },
+                { title: "Kakuriyo: Bed & Breakfast for Spirits S2", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/VLqDFyr0/81lBpKcTSrL.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Kakuriyo: Bed & Breakfast for Spirits S2.", trailerId: "placeholder" },
+                { title: "With You, Our Love Will Make It Through", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/cH3Q4Yfg/images-13.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para With You, Our Love Will Make It Through.", trailerId: "placeholder" },
+                { title: "A Star Brighter than the Sun", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/YSW417jt/images-14.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para A Star Brighter than the Sun.", trailerId: "placeholder" },
+                { title: "Who Made Me a Princess", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/jdDRWXDR/images-15.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Who Made Me a Princess.", trailerId: "placeholder" },
+                { title: "The Banished Court Magician Aims to Become the Strongest", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/yxt4hMkM/images-16.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para The Banished Court Magician Aims to Become the Strongest.", trailerId: "placeholder" },
+                { title: "A Gatherer’s Adventure in Isekai", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/xTGqj5hJ/images-2025-11-11T112830-071.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para A Gatherer’s Adventure in Isekai.", trailerId: "placeholder" },
+                { title: "Dad is a Hero, Mom is a Spirit, I’m a Reincarnator", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/NFWS2Rns/images-2025-11-11T112142-360.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Dad is a Hero, Mom is a Spirit, I’m a Reincarnator.", trailerId: "placeholder" },
+                { title: "Blue Orchestra S2", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/mr5vGxSy/images-2025-11-11T112238-100.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Blue Orchestra S2.", trailerId: "placeholder" },
+                { title: "Kingdom S6", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/LswbbtHN/images-2025-11-11T112334-528.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Kingdom S6.", trailerId: "placeholder" },
+                { title: "To Your Eternity S3", subtitle: "Ep. 1 (Outuno 2025)", image: "https://i.postimg.cc/nhLSVRr9/images-2025-11-11T112408-236.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para To Your Eternity S3.", trailerId: "placeholder" },
             ],
             popularAnimes: [
                 { title: "Naruto Shippuden", subtitle: "500 Episódios", image: "https://i.postimg.cc/02VxHSDp/IMG-20251111-095340.jpg", url: "catalogo/chotto_dake.html", synopsis: "Sinopse placeholder para Naruto Shippuden teste.", trailerId: "placeholder" },
@@ -1172,7 +1165,7 @@ body:not(.loading) #initial-loader {
             ],
             recentlyAdded: [
                 { title: "Chotto dake Ai ga Omoi Dark Elf ga Isekai kara Oikaketekita ", subtitle: "12 Episódios", image: "https://i.postimg.cc/1XYJM2Dt/MV5BNjc1MDQ2NWIt-M2Y1My00ZDE5LThl-Yj-Ut-ZTdk-ZTZj-Yzdl-NWZiXk-EyXkFqc-Gc-V1-FMjpg-UX1000.jpg", url: "catalogo/chotto_dake.html", synopsis: "Sinopse Um estudante completa uma missão para derrotar um rei demônio em outro mundo, mas quando ele retorna, é caçado por uma elfa que se apaixonou por ele.", trailerId: "placeholder" },
-                { title: "The Faraway Paladin", subtitle: "12 Episódios", image: "https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg", url: "catalogo/saihate_no_paradin/saihate_no_paradin.html", synopsis: "Sinopse Uma cidade dos mortos, destruída há muito tempo... Nesta cidade afastada de todos, há uma única criança viva, Will. O menino é criado por três mortos vivos: Blood, um espadachim esqueleto; Maria, uma freira múmia; e Gus, um mago fantasma. Ele é criado por eles recebendo ensinamentos e amor. Mas um dia o jovem começa a ter dúvidas. Quem é este 'eu'? Assim os mistérios dessa cidade longamente passam a ser vendidos por Will. O amor e a misericórdia dos deuses bons. A paranóia e a loucura dos deuses maus. E ao saber de tudo isso, o jovem começa o caminho rumo a se tornar um paladino.", trailerId: "placeholder" },
+                { title: "The Faraway Paladin", subtitle: "12 Episódios", image: "https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg", url: "https://linkpremiado51-cmd.github.io/Yshippanime/", synopsis: "Sinopse Uma cidade dos mortos, destruída há muito tempo... Nesta cidade afastada de todos, há uma única criança viva, Will. O menino é criado por três mortos vivos: Blood, um espadachim esqueleto; Maria, uma freira múmia; e Gus, um mago fantasma. Ele é criado por eles recebendo ensinamentos e amor. Mas um dia o jovem começa a ter dúvidas. Quem é este 'eu'? Assim os mistérios dessa cidade longamente passam a ser vendidos por Will. O amor e a misericórdia dos deuses bons. A paranóia e a loucura dos deuses maus. E ao saber de tudo isso, o jovem começa o caminho rumo a se tornar um paladino.", trailerId: "placeholder" },
                 { title: "gachiakuta", subtitle: "25 Episódios", image: "https://i.postimg.cc/mDdgXykx/images-2025-11-11T223742-007.jpg", url: "catalogo/gachiakuta.html", synopsis: "Sinopse Rudo, um jovem órfão que vive em uma favela marginalizada, discriminada pela elite de uma cidade flutuante. Após ser falsamente acusado de assassinato, ele é jogado em um inferno chamado O Poço, um lugar habitado por monstros de lixo. Para sobreviver e buscar vingança, ele precisa dominar um novo poder e se unir aos Limpadores (Cleaners), um grupo que luta contra as criaturas do lixo.", trailerId: "placeholder" },
                 { title: "Cyberpunk: Edgerunners", subtitle: "10 Episódios", image: "https://i.postimg.cc/26PSN8QP/images-17.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse Cyberpunk: Edgerunners conta a história de David Martinez, um garoto de rua que, após perder tudo, decide se tornar um edgerunner, um mercenário fora da lei também conhecido como cyberpunk — para sobreviver em uma distópica cidade futurista obcecada por tecnologia e implantes cibernéticos. A série é uma produção de 10 episódios derivada do videogame Cyberpunk 2077, criada em colaboração com o Studio Trigger e a Netflix. ", trailerId: "placeholder" },
                 { title: "Ranking of Kings", subtitle: "23 Episódios", image: "https://i.postimg.cc/qMpdh3vG/images-18.webp", url: CONSTRUCTION_LINK, synopsis: "Sinopse O povo do reino despreza o jovem Principe Bojji que nao consegue ouvir nem falar chamando-o de O Principe Inutil e zombando de sua suposta tolice Contudo embora Bojji nao seja fisicamente forte ele nao falta coracao Um encontro fortuito com uma criatura das sombras que deveria tê-lo traumatizado faz com que ele acredite ter encontrado um amigo em meio a aqueles que so notam suas deficiencias Ele comeca a se encontrar regularmente com Kage a sombra a ponto de ate mesmo a criatura antes aspera comecar a se mostrar mais amigavel A improvavel amizade entre Kage e Bojji lança as bases da jornada do principe uma jornada na qual ele pretende vencer seus medos e inseguranças Apesar do ridiculo constante que enfrenta Bojji esta determinado a realizar seu desejo de se tornar o melhor rei que puder ser", trailerId: "placeholder" },
@@ -1189,7 +1182,7 @@ body:not(.loading) #initial-loader {
             ],
             genresAnimes: [
                 { title: "Ação", subtitle: "Animes de Luta e Batalha", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Ação.", trailerId: "placeholder" },
-                { title: "Aventura", subtitle: "Grandes Jornadas", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Aventura.", trailerId: "placeholder" },
+                { title: "Aventura", subtitle: "Grandes Jornas", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Aventura.", trailerId: "placeholder" },
                 { title: "Comédia", subtitle: "Para Rir", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Comédia.", trailerId: "placeholder" },
                 { title: "Drama", subtitle: "Histórias Emocionantes", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Drama.", trailerId: "placeholder" },
                 { title: "Fantasia", subtitle: "Mundo de Magia", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Fantasia.", trailerId: "placeholder" },
@@ -1197,7 +1190,7 @@ body:not(.loading) #initial-loader {
                 { title: "Romance", subtitle: "Histórias de Amor", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Romance.", trailerId: "placeholder" },
                 { title: "Slice of Life", subtitle: "Vida Cotidiana", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Slice of Life.", trailerId: "placeholder" },
                 { title: "Sci-Fi", subtitle: "Ficção Científica", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Sci-Fi.", trailerId: "placeholder" },
-                { title: "Suspense", subtitle: "Mistério e Tensão", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Suspense.", trailerId: "placeholder" },
+                { title: "Suspense", subtitle: "Mistério e Tensão", url: CONSTRUCTION_LINK, synopsis: "Animes que apresentam mistérios, suspense e tensão psicológica.", trailerId: "placeholder" },
                 { title: "Mecha", subtitle: "Robôs Gigantes", url: CONSTRUCTION_LINK, synopsis: "Animes que apresentam robôs gigantes ou máquinas de combate pilotadas.", trailerId: "placeholder" },
                 { title: "Militar", subtitle: "Estratégia e Guerra", url: CONSTRUCTION_LINK, synopsis: "Temas de guerra, exércitos e estratégia militar.", trailerId: "placeholder" },
                 { title: "Música", subtitle: "Melodias e Bandas", url: CONSTRUCTION_LINK, synopsis: "Animes focados em performances musicais e desenvolvimento de talentos.", trailerId: "placeholder" },
@@ -1207,18 +1200,15 @@ body:not(.loading) #initial-loader {
                 { title: "Esportes", subtitle: "Competição e Paixão", url: CONSTRUCTION_LINK, synopsis: "Competição e Paixão", trailerId: "placeholder" },
             ],
         };
-
         const allAnimes = [
             ...homepageData.recentReleases,
             ...homepageData.popularAnimes,
             ...homepageData.recentlyAdded,
             ...homepageData.bingeWatch
         ];
-
         window.searchAnimes = async (query) => {};
         async function getIPAddress() {}
         async function recordReportError(errorType) {}
-
         function openHamburgerMenu() {
             document.getElementById('hamburgerMenu')?.classList.add('open');
             document.getElementById('menuOverlay')?.classList.add('active');
@@ -1228,7 +1218,6 @@ body:not(.loading) #initial-loader {
             document.getElementById('menuOverlay')?.classList.remove('active');
         }
         window.closeHamburgerMenu = closeHamburgerMenu;
-
         function openReportModal() {
             const modal = document.getElementById('reportErrorModal');
             if (modal) modal.style.display = 'flex';
@@ -1237,7 +1226,6 @@ body:not(.loading) #initial-loader {
             const modal = document.getElementById('reportErrorModal');
             if (modal) modal.style.display = 'none';
         }
-
         function showNotification(message) {
             const notification = document.getElementById('notification');
             if (!notification) return;
@@ -1248,7 +1236,6 @@ body:not(.loading) #initial-loader {
             }, 4000);
         }
         window.showNotification = showNotification;
-
         function openDetailsModal(title, synopsis, trailerId) {
             const modal = document.getElementById('detailsModal');
             const titleElem = document.getElementById('detailsTitle');
@@ -1267,7 +1254,6 @@ body:not(.loading) #initial-loader {
                 modal.style.display = 'flex';
             }
         }
-
         function closeDetailsModal() {
             const modal = document.getElementById('detailsModal');
             const trailerFrame = document.getElementById('trailerVideo');
@@ -1276,7 +1262,6 @@ body:not(.loading) #initial-loader {
                 modal.style.display = 'none';
             }
         }
-
         function renderAnimeCards(containerId, animeList, isHorizontal = false) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1292,12 +1277,11 @@ body:not(.loading) #initial-loader {
                 index === self.findIndex((a) => a.title === anime.title)
             );
             uniqueAnimes.forEach((anime, index) => {
-                const card = document.createElement('div');
-                const finalUrl = (anime.url === '#' || !anime.url) ? CONSTRUCTION_LINK : anime.url;
-                const finalSubtitle = finalUrl.startsWith('javascript:') ? CONSTRUCTION_SUBTITLE : anime.subtitle;
+                const card = document.createElement('a');
+                card.href = (anime.url === '#' || !anime.url) ? CONSTRUCTION_LINK : anime.url;
                 card.className = 'anime-card';
                 card.style.animationDelay = `${index * 50}ms`;
-                card.dataset.url = finalUrl;
+                card.dataset.url = card.href;
                 card.dataset.title = anime.title;
                 card.dataset.synopsis = anime.synopsis || 'Sinopse não disponível.';
                 card.dataset.trailerid = anime.trailerId || '';
@@ -1306,7 +1290,7 @@ body:not(.loading) #initial-loader {
                         <div class="anime-card-image" style="background-image: url('${anime.image}')"></div>
                         <div class="anime-card-info">
                             <div class="anime-card-title">${anime.title}</div>
-                            <div class="anime-card-subtitle">${finalSubtitle}</div>
+                            <div class="anime-card-subtitle">${anime.subtitle}</div>
                         </div>
                     `;
                 } else {
@@ -1316,14 +1300,47 @@ body:not(.loading) #initial-loader {
                         </div>
                     `;
                 }
+                // Adiciona o listener de clique ao card recém-criado
+                let clickCount = 0;
+                let clickTimer = null;
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    clickCount++;
+                    if (clickCount === 1) {
+                        clickTimer = setTimeout(() => {
+                            const url = card.dataset.url;
+                            if (url && url.startsWith('javascript:')) {
+                                try {
+                                    new Function(url.replace('javascript:', ''))();
+                                } catch (err) {
+                                    console.error("Erro ao executar:", err);
+                                }
+                            } else if (url && url !== "") {
+                                window.location.href = url;
+                            } else {
+                                console.warn("URL do anime não definida:", card.dataset.title);
+                            }
+                            clickCount = 0;
+                        }, 300);
+                    } else if (clickCount === 2) {
+                        clearTimeout(clickTimer);
+                        clickCount = 0;
+                        const title = card.dataset.title;
+                        const synopsis = card.dataset.synopsis;
+                        const trailerId = card.dataset.trailerid;
+                        openDetailsModal(title, synopsis, trailerId);
+                    }
+                    if (clickCount > 2) {
+                        clearTimeout(clickTimer);
+                        clickCount = 0;
+                    }
+                });
                 container.appendChild(card);
             });
         }
-
         function initializeCarousel(containerId, data, isHorizontal = false) {
             renderAnimeCards(containerId, data, isHorizontal);
         }
-
         function buildHeroSlider(containerId, heroList) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1351,7 +1368,6 @@ body:not(.loading) #initial-loader {
                 slides[currentHero].classList.add('active');
             }, 5000);
         }
-
         function setupAutoScrollCarousel(containerId, animeList) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1391,7 +1407,6 @@ body:not(.loading) #initial-loader {
             container.addEventListener('scroll', userInteractionHandler);
             startAutoScroll();
         }
-
         function loadCategoryContent(category) {
             const containerId = `${category}-content-container`;
             const container = document.getElementById(containerId);
@@ -1418,7 +1433,6 @@ body:not(.loading) #initial-loader {
             };
             container.appendChild(iframe);
         }
-
         function showCategory(category) {
             document.querySelectorAll('.nav-menu-item').forEach(item => {
                 if (item.dataset.category === category) {
@@ -1437,8 +1451,8 @@ body:not(.loading) #initial-loader {
                     content.classList.remove('active');
                 }
             });
+            localStorage.setItem('lastActiveCategory', category);
         }
-
         function buildHomepage() {
             buildHeroSlider('hero-section', homepageData.hero);
             initializeCarousel('recent-releases-grid', homepageData.recentReleases);
@@ -1449,12 +1463,15 @@ body:not(.loading) #initial-loader {
             const recommendList = shuffled.slice(0, 10);
             setupAutoScrollCarousel('recommend-carousel', recommendList);
             setupAutoScrollCarousel('binge-watch-carousel', homepageData.bingeWatch);
+            setTimeout(() => {
+                document.body.classList.remove('loading');
+                const loader = document.getElementById('initial-loader');
+                if (loader) loader.style.display = 'none';
+            }, 150);
         }
-
         const INITIAL_ZOOM = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
         const MIN_ZOOM = 0.5;
         const MAX_ZOOM = 1.5;
-
         function setupEventListeners() {
             const searchInput = document.getElementById('search-input');
             const menuToggle = document.getElementById('menu-icon');
@@ -1469,7 +1486,6 @@ body:not(.loading) #initial-loader {
             let currentScale = INITIAL_ZOOM;
             const step = 0.05;
             const baseFontSize = 16;
-
             function updateZoom(showNotif = true) {
                 rootElement.style.fontSize = `${baseFontSize * currentScale}px`;
                 localStorage.setItem('zoomLevel', currentScale.toFixed(2));
@@ -1478,7 +1494,6 @@ body:not(.loading) #initial-loader {
                 if (zoomInBtnFixed) zoomInBtnFixed.disabled = isDisabledMax;
                 if (zoomOutBtnFixed) zoomOutBtnFixed.disabled = isDisabledMin;
             }
-
             function handleZoom(direction) {
                 if (direction === 'in') {
                     currentScale = Math.min(MAX_ZOOM, currentScale + step);
@@ -1488,18 +1503,15 @@ body:not(.loading) #initial-loader {
                 currentScale = parseFloat(currentScale.toFixed(2));
                 updateZoom(true);
             }
-
             zoomInBtnFixed?.addEventListener('click', () => handleZoom('in'));
             zoomOutBtnFixed?.addEventListener('click', () => handleZoom('out'));
             updateZoom(false);
-
             setTimeout(() => {
                 if (zoomInBtnFixed) zoomInBtnFixed.click();
                 setTimeout(() => {
                     if (zoomOutBtnFixed) zoomOutBtnFixed.click();
                 }, 500);
             }, 1000);
-
             hamburgerBtn?.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openHamburgerMenu();
@@ -1528,7 +1540,6 @@ body:not(.loading) #initial-loader {
             themeToggle?.addEventListener('click', toggleTheme);
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.dataset.theme = savedTheme;
-
             document.getElementById('closeReportModal')?.addEventListener('click', closeReportModal);
             document.getElementById('reportErrorModal')?.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal-overlay')) {
@@ -1546,53 +1557,15 @@ body:not(.loading) #initial-loader {
                     const linkId = e.currentTarget.dataset.linkId;
                     if (linkId && linkId !== 'none') {
                         showNotification(`Redirecionando para o Catálogo Completo de: ${e.currentTarget.textContent.trim()}`);
-                        // Aqui você pode redirecionar para uma página real no futuro
                     }
                 });
             });
-
-            let clickTimer = null;
-            document.querySelectorAll('.anime-card').forEach(card => {
-                card.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    if (clickTimer === null) {
-                        clickTimer = setTimeout(() => {
-                            clickTimer = null;
-                            const url = card.dataset.url;
-                            if (url && url.startsWith('javascript:')) {
-                                // Extrai e executa a função sem usar eval
-                                const fnMatch = url.match(/javascript:(.*)/);
-                                if (fnMatch && fnMatch[1]) {
-                                    try {
-                                        new Function(fnMatch[1])();
-                                    } catch (err) {
-                                        console.error("Erro ao executar função:", err);
-                                    }
-                                }
-                            } else if (url && url !== "") {
-                                window.location.href = url;
-                            } else {
-                                console.warn("URL do anime não definida:", card.dataset.title);
-                            }
-                        }, 300);
-                    } else {
-                        clearTimeout(clickTimer);
-                        clickTimer = null;
-                        const title = card.dataset.title;
-                        const synopsis = card.dataset.synopsis;
-                        const trailerId = card.dataset.trailerid;
-                        openDetailsModal(title, synopsis, trailerId);
-                    }
-                });
-            });
-
             document.getElementById('closeDetailsModal')?.addEventListener('click', closeDetailsModal);
             document.getElementById('detailsModal')?.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal-overlay')) {
                     closeDetailsModal();
                 }
             });
-
             document.querySelectorAll('.nav-menu-item').forEach(item => {
                 item.addEventListener('click', (e) => {
                     const category = e.currentTarget.dataset.category;
@@ -1600,26 +1573,16 @@ body:not(.loading) #initial-loader {
                 });
             });
         }
-
-        // ✅ Garantir que a tela de carregamento seja removida mesmo se houver erro
-        function finalizeLoading() {
-            document.body.classList.remove('loading');
-            const loader = document.getElementById('initial-loader');
-            if (loader) loader.style.display = 'none';
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
-            try {
-                buildHomepage();
-                setupEventListeners();
-            } catch (error) {
-                console.error("Erro durante a inicialização:", error);
-            } finally {
-                // Sempre remove a tela de carregamento após um pequeno delay
-                setTimeout(finalizeLoading, 300);
+            setupEventListeners();
+            buildHomepage();
+            const lastCategory = localStorage.getItem('lastActiveCategory') || 'home';
+            if (lastCategory !== 'home') {
+                setTimeout(() => {
+                    showCategory(lastCategory);
+                }, 200);
             }
         });
-
         window.addEventListener('beforeunload', () => {
             localStorage.setItem('theme', document.body.dataset.theme);
             localStorage.setItem('zoomLevel', (parseFloat(document.documentElement.style.fontSize) / 16 || INITIAL_ZOOM).toFixed(2));
