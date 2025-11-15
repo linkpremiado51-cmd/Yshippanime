@@ -926,6 +926,22 @@ body:not(.loading) #initial-loader {
     opacity: 0;
     pointer-events: none;
 }
+
+/* NOVO: Estilo para os iframes persistidos */
+.iframe-container {
+    display: none;
+    width: 100%;
+    height: calc(100vh - 115px);
+    min-height: 500px;
+}
+.iframe-container.active {
+    display: block;
+}
+.iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
     </style>
 </head>
 <body data-theme="light" class="loading">
@@ -1041,19 +1057,29 @@ body:not(.loading) #initial-loader {
             </main>
         </div>
         <div class="category-content" id="acao-content">
-            <div id="acao-content-container"></div>
+            <div class="iframe-container" data-category="acao">
+                <iframe src="acao.html?theme=light&zoom=0.75" title="Ação" class="category-iframe"></iframe>
+            </div>
         </div>
         <div class="category-content" id="aventura-content">
-            <div id="aventura-content-container"></div>
+            <div class="iframe-container" data-category="aventura">
+                <iframe src="aventura.html?theme=light&zoom=0.75" title="Aventura" class="category-iframe"></iframe>
+            </div>
         </div>
         <div class="category-content" id="romance-content">
-            <div id="romance-content-container"></div>
+            <div class="iframe-container" data-category="romance">
+                <iframe src="romance.html?theme=light&zoom=0.75" title="Romance" class="category-iframe"></iframe>
+            </div>
         </div>
         <div class="category-content" id="isekai-content">
-            <div id="isekai-content-container"></div>
+            <div class="iframe-container" data-category="isekai">
+                <iframe src="isekai.html?theme=light&zoom=0.75" title="Isekai" class="category-iframe"></iframe>
+            </div>
         </div>
         <div class="category-content" id="fantasia-content">
-            <div id="fantasia-content-container"></div>
+            <div class="iframe-container" data-category="fantasia">
+                <iframe src="fantasia.html?theme=light&zoom=0.75" title="Fantasia" class="category-iframe"></iframe>
+            </div>
         </div>
     </div>
     <div class="footer">
@@ -1408,30 +1434,7 @@ body:not(.loading) #initial-loader {
             startAutoScroll();
         }
         function loadCategoryContent(category) {
-            const containerId = `${category}-content-container`;
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            container.innerHTML = '';
-            const currentTheme = document.body.dataset.theme || 'light';
-            const currentZoom = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
-            const iframe = document.createElement('iframe');
-            iframe.src = `${category}.html?theme=${encodeURIComponent(currentTheme)}&zoom=${currentZoom.toFixed(2)}`;
-            iframe.title = `Conteúdo de ${category}`;
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.style.minHeight = 'calc(100vh - 115px)';
-            iframe.style.border = 'none';
-            iframe.onload = function() {
-                if (this.contentDocument && this.contentDocument.body) {
-                    console.log(`Conteúdo de ${category} carregado.`);
-                } else {
-                    container.innerHTML = `<p>Conteúdo de ${category} indisponível.</p>`;
-                }
-            };
-            iframe.onerror = function() {
-                container.innerHTML = `<p>Erro ao carregar ${category}.</p>`;
-            };
-            container.appendChild(iframe);
+            // Não faz nada, pois os iframes já estão pré-carregados
         }
         function showCategory(category) {
             document.querySelectorAll('.nav-menu-item').forEach(item => {
@@ -1444,11 +1447,15 @@ body:not(.loading) #initial-loader {
             document.querySelectorAll('.category-content').forEach(content => {
                 if (content.id === `${category}-content`) {
                     content.classList.add('active');
-                    if (category !== 'home') {
-                        loadCategoryContent(category);
-                    }
                 } else {
                     content.classList.remove('active');
+                }
+            });
+            document.querySelectorAll('.iframe-container').forEach(container => {
+                if (container.dataset.category === category) {
+                    container.classList.add('active');
+                } else {
+                    container.classList.remove('active');
                 }
             });
             localStorage.setItem('lastActiveCategory', category);
@@ -1502,15 +1509,15 @@ body:not(.loading) #initial-loader {
                 }
                 currentScale = parseFloat(currentScale.toFixed(2));
                 updateZoom(true);
-            // 📢 Enviar atualização de zoom + tema para todos os iframes
-document.querySelectorAll('.category-content:not(#home-content) iframe').forEach(iframe => {
-    iframe.contentWindow.postMessage({
-        type: 'THEME_UPDATE',
-        theme: document.body.dataset.theme,
-        zoom: currentScale
-    }, '*');
-});
-}
+                // Enviar atualização de zoom + tema para todos os iframes
+                document.querySelectorAll('.category-iframe').forEach(iframe => {
+                    iframe.contentWindow.postMessage({
+                        type: 'THEME_UPDATE',
+                        theme: document.body.dataset.theme,
+                        zoom: currentScale
+                    }, '*');
+                });
+            }
             zoomInBtnFixed?.addEventListener('click', () => handleZoom('in'));
             zoomOutBtnFixed?.addEventListener('click', () => handleZoom('out'));
             updateZoom(false);
@@ -1541,19 +1548,18 @@ document.querySelectorAll('.category-content:not(#home-content) iframe').forEach
                 }
             });
             function toggleTheme() {
-    const newTheme = body.dataset.theme === 'light' ? 'dark' : 'light';
-    body.dataset.theme = newTheme;
-    localStorage.setItem('theme', newTheme);
-    
-    // 📢 Enviar mensagem para todos os iframes filhos
-    document.querySelectorAll('.category-content:not(#home-content) iframe').forEach(iframe => {
-        iframe.contentWindow.postMessage({
-            type: 'THEME_UPDATE',
-            theme: newTheme,
-            zoom: parseFloat(localStorage.getItem('zoomLevel')) || 0.75
-        }, '*');
-    });
-}
+                const newTheme = body.dataset.theme === 'light' ? 'dark' : 'light';
+                body.dataset.theme = newTheme;
+                localStorage.setItem('theme', newTheme);
+                // Enviar mensagem para todos os iframes filhos
+                document.querySelectorAll('.category-iframe').forEach(iframe => {
+                    iframe.contentWindow.postMessage({
+                        type: 'THEME_UPDATE',
+                        theme: newTheme,
+                        zoom: parseFloat(localStorage.getItem('zoomLevel')) || 0.75
+                    }, '*');
+                });
+            }
             themeToggle?.addEventListener('click', toggleTheme);
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.dataset.theme = savedTheme;
@@ -1590,9 +1596,18 @@ document.querySelectorAll('.category-content:not(#home-content) iframe').forEach
                 });
             });
         }
+        function preloadAllIframes() {
+            const currentTheme = document.body.dataset.theme || 'light';
+            const currentZoom = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
+            document.querySelectorAll('.category-iframe').forEach(iframe => {
+                const category = iframe.parentElement.dataset.category;
+                iframe.src = `${category}.html?theme=${encodeURIComponent(currentTheme)}&zoom=${currentZoom.toFixed(2)}`;
+            });
+        }
         document.addEventListener('DOMContentLoaded', () => {
             setupEventListeners();
             buildHomepage();
+            preloadAllIframes();
             const lastCategory = localStorage.getItem('lastActiveCategory') || 'home';
             if (lastCategory !== 'home') {
                 setTimeout(() => {
