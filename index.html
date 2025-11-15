@@ -716,7 +716,7 @@ body {
     width: 100%;
     height: 100%;
     background: white;
-    animation: loading 6s linear forwards;
+    animation: loading 8s linear forwards;
 }
 @keyframes loading {
     from {
@@ -726,12 +726,22 @@ body {
         width: 100%;
     }
 }
-.anime-carousel-section {
-    width: 100%;
-    max-width: 1000px;
-    margin: var(--spacing-section) auto 0;
-    padding: 0 0.75rem;
-    position: relative;
+/* Alinha o título "Lançamentos" à esquerda e afasta 15px da margem esquerda */
+#releases-section h2.carousel-title {
+    display: block; /* Garante que margin funcione como bloco */
+    margin-left: 11px; /* Define 15px de espaçamento da margem esquerda */
+    margin-right: auto; /* Garante alinhamento à esquerda */
+}
+/* Estica o carrossel de lançamentos nas telas menores para encostar nas margens e ajusta espaçamento */
+@media (max-width: 768px) {
+    #releases-section {
+        width: 100vw; /* Ocupa 100% da largura da tela */
+        margin-left: calc(45% - 45vw); /* Alinha à borda esquerda da tela */
+        margin-top: 25px; /* Espaçamento superior de 25px */
+        margin-bottom: 25px; /* Espaçamento inferior de 25px */
+        padding: 0; /* Remove padding lateral */
+        max-width: none; /* Garante que não fique limitado pelo max-width anterior */
+    }
 }
 :root {
     --linha-comprimento: 238px;
@@ -859,14 +869,17 @@ body {
         gap: calc(var(--spacing-sm) / 2);
     }
 }
-
-/* NOVO: Estilo para o carrossel de imagens retangulares */
-.image-carousel-section {
-    width: 100%;
-    max-width: 1000px;
-    margin: var(--spacing-section) auto 0;
-    padding: 0 5px; /* 5px de margem lateral */
-    position: relative;
+/* Estica o carrossel de imagens nas telas menores para encostar nas margens e ajusta espaçamento */
+@media (max-width: 768px) {
+    #image-carousel-section {
+        width: 100vw; /* Ocupa 100% da largura da tela */
+        margin-left: calc(50% - 50vw - 20px); /* Alinha à borda esquerda da tela e estica mais 20px para a esquerda */
+        margin-top: 30px; /* Espaçamento superior de 30px */
+        margin-bottom: 30px; /* Espaçamento inferior de 30px */
+        margin-right: 0; /* Garante margem direita zero */
+        padding: 0; /* Remove padding lateral */
+        max-width: none; /* Garante que não fique limitado pelo max-width anterior */
+    }
 }
 .image-carousel-container {
     display: flex;
@@ -923,7 +936,6 @@ body {
     font-size: var(--font-size-xs);
     color: #ccc; /* Cor clara para o comentário */
 }
-
 .nav-menu-container {
     position: fixed;
     top: 65px;
@@ -1094,9 +1106,22 @@ body:not(.loading) #initial-loader {
     height: 100%;
     border: none;
 }
-/* Move o carrossel "Anime I Geek Recomenda" 30px para cima */
+/* Mantém o margin-top de 90px */
 #recommend-section {
     margin-top: calc(var(--spacing-section) - 90px);
+}
+/* Move apenas o título 5px para a direita */
+#recommend-section h2.carousel-title {
+    margin-left: 13px;
+}
+/* Estica o carrossel nas telas menores para encostar nas margens */
+@media (max-width: 768px) {
+    #recommend-section {
+        width: 100vw; /* Ocupa 100% da largura da tela */
+        margin-left: calc(50% - 50vw); /* Alinha à borda esquerda da tela */
+        padding: 0; /* Remove padding interno */
+        max-width: none; /* Garante que não fique limitado pelo max-width anterior */
+    }
 }
     </style>
 </head>
@@ -1306,13 +1331,13 @@ body:not(.loading) #initial-loader {
         const CONSTRUCTION_SUBTITLE = "Sistema em construção";
         const homepageData = {
             hero: [
-                { title: "Spy-Famyli", subtitle: "Todos têm um lado oculto...", image: "https://i.postimg.cc/pL6hhZQs/28325-1_9_8b.webp", url: "catalogo/chotto_dake.html" },
+                { title: "SDetetive Conan", subtitle: "Shinichi Kudo é um estudante que atua como detetive, renomado por ser capaz de resolver os crimes mais difíceis como sua sagacidade e poder de dedução.", image: "https://i.postimg.cc/y8B8GTTP/G6JQVM3ER-backdrop-wide.png", url: "catalogo/chotto_dake.html" },
                 { title: "My Hero Academy final", subtitle: "A nova temporada está aqui!", image: "https://i.postimg.cc/5yTTQD0f/28328-1_9_8b.webp", url: CONSTRUCTION_LINK },
                 { title: "L9999", subtitle: "Ele quase foi morto nas profundezas da masmorra...", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp", url: CONSTRUCTION_LINK }
             ],
             bingeWatch: [
                 { title: "Another", subtitle: "12 Episódios (Terror)", image: "https://i.postimg.cc/PqHF1XrF/IMG-20251111-105046.jpg", url: CONSTRUCTION_LINK, synopsis: "Em 1998, um estudante transferido, Koichi Sakakibara, se aproxima da misteriosa Misaki Mei, mas descobre que ela e o resto de sua classe escondem um segredo terrível ligado a uma série de mortes.", trailerId: "wG2c27b0X-E" },
-                { title: "Death Note", subtitle: "37 Episódios (Suspense)", image: "https://i.postimg.cc/NGd2Rpbb/IMG-20251111-103316.jpg", url: CONSTRUCTION_LINK, synopsis: "Um estudante do ensino médio encontra um caderno sobrenatural que lhe permite matar qualquer pessoa escrevendo seu nome. Ele decide criar um mundo sem o mal, mas seus planos são frustrados por um detetive gênio.", trailerId: "Yv2yD9V-13A" },
+                { title: "Detetive Conan", subtitle: "37 Episódios (Suspense)", image: "https://i.postimg.cc/XYZQTwNh/e020049e32a1bbe61c7781c4f5d6aa70.jpg", url: CONSTRUCTION_LINK, synopsis: "Um estudante do ensino médio encontra um caderno sobrenatural que lhe permite matar qualquer pessoa escrevendo seu nome. Ele decide criar um mundo sem o mal, mas seus planos são frustrados por um detetive gênio.", trailerId: "Yv2yD9V-13A" },
                 { title: "Code Geass: Lelouch of the Rebellion", subtitle: "25 Episódios (Mecha, Militar)", image: "https://i.postimg.cc/zvwvwbMc/135089.jpg", url: CONSTRUCTION_LINK, synopsis: "O exilado príncipe Lelouch vi Britannia ganha um poder misterioso chamado Geass, que lhe permite dar ordens absolutas. Ele usa esse poder para liderar uma rebelião contra seu império tirânico.", trailerId: "X_xT6KjJgq0" },
                 { title: "Cowboy Bebop", subtitle: "26 Episódios (Sci-Fi, Ação)", image: "https://i.postimg.cc/yxt4hMkM/images-16.webp", url: CONSTRUCTION_LINK, synopsis: "Acompanha as desventuras de um grupo de caçadores de recompensas viajando pela galáxia a bordo da nave espacial Bebop no ano de 2071.", trailerId: "O9-H-Y13b4w" },
                 { title: "Puella Magi Madoka Magica", subtitle: "12 Episódios (Drama, Mágica)", image: "https://i.postimg.cc/7YcyLYbj/127508.webp", url: CONSTRUCTION_LINK, synopsis: "Duas garotas se deparam com uma criatura mágica que se oferece para realizar qualquer desejo delas. Em troca, elas devem se tornar 'garotas mágicas' e lutar contra bruxas.", trailerId: "C1J6iG3c18E" },
@@ -1344,7 +1369,7 @@ body:not(.loading) #initial-loader {
                 { title: "Hunter x Hunter (2011)", subtitle: "148 Episódios", image: "https://i.postimg.cc/Pr6cssyV/IMG-20251111-103924.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Hunter x Hunter (2011).", trailerId: "d6k-tV-3V3w" },
                 { title: "Haikyuu!!", subtitle: "4 Temporadas + Filmes", image: "https://i.postimg.cc/zGgkd9cK/IMG-20251111-104051.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Haikyuu!!.", trailerId: "sFvQk11Xh00" },
                 { title: "Sword Art Online", subtitle: "T1, T2, T3 + Filmes", image: "https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Sword Art Online.", trailerId: "placeholder" },
-                { title: "One Punch Man", subtitle: "2 Temporadas", image: "https://i.postimg.cc/5tfFwTd4/IMG-20251111-104238.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para One Punch Man.", trailerId: "placeholder" },
+                { title: "One Punch Man", subtitle: "2 Temporadas", image: "https://i.postimg.cc/gJwS8Qnk/one-punch-man-poster-1660838177219.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para One Punch Man.", trailerId: "placeholder" },
                 { title: "Spy x Family", subtitle: "2 Temporadas + Filme", image: "https://i.postimg.cc/nLwBp25K/IMG-20251111-104434.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Spy x Family.", trailerId: "placeholder" },
                 { title: "Vinland Saga", subtitle: "2 Temporadas", image: "https://i.postimg.cc/vBfBkvd3/IMG-20251111-104607.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Vinland Saga.", trailerId: "placeholder" },
                 { title: "Mob Psycho 100", subtitle: "3 Temporadas", image: "https://i.postimg.cc/RhPzD3qC/IMG-20251111-104810.jpg", url: CONSTRUCTION_LINK, synopsis: "Sinopse placeholder para Mob Psycho 100.", trailerId: "placeholder" },
@@ -1390,7 +1415,6 @@ body:not(.loading) #initial-loader {
                 { title: "Esportes", subtitle: "Competição e Paixão", url: CONSTRUCTION_LINK, synopsis: "Competição e Paixão", trailerId: "placeholder" },
             ],
         };
-
         // Dados para o novo carrossel de imagens
         const imageCarouselData = [
             { title: "Imagem 1", comment: "Comentário sobre a imagem 1", image: "https://i.postimg.cc/KjWxFhB4/Im-Getting-Marriedtoa-Girl-IHatein-My-Class-S1-KV1-Banner-2100x700-PT.png", url: CONSTRUCTION_LINK },
@@ -1399,7 +1423,6 @@ body:not(.loading) #initial-loader {
             { title: "Imagem 4", comment: "Comentário sobre a imagem 4", image: "https://i.postimg.cc/KjWxFhB4/Im-Getting-Marriedtoa-Girl-IHatein-My-Class-S1-KV1-Banner-2100x700-PT.png", url: CONSTRUCTION_LINK },
             { title: "Imagem 5", comment: "Comentário sobre a imagem 5", image: "https://i.postimg.cc/KjWxFhB4/Im-Getting-Marriedtoa-Girl-IHatein-My-Class-S1-KV1-Banner-2100x700-PT.png", url: CONSTRUCTION_LINK }
         ];
-
         const allAnimes = [
             ...homepageData.recentReleases,
             ...homepageData.popularAnimes,
@@ -1538,14 +1561,11 @@ body:not(.loading) #initial-loader {
                 container.appendChild(card);
             });
         }
-
         // NOVO: Função para renderizar o carrossel de imagens
         function renderImageCarousel(containerId, imageData) {
             const container = document.getElementById(containerId);
             if (!container) return;
-
             container.innerHTML = ''; // Limpa o container
-
             imageData.forEach((item, index) => {
                 const card = document.createElement('a');
                 card.href = (item.url === '#' || !item.url) ? CONSTRUCTION_LINK : item.url;
@@ -1560,34 +1580,26 @@ body:not(.loading) #initial-loader {
                 container.appendChild(card);
             });
         }
-
         // NOVO: Função para inicializar o carrossel automático
         function initializeImageCarousel(trackId, imageData) {
             renderImageCarousel(trackId, imageData);
-
             const track = document.getElementById(trackId);
             if (!track) return;
-
             const cards = track.querySelectorAll('.image-carousel-card');
             if (cards.length === 0) return;
-
             let currentIndex = 0;
             const totalCards = cards.length;
-
             const updateCarousel = () => {
                 const offset = -currentIndex * 100; // 100% para cada card
                 track.style.transform = `translateX(${offset}%)`;
             };
-
             // Função para avançar o carrossel
             const nextSlide = () => {
                 currentIndex = (currentIndex + 1) % totalCards;
                 updateCarousel();
             };
-
             // Inicia o intervalo automático
             const intervalId = setInterval(nextSlide, 6000); // 6 segundos
-
             // Opcional: Pausar o carrossel ao passar o mouse por cima
             track.addEventListener('mouseenter', () => {
                 clearInterval(intervalId);
@@ -1596,7 +1608,6 @@ body:not(.loading) #initial-loader {
                 setInterval(nextSlide, 6000);
             });
         }
-
         function initializeCarousel(containerId, data, isHorizontal = false) {
             renderAnimeCards(containerId, data, isHorizontal);
         }
@@ -1622,7 +1633,7 @@ body:not(.loading) #initial-loader {
             });
         }
 
-        // NOVO: Função para construir o carrossel de capa com deslizamento e barras de progresso
+        // ✅ FUNÇÃO ATUALIZADA: buildHeroCarouselWithProgress ✅
         function buildHeroCarouselWithProgress(containerId, progressContainerId, heroList) {
             const container = document.getElementById(containerId);
             const progressContainer = document.getElementById(progressContainerId);
@@ -1632,10 +1643,13 @@ body:not(.loading) #initial-loader {
             container.querySelector('.hero-carousel-track').innerHTML = '';
             progressContainer.innerHTML = '';
 
-            // Limita a 10 slides
-            const limitedHeroList = heroList.slice(0, 10);
+            // Garante até 12 imagens
+            let extendedList = [...heroList];
+            while (extendedList.length < 12) {
+                extendedList = [...extendedList, ...heroList];
+            }
+            const limitedHeroList = extendedList.slice(0, 12);
             const totalSlides = limitedHeroList.length;
-
             if (totalSlides === 0) return;
 
             limitedHeroList.forEach((item, index) => {
@@ -1652,7 +1666,6 @@ body:not(.loading) #initial-loader {
                 `;
                 container.querySelector('.hero-carousel-track').appendChild(slide);
 
-                // Cria barra de progresso
                 const progressBar = document.createElement('div');
                 progressBar.className = `progress-bar ${index === 0 ? 'active' : ''}`;
                 progressBar.dataset.index = index;
@@ -1661,50 +1674,80 @@ body:not(.loading) #initial-loader {
 
             let currentSlide = 0;
             let intervalId;
+            let autoPlayActive = true;
 
             const updateCarousel = (newIndex) => {
                 const slides = container.querySelectorAll('.hero-carousel-slide');
                 const progressBars = progressContainer.querySelectorAll('.progress-bar');
                 if (newIndex >= 0 && newIndex < slides.length) {
-                    // Atualiza slide
                     const offset = -newIndex * 100;
                     container.querySelector('.hero-carousel-track').style.transform = `translateX(${offset}%)`;
-                    // Atualiza barras
                     progressBars.forEach((bar, i) => {
-                        bar.classList.remove('active');
-                        if (i === newIndex) {
-                            bar.classList.add('active');
-                        }
+                        bar.classList.toggle('active', i === newIndex);
                     });
                     currentSlide = newIndex;
                 }
             };
 
             const startAutoSlide = () => {
-                clearInterval(intervalId);
+                if (intervalId) clearInterval(intervalId);
                 intervalId = setInterval(() => {
-                    const nextSlide = (currentSlide + 1) % totalSlides;
-                    updateCarousel(nextSlide);
-                }, 6000); // 6 segundos
+                    if (!autoPlayActive) return;
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateCarousel(currentSlide);
+                }, 10000); // 10 segundos
             };
 
-            // Eventos de usuário para pausar/resumir
-            container.addEventListener('mouseenter', () => {
-                clearInterval(intervalId);
-            });
-            container.addEventListener('mouseleave', startAutoSlide);
+            const pauseAutoPlayTemporarily = () => {
+                autoPlayActive = false;
+                setTimeout(() => {
+                    autoPlayActive = true;
+                }, 10000); // 10 segundos de pausa
+            };
 
-            // Inicia o carrossel automático
-            startAutoSlide();
-
-            // Opcional: Adicionar funcionalidade de clique nas barras de progresso
+            // Clique nas barras de progresso
             progressContainer.querySelectorAll('.progress-bar').forEach(bar => {
                 bar.addEventListener('click', () => {
                     const index = parseInt(bar.dataset.index);
                     updateCarousel(index);
-                    startAutoSlide(); // Reinicia o timer após clique
+                    pauseAutoPlayTemporarily();
+                    startAutoSlide(); // Reinicia o intervalo
                 });
             });
+
+            // Navegação por toque (swipe)
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            container.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            container.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        currentSlide = (currentSlide + 1) % totalSlides;
+                    } else {
+                        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    }
+                    updateCarousel(currentSlide);
+                    pauseAutoPlayTemporarily();
+                    startAutoSlide();
+                }
+            });
+
+            // Pausa ao passar mouse
+            container.addEventListener('mouseenter', () => {
+                autoPlayActive = false;
+            });
+
+            container.addEventListener('mouseleave', () => {
+                autoPlayActive = true;
+            });
+
+            startAutoSlide();
         }
 
         function setupAutoScrollCarousel(containerId, animeList) {
@@ -1775,7 +1818,7 @@ body:not(.loading) #initial-loader {
         }
         function buildHomepage() {
             //buildHeroSlider('hero-carousel-container', homepageData.hero); // Removido
-            buildHeroCarouselWithProgress('hero-carousel-container', 'progress-container', homepageData.hero); // Novo
+            buildHeroCarouselWithProgress('hero-carousel-container', 'progress-container', homepageData.hero); // ✅ Atualizado
             initializeCarousel('recent-releases-grid', homepageData.recentReleases);
             initializeCarousel('popular-animes-grid', homepageData.popularAnimes);
             initializeCarousel('recently-added-grid', homepageData.recentlyAdded);
@@ -1784,10 +1827,8 @@ body:not(.loading) #initial-loader {
             const recommendList = shuffled.slice(0, 10);
             setupAutoScrollCarousel('recommend-carousel', recommendList);
             setupAutoScrollCarousel('binge-watch-carousel', homepageData.bingeWatch);
-
             // Inicializa o novo carrossel de imagens
             initializeImageCarousel('image-carousel-track', imageCarouselData);
-
             setTimeout(() => {
                 document.body.classList.remove('loading');
                 const loader = document.getElementById('initial-loader');
@@ -1940,4 +1981,3 @@ body:not(.loading) #initial-loader {
     </script>
 </body>
 </html>
-
