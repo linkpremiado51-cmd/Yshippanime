@@ -462,6 +462,21 @@
                 if (loader) loader.style.display = 'none';
             }, 150);
         });
+        // 📥 Recebe mensagens do documento pai (index.html)
+window.addEventListener('message', (event) => {
+    // Opcional: validar origem com event.origin, mas aqui usamos '*' por simplicidade
+    if (event.data.type === 'THEME_UPDATE') {
+        const { theme, zoom } = event.data;
+        
+        // Atualiza o tema
+        document.body.dataset.theme = theme;
+        localStorage.setItem('theme', theme);
+        
+        // Atualiza o zoom
+        document.documentElement.style.fontSize = `${16 * zoom}px`;
+        localStorage.setItem('zoomLevel', zoom.toFixed(2));
+    }
+});
     </script>
 </body>
 </html>
