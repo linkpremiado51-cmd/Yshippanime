@@ -587,7 +587,6 @@ body {
     line-height: 1.6;
     color: var(--text-secondary);
 }
-
 /* Estilos do modal de Reportar (mantidos) */
 .report-option {
     display: block;
@@ -705,7 +704,6 @@ body {
     font-size: var(--font-size-sm);
     text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
-
 /* NOVO: Estilo para informações complementares do anime */
 .anime-details-section {
     width: 100%;
@@ -749,7 +747,6 @@ body {
     color: var(--text-primary);
     font-weight: 500;
 }
-
 /* ===== CONFIGURAÇÃO FÁCIL: MUDE SÓ AQUI ===== */
 :root {
     --linha-comprimento: 238px;  /* <<--- MUDE AQUI PARA CONTROLAR TODAS AS LINHAS */
@@ -1160,8 +1157,8 @@ body {
         // Constantes Globais
         const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
         const CONSTRUCTION_SUBTITLE = "Sistema em construção";
-        // ✨ LINK FINAL DO EPISÓDIO (PODE SER ALTERADO DEPOIS)
-        const EPISODE_PLAYER_LINK = (episodeNumber) => `javascript:showNotification('Redirecionando para o player do Episódio ${episodeNumber}. Link para player será inserido aqui.')`;
+        // ✨ LINK FINAL DO EPISÓDIO (ALTERADO PARA USAR episodios.html?episodio=X)
+        const EPISODE_PLAYER_LINK = (episodeNumber) => `episodios.html?episodio=${episodeNumber}`;
         // ==========================================================
         // ✨ DADOS ATUALIZADOS E NOVOS DADOS
         // ==========================================================
@@ -1183,56 +1180,104 @@ body {
                 { title: "My Status as an Assassin Obviously Exceeds the Hero's", subtitle: "Oda Akira, um estudante do ensino médio...", image: "https://i.postimg.cc/gkhR2sDs/28253-1-9-8b.webp", url: CONSTRUCTION_LINK },
                 { title: "L9999", subtitle: "Ele quase foi morto nas profundezas da masmorra...", image: "https://i.postimg.cc/GtCq0rHT/28329-1_9_8b.webp", url: CONSTRUCTION_LINK }
             ],
-            // ✨ NOVO: Lista de Episódios
+            // ✨ NOVO: Lista de Episódios (12 episódios completos)
             episodeList: [
                 // Use a proporção 16:9 (episode-card-image) para thumbs de vídeo
                 { 
                     title: "E1 ∙ O Menino da Cidade dos Mortos", 
                     subtitle: "Disponível em HD", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: "saihate_no_paradin_ep1.html", // <-- ALTERADO PARA O CAMINHO CORRETO
+                    url: EPISODE_PLAYER_LINK(1), // <-- AGORA REDIRECIONA PARA episodios.html?episodio=1
                     animeTitle: "Saihate no Paladin",
                     description: "Will é encontrado e adotado por três mortos-vivos em uma cidade de mortos. Ele cresce com os três e demonstra um talento mágico extraordinário. Ele decide sair para se tornar um paladino."
                 },
                 { 
-                    title: "Episódio 2: O Reino dos Mortos", 
+                    title: "E2 ∙ O Reino dos Mortos", 
                     subtitle: "Novo!", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: EPISODE_PLAYER_LINK(2), // <-- Mantém o comportamento original para outros episódios
+                    url: EPISODE_PLAYER_LINK(2),
                     animeTitle: "Saihate no Paladin",
                     description: "Will começa sua jornada e enfrenta os desafios do mundo exterior, aprendendo sobre a vida dos vivos."
                 },
                 { 
-                    title: "Episódio 3: A Batalha Final", 
+                    title: "E3 ∙ A Batalha Final", 
                     subtitle: "Novo!", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: EPISODE_PLAYER_LINK(3), // <-- Mantém o comportamento original para outros episódios
+                    url: EPISODE_PLAYER_LINK(3),
                     animeTitle: "Saihate no Paladin",
                     description: "Will e seus companheiros enfrentam um inimigo poderoso que ameaça a paz de uma vila."
                 },
                 { 
-                    title: "Episódio 4: O Legado do Herói", 
+                    title: "E4 ∙ O Legado do Herói", 
                     subtitle: "Novo!", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: EPISODE_PLAYER_LINK(4), // <-- Mantém o comportamento original para outros episódios
+                    url: EPISODE_PLAYER_LINK(4),
                     animeTitle: "Saihate no Paladin",
                     description: "Will descobre mais sobre seu passado e o legado de seus pais adotivos."
                 },
                 { 
-                    title: "Episódio 5: O Fim do Mundo", 
+                    title: "E5 ∙ O Fim do Mundo", 
                     subtitle: "Pré-lançamento", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: CONSTRUCTION_LINK, // <-- Mantém o comportamento original para outros episódios
+                    url: EPISODE_PLAYER_LINK(5),
                     animeTitle: "Saihate no Paladin",
                     description: "Will e seus amigos descobrem uma antiga profecia sobre o fim do mundo."
                 },
                 { 
-                    title: "Episódio 6: O Paladino Eterno", 
+                    title: "E6 ∙ O Paladino Eterno", 
                     subtitle: "Em breve", 
                     image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
-                    url: CONSTRUCTION_LINK, // <-- Mantém o comportamento original para outros episódios
+                    url: EPISODE_PLAYER_LINK(6),
                     animeTitle: "Saihate no Paladin",
                     description: "Will finalmente alcança seu objetivo de se tornar um verdadeiro paladino."
+                },
+                { 
+                    title: "E7 ∙ O Caminho do Guerreiro", 
+                    subtitle: "Novo!", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: EPISODE_PLAYER_LINK(7),
+                    animeTitle: "Saihate no Paladin",
+                    description: "Will treina com um mestre guerreiro e aprende a usar sua força para proteger os outros."
+                },
+                { 
+                    title: "E8 ∙ A Cidade dos Vivos", 
+                    subtitle: "Novo!", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: EPISODE_PLAYER_LINK(8),
+                    animeTitle: "Saihate no Paladin",
+                    description: "Will chega à primeira cidade de humanos e descobre a complexidade da sociedade viva."
+                },
+                { 
+                    title: "E9 ∙ O Segredo dos Mortos-Vivos", 
+                    subtitle: "Novo!", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: EPISODE_PLAYER_LINK(9),
+                    animeTitle: "Saihate no Paladin",
+                    description: "Will descobre a verdade sobre seus pais adotivos e seu propósito no mundo."
+                },
+                { 
+                    title: "E10 ∙ A Ascensão do Paladino", 
+                    subtitle: "Novo!", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: EPISODE_PLAYER_LINK(10),
+                    animeTitle: "Saihate no Paladin",
+                    description: "Will finalmente é reconhecido como um paladino de verdade e enfrenta seu maior desafio."
+                },
+                { 
+                    title: "E11 ∙ O Último Inimigo", 
+                    subtitle: "Novo!", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: EPISODE_PLAYER_LINK(11),
+                    animeTitle: "Saihate no Paladin",
+                    description: "Will e seus aliados se preparam para a batalha final contra a ameaça que assola o mundo."
+                },
+                { 
+                    title: "E12 ∙ O Paladino do Fim do Mundo", 
+                    subtitle: "Final", 
+                    image: "https://i.postimg.cc/767RBnPq/f144ebc9f61c734140f789b23edc4eeb.jpg", 
+                    url: EPISODE_PLAYER_LINK(12),
+                    animeTitle: "Saihate no Paladin",
+                    description: "O desfecho da jornada de Will. A verdade sobre o mundo e seu destino final são revelados."
                 },
             ],
             // Carrosséis estáticos (Mantidos)
@@ -1248,7 +1293,7 @@ body {
                 { 
                     title: "Robina Goodfellow", 
                     subtitle: "trovadora viajante", 
-                    image: "https://i.postimg.cc/G3ZZ85qr/454883.jpg", 
+                    image: "https://i.postimg.cc/G3ZZ85qr/454883.jpg",
                     url: CONSTRUCTION_LINK, 
                     synopsis: "Robina Goodfellow é uma trovadora viajante halfling e amiga íntima de William.Ela adora espalhar histórias de feitos heroicos para o público através de contos poéticos e canções.Ela é muito alegre e extrovertida quando está com outras pessoas.Possui carisma e entusiasmo suficientes para atrair multidões para suas histórias e adora comer bem, aparentemente por causa de sua herança halfling.", 
                     trailerId: "placeholder"
@@ -1392,7 +1437,6 @@ body {
             if (heroSubtitle) heroSubtitle.textContent = 'Episódio Selecionado';
             if (heroImage) heroImage.src = newImage;
         }
-
         // ✨ NOVA FUNÇÃO PARA ATUALIZAR A SEÇÃO DE DETALHES DO ANIME
         function updateAnimeDetails(animeDetails) {
             const title = document.getElementById('details-anime-title');
@@ -1401,7 +1445,6 @@ body {
             const quality = document.getElementById('details-anime-quality');
             const audio = document.getElementById('details-anime-audio');
             const episodes = document.getElementById('details-anime-episodes');
-
             if (title) title.textContent = animeDetails.title || 'Detalhes do Anime';
             if (synopsis) synopsis.textContent = animeDetails.synopsis || 'Sinopse não disponível.';
             if (genre) genre.textContent = animeDetails.genre || '-';
@@ -1409,7 +1452,6 @@ body {
             if (audio) audio.textContent = animeDetails.audio || '-';
             if (episodes) episodes.textContent = animeDetails.episodes || '-';
         }
-
         /**
          * Renderiza os cards de anime no grid/carrossel
          * @param {string} containerId ID do elemento onde os cards serão renderizados
@@ -1508,7 +1550,6 @@ body {
             updateAnimeDetails(item);
             // Removemos a lógica de rotação automática para focar na atualização pelo clique
         }
-
         /**
          * Lógica para o carrossel de auto-scroll horizontal.
          */
@@ -1518,13 +1559,11 @@ body {
             initializeCarousel(containerId, animeList, true, false); // Não é card de episódio
             const cards = container.querySelectorAll('.anime-card');
             if (cards.length === 0) return;
-
             let currentIndex = 0;
             let intervalId;
             const scrollInterval = 5000; 
             const pauseDuration = 10000; // 10 segundos
             let pauseTimeoutId = null;
-
             const startAutoScroll = () => {
                 clearInterval(intervalId);
                 intervalId = setInterval(() => {
@@ -1544,28 +1583,23 @@ body {
                     }
                 }, scrollInterval);
             };
-
             const stopAutoScroll = () => clearInterval(intervalId);
             const pauseAutoScroll = () => {
                 stopAutoScroll();
                 clearTimeout(pauseTimeoutId);
                 pauseTimeoutId = setTimeout(startAutoScroll, pauseDuration);
             };
-
             const userInteractionHandler = () => {
                 pauseAutoScroll();
             };
-
             // Adiciona o listener de clique ao container para pausar o carrossel
             container.addEventListener('click', userInteractionHandler);
             container.addEventListener('touchstart', userInteractionHandler);
             container.addEventListener('mousedown', userInteractionHandler);
             container.addEventListener('wheel', userInteractionHandler);
             container.addEventListener('scroll', userInteractionHandler);
-
             startAutoScroll();
         }
-
         // ==========================================================
         // ✨ CONSTRUÇÃO DA PÁGINA E EVENT LISTENERS
         // ==========================================================
@@ -1786,3 +1820,6 @@ body {
     </script>
 </body>
 </html>
+
+
+
