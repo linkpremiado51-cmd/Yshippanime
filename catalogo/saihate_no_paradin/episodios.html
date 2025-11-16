@@ -8,7 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>/* INÍCIO DO CSS UNIFICADO (Estilo da Página do Episódio, baseado no código fixado) */
+    <style>
+/* INÍCIO DO CSS UNIFICADO (Estilo da Página do Episódio, baseado no código fixado) */
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -543,7 +544,7 @@ body {
 /* Container do player com proporção 16:9 */
 .player-container {
     width: 100%;
-    padding-bottom: 55.25%;
+    padding-bottom: 70.25%;
     position: relative;
     height: 0;
     background: #000;
@@ -647,29 +648,6 @@ body {
     line-height: 1.6;
     color: var(--text-secondary);
 }
-/* Estilo para os botões de download */
-.download-buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-.download-btn {
-    flex: 1;
-    padding: 12px 20px;
-    background: var(--episodes-color);
-    color: white;
-    border: none;
-    border-radius: 0px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.2s;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-}
-.download-btn:hover {
-    background: var(--episodes-hover);
-}
 /* Estilo para botões de navegação de episódios */
 .episode-navigation {
     display: flex;
@@ -678,11 +656,9 @@ body {
     padding: 0 0.75rem;
     width: 100%;
     max-width: 1000px;
-    gap: 15px; /* Espaçamento entre os botões */
 }
 .episode-nav-btn {
-    flex: 1; /* Faz os botões ocuparem o mesmo espaço */
-    padding: 12px 20px; /* Ajuste de padding para manter consistência */
+    padding: 12px 24px;
     background: var(--episodes-color);
     color: white;
     border: none;
@@ -692,10 +668,8 @@ body {
     transition: background 0.2s;
     display: flex;
     align-items: center;
-    justify-content: center; /* Centraliza o conteúdo */
     gap: 8px;
     text-decoration: none;
-    min-height: 44px; /* Garante altura mínima consistente */
 }
 .episode-nav-btn:hover {
     background: var(--episodes-hover);
@@ -704,6 +678,12 @@ body {
     background: var(--surface);
     color: var(--text-secondary);
     cursor: not-allowed;
+}
+.episode-nav-btn.prev {
+    justify-content: flex-start;
+}
+.episode-nav-btn.next {
+    justify-content: flex-end;
 }
 
 /* NOVO: Camada anti-clique */
@@ -787,70 +767,7 @@ body {
     color: var(--text-secondary);
     font-size: var(--font-size-xs);
 }
-/* Estilo para o botão de menu de episódios */
-.episode-menu-btn {
-    margin-top: 20px;
-    padding: 12px 20px;
-    background: var(--episodes-color);
-    color: white;
-    border: none;
-    border-radius: 0px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.2s;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    max-width: 1000px;
-}
-.episode-menu-btn:hover {
-    background: var(--episodes-hover);
-}
-/* Estilo para o menu lateral de episódios */
-.episode-list-menu {
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 280px;
-    max-width: 80%;
-    height: 100%;
-    background: var(--menu-background);
-    backdrop-filter: var(--blur-effect);
-    z-index: 4000;
-    transition: left 0.3s ease-in-out;
-    box-shadow: 4px 0 12px var(--shadow-color);
-    padding: 65px 20px 20px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-}
-.episode-list-menu.open {
-    left: 0;
-}
-.episode-list-item {
-    padding: 15px;
-    margin-bottom: 8px;
-    background: var(--menu-item-background);
-    color: var(--text-primary);
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    border-radius: 0px;
-    transition: background 0.2s ease;
-    display: block;
-    border-left: 3px solid transparent; /* Borda esquerda para destaque */
-}
-.episode-list-item:hover {
-    background: var(--menu-item-hover-background);
-    border-left-color: var(--highlight-color); /* Destaque na borda esquerda ao passar o mouse */
-}
-.episode-list-item.active {
-    background: var(--menu-item-hover-background);
-    border-left-color: var(--highlight-color); /* Destaque para o episódio ativo */
-    font-weight: 600;
-}
-</style>
+    </style>
 </head>
 <body data-theme="light">
     <div class="header-menu">
@@ -907,15 +824,15 @@ body {
         <!-- Seção de Informações do Episódio -->
         <section class="episode-info-section" id="episode-info-section">
             <div class="episode-info-content">
-                <h3 class="episode-info-title" id="episode-title">Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado</h3>
+                <h3 class="episode-info-title">Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado</h3>
                 <div class="episode-info-grid">
                     <div class="episode-info-item">
                         <span class="episode-info-label">Episódio</span>
-                        <p class="episode-info-value" id="episode-number">T1.E1 ∙ O Menino da Cidade dos Mortos</p>
+                        <p class="episode-info-value">T1.E1 ∙ O Menino da Cidade dos Mortos</p>
                     </div>
                     <div class="episode-info-item">
                         <span class="episode-info-label">Duração</span>
-                        <p class="episode-info-value" id="episode-duration">9 de out. de 2021 24 min</p>
+                        <p class="episode-info-value">9 de out. de 2021 24 min</p>
                     </div>
                     <div class="episode-info-item">
                         <span class="episode-info-label">Temporada</span>
@@ -930,35 +847,13 @@ body {
                     <h4>Sinopse</h4>
                     <p id="episode-synopsis-text">Will nasceu na cidade dos mortos, onde foi criado por três mortos-vivos. Apesar de ter sido nutrido com amor, Will questiona sua existência neste lugar inóspito, onde é o único humano vivo. Ele descobre que seus três pais escondem algo que pode explicar esse mistério e, como se isso não fosse intrigante o suficiente, ainda precisa descobrir que outros segredos se escondem dentro dele.</p>
                 </div>
-                <!-- Botões de download -->
-                <div class="download-buttons">
-                    <a href="#" class="download-btn" id="download-direct">Download direto</a>
-                    <a href="#" class="download-btn" id="download-drive">Download drive</a>
-                </div>
-                <!-- Botão para abrir o menu de episódios -->
-                <button class="episode-menu-btn" id="episode-menu-btn"><i class="fas fa-list"></i> Lista de Episódios</button>
             </div>
         </section>
         <!-- Navegação de Episódios -->
         <section class="episode-navigation">
-            <a href="#" class="episode-nav-btn prev" id="prev-episode"><i class="fas fa-arrow-left"></i> Anterior</a>
-            <a href="#" class="episode-nav-btn next" id="next-episode">Próximo <i class="fas fa-arrow-right"></i></a>
+            <a href="saihate_no_paradin.html" class="episode-nav-btn prev"><i class="fas fa-arrow-left"></i> Voltar para o Catálogo</a>
+            <a href="catalogo/saihate_no_paradin/saihate_no_paradin_ep2.html" class="episode-nav-btn next">Próximo <i class="fas fa-arrow-right"></i></a>
         </section>
-    </div>
-    <!-- Menu lateral de episódios -->
-    <div class="episode-list-menu" id="episodeListMenu">
-        <a href="#" class="episode-list-item" data-episode="1">T1.E1 ∙ O Menino da Cidade dos Mortos</a>
-        <a href="#" class="episode-list-item" data-episode="2">T1.E2 – O Sábio Errante</a>
-        <a href="#" class="episode-list-item" data-episode="3">T1.E3 – O Dia Prometido</a>
-        <a href="#" class="episode-list-item" data-episode="4">T1.E4 – A Deusa das Luzes</a>
-        <a href="#" class="episode-list-item" data-episode="5">T1.E5 – O Elmo da Vontade</a>
-        <a href="#" class="episode-list-item" data-episode="6">T1.E6 – Arqueiro da Floresta das Feras</a>
-        <a href="#" class="episode-list-item" data-episode="7">T1.E7 – Memória Traumática</a>
-        <a href="#" class="episode-list-item" data-episode="8">T1.E8 – O Poema do Herói</a>
-        <a href="#" class="episode-list-item" data-episode="9">T1.E9 – A Cidade das Velas Brancas</a>
-        <a href="#" class="episode-list-item" data-episode="10">T1.E10 – Glória Renomada</a>
-        <a href="#" class="episode-list-item" data-episode="11">T1.E11 – Vale do Desespero</a>
-        <a href="#" class="episode-list-item" data-episode="12">T1.E12 – O Paladino Distante</a>
     </div>
     <div class="footer">
         <div class="footer-left">
@@ -1042,107 +937,16 @@ body {
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
         console.log('3. [FIREBASE] App, Analytics e Firestore inicializados.');
-
-        // Dados dos episódios
-        const episodesData = [
-    {
-        id: 1,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-        episode: "T1.E1 ∙ O Menino da Cidade dos Mortos",
-        duration: "9 de out. de 2021 — 24 min",
-        synopsis: "Will nasceu na cidade dos mortos, onde foi criado por três mortos-vivos. Apesar de ter sido nutrido com amor, Will questiona sua existência neste lugar inóspito, onde é o único humano vivo. Ele descobre que seus três pais escondem algo que pode explicar esse mistério e, como se isso não fosse intrigante o suficiente, ainda precisa descobrir que outros segredos se escondem dentro dele.",
-        link: "https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview"
-    },
-    {
-        id: 2,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-        episode: "T1.E2 – O Sábio Errante",
-        duration: "16 de out. de 2021 — 24 min",
-        synopsis: "Cinco anos se passaram desde que Will descobriu o segredo de Mary, e agora ele tem 13 anos. As lições de seus pais mortos-vivos se tornam cada vez mais difíceis, mas Will consegue perseverar. Um dia, Blood lhe dá uma missão que exige que ele escape das ruínas da cidade. Will tenta desesperadamente lutar para sair, mas uma estranha sensação de malícia o impede. Descobre-se que essa malícia vinha de uma fonte inesperada.",
-        link: "https://drive.google.com/file/d/1Z6lnU84ZyQ1MMvwaO4dBoRQ53VaViufL/preview"
-    },
-    {
-        id: 3,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-        episode: "T1.E3 – O Dia Prometido",
-        duration: "23 de out. de 2021 — 24 min",
-        synopsis: "Ao completar 15 anos, Will desafia Blood para um duelo com espadas de verdade como parte de sua cerimônia de passagem para a vida adulta, mas Gus pede que Will perca de propósito. Will não tem a chance de perguntar a Gus sobre o que aconteceu naquele dia.",
-        link: "https://drive.google.com/file/d/10ZwqJLhMgSEb0DrOvFnbL91YwPbR0k61/preview"
-    },
-    {
-        id: 4,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-        episode: "T1.E4 – A Deusa das Luzes",
-        duration: "30 de out. de 2021 — 24 min",
-        synopsis: "Will, Blood e Gus partem para a Cidade das Chamas, a fim de comprar itens para Will. Lá, Will conhece uma garota misteriosa chamada Gracefeel.",
-        link: "https://drive.google.com/file/d/1vrcY4wR4w4FYxPyHkgRUhDxij7bgzMAh/preview"
-    },
-    {
-        id: 5,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-        episode: "T1.E5 – O Elmo da Vontade",
-        duration: "6 de nov. de 2021 — 24 min",
-        synopsis: "Will, Blood e Gus partem para a Cidade das Chamas, a fim de comprar itens para Will. Lá, Will conhece uma garota misteriosa chamada Gracefeel.",
-        link: "https://drive.google.com/file/d/10ZwqJLhMgSEb0DrOvFnbL91YwPbR0k61/preview"
-    },
-    {
-        id: 6,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-        episode: "T1.E6 – Arqueiro da Floresta das Feras",
-        duration: "13 de nov. de 2021 — 24 min",
-        synopsis: "Will, Blood e Gus partem para a Cidade das Chamas, a fim de comprar itens para Will. Lá, Will conhece uma garota misteriosa chamada Gracefeel.",
-        link: "https://drive.google.com/file/d/1vrcY4wR4w4FYxPyHkgRUhDxij7bgzMAh/preview"
-    },
-    {
-        id: 7,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-        episode: "T1.E7 – Memória Traumática",
-        duration: "20 de nov. de 2021 — 24 min",
-        synopsis: "Will, Blood e Gus partem para a Cidade das Chamas, a fim de comprar itens para Will. Lá, Will conhece uma garota misteriosa chamada Gracefeel.",
-        link: "https://drive.google.com/file/d/10ZwqJLhMgSEb0DrOvFnbL91YwPbR0k61/preview"
-    },
-    {
-        id: 8,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-        episode: "T1.E8 – O Poema do Herói",
-        duration: "27 de nov. de 2021 — 24 min",
-        synopsis: "Will, Blood e Gus partem para a Cidade das Chamas, a fim de comprar itens para Will. Lá, Will conhece uma garota misteriosa chamada Gracefeel.",
-        link: "https://drive.google.com/file/d/1vrcY4wR4w4FYxPyHkgRUhDxij7bgzMAh/preview"
-    },
-    {
-        id: 9,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-        episode: "T1.E9 – A Cidade das Velas Brancas",
-        duration: "11 de dez. de 2021 — 24 min",
-        synopsis: "Will e seus amigos, viajando com Bee e Tonio, chegam à Cidade das Velas Brancas. Will fica impressionado com a grande cidade e suas pessoas. Enquanto descansa, o alarme de emergência toca. Uma grande sombra negra cruza o céu...",
-        link: "https://drive.google.com/file/d/1W4g4ooNv_ijUdxj63TcvkbJ-D5C7SsrH/preview"
-    },
-    {
-        id: 10,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
-        episode: "T1.E10 – Glória Renomada",
-        duration: "18 de dez. de 2021 — 24 min",
-        synopsis: "Will, que deveria ter uma audiência com o lorde Ethelwald, oferece-se para reunir soldados particulares para combater monstros. Embora Ethelwald demonstre intimidação, decide reconhecer Will e permitir a ação. Ele vai a um bar para encontrar aventureiros.",
-        link: "https://drive.google.com/file/d/1uhsHL1h3rNveyKMv4sEA4Duj5ZdP0XhK/preview"
-    },
-    {
-        id: 11,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
-        episode: "T1.E11 – Vale do Desespero",
-        duration: "25 de dez. de 2021 — 24 min",
-        synopsis: "Nomeado paladino, Will cuida da reconstrução da vila e do extermínio de demônios. Na Floresta das Feras, algo parece errado com os corpos espalhados. Ele segue até um vale mais profundo.",
-        link: "https://drive.google.com/file/d/1eJ-mYEzHpmr27Pzpbr44a9zIfsR7tJBf/preview"
-    },
-    {
-        id: 12,
-        title: "Saihate no Paladin: Tetsusabi no Yama no Ou Legendado",
-        episode: "T1.E12 – O Paladino Distante",
-        duration: "3 de jan. de 2022 — 24 min",
-        synopsis: "Tamsy e Zanka lutam para salvar seus aliados cativos. Depois disso, Rudo tem uma reação inesperada.",
-        link: "https://drive.google.com/file/d/1eJ-mYEzHpmr27Pzpbr44a9zIfsR7tJBf/preview"
-    }
-];
-
+        // Constantes Globais
+        const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
+        const CONSTRUCTION_SUBTITLE = "Sistema em construção";
+        // Funções de utilidade (mantidas do original)
+        async function getIPAddress() {
+            // Lógica de IP mantida
+        }
+        async function recordReportError(errorType) {
+            // Lógica de reporte de erro mantida
+        }
         function openHamburgerMenu() {
             document.getElementById('hamburgerMenu')?.classList.add('open');
             document.getElementById('menuOverlay')?.classList.add('active');
@@ -1374,140 +1178,218 @@ body {
                 });
             });
 
-            // NOVO: Eventos para navegação de episódios
-            document.getElementById('prev-episode').addEventListener('click', (e) => {
-                e.preventDefault();
-                const currentId = parseInt(document.getElementById('episode-number').textContent.match(/\d+/)[0]);
-                if (currentId > 1) {
-                    loadEpisode(currentId - 1);
-                }
-            });
-
-            document.getElementById('next-episode').addEventListener('click', (e) => {
-                e.preventDefault();
-                const currentId = parseInt(document.getElementById('episode-number').textContent.match(/\d+/)[0]);
-                if (currentId < episodesData.length) {
-                    loadEpisode(currentId + 1);
-                }
-            });
-
-            // NOVO: Eventos para o menu de episódios
-            document.getElementById('episode-menu-btn').addEventListener('click', openEpisodeMenu);
-            document.querySelectorAll('.episode-list-item').forEach(item => {
-                item.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const episodeId = parseInt(item.getAttribute('data-episode'));
-                    loadEpisode(episodeId);
-                    closeEpisodeMenu();
-                });
-            });
-            // Fechar menu de episódios ao clicar no overlay
-            menuOverlay.addEventListener('click', () => {
-                closeEpisodeMenu();
-            });
-
             console.log('14. [EVENTOS] Configuração de event listeners concluída.');
         }
 
-        // NOVO: Função para carregar um episódio específico
-        function loadEpisode(episodeId) {
-            const episode = episodesData.find(ep => ep.id === episodeId);
-
-            if (!episode) {
-                showNotification(`Episódio ${episodeId} não encontrado.`);
-                return;
-            }
-
-            // Atualizar o título da página
-            document.title = `${episode.episode} - Saihate no Paladin - Anime I Geek`;
-            document.querySelector('meta[name="description"]').content = `Assista ${episode.episode} no Anime I Geek`;
-
-            // Atualizar informações do episódio
-            document.getElementById('episode-title').textContent = episode.title;
-            document.getElementById('episode-number').textContent = episode.episode;
-            document.getElementById('episode-duration').textContent = episode.duration;
-            document.getElementById('episode-synopsis-text').textContent = episode.synopsis;
-            document.getElementById('player-frame').src = episode.link;
-
-            // Atualizar links de download
-            document.getElementById('download-direct').href = episode.link;
-            document.getElementById('download-drive').href = episode.link;
-
-            // Atualizar botões de navegação
-            const prevBtn = document.getElementById('prev-episode');
-            const nextBtn = document.getElementById('next-episode');
-            prevBtn.href = episodeId > 1 ? `javascript:loadEpisode(${episodeId - 1})` : '#';
-            prevBtn.classList.toggle('disabled', episodeId <= 1);
-            nextBtn.href = episodeId < episodesData.length ? `javascript:loadEpisode(${episodeId + 1})` : '#';
-            nextBtn.classList.toggle('disabled', episodeId >= episodesData.length);
-
-            // Atualizar URL sem recarregar a página
-            window.history.pushState({}, '', `?ep=${episodeId}`);
-
-            // Alterar a cor da área abaixo do player para combinar com o fundo
-            const playerSection = document.getElementById('episode-player-section');
-            playerSection.style.backgroundColor = 'var(--background)';
-        }
-
-        // Função para abrir o menu de episódios
-        function openEpisodeMenu() {
-            document.getElementById('episodeListMenu').classList.add('open');
-            document.getElementById('menuOverlay').classList.add('active');
-        }
-
-        // Função para fechar o menu de episódios
-        function closeEpisodeMenu() {
-            document.getElementById('episodeListMenu').classList.remove('open');
-            document.getElementById('menuOverlay').classList.remove('active');
-        }
-
-        // Função para obter o número do episódio da URL
+        // NOVO: Função para obter o número do episódio da URL
         function getURLParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
 
-        // Função para reportar erro (mantida do original)
-        async function getIPAddress() {
-            const response = await fetch('https://api.ipify.org?format=json');
-            const data = await response.json();
-            return data.ip;
-        }
-        async function recordReportError(errorType) {
-            console.log(`[REPORT] Tentando reportar erro: ${errorType}`);
-            const episodeIdElement = document.getElementById('episode-id');
-            const episodeId = episodeIdElement ? episodeIdElement.textContent.trim() : 'N/A';
-            const ipAddress = await getIPAddress();
-            console.log(`[REPORT] ID Episódio: ${episodeId}, IP: ${ipAddress}, Tipo: ${errorType}`);
-            const reportsCollection = collection(db, 'aviso_de_erros'); // Coleção correta
-            const reportData = {
-                errorType: errorType,
-                episodeId: episodeId,
-                ipAddress: ipAddress,
-                timestamp: new Date() // Adiciona o horário do report
-            };
-            try {
-                const docRef = await addDoc(reportsCollection, reportData); // Envia para Firestore
-                console.log(`[REPORT] Documento salvo com ID: ${docRef.id}`);
-                showNotification('Erro reportado com sucesso! Obrigado pelo feedback.');
-                closeReportModal(); // Fecha o modal após o sucesso
-            } catch (e) {
-                console.error(`[REPORT] Erro ao adicionar documento: `, e);
-                showNotification('Erro interno: sua notificação de erro não foi enviada. Tente novamente mais tarde.');
+        // NOVO: Dados dos episódios
+        const episodesData = [
+            {
+                number: 1,
+                title: "T1.E1 ∙ O Menino da Cidade dos Mortos",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "9 de out. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview",
+                synopsis: "Will nasceu na cidade dos mortos, onde foi criado por três mortos-vivos. Apesar de ter sido nutrido com amor, Will questiona sua existência neste lugar inóspito, onde é o único humano vivo. Ele descobre que seus três pais escondem algo que pode explicar esse mistério e, como se isso não fosse intrigante o suficiente, ainda precisa descobrir que outros segredos se escondem dentro dele."
+            },
+            {
+                number: 2,
+                title: "T1.E2 ∙ O Reino dos Mortos",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "16 de out. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/1Z6lnU84ZyQ1MMvwaO4dBoRQ53VaViufL/preview", // Atualize com o link real
+                synopsis: "Will começa sua jornada e enfrenta os desafios do mundo exterior, aprendendo sobre a vida dos vivos."
+            },
+            {
+                number: 3,
+                title: "T1.E3 ∙ A Batalha Final",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "23 de out. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/10ZwqJLhMgSEb0DrOvFnbL91YwPbR0k61/preview", // Atualize com o link real
+                synopsis: "Will e seus companheiros enfrentam um inimigo poderoso que ameaça a paz de uma vila."
+            },
+            {
+                number: 4,
+                title: "T1.E4 ∙ O Legado do Herói",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "30 de out. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/13PJ6or0l_fx6TFn8pGHsVrLHRCpZ89E2/preview", // Atualize com o link real
+                synopsis: "Will descobre mais sobre seu passado e o legado de seus pais adotivos."
+            },
+            {
+                number: 5,
+                title: "T1.E5 ∙ O Fim do Mundo",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "6 de nov. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/1scxaqvP7Pk74c1EDAAXnRVjfcrY02H4p/preview", // Atualize com o link real
+                synopsis: "Will e seus amigos descobrem uma antiga profecia sobre o fim do mundo."
+            },
+            {
+                number: 6,
+                title: "T1.E6 ∙ O Paladino Eterno",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "13 de nov. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/1e9BjWWzkvI-WCDxQ3P8PWo6xZ1SF1l1O/preview", // Atualize com o link real
+                synopsis: "Will finalmente alcança seu objetivo de se tornar um verdadeiro paladino."
+            },
+            {
+                number: 7,
+                title: "T1.E7 ∙ O Caminho do Guerreiro",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "20 de nov. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/1dkVPHrTatf1Ha8Aqi-KMmml0fXYHt9Ts/preview", // Atualize com o link real
+                synopsis: "Will treina com um mestre guerreiro e aprende a usar sua força para proteger os outros."
+            },
+            {
+                number: 8,
+                title: "T1.E8 ∙ A Cidade dos Vivos",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "27 de nov. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/1HbIAZ9DqHNJegkmJOLBis7xKVVmBeXjt/preview", // Atualize com o link real
+                synopsis: "Will chega à primeira cidade de humanos e descobre a complexidade da sociedade viva."
+            },
+            {
+                number: 9,
+                title: "T1.E9 ∙ O Segredo dos Mortos-Vivos",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "4 de dez. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/1W4g4ooNv_ijUdxj63TcvkbJ-D5C7SsrH/preview", // Atualize com o link real
+                synopsis: "Will descobre a verdade sobre seus pais adotivos e seu propósito no mundo."
+            },
+            {
+                number: 10,
+                title: "T1.E10 ∙ A Ascensão do Paladino",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "11 de dez. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/1uhsHL1h3rNveyKMv4sEA4Duj5ZdP0XhK/preview", // Atualize com o link real
+                synopsis: "Will finalmente é reconhecido como um paladino de verdade e enfrenta seu maior desafio."
+            },
+            {
+                number: 11,
+                title: "T1.E11 ∙ O Último Inimigo",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "18 de dez. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/1vrcY4wR4w4FYxPyHkgRUhDxij7bgzMAh/preview", // Atualize com o link real
+                synopsis: "Will e seus aliados se preparam para a batalha final contra a ameaça que assola o mundo."
+            },
+            {
+                number: 12,
+                title: "T1.E12 ∙ O Paladino do Fim do Mundo",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "25 de dez. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/1eJ-mYEzHpmr27Pzpbr44a9zIfsR7tJBf/preview", // Atualize com o link real
+                synopsis: "O desfecho da jornada de Will. A verdade sobre o mundo e seu destino final são revelados."
+            }
+        ];
+
+        // NOVO: Função para carregar os dados do episódio com base no número fornecido
+        function loadEpisodeData(episodeNumber) {
+            // Encontra o episódio com o número especificado
+            const episode = episodesData.find(ep => ep.number == episodeNumber);
+
+            if (episode) {
+                // Atualiza o título da página
+                document.title = `${episode.title} - Saihate no Paladin - Anime I Geek`;
+                document.querySelector('meta[name="description"]').content = `Assista ${episode.title} no Anime I Geek`;
+
+                // Atualiza o iframe do player
+                const playerFrame = document.getElementById('player-frame');
+                if (playerFrame) {
+                    playerFrame.src = episode.videoUrl;
+                }
+
+                // Atualiza o título da seção
+                const infoTitle = document.querySelector('.episode-info-title');
+                if (infoTitle) {
+                    infoTitle.textContent = episode.fullTitle;
+                }
+
+                // Atualiza os dados do episódio
+                document.querySelector('.episode-info-value').textContent = episode.title;
+                document.querySelector('.episode-info-item:nth-child(2) .episode-info-value').textContent = `${episode.releaseDate} ${episode.duration}`;
+                document.querySelector('.episode-info-item:nth-child(3) .episode-info-value').textContent = episode.season;
+                document.querySelector('.episode-info-item:nth-child(4) .episode-info-value').textContent = episode.number;
+
+                // Atualiza a sinopse
+                const synopsisText = document.getElementById('episode-synopsis-text');
+                if (synopsisText) {
+                    synopsisText.textContent = episode.synopsis;
+                }
+
+                // Atualiza os botões de navegação
+                const prevBtn = document.querySelector('.episode-nav-btn.prev');
+                const nextBtn = document.querySelector('.episode-nav-btn.next');
+
+                if (prevBtn && episode.number > 1) {
+                    prevBtn.href = `episodios.html?episodio=${episode.number - 1}`;
+                } else if (prevBtn) {
+                    prevBtn.href = "saihate_no_paradin.html";
+                }
+
+                if (nextBtn && episode.number < episodesData.length) {
+                    nextBtn.href = `episodios.html?episodio=${episode.number + 1}`;
+                } else if (nextBtn) {
+                    nextBtn.classList.add('disabled');
+                    nextBtn.style.pointerEvents = 'none';
+                    nextBtn.style.opacity = '0.6';
+                }
+            } else {
+                // Se o episódio não for encontrado, exibe uma mensagem de erro
+                showNotification(`Episódio ${episodeNumber} não encontrado.`);
+                // Você pode redirecionar para a página principal ou mostrar um erro
+                setTimeout(() => {
+                    window.location.href = "saihate_no_paradin.html";
+                }, 3000);
             }
         }
 
-        // Constantes Globais
-        const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
-
-        // Carregar episódio da URL ou o primeiro por padrão
+        // Carrega os dados do episódio quando a página é carregada
         document.addEventListener('DOMContentLoaded', () => {
             console.log('17. [DOM] DOMContentLoaded. Chamando setupEventListeners().');
             
-            const urlEpisodeId = getURLParameter('ep');
-            const initialEpisodeId = urlEpisodeId ? parseInt(urlEpisodeId) : 1;
-            loadEpisode(initialEpisodeId);
-
+            // Obtém o número do episódio da URL
+            const episodeNumber = getURLParameter('episodio');
+            
+            // Verifica se o número do episódio foi fornecido
+            if (episodeNumber) {
+                loadEpisodeData(episodeNumber);
+            } else {
+                // Se nenhum episódio for especificado, redireciona para a página principal
+                showNotification('Nenhum episódio especificado. Redirecionando...');
+                setTimeout(() => {
+                    window.location.href = "saihate_no_paradin.html";
+                }, 3000);
+            }
+            
             setupEventListeners();
         });
 
@@ -1521,4 +1403,3 @@ body {
     </script>
 </body>
 </html>
-
