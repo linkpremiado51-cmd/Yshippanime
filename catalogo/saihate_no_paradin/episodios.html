@@ -1181,8 +1181,215 @@ body {
             console.log('14. [EVENTOS] Configuração de event listeners concluída.');
         }
 
+        // NOVO: Função para obter o número do episódio da URL
+        function getURLParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // NOVO: Dados dos episódios
+        const episodesData = [
+            {
+                number: 1,
+                title: "T1.E1 ∙ O Menino da Cidade dos Mortos",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "9 de out. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview",
+                synopsis: "Will nasceu na cidade dos mortos, onde foi criado por três mortos-vivos. Apesar de ter sido nutrido com amor, Will questiona sua existência neste lugar inóspito, onde é o único humano vivo. Ele descobre que seus três pais escondem algo que pode explicar esse mistério e, como se isso não fosse intrigante o suficiente, ainda precisa descobrir que outros segredos se escondem dentro dele."
+            },
+            {
+                number: 2,
+                title: "T1.E2 ∙ O Reino dos Mortos",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "16 de out. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/SEU_LINK_EP2/preview", // Atualize com o link real
+                synopsis: "Will começa sua jornada e enfrenta os desafios do mundo exterior, aprendendo sobre a vida dos vivos."
+            },
+            {
+                number: 3,
+                title: "T1.E3 ∙ A Batalha Final",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "23 de out. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/SEU_LINK_EP3/preview", // Atualize com o link real
+                synopsis: "Will e seus companheiros enfrentam um inimigo poderoso que ameaça a paz de uma vila."
+            },
+            {
+                number: 4,
+                title: "T1.E4 ∙ O Legado do Herói",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "30 de out. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/SEU_LINK_EP4/preview", // Atualize com o link real
+                synopsis: "Will descobre mais sobre seu passado e o legado de seus pais adotivos."
+            },
+            {
+                number: 5,
+                title: "T1.E5 ∙ O Fim do Mundo",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "6 de nov. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/SEU_LINK_EP5/preview", // Atualize com o link real
+                synopsis: "Will e seus amigos descobrem uma antiga profecia sobre o fim do mundo."
+            },
+            {
+                number: 6,
+                title: "T1.E6 ∙ O Paladino Eterno",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "13 de nov. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/SEU_LINK_EP6/preview", // Atualize com o link real
+                synopsis: "Will finalmente alcança seu objetivo de se tornar um verdadeiro paladino."
+            },
+            {
+                number: 7,
+                title: "T1.E7 ∙ O Caminho do Guerreiro",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "20 de nov. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/SEU_LINK_EP7/preview", // Atualize com o link real
+                synopsis: "Will treina com um mestre guerreiro e aprende a usar sua força para proteger os outros."
+            },
+            {
+                number: 8,
+                title: "T1.E8 ∙ A Cidade dos Vivos",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "27 de nov. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/SEU_LINK_EP8/preview", // Atualize com o link real
+                synopsis: "Will chega à primeira cidade de humanos e descobre a complexidade da sociedade viva."
+            },
+            {
+                number: 9,
+                title: "T1.E9 ∙ O Segredo dos Mortos-Vivos",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "4 de dez. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/SEU_LINK_EP9/preview", // Atualize com o link real
+                synopsis: "Will descobre a verdade sobre seus pais adotivos e seu propósito no mundo."
+            },
+            {
+                number: 10,
+                title: "T1.E10 ∙ A Ascensão do Paladino",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "11 de dez. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/SEU_LINK_EP10/preview", // Atualize com o link real
+                synopsis: "Will finalmente é reconhecido como um paladino de verdade e enfrenta seu maior desafio."
+            },
+            {
+                number: 11,
+                title: "T1.E11 ∙ O Último Inimigo",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "18 de dez. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/SEU_LINK_EP11/preview", // Atualize com o link real
+                synopsis: "Will e seus aliados se preparam para a batalha final contra a ameaça que assola o mundo."
+            },
+            {
+                number: 12,
+                title: "T1.E12 ∙ O Paladino do Fim do Mundo",
+                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
+                releaseDate: "25 de dez. de 2021",
+                duration: "24 min",
+                season: "1",
+                videoUrl: "https://drive.google.com/file/d/SEU_LINK_EP12/preview", // Atualize com o link real
+                synopsis: "O desfecho da jornada de Will. A verdade sobre o mundo e seu destino final são revelados."
+            }
+        ];
+
+        // NOVO: Função para carregar os dados do episódio com base no número fornecido
+        function loadEpisodeData(episodeNumber) {
+            // Encontra o episódio com o número especificado
+            const episode = episodesData.find(ep => ep.number == episodeNumber);
+
+            if (episode) {
+                // Atualiza o título da página
+                document.title = `${episode.title} - Saihate no Paladin - Anime I Geek`;
+                document.querySelector('meta[name="description"]').content = `Assista ${episode.title} no Anime I Geek`;
+
+                // Atualiza o iframe do player
+                const playerFrame = document.getElementById('player-frame');
+                if (playerFrame) {
+                    playerFrame.src = episode.videoUrl;
+                }
+
+                // Atualiza o título da seção
+                const infoTitle = document.querySelector('.episode-info-title');
+                if (infoTitle) {
+                    infoTitle.textContent = episode.fullTitle;
+                }
+
+                // Atualiza os dados do episódio
+                document.querySelector('.episode-info-value').textContent = episode.title;
+                document.querySelector('.episode-info-item:nth-child(2) .episode-info-value').textContent = `${episode.releaseDate} ${episode.duration}`;
+                document.querySelector('.episode-info-item:nth-child(3) .episode-info-value').textContent = episode.season;
+                document.querySelector('.episode-info-item:nth-child(4) .episode-info-value').textContent = episode.number;
+
+                // Atualiza a sinopse
+                const synopsisText = document.getElementById('episode-synopsis-text');
+                if (synopsisText) {
+                    synopsisText.textContent = episode.synopsis;
+                }
+
+                // Atualiza os botões de navegação
+                const prevBtn = document.querySelector('.episode-nav-btn.prev');
+                const nextBtn = document.querySelector('.episode-nav-btn.next');
+
+                if (prevBtn && episode.number > 1) {
+                    prevBtn.href = `episodios.html?episodio=${episode.number - 1}`;
+                } else if (prevBtn) {
+                    prevBtn.href = "saihate_no_paradin.html";
+                }
+
+                if (nextBtn && episode.number < episodesData.length) {
+                    nextBtn.href = `episodios.html?episodio=${episode.number + 1}`;
+                } else if (nextBtn) {
+                    nextBtn.classList.add('disabled');
+                    nextBtn.style.pointerEvents = 'none';
+                    nextBtn.style.opacity = '0.6';
+                }
+            } else {
+                // Se o episódio não for encontrado, exibe uma mensagem de erro
+                showNotification(`Episódio ${episodeNumber} não encontrado.`);
+                // Você pode redirecionar para a página principal ou mostrar um erro
+                setTimeout(() => {
+                    window.location.href = "saihate_no_paradin.html";
+                }, 3000);
+            }
+        }
+
+        // Carrega os dados do episódio quando a página é carregada
         document.addEventListener('DOMContentLoaded', () => {
             console.log('17. [DOM] DOMContentLoaded. Chamando setupEventListeners().');
+            
+            // Obtém o número do episódio da URL
+            const episodeNumber = getURLParameter('episodio');
+            
+            // Verifica se o número do episódio foi fornecido
+            if (episodeNumber) {
+                loadEpisodeData(episodeNumber);
+            } else {
+                // Se nenhum episódio for especificado, redireciona para a página principal
+                showNotification('Nenhum episódio especificado. Redirecionando...');
+                setTimeout(() => {
+                    window.location.href = "saihate_no_paradin.html";
+                }, 3000);
+            }
+            
             setupEventListeners();
         });
 
