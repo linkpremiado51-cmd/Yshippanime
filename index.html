@@ -729,7 +729,7 @@ body {
 /* Alinha o título "Lançamentos" à esquerda e afasta 15px da margem esquerda */
 #releases-section h2.carousel-title {
     display: block; /* Garante que margin funcione como bloco */
-    margin-left: 11px; /* Define 15px de espaçamento da margem esquerda */
+    margin-left: 5px; /* Define 15px de espaçamento da margem esquerda */
     margin-right: auto; /* Garante alinhamento à esquerda */
 }
 /* Estica o carrossel de lançamentos nas telas menores para encostar nas margens e ajusta espaçamento */
@@ -1112,7 +1112,7 @@ body:not(.loading) #initial-loader {
 }
 /* Move apenas o título 5px para a direita */
 #recommend-section h2.carousel-title {
-    margin-left: 13px;
+    margin-left: 5px;
 }
 /* Estica o carrossel nas telas menores para encostar nas margens */
 @media (max-width: 768px) {
@@ -1121,6 +1121,34 @@ body:not(.loading) #initial-loader {
         margin-left: calc(50% - 50vw); /* Alinha à borda esquerda da tela */
         padding: 0; /* Remove padding interno */
         max-width: none; /* Garante que não fique limitado pelo max-width anterior */
+    }
+}
+/* Deixar a seção POPULARES igual à seção RECOMENDA no mobile */
+@media (max-width: 768px) {
+    #popular-section {
+        width: 100vw; /* ocupa toda a largura da tela */
+        margin-left: calc(50% - 50vw); /* encosta à esquerda */
+        padding: 0; /* remove padding interno */
+        max-width: none; /* remove limite */
+    }
+
+    /* move só o título um pouco para a direita */
+    #popular-section h2.carousel-title {
+        margin-left: 5px;
+    }
+}
+/* Deixar ADICIONADOS RECENTEMENTE igual ao Anime I Geek Recomenda no mobile */
+@media (max-width: 768px) {
+    #added-section {
+        width: 100vw; /* ocupa toda a largura da tela */
+        margin-left: calc(50% - 50vw); /* encosta à esquerda */
+        padding: 0; /* remove padding */
+        max-width: none; /* remove limite de largura */
+    }
+
+    /* move o título um pouco para a direita */
+    #added-section h2.carousel-title {
+        margin-left: 5px;
     }
 }
     </style>
@@ -1217,32 +1245,36 @@ body:not(.loading) #initial-loader {
                 </section>
                 <section class="anime-carousel-section" id="genres-section">
                     <h2 class="carousel-title" data-link-id="genres">Gêneros</h2>
-                    <div class="anime-grid" id="generos-externo-grid"></div>
-                </section>
-                <!-- NOVO: Carrossel de Imagens -->
-                <section class="image-carousel-section" id="image-carousel-section">
-                    <div class="image-carousel-container">
-                        <div class="image-carousel-track" id="image-carousel-track">
-                            <!-- Os cards serão gerados via JS -->
-                        </div>
+                    <div class="anime-grid" id="generos-externo-grid"
                     </div>
                 </section>
                 <section class="anime-carousel-section" id="releases-section">
                     <h2 class="carousel-title" data-link-id="releases">Lançamentos</h2>
                     <div class="anime-grid" id="recent-releases-grid"></div>
                 </section>
-                <section class="anime-carousel-section" id="popular-section">
-                    <h2 class="carousel-title" data-link-id="popular">Populares</h2>
-                    <div class="anime-grid" id="popular-animes-grid"></div>
-                </section>
-                <section class="anime-carousel-section" id="added-section">
-                    <h2 class="carousel-title" data-link-id="added">Adicionados Recentemente</h2>
-                    <div class="anime-grid" id="recently-added-grid"></div>
-                </section>
                 <section class="anime-carousel-section" id="binge-watch-section">
                     <h2 class="carousel-title" data-link-id="binge-watch">Para Maratonar em 1 Dia</h2>
                     <div id="binge-watch-carousel"></div>
                 </section>
+                <section class="anime-carousel-section" id="popular-section">
+                    <h2 class="carousel-title" data-link-id="popular">Populares</h2>
+                    <div class="anime-grid" id="popular-animes-grid"></div>
+                </section>
+                
+</section>
+<!-- NOVO: Carrossel de Imagens -->
+<section class="image-carousel-section" id="image-carousel-section">
+    <div class="image-carousel-container">
+        <div class="image-carousel-track" id="image-carousel-track">
+            <!-- Os cards serão gerados via JS -->
+            </section>
+        
+        
+                <section class="anime-carousel-section" id="added-section">
+                    <h2 class="carousel-title" data-link-id="added">Adicionados Recentemente</h2>
+                    <div class="anime-grid" id="recently-added-grid"></div>
+                </section>
+                
             </main>
         </div>
         <div class="category-content" id="acao-content">
@@ -1985,3 +2017,8 @@ body:not(.loading) #initial-loader {
     </script>
 </body>
 </html>
+
+
+
+
+
