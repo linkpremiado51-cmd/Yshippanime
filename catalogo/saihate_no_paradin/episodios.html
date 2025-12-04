@@ -675,11 +675,9 @@ body {
     pointer-events: auto;
     cursor: not-allowed;
 }
-/* NOVO: Botão de tela cheia */
+/* NOVO: Botão de tela cheia - estilo base */
 .fullscreen-button-base {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
     width: 60px;
     height: 60px;
     background: var(--surface);
@@ -695,6 +693,15 @@ body {
 .fullscreen-button-base:hover {
     background: var(--primary);
     color: white;
+}
+/* Posições específicas */
+.fullscreen-top-right {
+    top: 10px;
+    right: 10px;
+}
+.fullscreen-bottom-right {
+    bottom: 10px;
+    right: 10px;
 }
 /* NOVO: Modal de proporções */
 .aspect-modal {
@@ -788,8 +795,12 @@ body {
         <section class="episode-player-section" id="episode-player-section">
             <div class="player-container">
                 <iframe class="player-frame" id="player-frame" src="https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <!-- Botão de tela cheia dentro do frame -->
-                <div class="fullscreen-button-base" id="fullscreenButtonBase">
+                <!-- Botão de tela cheia no CANTO SUPERIOR DIREITO -->
+                <div class="fullscreen-button-base fullscreen-top-right" id="fullscreenButtonTop">
+                    <i class="fas fa-expand"></i>
+                </div>
+                <!-- Botão de tela cheia no CANTO INFERIOR DIREITO -->
+                <div class="fullscreen-button-base fullscreen-bottom-right" id="fullscreenButtonBase">
                     <i class="fas fa-expand"></i>
                 </div>
             </div>
@@ -1038,6 +1049,7 @@ body {
             const menuOverlay = document.getElementById('menuOverlay');
             const rootElement = document.documentElement;
             const fullscreenButtonBase = document.getElementById('fullscreenButtonBase');
+            const fullscreenButtonTop = document.getElementById('fullscreenButtonTop');
             const aspectOptions = document.querySelectorAll('.aspect-option');
             let currentScale = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
             const step = 0.05;
@@ -1110,8 +1122,9 @@ body {
                     recordReportError(errorType);
                 });
             });
-            // NOVO: Evento para abrir modal de proporções
+            // NOVO: Eventos para ABRIR MODAL DE PROPORÇÃO — AMBOS OS BOTÕES
             fullscreenButtonBase?.addEventListener('click', openAspectModal);
+            fullscreenButtonTop?.addEventListener('click', openAspectModal);
             // NOVO: Evento para aplicar proporção
             aspectOptions.forEach(option => {
                 option.addEventListener('click', () => {
@@ -1255,20 +1268,16 @@ body {
             const navSection = document.getElementById('episode-navigation');
             const btnAnterior = navSection.querySelector('.episodio-anterior');
             const btnProximo = navSection.querySelector('.episodio-proximo');
-
             if (episode) {
                 // Atualiza título da página e metadados
                 document.title = `${episode.title} - Saihate no Paladin - Anime I Geek`;
                 document.querySelector('meta[name="description"]').content = `Assista ${episode.title} no Anime I Geek`;
-
                 // Atualiza o iframe
                 const playerFrame = document.getElementById('player-frame');
                 if (playerFrame) playerFrame.src = episode.videoUrl;
-
                 // Atualiza título da seção
                 const infoTitle = document.querySelector('.episode-info-title');
                 if (infoTitle) infoTitle.textContent = episode.fullTitle;
-
                 // Atualiza informações do episódio
                 const infoValues = document.querySelectorAll('.episode-info-value');
                 if (infoValues.length >= 4) {
@@ -1277,11 +1286,9 @@ body {
                     infoValues[2].textContent = episode.season;
                     infoValues[3].textContent = episode.number;
                 }
-
                 // Atualiza sinopse
                 const synopsisText = document.getElementById('episode-synopsis-text');
                 if (synopsisText) synopsisText.textContent = episode.synopsis;
-
                 // Gerencia botões dinâmicos
                 if (episode.number > 1) {
                     btnAnterior.href = `episodios.html?episodio=${episode.number - 1}`;
@@ -1289,14 +1296,12 @@ body {
                 } else {
                     btnAnterior.style.display = 'none';
                 }
-
                 if (episode.number < episodesData.length) {
                     btnProximo.href = `episodios.html?episodio=${episode.number + 1}`;
                     btnProximo.style.display = 'flex';
                 } else {
                     btnProximo.style.display = 'none';
                 }
-
             } else {
                 showNotification(`Episódio ${episodeNumber} não encontrado.`);
                 setTimeout(() => {
@@ -1304,7 +1309,6 @@ body {
                 }, 3000);
             }
         }
-
         // Carrega episódio ao iniciar
         document.addEventListener('DOMContentLoaded', () => {
             console.log('17. [DOM] DOMContentLoaded. Chamando setupEventListeners().');
@@ -1319,7 +1323,6 @@ body {
             }
             setupEventListeners();
         });
-
         window.addEventListener('beforeunload', () => {
             console.log('[LIFECYCLE] Evento beforeunload. Salvando estado...');
             localStorage.setItem('theme', document.body.dataset.theme);
