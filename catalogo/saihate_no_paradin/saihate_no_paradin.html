@@ -54,6 +54,8 @@ html {
     --zoom-scale: 1.0;
     --watch-now-button-width: 150px;
     --cover-button-opacity: 0.8;
+    /* Adicionado estilo específico para a lista de episódios da Netflix */
+    --episode-list-hover-bg: rgba(229, 62, 62, 0.1); /* E53E3E com 10% de opacidade */
 }
 [data-theme="dark"] {
     --text-primary: #e2e8f0;
@@ -70,6 +72,7 @@ html {
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.4);
     --progress-bg: #4a5568;
+    --episode-list-hover-bg: rgba(229, 62, 62, 0.2); /* E53E3E com 20% de opacidade */
 }
 * {
     margin: 0;
@@ -460,18 +463,18 @@ body {
     justify-content: center;
     align-items: center;
 }
-/* ✨ NOVO ESTILO DO MODAL DE DETALHES (Sinopse + Trailer / RPG Style) */
+/* ✨ ESTILO DO MODAL DE DETALHES E RPG (Mantido) */
 .modal-content {
-    background: var(--card-bg); /* Fundo claro ou escuro do card */
+    background: var(--card-bg);
     color: var(--text-primary);
     padding: 30px;
     border-radius: 0px;
     width: 90%;
-    max-width: 800px; /* Aumenta a largura máxima para acomodar trailer */
+    max-width: 800px;
     box-shadow: var(--shadow-lg);
     animation: fadeIn 0.3s ease-out;
     max-height: 90vh;
-    overflow-y: auto; /* Permite scroll se o conteúdo for muito grande */
+    overflow-y: auto;
 }
 .modal-content h3 {
     font-size: var(--font-size-lg);
@@ -484,12 +487,11 @@ body {
     display: flex;
     gap: 20px;
 }
-/* ✨ Aumento de 30px na altura do frame do YouTube */
 .modal-trailer-container {
     flex: 1;
     min-width: 300px;
     position: relative;
-    padding-bottom: calc(56.25% + 30px); /* 16:9 Aspect Ratio + 30px */
+    padding-bottom: calc(56.25% + 30px);
     height: 0;
     overflow: hidden;
     background: #000;
@@ -504,7 +506,7 @@ body {
 }
 .modal-synopsis-container {
     flex: 1;
-    max-height: 400px; /* Limita altura da sinopse no desktop */
+    max-height: 400px;
     overflow-y: auto;
     padding-right: 10px;
 }
@@ -514,23 +516,6 @@ body {
     margin-bottom: 10px;
     color: var(--text-secondary);
 }
-/* Scrollbar customizada para Firefox */
-.modal-synopsis-container {
-    scrollbar-width: thin;
-    scrollbar-color: var(--highlight-color) var(--surface);
-}
-/* Scrollbar customizada para Webkit */
-.modal-synopsis-container::-webkit-scrollbar {
-    width: 8px;
-}
-.modal-synopsis-container::-webkit-scrollbar-thumb {
-    background-color: var(--highlight-color);
-    border-radius: 4px;
-}
-.modal-synopsis-container::-webkit-scrollbar-track {
-    background: var(--surface);
-}
-/* Estilo para o modal RPG (Personagem) */
 .modal-rpg-content {
     display: flex;
     gap: 20px;
@@ -538,8 +523,8 @@ body {
 }
 .modal-rpg-image {
     flex-shrink: 0;
-    width: 150px; /* <-- LARGURA DIMINUÍDA NO MODAL */
-    height: 210px; /* <-- ALTURA DIMINUÍDA NO MODAL */
+    width: 150px;
+    height: 210px;
     background-size: cover;
     background-position: center;
     border-radius: 0px;
@@ -560,13 +545,12 @@ body {
     line-height: 1.6;
     color: var(--text-secondary);
 }
-/* Estilo para o modal de Descrição de Episódio */
 .modal-episode-content {
     display: block;
 }
 .modal-episode-image {
     width: 100%;
-    height: 200px; /* Altura fixa para a imagem do episódio */
+    height: 200px;
     background-size: cover;
     background-position: center;
     border-radius: 0px;
@@ -587,7 +571,6 @@ body {
     line-height: 1.6;
     color: var(--text-secondary);
 }
-/* Estilos do modal de Reportar (mantidos) */
 .report-option {
     display: block;
     width: 100%;
@@ -653,13 +636,13 @@ body {
     }
 }
 /* =====================================================
-   ✨ NOVOS ESTILOS PARA A PÁGINA INICIAL
+   ✨ NOVOS ESTILOS PARA A PÁGINA INICIAL (Mantido)
    ===================================================== */
 .hero-section {
     width: 100%;
     max-width: 1000px;
     margin: 65px auto 0;
-    height: 400px;
+    height: 200px; /* <--- ALTERADO DE 400PX PARA 300PX (Retangular) */
     background: var(--surface);
     border-radius: 0px;
     box-shadow: var(--shadow-lg);
@@ -691,12 +674,11 @@ body {
     padding: var(--spacing-md);
     color: white;
 }
-/* ATUALIZAÇÃO: Título Fixo para o Anime Tema */
 .hero-info h2 {
     font-size: var(--font-size-lg);
     font-weight: 700;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    white-space: nowrap; /* Garante que o título do anime não quebre */
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -704,7 +686,6 @@ body {
     font-size: var(--font-size-sm);
     text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
-/* NOVO: Estilo para informações complementares do anime */
 .anime-details-section {
     width: 100%;
     max-width: 1000px;
@@ -747,14 +728,14 @@ body {
     color: var(--text-primary);
     font-weight: 500;
 }
-/* ===== CONFIGURAÇÃO FÁCIL: MUDE SÓ AQUI ===== */
+/* ===== CONFIGURAÇÃO FÁCIL: MUDE SÓ AQUI (Mantido) ===== */
 :root {
-    --linha-comprimento: 238px;  /* <<--- MUDE AQUI PARA CONTROLAR TODAS AS LINHAS */
+    --linha-comprimento: 238px;
     --linha-cor: var(--highlight-color);
     --linha-espessura: 0.7px;
 }
 /* ============================================ */
-/* Estilo do título */
+/* Estilo do título (Mantido) */
 .carousel-title {
     position: relative;
     display: inline-block;
@@ -771,7 +752,6 @@ body {
     width: fit-content;
     z-index: 1;
 }
-/* Linha vermelha com tamanho fixo */
 .carousel-title::after {
     content: '';
     position: absolute;
@@ -779,7 +759,7 @@ body {
     bottom: 0;
     height: var(--linha-espessura);
     background: var(--linha-cor);
-    width: var(--linha-comprimento); /* <<--- MESMO TAMANHO PARA TODOS */
+    width: var(--linha-comprimento);
     z-index: -1;
 }
 /* Estilo para carrossel com movimento lateral */
@@ -792,186 +772,124 @@ body {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-x: contain;
 }
-/* Ajuste para mostrar 4 colunas no carrossel horizontal (exceto episódios) */
-#saihate-details-carousel .anime-card,
+/* Remove estilos específicos para carrossel horizontal de episódios */
 #isekai-animes-carousel .anime-card {
     scroll-snap-align: start;
     flex-shrink: 0;
-    /* Ajustado para 4 colunas visíveis no desktop */
-    width: calc((100% - 3 * var(--spacing-md)) / 4); /* (100% - (4-1) * gap) / 4 */
-}
-/* Ajuste para mostrar 3 colunas no carrossel de episódios */
-#episodes-carousel .anime-card {
-    scroll-snap-align: start;
-    flex-shrink: 0;
-    /* Ajustado para 3 colunas visíveis no desktop */
-    width: calc((100% - 2 * var(--spacing-md)) / 3); /* (100% - (3-1) * gap) / 3 */
+    width: calc((100% - 3 * var(--spacing-md)) / 4);
 }
 /* O carrossel normal deve ser estático (grid) */
 .anime-grid {
     display: grid;
-    /* Manter o grid de 4 colunas em desktop */
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: var(--spacing-md);
 }
-/* Grid para detalhes/personagens com 4 colunas */
-.anime-grid#saihate-details-grid {
-    grid-template-columns: repeat(4, 1fr);
-}
-.anime-card {
-    background: var(--card-bg);
-    border-radius: 0px;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    /* Removido text-decoration: none; */
-    color: var(--text-primary);
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeIn 0.5s ease-out forwards;
-    /* Altura fixa para todos os cards no grid */
+/* ==========================================================
+   ✨ NOVOS ESTILOS PARA LISTA DE EPISÓDIOS (NETFLIX STYLE)
+   ========================================================== */
+#episodes-list {
     display: flex;
     flex-direction: column;
-    height: 100%; /* Permite que o display flex funcione */
-    cursor: pointer; /* Adicionado cursor para indicar clique */
-}
-.anime-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-/* CLASSE DE IMAGEM PADRÃO (Proporção 140% de padding-bottom é 1.4:1) */
-.anime-card-image {
+    gap: 1px; /* Espaçamento mínimo entre os itens */
     width: 100%;
-    padding-bottom: 140%;
-    background-size: cover;
-    background-position: center;
-    background-color: var(--surface);
-    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: var(--surface); /* Fundo para simular a separação */
 }
-/* Classe de imagem para cards que usam altura fixa (Detalhes, etc.) */
-.anime-card-image-fixed-height {
-    width: 100%;
-    height: 280px; /* Altura padrão desktop */
-    padding-bottom: 0;
-    background-size: cover;
-    background-position: center;
-    background-color: var(--surface);
-    flex-shrink: 0;
-}
-/* CLASSE ESPECÍFICA PARA OS CARDS DE EPISÓDIO */
-.episode-card-image {
-    width: 100%;
-    padding-bottom: 56.25%; /* Proporção 16:9 para thumb de vídeo */
-    background-size: cover;
-    background-position: center;
-    background-color: var(--surface);
-    flex-shrink: 0;
-}
-.anime-card-info {
+.episode-item {
+    display: flex;
+    align-items: center;
+    background: var(--card-bg); /* Fundo do item */
     padding: var(--spacing-sm);
-    /* Garante que o texto use o espaço restante, mantendo a altura do card */
-    flex-grow: 1;
+    box-shadow: var(--shadow);
+    transition: background 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border); /* Linha divisória */
 }
-.anime-card-title {
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    /* Permite que o texto quebre para garantir o mesmo tamanho do card */
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Limita a 2 linhas */
-    -webkit-box-orient: vertical;
+.episode-item:hover {
+    background: var(--episode-list-hover-bg); /* Hover de destaque */
+    transform: translateX(5px);
+}
+.episode-image-container {
+    flex-shrink: 0;
+    width: 150px; /* Largura da thumbnail */
+    height: 84px; /* Altura da thumbnail (16:9) */
+    position: relative;
+    border-radius: 0px;
     overflow: hidden;
-    white-space: normal; /* Permite a quebra de linha */
-    height: calc(var(--font-size-sm) * 1.5 * 2); /* Altura de 2 linhas */
+    margin-right: var(--spacing-md);
 }
-.anime-card-subtitle {
-    font-size: var(--font-size-xs);
-    color: var(--text-secondary);
+.episode-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.episode-item:hover .episode-image {
+    transform: scale(1.05);
+}
+.episode-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0; /* Permite que o texto quebre */
+}
+.episode-title {
+    font-size: var(--font-size-md);
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--text-primary);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.episode-description {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita a 2 linhas para descrição */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
 /* ==========================================================
-   ✨ ALTERAÇÕES PARA 4 COLUNAS NO MOBILE (SOLICITADO)
+   ✨ MEDIA QUERIES PARA RESPONSIVIDADE
    ========================================================== */
 @media (max-width: 768px) {
-    .hero-section {
-        height: 300px;
-        margin-top: 55px;
-    }
-    .anime-grid {
-        display: grid;
-        overflow-x: hidden;
-        /* Colunas mobile */
-        grid-template-columns: repeat(4, 1fr);
-        gap: calc(var(--spacing-sm) / 1.5);
-    }
-    .anime-grid#saihate-details-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas em mobile para cards maiores */
-    }
-    .anime-card {
-        width: 100%;
-        flex-shrink: 1;
-        height: 100%;
-        .anime-card-info {
-             padding: calc(var(--spacing-sm) / 2);
-        }
-        .anime-card-title {
-             font-size: calc(var(--font-size-xs) * 0.9);
-             height: calc(calc(var(--font-size-xs) * 0.9) * 1.5 * 2); /* Ajusta altura do título para 2 linhas mobile */
-        }
-        .anime-card-subtitle {
-             font-size: calc(var(--font-size-xs) * 0.8);
-        }
-    }
     /* Ajuste da largura dos cards no carrossel horizontal em mobile */
-    #saihate-details-carousel .anime-card,
     #isekai-animes-carousel .anime-card {
-        /* Ajustado para 4 colunas visíveis em mobile */
-        width: calc((100% - 3 * var(--spacing-md)) / 4); /* (100% - (4-1) * gap) / 4 */
+        width: calc((100% - 2 * var(--spacing-md)) / 3); /* 3 colunas em mobile */
     }
-    /* Ajuste da largura dos cards no carrossel de episódios em mobile */
-    #episodes-carousel .anime-card {
-        /* Ajustado para 3 colunas visíveis em mobile */
-        width: calc((100% - 2 * var(--spacing-md)) / 3); /* (100% - (3-1) * gap) / 3 */
+
+    /* Ajuste da Lista de Episódios em Mobile */
+    .episode-item {
+        padding: var(--spacing-sm);
+        align-items: flex-start; /* Alinha a imagem e o texto no topo */
     }
-    /* Ajuste da altura fixa da imagem no mobile (menor) */
-    .anime-card-image-fixed-height {
-        height: 120px; /* <-- Altura ajustada para mobile */
-        padding-bottom: 0;
+    .episode-image-container {
+        width: 120px; /* Reduz a largura da thumbnail */
+        height: 67.5px; /* Reduz a altura (16:9) */
+        margin-right: var(--spacing-sm);
     }
-    /* Ajuste da imagem padrão no mobile */
-    .anime-card-image {
-        padding-bottom: 140%;
+    .episode-title {
+        font-size: var(--font-size-sm);
     }
-    /* Ajuste da imagem de episódio no mobile (16:9) */
-    .episode-card-image {
-        padding-bottom: 56.25%;
+    .episode-description {
+        font-size: var(--font-size-xs);
+        -webkit-line-clamp: 3; /* Permite 3 linhas no mobile */
     }
 }
 @media (max-width: 480px) {
-    .hero-section {
-        height: 250px;
-    }
-    .anime-grid {
-        grid-template-columns: repeat(3, 1fr); /* Reduzido para 3 colunas em mobile extremo para legibilidade */
-        gap: calc(var(--spacing-sm) / 2);
-    }
-    .anime-grid#saihate-details-grid {
-        grid-template-columns: repeat(1, 1fr); /* 1 coluna em mobile extremo */
-    }
-     .anime-card-image-fixed-height {
-        height: 100px; /* Reduz um pouco mais no mobile extremo */
-    }
     /* Ajuste da largura dos cards no carrossel horizontal em mobile extremo */
-    #saihate-details-carousel .anime-card,
     #isekai-animes-carousel .anime-card {
-        /* Ajustado para 4 colunas visíveis em mobile extremo */
-        width: calc((100% - 3 * var(--spacing-md)) / 4); /* (100% - (4-1) * gap) / 4 */
+        width: calc((100% - var(--spacing-md)) / 2); /* 2 colunas em mobile extremo */
     }
-    /* Ajuste da largura dos cards no carrossel de episódios em mobile extremo */
-    #episodes-carousel .anime-card {
-        /* Ajustado para 3 colunas visíveis em mobile extremo */
-        width: calc((100% - 2 * var(--spacing-md)) / 3); /* (100% - (3-1) * gap) / 3 */
+    /* Mais ajustes para lista de episódios */
+    .episode-image-container {
+        width: 100px; /* Reduz mais a largura da thumbnail */
+        height: 56.25px; /* Reduz mais a altura (16:9) */
     }
 }
     </style>
@@ -1023,7 +941,6 @@ body {
                 </div>
             </div>
         </section>
-        <!-- NOVO: Seção de detalhes do anime -->
         <section class="anime-details-section" id="anime-details-section">
             <div class="anime-details-content">
                 <h3 class="anime-details-title" id="details-anime-title">Detalhes do Anime</h3>
@@ -1054,17 +971,7 @@ body {
         <main style="width:100%;max-width:1000px;padding:0 0.75rem 120px;margin:0 auto;">
             <section class="anime-carousel-section" id="episodes-section">
                 <h2 class="carousel-title" data-link-id="episodes">EPISÓDIOS</h2>
-                <div id="episodes-carousel">
-                    </div>
-            </section>
-            <section class="anime-carousel-section" id="saihate-details-section">
-                <h2 class="carousel-title" data-link-id="saihate">Detalhes e Personagens de 'Saihate no Paladin'</h2>
-                <div class="carousel-horizontal" id="saihate-details-carousel">
-                </div>
-            </section>
-            <section class="anime-carousel-section" id="isekai-section">
-                <h2 class="carousel-title" data-link-id="isekai">Outros Animes Isekai Recomendados</h2>
-                <div class="carousel-horizontal" id="isekai-animes-carousel">
+                <div id="episodes-list">
                 </div>
             </section>
             </main>
@@ -1280,7 +1187,7 @@ body {
                     description: "O desfecho da jornada de Will. A verdade sobre o mundo e seu destino final são revelados."
                 },
             ],
-            // Carrosséis estáticos (Mantidos)
+            // Carrosséis estáticos (Dados mantidos, mas a seção será removida no HTML)
             saiHateDetails: [
                 { 
                     title: "William G. Maryblood", 
@@ -1306,7 +1213,7 @@ body {
                 { title: "Estagnar", subtitle: "Entidade ", image: "https://i.postimg.cc/L8T9Vpb3/454881.jpg", url: CONSTRUCTION_LINK, synopsis: "Deus dos Mortos-Vivos", trailerId: "placeholder" },
                 { title: "Antonio", subtitle: "vendedor ambulante ", image: "https://i.postimg.cc/L8T9Vpb3/454881.jpg", url: CONSTRUCTION_LINK, synopsis: "Antonio é um vendedor ambulante e amigo de confiança de William. Ele é um negociador altamente habilidoso e conhece bem o ramo do comércio.É amigável e transmite uma impressão de paz aos outros.", trailerId: "placeholder" }
             ],
-            // Outros animes (Mantidos)
+            // Outros animes (Mantidos apenas nos dados, mas não serão renderizados no HTML)
             isekaiAnimes: [
                 { title: "The Faraway Paladin", subtitle: "12 Episódios (Isekai)", image: "https://i.postimg.cc/HnHVRk4y/images-2025-11-11T222800-016.jpg", url: "saihate_no_paradin.html", synopsis: "Uma cidade dos mortos... Will é criado por três mortos-vivos e embarca em um caminho para se tornar um paladino.", trailerId: "placeholder", genre: "Isekai, Aventura, Fantasia", quality: "1080p", audio: "Legendado", episodes: "12" },
                 { title: "Mushoku Tensei", subtitle: "2 Temporadas (Isekai)", image: "https://i.postimg.cc/yxt4hMkM/images-16.webp", url: CONSTRUCTION_LINK, synopsis: "Um NEET recluso é reencarnado em um mundo de fantasia com memórias intactas e decide viver sua nova vida ao máximo.", trailerId: "placeholder", genre: "Isekai, Aventura, Drama", quality: "720p", audio: "Dublado", episodes: "23" },
@@ -1390,7 +1297,7 @@ body {
                 modal.style.display = 'none';
             }
         }
-        // ✨ NOVA FUNÇÃO PARA MODAL RPG (Personagem)
+        // ✨ FUNÇÃO PARA MODAL RPG (Personagem) (Mantida para ser usada no carrossel de Isekai)
         function openRpgModal(title, synopsis, image) {
             const modal = document.getElementById('rpgModal');
             const titleElem = document.getElementById('rpgTitle');
@@ -1409,7 +1316,7 @@ body {
                 modal.style.display = 'none';
             }
         }
-        // ✨ NOVA FUNÇÃO PARA MODAL DE EPISÓDIO
+        // ✨ FUNÇÃO PARA MODAL DE EPISÓDIO
         function openEpisodeModal(title, description, image) {
             const modal = document.getElementById('episodeModal');
             const titleElem = document.getElementById('episodeTitle');
@@ -1428,7 +1335,7 @@ body {
                 modal.style.display = 'none';
             }
         }
-        // ✨ NOVA FUNÇÃO PARA ATUALIZAR A SEÇÃO HERO
+        // ✨ FUNÇÃO PARA ATUALIZAR A SEÇÃO HERO
         function updateHeroSection(newTitle, newImage) {
             const heroTitle = document.getElementById('hero-title');
             const heroSubtitle = document.getElementById('hero-subtitle');
@@ -1437,7 +1344,7 @@ body {
             if (heroSubtitle) heroSubtitle.textContent = 'Episódio Selecionado';
             if (heroImage) heroImage.src = newImage;
         }
-        // ✨ NOVA FUNÇÃO PARA ATUALIZAR A SEÇÃO DE DETALHES DO ANIME
+        // ✨ FUNÇÃO PARA ATUALIZAR A SEÇÃO DE DETALHES DO ANIME
         function updateAnimeDetails(animeDetails) {
             const title = document.getElementById('details-anime-title');
             const synopsis = document.getElementById('details-anime-synopsis');
@@ -1462,6 +1369,11 @@ body {
         function renderAnimeCards(containerId, animeList, isHorizontal = false, isEpisodeCard = false) {
             const container = document.getElementById(containerId);
             if (!container) return;
+            // Se for a lista de episódios, ignorar o modo carrossel/grid e usar a nova função
+            if (containerId === 'episodes-list') {
+                renderEpisodeList(container, animeList);
+                return;
+            }
             if (isHorizontal) {
                 container.classList.add('carousel-horizontal');
                 container.classList.remove('anime-grid');
@@ -1522,7 +1434,38 @@ body {
             });
         }
         /**
-         * Inicializa a renderização do carrossel
+         * Renderiza a lista de episódios no novo formato Netflix.
+         * @param {HTMLElement} container O container DOM para a lista.
+         * @param {Array} episodeList Lista de objetos de episódios.
+         */
+        function renderEpisodeList(container, episodeList) {
+            container.innerHTML = '';
+            episodeList.forEach((episode, index) => {
+                const item = document.createElement('div');
+                item.className = 'episode-item fade-in';
+                item.style.animationDelay = `${index * 50}ms`;
+                item.dataset.url = episode.url;
+                item.dataset.title = episode.title;
+                item.dataset.image = episode.image;
+                item.dataset.description = episode.description;
+                // Extrai o número do episódio para exibição (Ex: E1 -> 1)
+                const episodeMatch = episode.title.match(/E(\d+)/);
+                const episodeNumber = episodeMatch ? episodeMatch[1] : (index + 1);
+
+                item.innerHTML = `
+                    <div class="episode-image-container">
+                        <img src="${episode.image}" alt="Thumbnail do ${episode.title}" class="episode-image" loading="lazy" />
+                    </div>
+                    <div class="episode-info">
+                        <div class="episode-title">${episode.title}</div>
+                        <div class="episode-description">${episode.description}</div>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+        /**
+         * Inicializa a renderização do carrossel/lista
          * @param {string} containerId ID do elemento DOM onde renderizar
          * @param {Array} data A lista completa de dados do carrossel
          * @param {boolean} isHorizontal Se deve ser um carrossel horizontal
@@ -1554,6 +1497,7 @@ body {
          * Lógica para o carrossel de auto-scroll horizontal.
          */
         function setupAutoScrollCarousel(containerId, animeList) {
+            // ESSA FUNÇÃO NÃO É MAIS CHAMADA NA buildHomepage
             const container = document.getElementById(containerId);
             if (!container) return;
             initializeCarousel(containerId, animeList, true, false); // Não é card de episódio
@@ -1606,12 +1550,9 @@ body {
         function buildHomepage() {
             console.log('[HOMEPAGE] Construindo página inicial (Dados Internos)...');
             buildHeroSlider('hero-section', homepageData.hero);
-            // Carrosséis estáticos (Grid)
-            initializeCarousel('saihate-details-carousel', homepageData.saiHateDetails, true); // Agora é um carrossel horizontal
-            // Carrossel de Episódios (Horizontal e Manual)
-            initializeCarousel('episodes-carousel', homepageData.episodeList, true, true); // true para horizontal e true para card de episódio
-            // Carrossel "Outros Animes Isekai Recomendados" (Horizontal e Automático, com lista fixa)
-            setupAutoScrollCarousel('isekai-animes-carousel', homepageData.isekaiAnimes);
+            // LISTA DE EPISÓDIOS NOVO ESTILO (Vertical)
+            renderEpisodeList(document.getElementById('episodes-list'), homepageData.episodeList); 
+            // REMOVIDA A CHAMADA setupAutoScrollCarousel('isekai-animes-carousel', homepageData.isekaiAnimes);
         }
         const INITIAL_ZOOM = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
         const MIN_ZOOM = 0.5;
@@ -1710,10 +1651,11 @@ body {
                 });
             });
            // ==========================================================
-           // ✨ LÓGICA DE CLIQUE PARA CARDS DE DETALHES/RECOMENDAÇÃO
+           // ✨ LÓGICA DE CLIQUE PARA CARDS DE DETALHES/RECOMENDAÇÃO (REMOVIDA)
            // ==========================================================
+            /*
             let clickTimer = null;
-            document.querySelectorAll('#saihate-details-carousel .anime-card, #isekai-animes-carousel .anime-card').forEach(card => {
+            document.querySelectorAll('#isekai-animes-carousel .anime-card').forEach(card => {
                 card.addEventListener('click', (e) => {
                     e.preventDefault();
                     if (clickTimer === null) {
@@ -1732,7 +1674,7 @@ body {
                     } else {
                         clearTimeout(clickTimer);
                         clickTimer = null;
-                        // Double click: abre modal de RPG (Personagem)
+                        // Double click: abre modal de RPG (Personagem - Mantido por ser o estilo de exibição de dados)
                         const title = card.dataset.title;
                         const synopsis = card.dataset.synopsis;
                         const image = card.dataset.image;
@@ -1740,21 +1682,23 @@ body {
                     }
                 });
             });
+            */
            // ==========================================================
-           // ✨ LÓGICA DE CLIQUE PARA CARDS DO CARROSSEL DE EPISÓDIOS
+           // ✨ LÓGICA DE CLIQUE PARA A NOVA LISTA DE EPISÓDIOS
            // ==========================================================
-            document.getElementById('episodes-carousel')?.addEventListener('click', (e) => {
-                const card = e.target.closest('.anime-card');
-                if (!card) return;
+            document.getElementById('episodes-list')?.addEventListener('click', (e) => {
+                const item = e.target.closest('.episode-item');
+                if (!item) return;
+                
                 let clickTimer = null;
-                // Simular o comportamento de clique duplo para o card de episódio
+                // Simular o comportamento de clique duplo para o item de episódio
                 if (clickTimer === null) {
                     clickTimer = setTimeout(() => {
                         clickTimer = null;
                         // Single click: Atualiza capa e executa ação normal
-                        const url = card.dataset.url;
-                        const title = card.dataset.title;
-                        const image = card.dataset.image;
+                        const url = item.dataset.url;
+                        const title = item.dataset.title;
+                        const image = item.dataset.image;
                         if (image && title) {
                             // 1. ATUALIZA A CAPA (Hero Section)
                             updateHeroSection(`Saihate no Paladin: ${title}`, image);
@@ -1774,9 +1718,9 @@ body {
                     clearTimeout(clickTimer);
                     clickTimer = null;
                     // Double click: abre modal de Descrição do Episódio SEM executar ação de single click
-                    const title = card.dataset.title;
-                    const description = card.dataset.description;
-                    const image = card.dataset.image;
+                    const title = item.dataset.title;
+                    const description = item.dataset.description;
+                    const image = item.dataset.image;
                     openEpisodeModal(title, description, image);
                 }
             });
@@ -1820,6 +1764,3 @@ body {
     </script>
 </body>
 </html>
-
-
-
