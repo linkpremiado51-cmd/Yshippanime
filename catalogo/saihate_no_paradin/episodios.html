@@ -579,26 +579,6 @@ body {
     box-shadow: var(--shadow);
     font-size: var(--font-size-xs);
     color: var(--text-primary);
-    /* Ajustado para acomodar o anti-click-layer com 25x25 */
-    width: auto; 
-    height: auto; 
-    display: flex; 
-    align-items: center;
-    justify-content: center;
-    min-width: 50px;
-    min-height: 30px;
-}
-/* Camada anti-clique - ALTERADO PARA 55x55 e INVISÍVEL */
-.anti-click-layer-ad {
-    position: absolute;
-    top: 0; 
-    right: 0;
-    width: 55px; /* Camada anti-clique de 55x55 pixels */
-    height: 55px;
-    z-index: 11; /* Z-index maior que o do ad-overlay e player-container */
-    pointer-events: auto; /* Permite que este elemento receba cliques */
-    cursor: not-allowed;
-    background: transparent; /* GARANTE QUE ESTÁ INVISÍVEL */
 }
 .ad-overlay a {
     color: var(--highlight-color);
@@ -672,15 +652,10 @@ body {
 .episode-navigation {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Centraliza verticalmente */
     margin-top: var(--spacing-md);
     padding: 0 0.75rem;
     width: 100%;
     max-width: 1000px;
-}
-.episode-nav-btn-container {
-    display: flex;
-    gap: 10px; /* Espaço entre os botões Anterior e Próximo */
 }
 .episode-nav-btn {
     padding: 12px 24px;
@@ -695,28 +670,14 @@ body {
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    white-space: nowrap; /* Evita quebra de linha em telas pequenas */
 }
 .episode-nav-btn:hover {
     background: var(--episodes-hover);
 }
-/* NOVO ESTILO: Botão Voltar para o Catálogo */
-.episode-nav-btn.catalog-btn {
-    margin-right: auto; /* Empurra para a esquerda, mantendo o Próximo/Anterior na direita */
-    background: black; /* Fundo preto */
-    color: white; /* Fonte branca */
-}
-.episode-nav-btn.catalog-btn:hover {
-    background: #333333; /* Fundo cinza escuro no hover */
-}
-/* FIM DO NOVO ESTILO */
-
-.episode-nav-btn:disabled, .episode-nav-btn.disabled {
-    background: var(--surface) !important;
-    color: var(--text-secondary) !important;
-    cursor: not-allowed !important;
-    pointer-events: none !important;
-    opacity: 0.6;
+.episode-nav-btn:disabled {
+    background: var(--surface);
+    color: var(--text-secondary);
+    cursor: not-allowed;
 }
 .episode-nav-btn.prev {
     justify-content: flex-start;
@@ -725,7 +686,7 @@ body {
     justify-content: flex-end;
 }
 
-/* NOVO: Camada anti-clique (Mantida para fins de teste no footer, mas a camada do ad está no player) */
+/* NOVO: Camada anti-clique */
 .anti-click-layer {
     position: fixed;
     bottom: 0;
@@ -847,18 +808,20 @@ body {
         </div>
         <div class="menu-overlay" id="menuOverlay"></div>
     <div class="zoom-container" id="zoom-container">
+        <!-- Seção do Player -->
         <section class="episode-player-section" id="episode-player-section">
             <div class="player-container">
                 <iframe class="player-frame" id="player-frame" src="https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <div class="anti-click-layer-ad" onclick="showNotification('Anti-Click Layer Ativado!')"></div>
                 <div class="ad-overlay">
-                    <a href="https://otieu.com/4/9277353" target="_blank"></a>
+                    <a href="https://otieu.com/4/9277353" target="_blank">Anúncio</a>
                 </div>
+                <!-- Botão de tela cheia dentro do frame -->
                 <div class="fullscreen-button-base" id="fullscreenButtonBase">
                     <i class="fas fa-expand"></i>
                 </div>
             </div>
         </section>
+        <!-- Seção de Informações do Episódio -->
         <section class="episode-info-section" id="episode-info-section">
             <div class="episode-info-content">
                 <h3 class="episode-info-title">Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado</h3>
@@ -886,11 +849,10 @@ body {
                 </div>
             </div>
         </section>
+        <!-- Navegação de Episódios -->
         <section class="episode-navigation">
-            <a href="https://linkpremiado51-cmd.github.io/Yshippanime/catalogo/saihate_no_paradin/saihate_no_paradin.html" class="episode-nav-btn prev catalog-btn"><i class="fas fa-arrow-left"></i> Voltar para o Catálogo</a>
-            
-            <div class="episode-nav-btn-container">
-                 </div>
+            <a href="saihate_no_paradin.html" class="episode-nav-btn prev"><i class="fas fa-arrow-left"></i> Voltar para o Catálogo</a>
+            <a href="catalogo/saihate_no_paradin/saihate_no_paradin_ep2.html" class="episode-nav-btn next">Próximo <i class="fas fa-arrow-right"></i></a>
         </section>
     </div>
     <div class="footer">
@@ -909,8 +871,12 @@ body {
         </button>
     </div>
 
+    <!-- NOVO: Camada anti-clique -->
     <div class="anti-click-layer"></div>
 
+    <!-- NOVO: Botão de tela cheia (removido da posição original) -->
+
+    <!-- NOVO: Modal de proporções -->
     <div class="aspect-modal" id="aspectModal">
         <h3>Selecionar Proporção</h3>
         <div class="aspect-option" data-aspect="16:9">
@@ -1347,14 +1313,8 @@ body {
 
         // NOVO: Função para carregar os dados do episódio com base no número fornecido
         function loadEpisodeData(episodeNumber) {
-            const currentNumber = parseInt(episodeNumber);
-            const episode = episodesData.find(ep => ep.number === currentNumber);
-            const navContainer = document.querySelector('.episode-nav-btn-container');
-
-            // Limpa botões de navegação anteriores
-            if (navContainer) {
-                navContainer.innerHTML = '';
-            }
+            // Encontra o episódio com o número especificado
+            const episode = episodesData.find(ep => ep.number == episodeNumber);
 
             if (episode) {
                 // Atualiza o título da página
@@ -1385,31 +1345,26 @@ body {
                     synopsisText.textContent = episode.synopsis;
                 }
 
-                // Lógica de navegação Anterior/Próximo
-                if (navContainer) {
-                    // Botão Anterior
-                    if (currentNumber > 1) {
-                        const prevBtn = document.createElement('a');
-                        prevBtn.id = 'prev-episode-btn';
-                        prevBtn.href = `episodios.html?episodio=${currentNumber - 1}`;
-                        prevBtn.className = 'episode-nav-btn prev';
-                        prevBtn.innerHTML = '<i class="fas fa-backward"></i> Anterior';
-                        navContainer.appendChild(prevBtn);
-                    }
+                // Atualiza os botões de navegação
+                const prevBtn = document.querySelector('.episode-nav-btn.prev');
+                const nextBtn = document.querySelector('.episode-nav-btn.next');
 
-                    // Botão Próximo
-                    if (currentNumber < episodesData.length) {
-                        const nextBtn = document.createElement('a');
-                        nextBtn.id = 'next-episode-btn';
-                        nextBtn.href = `episodios.html?episodio=${currentNumber + 1}`;
-                        nextBtn.className = 'episode-nav-btn next';
-                        nextBtn.innerHTML = 'Próximo <i class="fas fa-forward"></i>';
-                        navContainer.appendChild(nextBtn);
-                    }
+                if (prevBtn && episode.number > 1) {
+                    prevBtn.href = `episodios.html?episodio=${episode.number - 1}`;
+                } else if (prevBtn) {
+                    prevBtn.href = "saihate_no_paradin.html";
+                }
+
+                if (nextBtn && episode.number < episodesData.length) {
+                    nextBtn.href = `episodios.html?episodio=${episode.number + 1}`;
+                } else if (nextBtn) {
+                    nextBtn.classList.add('disabled');
+                    nextBtn.style.pointerEvents = 'none';
+                    nextBtn.style.opacity = '0.6';
                 }
             } else {
                 // Se o episódio não for encontrado, exibe uma mensagem de erro
-                showNotification(`Episódio ${episodeNumber} não encontrado. Redirecionando...`);
+                showNotification(`Episódio ${episodeNumber} não encontrado.`);
                 // Você pode redirecionar para a página principal ou mostrar um erro
                 setTimeout(() => {
                     window.location.href = "saihate_no_paradin.html";
@@ -1424,10 +1379,16 @@ body {
             // Obtém o número do episódio da URL
             const episodeNumber = getURLParameter('episodio');
             
-            // Define o episódio inicial se não houver parâmetro (pode ser o 1)
-            const initialEpisode = episodeNumber ? episodeNumber : 1; 
-            
-            loadEpisodeData(initialEpisode);
+            // Verifica se o número do episódio foi fornecido
+            if (episodeNumber) {
+                loadEpisodeData(episodeNumber);
+            } else {
+                // Se nenhum episódio for especificado, redireciona para a página principal
+                showNotification('Nenhum episódio especificado. Redirecionando...');
+                setTimeout(() => {
+                    window.location.href = "saihate_no_paradin.html";
+                }, 3000);
+            }
             
             setupEventListeners();
         });
