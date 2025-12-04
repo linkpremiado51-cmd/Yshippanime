@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-/* INÍCIO DO CSS UNIFICADO (Estilo da Página do Episódio, baseado no código fixado) */
+/* INÍCIO DO CSS UNIFICADO (Estilo da Página do Episódio) */
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -533,7 +533,7 @@ body {
     width: 100%;
     max-width: 3000px;
     margin: 55px auto 0;
-    background: var(--surface);
+    background: #000; /* Fundo preto para o player */
     border-radius: 0px;
     box-shadow: var(--shadow-lg);
     position: relative;
@@ -544,7 +544,7 @@ body {
 /* Container do player com proporção 16:9 */
 .player-container {
     width: 100%;
-    padding-bottom: 70.25%;
+    padding-bottom: 56.25%; /* Proporção padrão 16:9 */
     position: relative;
     height: 0;
     background: #000;
@@ -572,35 +572,46 @@ body {
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 10;
+    z-index: 10004; /* Z-index menor que o anti-click */
     background: var(--card-bg);
     padding: 5px 10px;
     border-radius: 0px;
     box-shadow: var(--shadow);
     font-size: var(--font-size-xs);
     color: var(--text-primary);
-    /* Ajustado para acomodar o anti-click-layer com 25x25 */
     width: auto; 
     height: auto; 
     display: flex; 
     align-items: center;
     justify-content: center;
-    min-width: 50px;
-    min-height: 30px;
+    min-width: 75px;
+    min-height: 45px;
 }
-/* Camada anti-clique */
+/* Camada anti-clique (55x55, invisível, presente em tela cheia) */
 .anti-click-layer-ad {
     position: absolute;
     top: 0; 
     right: 0;
-    width: 25px; /* Camada anti-clique de 25x25 pixels */
-    height: 25px;
-    z-index: 11; /* Z-index maior que o do ad-overlay e player-container */
+    width: 55px; /* Novo tamanho: 55px */
+    height: 55px; /* Novo tamanho: 55px */
+    z-index: 10005; /* Z-index muito alto para garantir que esteja acima de tudo */
     pointer-events: auto; /* Permite que este elemento receba cliques */
     cursor: not-allowed;
-    /* Para visualização: remova na produção */
-    /* background: rgba(255, 0, 0, 0.3); */
+    background: transparent; /* Invisível */
+    opacity: 0.001; /* Garante que o elemento está lá, mas invisível */
 }
+/* Garante que a camada anti-clique permanece em tela cheia */
+:fullscreen .anti-click-layer-ad,
+:-webkit-full-screen .anti-click-layer-ad {
+    position: fixed; /* Fixa na tela cheia */
+    top: 0; 
+    right: 0;
+    width: 55px; 
+    height: 55px;
+    z-index: 10005; 
+    /* Garante que o clique seja capturado mesmo em tela cheia */
+}
+
 .ad-overlay a {
     color: var(--highlight-color);
     text-decoration: none;
@@ -708,8 +719,14 @@ body {
     pointer-events: none !important;
     opacity: 0.6;
 }
+/* AJUSTE: Botão Voltar para o Catálogo (Preto e Branco) */
 .episode-nav-btn.catalog-btn {
-    margin-right: auto; /* Empurra para a esquerda, mantendo o Próximo/Anterior na direita */
+    background: #000000; /* Preto */
+    color: #ffffff; /* Branco */
+    margin-right: auto; /* Empurra para a esquerda */
+}
+.episode-nav-btn.catalog-btn:hover {
+    background: #222222; /* Um tom um pouco mais claro para hover */
 }
 .episode-nav-btn.prev {
     justify-content: flex-start;
@@ -718,19 +735,7 @@ body {
     justify-content: flex-end;
 }
 
-/* NOVO: Camada anti-clique (Mantida para fins de teste no footer, mas a camada do ad está no player) */
-.anti-click-layer {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 60px;
-    height: 60px;
-    z-index: 1003;
-    pointer-events: auto;
-    cursor: not-allowed;
-}
-
-/* NOVO: Botão de tela cheia */
+/* NOVO: Botão de tela cheia (adicionado via JS) */
 .fullscreen-button-base {
     position: absolute;
     bottom: 10px;
@@ -750,54 +755,6 @@ body {
 .fullscreen-button-base:hover {
     background: var(--primary);
     color: white;
-}
-
-/* NOVO: Modal de proporções */
-.aspect-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 0;
-    padding: 20px;
-    z-index: 5001;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: var(--shadow-lg);
-    display: none;
-    flex-direction: column;
-    gap: 15px;
-}
-.aspect-modal h3 {
-    font-size: var(--font-size-md);
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: var(--text-primary);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 10px;
-}
-.aspect-option {
-    padding: 12px;
-    background: var(--menu-item-background);
-    border: 1px solid var(--border);
-    border-radius: 0;
-    cursor: pointer;
-    transition: background 0.2s;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.aspect-option:hover {
-    background: var(--menu-item-hover-background);
-}
-.aspect-option span:first-child {
-    font-weight: 600;
-}
-.aspect-option span:last-child {
-    color: var(--text-secondary);
-    font-size: var(--font-size-xs);
 }
     </style>
 </head>
@@ -843,12 +800,9 @@ body {
         <section class="episode-player-section" id="episode-player-section">
             <div class="player-container">
                 <iframe class="player-frame" id="player-frame" src="https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <div class="anti-click-layer-ad" onclick="showNotification('Anti-Click Layer Ativado!')"></div>
+                <div class="anti-click-layer-ad" onclick="showNotification('Anti-Click Layer Ativado!')"></div> 
                 <div class="ad-overlay">
                     <a href="https://otieu.com/4/9277353" target="_blank"></a>
-                </div>
-                <div class="fullscreen-button-base" id="fullscreenButtonBase">
-                    <i class="fas fa-expand"></i>
                 </div>
             </div>
         </section>
@@ -902,36 +856,6 @@ body {
         </button>
     </div>
 
-    <div class="anti-click-layer"></div>
-
-    <div class="aspect-modal" id="aspectModal">
-        <h3>Selecionar Proporção</h3>
-        <div class="aspect-option" data-aspect="16:9">
-            <span>16:9</span>
-            <span>Padrão antigo</span>
-        </div>
-        <div class="aspect-option" data-aspect="18:9">
-            <span>18:9</span>
-            <span>Univisium</span>
-        </div>
-        <div class="aspect-option" data-aspect="19:9">
-            <span>19:9</span>
-            <span>FullView</span>
-        </div>
-        <div class="aspect-option" data-aspect="19.5:9">
-            <span>19.5:9</span>
-            <span>Infinity Display</span>
-        </div>
-        <div class="aspect-option" data-aspect="20:9">
-            <span>20:9</span>
-            <span>Cinemático</span>
-        </div>
-        <div class="aspect-option" data-aspect="21:9">
-            <span>21:9</span>
-            <span>UltraWide</span>
-        </div>
-    </div>
-
     <div class="notification" id="notification"></div>
     <div class="modal-overlay" id="reportErrorModal">
         <div class="modal-content">
@@ -945,10 +869,11 @@ body {
     </div>
 
     <script type="module">
-        // Importações e Configurações de Firebase (Mantidas do original, mas não usadas aqui)
+        // Importações e Configurações de Firebase (Mantidas do original)
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
         import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
         import { getFirestore, collection, getDocs, doc, getDoc, addDoc } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
+        
         console.log('1. [INICIALIZAÇÃO] Iniciando script...');
         const firebaseConfig = {
             apiKey: "AIzaSyA9vB_anmutvZByIhKxsPJbsP0VZ7gyWB0",
@@ -967,6 +892,7 @@ body {
         // Constantes Globais
         const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
         const CONSTRUCTION_SUBTITLE = "Sistema em construção";
+        
         // Funções de utilidade (mantidas do original)
         async function getIPAddress() {
             // Lógica de IP mantida
@@ -1002,46 +928,6 @@ body {
         }
         window.showNotification = showNotification;
 
-        // NOVO: Função para abrir modal de proporções
-        function openAspectModal() {
-            const modal = document.getElementById('aspectModal');
-            if (modal) modal.style.display = 'block';
-        }
-
-        // NOVO: Função para fechar modal de proporções
-        function closeAspectModal() {
-            const modal = document.getElementById('aspectModal');
-            if (modal) modal.style.display = 'none';
-        }
-
-        // NOVO: Função para aplicar proporção e abrir tela cheia
-        function applyAspectRatio(aspect) {
-            const playerFrame = document.getElementById('player-frame');
-            const playerContainer = document.querySelector('.player-container');
-            const [width, height] = aspect.split(':').map(Number);
-            const ratio = height / width;
-            
-            // Aplica a proporção ao contêiner
-            playerContainer.style.paddingBottom = `${ratio * 100}%`;
-            
-            // Armazena a proporção selecionada para uso em tela cheia
-            playerFrame.dataset.aspectRatio = `${width}:${height}`;
-            
-            // Atualiza a altura mínima da seção do player com base na orientação do dispositivo
-            updatePlayerSectionMinHeight(ratio);
-            
-            closeAspectModal();
-
-            // Força a tela cheia imediatamente após aplicar a proporção
-            if (playerFrame.requestFullscreen) {
-                playerFrame.requestFullscreen();
-            } else if (playerFrame.webkitRequestFullscreen) {
-                playerFrame.webkitRequestFullscreen();
-            } else if (playerFrame.msRequestFullscreen) {
-                playerFrame.msRequestFullscreen();
-            }
-        }
-
         // NOVO: Função para atualizar a altura mínima da seção do player
         function updatePlayerSectionMinHeight(ratio) {
             const playerSection = document.getElementById('episode-player-section');
@@ -1057,18 +943,43 @@ body {
                 playerSection.style.minHeight = `${minHeight}px`;
             } else {
                 // Modo paisagem: a altura mínima pode ser baseada em uma altura fixa ou na altura da tela
-                // Vamos usar a mesma lógica anterior ou uma altura mínima fixa maior
                 const containerWidth = playerContainer.offsetWidth;
                 const minHeight = containerWidth * ratio;
                 playerSection.style.minHeight = `${minHeight}px`;
             }
         }
+        
+        // FUNÇÃO AJUSTADA: Aplica 16:9 e vai direto para fullscreen
+        function applyAspectRatio(aspect = "16:9") { 
+            const playerFrame = document.getElementById('player-frame');
+            const playerContainer = document.querySelector('.player-container');
+            const [width, height] = aspect.split(':').map(Number);
+            const ratio = height / width;
+            
+            // Aplica a proporção (padrão 16:9) ao contêiner
+            playerContainer.style.paddingBottom = `${ratio * 100}%`;
+            playerFrame.dataset.aspectRatio = `${width}:${height}`;
+            
+            updatePlayerSectionMinHeight(ratio);
+            
+            // Vai diretamente para tela cheia com a seção inteira
+            const elementToFullscreen = document.getElementById('episode-player-section'); 
+            
+            if (elementToFullscreen.requestFullscreen) {
+                elementToFullscreen.requestFullscreen();
+            } else if (elementToFullscreen.webkitRequestFullscreen) {
+                elementToFullscreen.webkitRequestFullscreen();
+            } else if (elementToFullscreen.msRequestFullscreen) {
+                elementToFullscreen.msRequestFullscreen();
+            }
+        }
+        // Fim da FUNÇÃO AJUSTADA
 
         // NOVO: Evento para atualizar a altura mínima ao mudar a orientação
         window.addEventListener('orientationchange', () => {
             setTimeout(() => {
                 const playerFrame = document.getElementById('player-frame');
-                const aspectRatio = playerFrame.dataset.aspectRatio;
+                const aspectRatio = playerFrame.dataset.aspectRatio || "16:9";
                 if (aspectRatio) {
                     const [width, height] = aspectRatio.split(':').map(Number);
                     const ratio = height / width;
@@ -1082,7 +993,7 @@ body {
             if (!document.fullscreenElement) {
                 // Saiu da tela cheia
                 const playerFrame = document.getElementById('player-frame');
-                const aspectRatio = playerFrame.dataset.aspectRatio;
+                const aspectRatio = playerFrame.dataset.aspectRatio || "16:9";
                 if (aspectRatio) {
                     const [width, height] = aspectRatio.split(':').map(Number);
                     const ratio = height / width;
@@ -1104,8 +1015,7 @@ body {
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const menuOverlay = document.getElementById('menuOverlay');
             const rootElement = document.documentElement;
-            const fullscreenButtonBase = document.getElementById('fullscreenButtonBase');
-            const aspectOptions = document.querySelectorAll('.aspect-option');
+            const playerSection = document.getElementById('episode-player-section');
 
             let currentScale = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
             const step = 0.05;
@@ -1194,16 +1104,22 @@ body {
                 });
             });
 
-            // NOVO: Evento para abrir modal de proporções
-            fullscreenButtonBase?.addEventListener('click', openAspectModal);
+            // NOVO: Cria e anexa o botão de tela cheia, e define o evento para ir direto para fullscreen
+            if(playerSection) {
+                 const newFullscreenButton = document.createElement('div');
+                 newFullscreenButton.className = 'fullscreen-button-base';
+                 newFullscreenButton.id = 'fullscreenButtonBase';
+                 newFullscreenButton.innerHTML = '<i class="fas fa-expand"></i>';
+                 playerSection.appendChild(newFullscreenButton);
 
-            // NOVO: Evento para aplicar proporção
-            aspectOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const aspect = option.dataset.aspect;
-                    applyAspectRatio(aspect);
-                });
-            });
+                 newFullscreenButton.addEventListener('click', () => {
+                     applyAspectRatio("16:9"); // Aplica o padrão 16:9 e vai direto para fullscreen
+                 });
+                 // Adiciona duplo clique no player para entrar em tela cheia (opcional)
+                 document.querySelector('.player-container')?.addEventListener('dblclick', () => {
+                     applyAspectRatio("16:9");
+                 });
+            }
 
             console.log('14. [EVENTOS] Configuração de event listeners concluída.');
         }
@@ -1233,7 +1149,7 @@ body {
                 releaseDate: "16 de out. de 2021",
                 duration: "24 min",
                 season: "1",
-                videoUrl: "https://drive.google.com/file/d/1Z6lnU84ZyQ1MMvwaO4dBoRQ53VaViufL/preview", // Atualize com o link real
+                videoUrl: "https://drive.google.com/file/d/1Z6lnU84ZyQ1MMvwaO4dBoRQ53VaViufL/preview", 
                 synopsis: "Will começa sua jornada e enfrenta os desafios do mundo exterior, aprendendo sobre a vida dos vivos."
             },
             {
@@ -1243,7 +1159,7 @@ body {
                 releaseDate: "23 de out. de 2021",
                 duration: "24 min",
                 season: "1",
-                videoUrl: "https://drive.google.com/file/d/10ZwqJLhMgSEb0DrOvFnbL91YwPbR0k61/preview", // Atualize com o link real
+                videoUrl: "https://drive.google.com/file/d/10ZwqJLhMgSEb0DrOvFnbL91YwPbR0k61/preview", 
                 synopsis: "Will e seus companheiros enfrentam um inimigo poderoso que ameaça a paz de uma vila."
             },
             {
@@ -1253,7 +1169,7 @@ body {
                 releaseDate: "30 de out. de 2021",
                 duration: "24 min",
                 season: "1",
-                videoUrl: "https://drive.google.com/file/d/13PJ6or0l_fx6TFn8pGHsVrLHRCpZ89E2/preview", // Atualize com o link real
+                videoUrl: "https://drive.google.com/file/d/13PJ6or0l_fx6TFn8pGHsVrLHRCpZ89E2/preview", 
                 synopsis: "Will descobre mais sobre seu passado e o legado de seus pais adotivos."
             },
             {
@@ -1263,7 +1179,7 @@ body {
                 releaseDate: "6 de nov. de 2021",
                 duration: "24 min",
                 season: "1",
-                videoUrl: "https://drive.google.com/file/d/1scxaqvP7Pk74c1EDAAXnRVjfcrY02H4p/preview", // Atualize com o link real
+                videoUrl: "https://drive.google.com/file/d/1scxaqvP7Pk74c1EDAAXnRVjfcrY02H4p/preview", 
                 synopsis: "Will e seus amigos descobrem uma antiga profecia sobre o fim do mundo."
             },
             {
@@ -1273,7 +1189,7 @@ body {
                 releaseDate: "13 de nov. de 2021",
                 duration: "24 min",
                 season: "1",
-                videoUrl: "https://drive.google.com/file/d/1e9BjWWzkvI-WCDxQ3P8PWo6xZ1SF1l1O/preview", // Atualize com o link real
+                videoUrl: "https://drive.google.com/file/d/1e9BjWWzkvI-WCDxQ3P8PWo6xZ1SF1l1O/preview", 
                 synopsis: "Will finalmente alcança seu objetivo de se tornar um verdadeiro paladino."
             },
             {
@@ -1283,7 +1199,7 @@ body {
                 releaseDate: "20 de nov. de 2021",
                 duration: "24 min",
                 season: "1",
-                videoUrl: "https://drive.google.com/file/d/1dkVPHrTatf1Ha8Aqi-KMmml0fXYHt9Ts/preview", // Atualize com o link real
+                videoUrl: "https://drive.google.com/file/d/1dkVPHrTatf1Ha8Aqi-KMmml0fXYHt9Ts/preview", 
                 synopsis: "Will treina com um mestre guerreiro e aprende a usar sua força para proteger os outros."
             },
             {
@@ -1293,7 +1209,7 @@ body {
                 releaseDate: "27 de nov. de 2021",
                 duration: "24 min",
                 season: "1",
-                videoUrl: "https://drive.google.com/file/d/1HbIAZ9DqHNJegkmJOLBis7xKVVmBeXjt/preview", // Atualize com o link real
+                videoUrl: "https://drive.google.com/file/d/1HbIAZ9DqHNJegkmJOLBis7xKVVmBeXjt/preview", 
                 synopsis: "Will chega à primeira cidade de humanos e descobre a complexidade da sociedade viva."
             },
             {
@@ -1303,7 +1219,7 @@ body {
                 releaseDate: "4 de dez. de 2021",
                 duration: "24 min",
                 season: "1",
-                videoUrl: "https://drive.google.com/file/d/1W4g4ooNv_ijUdxj63TcvkbJ-D5C7SsrH/preview", // Atualize com o link real
+                videoUrl: "https://drive.google.com/file/d/1W4g4ooNv_ijUdxj63TcvkbJ-D5C7SsrH/preview", 
                 synopsis: "Will descobre a verdade sobre seus pais adotivos e seu propósito no mundo."
             },
             {
@@ -1313,7 +1229,7 @@ body {
                 releaseDate: "11 de dez. de 2021",
                 duration: "24 min",
                 season: "1",
-                videoUrl: "https://drive.google.com/file/d/1uhsHL1h3rNveyKMv4sEA4Duj5ZdP0XhK/preview", // Atualize com o link real
+                videoUrl: "https://drive.google.com/file/d/1uhsHL1h3rNveyKMv4sEA4Duj5ZdP0XhK/preview", 
                 synopsis: "Will finalmente é reconhecido como um paladino de verdade e enfrenta seu maior desafio."
             },
             {
@@ -1323,7 +1239,7 @@ body {
                 releaseDate: "18 de dez. de 2021",
                 duration: "24 min",
                 season: "1",
-                videoUrl: "https://drive.google.com/file/d/1vrcY4wR4w4FYxPyHkgRUhDxij7bgzMAh/preview", // Atualize com o link real
+                videoUrl: "https://drive.google.com/file/d/1vrcY4wR4w4FYxPyHkgRUhDxij7bgzMAh/preview", 
                 synopsis: "Will e seus aliados se preparam para a batalha final contra a ameaça que assola o mundo."
             },
             {
@@ -1333,7 +1249,7 @@ body {
                 releaseDate: "25 de dez. de 2021",
                 duration: "24 min",
                 season: "1",
-                videoUrl: "https://drive.google.com/file/d/1eJ-mYEzHpmr27Pzpbr44a9zIfsR7tJBf/preview", // Atualize com o link real
+                videoUrl: "https://drive.google.com/file/d/1eJ-mYEzHpmr27Pzpbr44a9zIfsR7tJBf/preview", 
                 synopsis: "O desfecho da jornada de Will. A verdade sobre o mundo e seu destino final são revelados."
             }
         ];
