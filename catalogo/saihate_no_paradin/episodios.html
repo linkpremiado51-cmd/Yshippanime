@@ -567,27 +567,6 @@ body {
     max-width: none !important;
     max-height: none !important;
 }
-/* Overlay para o anúncio */
-.ad-overlay {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 10;
-    background: var(--card-bg);
-    padding: 5px 10px;
-    border-radius: 0px;
-    box-shadow: var(--shadow);
-    font-size: var(--font-size-xs);
-    color: var(--text-primary);
-}
-.ad-overlay a {
-    color: var(--highlight-color);
-    text-decoration: none;
-    font-weight: 600;
-}
-.ad-overlay a:hover {
-    color: var(--highlight-hover);
-}
 /* Estilo para a seção de informações do episódio */
 .episode-info-section {
     width: 100%;
@@ -685,7 +664,6 @@ body {
 .episode-nav-btn.next {
     justify-content: flex-end;
 }
-
 /* NOVO: Camada anti-clique */
 .anti-click-layer {
     position: fixed;
@@ -697,7 +675,6 @@ body {
     pointer-events: auto;
     cursor: not-allowed;
 }
-
 /* NOVO: Botão de tela cheia */
 .fullscreen-button-base {
     position: absolute;
@@ -719,7 +696,6 @@ body {
     background: var(--primary);
     color: white;
 }
-
 /* NOVO: Modal de proporções */
 .aspect-modal {
     position: fixed;
@@ -812,9 +788,6 @@ body {
         <section class="episode-player-section" id="episode-player-section">
             <div class="player-container">
                 <iframe class="player-frame" id="player-frame" src="https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <div class="ad-overlay">
-                    <a href="https://otieu.com/4/9277353" target="_blank">Anúncio</a>
-                </div>
                 <!-- Botão de tela cheia dentro do frame -->
                 <div class="fullscreen-button-base" id="fullscreenButtonBase">
                     <i class="fas fa-expand"></i>
@@ -850,9 +823,16 @@ body {
             </div>
         </section>
         <!-- Navegação de Episódios -->
-        <section class="episode-navigation">
-            <a href="saihate_no_paradin.html" class="episode-nav-btn prev"><i class="fas fa-arrow-left"></i> Voltar para o Catálogo</a>
-            <a href="catalogo/saihate_no_paradin/saihate_no_paradin_ep2.html" class="episode-nav-btn next">Próximo <i class="fas fa-arrow-right"></i></a>
+        <section class="episode-navigation" id="episode-navigation">
+            <a href="saihate_no_paradin.html" class="episode-nav-btn prev fixed-catalog">
+                <i class="fas fa-arrow-left"></i> Voltar para o Catálogo
+            </a>
+            <a href="#" class="episode-nav-btn prev episodio-anterior" style="display: none;">
+                <i class="fas fa-arrow-left"></i> Anterior
+            </a>
+            <a href="#" class="episode-nav-btn next episodio-proximo" style="display: none;">
+                Próximo <i class="fas fa-arrow-right"></i>
+            </a>
         </section>
     </div>
     <div class="footer">
@@ -870,12 +850,8 @@ body {
             <i class="fas fa-search-plus"></i>
         </button>
     </div>
-
     <!-- NOVO: Camada anti-clique -->
     <div class="anti-click-layer"></div>
-
-    <!-- NOVO: Botão de tela cheia (removido da posição original) -->
-
     <!-- NOVO: Modal de proporções -->
     <div class="aspect-modal" id="aspectModal">
         <h3>Selecionar Proporção</h3>
@@ -904,7 +880,6 @@ body {
             <span>UltraWide</span>
         </div>
     </div>
-
     <div class="notification" id="notification"></div>
     <div class="modal-overlay" id="reportErrorModal">
         <div class="modal-content">
@@ -916,7 +891,6 @@ body {
             <button class="modal-close-btn" id="closeReportModal">Cancelar</button>
         </div>
     </div>
-
     <script type="module">
         // Importações e Configurações de Firebase (Mantidas do original, mas não usadas aqui)
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
@@ -974,37 +948,29 @@ body {
             }, 4000);
         }
         window.showNotification = showNotification;
-
         // NOVO: Função para abrir modal de proporções
         function openAspectModal() {
             const modal = document.getElementById('aspectModal');
             if (modal) modal.style.display = 'block';
         }
-
         // NOVO: Função para fechar modal de proporções
         function closeAspectModal() {
             const modal = document.getElementById('aspectModal');
             if (modal) modal.style.display = 'none';
         }
-
         // NOVO: Função para aplicar proporção e abrir tela cheia
         function applyAspectRatio(aspect) {
             const playerFrame = document.getElementById('player-frame');
             const playerContainer = document.querySelector('.player-container');
             const [width, height] = aspect.split(':').map(Number);
             const ratio = height / width;
-            
             // Aplica a proporção ao contêiner
             playerContainer.style.paddingBottom = `${ratio * 100}%`;
-            
             // Armazena a proporção selecionada para uso em tela cheia
             playerFrame.dataset.aspectRatio = `${width}:${height}`;
-            
             // Atualiza a altura mínima da seção do player com base na orientação do dispositivo
             updatePlayerSectionMinHeight(ratio);
-            
             closeAspectModal();
-
             // Força a tela cheia imediatamente após aplicar a proporção
             if (playerFrame.requestFullscreen) {
                 playerFrame.requestFullscreen();
@@ -1014,15 +980,12 @@ body {
                 playerFrame.msRequestFullscreen();
             }
         }
-
         // NOVO: Função para atualizar a altura mínima da seção do player
         function updatePlayerSectionMinHeight(ratio) {
             const playerSection = document.getElementById('episode-player-section');
             const playerContainer = document.querySelector('.player-container');
-            
             // Verifica a orientação do dispositivo
             const isPortrait = window.innerHeight > window.innerWidth;
-            
             if (isPortrait) {
                 // Modo retrato: a altura mínima deve ser baseada na largura do contêiner
                 const containerWidth = playerContainer.offsetWidth;
@@ -1036,7 +999,6 @@ body {
                 playerSection.style.minHeight = `${minHeight}px`;
             }
         }
-
         // NOVO: Evento para atualizar a altura mínima ao mudar a orientação
         window.addEventListener('orientationchange', () => {
             setTimeout(() => {
@@ -1049,7 +1011,6 @@ body {
                 }
             }, 300); // Pequeno delay para esperar a orientação ser aplicada
         });
-
         // NOVO: Evento para atualizar a altura mínima ao sair da tela cheia
         document.addEventListener('fullscreenchange', () => {
             if (!document.fullscreenElement) {
@@ -1063,7 +1024,6 @@ body {
                 }
             }
         });
-
         // Funções de Event Listener (mantidas do original)
         function setupEventListeners() {
             console.log('13. [EVENTOS] Configurando event listeners...');
@@ -1079,11 +1039,9 @@ body {
             const rootElement = document.documentElement;
             const fullscreenButtonBase = document.getElementById('fullscreenButtonBase');
             const aspectOptions = document.querySelectorAll('.aspect-option');
-
             let currentScale = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
             const step = 0.05;
             const baseFontSize = 16;
-
             function updateZoom(showNotif = true) {
                 rootElement.style.fontSize = `${baseFontSize * currentScale}px`;
                 localStorage.setItem('zoomLevel', currentScale.toFixed(2));
@@ -1092,7 +1050,6 @@ body {
                 if (zoomInBtnFixed) zoomInBtnFixed.disabled = isDisabledMax;
                 if (zoomOutBtnFixed) zoomOutBtnFixed.disabled = isDisabledMin;
             }
-
             function handleZoom(direction) {
                 if (direction === 'in') {
                     currentScale = Math.min(1.5, currentScale + step);
@@ -1102,11 +1059,9 @@ body {
                 currentScale = parseFloat(currentScale.toFixed(2));
                 updateZoom(true);
             }
-
             zoomInBtnFixed?.addEventListener('click', () => handleZoom('in'));
             zoomOutBtnFixed?.addEventListener('click', () => handleZoom('out'));
             updateZoom(false);
-
             // Clica no botão de zoom-in após 1 segundo
             setTimeout(() => {
                 if (zoomInBtnFixed) zoomInBtnFixed.click();
@@ -1115,18 +1070,14 @@ body {
                     if (zoomOutBtnFixed) zoomOutBtnFixed.click();
                 }, 500);
             }, 1000);
-
             hamburgerBtn?.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openHamburgerMenu();
             });
-
             menuOverlay?.addEventListener('click', closeHamburgerMenu);
-
             searchInput?.addEventListener('input', (e) => {
                 // window.searchAnimes(e.target.value); // Não aplicável aqui
             });
-
             menuToggle?.addEventListener('click', (e) => {
                 e.stopPropagation();
                 mainMenu.classList.toggle('open');
@@ -1134,42 +1085,33 @@ body {
                     setTimeout(() => searchInput.focus(), 300);
                 }
             });
-
             document.addEventListener('click', (e) => {
                 if (mainMenu && !e.target.closest('#main-menu') && !e.target.closest('#menu-icon') && mainMenu.classList.contains('open')) {
                     mainMenu.classList.remove('open');
                 }
             });
-
             function toggleTheme() {
                 const newTheme = body.dataset.theme === 'light' ? 'dark' : 'light';
                 body.dataset.theme = newTheme;
                 localStorage.setItem('theme', newTheme);
             }
-
             themeToggle?.addEventListener('click', toggleTheme);
-
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.dataset.theme = savedTheme;
-
             document.getElementById('closeReportModal')?.addEventListener('click', closeReportModal);
-
             document.getElementById('reportErrorModal')?.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal-overlay')) {
                     closeReportModal();
                 }
             });
-
             document.querySelectorAll('.report-option').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const errorType = e.currentTarget.dataset.errorType;
                     recordReportError(errorType);
                 });
             });
-
             // NOVO: Evento para abrir modal de proporções
             fullscreenButtonBase?.addEventListener('click', openAspectModal);
-
             // NOVO: Evento para aplicar proporção
             aspectOptions.forEach(option => {
                 option.addEventListener('click', () => {
@@ -1177,16 +1119,13 @@ body {
                     applyAspectRatio(aspect);
                 });
             });
-
             console.log('14. [EVENTOS] Configuração de event listeners concluída.');
         }
-
         // NOVO: Função para obter o número do episódio da URL
         function getURLParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(name);
         }
-
         // NOVO: Dados dos episódios
         const episodesData = [
             {
@@ -1310,86 +1249,74 @@ body {
                 synopsis: "O desfecho da jornada de Will. A verdade sobre o mundo e seu destino final são revelados."
             }
         ];
-
-        // NOVO: Função para carregar os dados do episódio com base no número fornecido
+        // ✅ NOVA FUNÇÃO CORRIGIDA — carrega episódio e ajusta botões
         function loadEpisodeData(episodeNumber) {
-            // Encontra o episódio com o número especificado
             const episode = episodesData.find(ep => ep.number == episodeNumber);
+            const navSection = document.getElementById('episode-navigation');
+            const btnAnterior = navSection.querySelector('.episodio-anterior');
+            const btnProximo = navSection.querySelector('.episodio-proximo');
 
             if (episode) {
-                // Atualiza o título da página
+                // Atualiza título da página e metadados
                 document.title = `${episode.title} - Saihate no Paladin - Anime I Geek`;
                 document.querySelector('meta[name="description"]').content = `Assista ${episode.title} no Anime I Geek`;
 
-                // Atualiza o iframe do player
+                // Atualiza o iframe
                 const playerFrame = document.getElementById('player-frame');
-                if (playerFrame) {
-                    playerFrame.src = episode.videoUrl;
-                }
+                if (playerFrame) playerFrame.src = episode.videoUrl;
 
-                // Atualiza o título da seção
+                // Atualiza título da seção
                 const infoTitle = document.querySelector('.episode-info-title');
-                if (infoTitle) {
-                    infoTitle.textContent = episode.fullTitle;
+                if (infoTitle) infoTitle.textContent = episode.fullTitle;
+
+                // Atualiza informações do episódio
+                const infoValues = document.querySelectorAll('.episode-info-value');
+                if (infoValues.length >= 4) {
+                    infoValues[0].textContent = episode.title;
+                    infoValues[1].textContent = `${episode.releaseDate} ${episode.duration}`;
+                    infoValues[2].textContent = episode.season;
+                    infoValues[3].textContent = episode.number;
                 }
 
-                // Atualiza os dados do episódio
-                document.querySelector('.episode-info-value').textContent = episode.title;
-                document.querySelector('.episode-info-item:nth-child(2) .episode-info-value').textContent = `${episode.releaseDate} ${episode.duration}`;
-                document.querySelector('.episode-info-item:nth-child(3) .episode-info-value').textContent = episode.season;
-                document.querySelector('.episode-info-item:nth-child(4) .episode-info-value').textContent = episode.number;
-
-                // Atualiza a sinopse
+                // Atualiza sinopse
                 const synopsisText = document.getElementById('episode-synopsis-text');
-                if (synopsisText) {
-                    synopsisText.textContent = episode.synopsis;
+                if (synopsisText) synopsisText.textContent = episode.synopsis;
+
+                // Gerencia botões dinâmicos
+                if (episode.number > 1) {
+                    btnAnterior.href = `episodios.html?episodio=${episode.number - 1}`;
+                    btnAnterior.style.display = 'flex';
+                } else {
+                    btnAnterior.style.display = 'none';
                 }
 
-                // Atualiza os botões de navegação
-                const prevBtn = document.querySelector('.episode-nav-btn.prev');
-                const nextBtn = document.querySelector('.episode-nav-btn.next');
-
-                if (prevBtn && episode.number > 1) {
-                    prevBtn.href = `episodios.html?episodio=${episode.number - 1}`;
-                } else if (prevBtn) {
-                    prevBtn.href = "saihate_no_paradin.html";
+                if (episode.number < episodesData.length) {
+                    btnProximo.href = `episodios.html?episodio=${episode.number + 1}`;
+                    btnProximo.style.display = 'flex';
+                } else {
+                    btnProximo.style.display = 'none';
                 }
 
-                if (nextBtn && episode.number < episodesData.length) {
-                    nextBtn.href = `episodios.html?episodio=${episode.number + 1}`;
-                } else if (nextBtn) {
-                    nextBtn.classList.add('disabled');
-                    nextBtn.style.pointerEvents = 'none';
-                    nextBtn.style.opacity = '0.6';
-                }
             } else {
-                // Se o episódio não for encontrado, exibe uma mensagem de erro
                 showNotification(`Episódio ${episodeNumber} não encontrado.`);
-                // Você pode redirecionar para a página principal ou mostrar um erro
                 setTimeout(() => {
                     window.location.href = "saihate_no_paradin.html";
                 }, 3000);
             }
         }
 
-        // Carrega os dados do episódio quando a página é carregada
+        // Carrega episódio ao iniciar
         document.addEventListener('DOMContentLoaded', () => {
             console.log('17. [DOM] DOMContentLoaded. Chamando setupEventListeners().');
-            
-            // Obtém o número do episódio da URL
             const episodeNumber = getURLParameter('episodio');
-            
-            // Verifica se o número do episódio foi fornecido
             if (episodeNumber) {
                 loadEpisodeData(episodeNumber);
             } else {
-                // Se nenhum episódio for especificado, redireciona para a página principal
                 showNotification('Nenhum episódio especificado. Redirecionando...');
                 setTimeout(() => {
                     window.location.href = "saihate_no_paradin.html";
                 }, 3000);
             }
-            
             setupEventListeners();
         });
 
@@ -1398,7 +1325,6 @@ body {
             localStorage.setItem('theme', document.body.dataset.theme);
             localStorage.setItem('zoomLevel', (parseFloat(document.documentElement.style.fontSize) / 16 || 0.75).toFixed(2));
         });
-
         console.log('18. [FINAL] Script da Página do Episódio carregado.');
     </script>
 </body>
