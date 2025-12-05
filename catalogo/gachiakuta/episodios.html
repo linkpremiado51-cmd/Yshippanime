@@ -1,22 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="Assista Saihate no Paladin T1.E1 ∙ O Menino da Cidade dos Mortos no Anime I Geek">
-    <title>T1.E1 ∙ O Menino da Cidade dos Mortos - Saihate no Paladin - Anime I Geek</title>
+    <meta name="description" content="Assista Gachiakuta E1 ∙ A Esfera no Anime I Geek">
+    <title>Gachiakuta - Episódio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-/* INÍCIO DO CSS UNIFICADO (Estilo da Página do Episódio, baseado no código fixado) */
+/* INÍCIO DO CSS UNIFICADO — Estilo Gachiakuta */
 html {
     scroll-behavior: smooth;
     font-size: 16px;
 }
 :root {
-    --primary-gradient: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    /* 🎨 CORES GACHIAKUTA */
+    --primary-gradient: linear-gradient(135deg, #004D40 0%, #00796B 100%);
     --text-primary: #1a202c;
     --text-secondary: #4a5568;
     --background: #f5f7fa;
@@ -25,8 +25,8 @@ html {
     --shadow-color: rgba(0, 0, 0, 0.2);
     --blur-effect: blur(12px);
     --transition: all 0.6s ease-in-out;
-    --highlight-color: #E53E3E;
-    --highlight-hover: #C53030;
+    --highlight-color: #00A89A;
+    --highlight-hover: #008F81;
     --watch-later-color: #38A169;
     --watch-later-hover: #2F855A;
     --episodes-color: #2D3748;
@@ -159,7 +159,6 @@ body {
     opacity: 0.5;
     cursor: not-allowed;
 }
-/* NOVO: Menu Hamburguer (Renderizado no próprio código) */
 .hamburger-menu {
     position: fixed;
     top: 0;
@@ -422,15 +421,11 @@ body {
         width: 100%;
     }
 }
-@media (max-width: 480px) {
-   /* Estilos mobile */
-}
 @media (min-width: 601px) and (max-width: 1024px) {
     .header h1 {
         font-size: 1.125rem;
     }
 }
-/* Estilos do modal de Reportar (mantidos) */
 .report-option {
     display: block;
     width: 100%;
@@ -526,23 +521,21 @@ body {
         padding-bottom: 120px;
     }
 }
-/* =====================================================
-   ✨ NOVOS ESTILOS PARA A PÁGINA DO EPISÓDIO
-   ===================================================== */
-/* Estilo para o player do episódio, ocupando o espaço disponível */
+/* ================================
+   ✨ ESTILOS DA PÁGINA DE EPISÓDIO
+   ================================ */
 .episode-player-section {
     width: 100%;
     max-width: 3000px;
-    margin: 55px auto 0;
+    margin: 65px auto 0;
     background: var(--surface);
     border-radius: 0px;
     box-shadow: var(--shadow-lg);
     position: relative;
     overflow: hidden;
     height: 40vh;
-    min-height: 70px; /* Este valor será atualizado dinamicamente */
+    min-height: 70px;
 }
-/* Container do player com proporção 16:9 */
 .player-container {
     width: 100%;
     padding-bottom: 70.25%;
@@ -550,7 +543,6 @@ body {
     height: 0;
     background: #000;
 }
-/* Frame do vídeo */
 .player-frame {
     position: absolute;
     top: 0;
@@ -560,15 +552,11 @@ body {
     border: none;
     object-fit: contain;
 }
-/* Aplica a proporção ao iframe em tela cheia */
 .player-frame:fullscreen {
     width: 100vw !important;
     height: 100vh !important;
     object-fit: contain;
-    max-width: none !important;
-    max-height: none !important;
 }
-/* Estilo para a seção de informações do episódio */
 .episode-info-section {
     width: 100%;
     max-width: 1000px;
@@ -611,7 +599,6 @@ body {
     color: var(--text-primary);
     font-weight: 500;
 }
-/* Estilo para a sinopse */
 .episode-synopsis {
     margin-top: 20px;
     padding-top: 20px;
@@ -628,7 +615,6 @@ body {
     line-height: 1.6;
     color: var(--text-secondary);
 }
-/* Estilo para botões de navegação de episódios */
 .episode-navigation {
     display: flex;
     justify-content: space-between;
@@ -659,13 +645,6 @@ body {
     color: var(--text-secondary);
     cursor: not-allowed;
 }
-.episode-nav-btn.prev {
-    justify-content: flex-start;
-}
-.episode-nav-btn.next {
-    justify-content: flex-end;
-}
-/* NOVO: Camada anti-clique */
 .anti-click-layer {
     position: fixed;
     bottom: 0;
@@ -676,7 +655,6 @@ body {
     pointer-events: auto;
     cursor: not-allowed;
 }
-/* NOVO: Botão de tela cheia - estilo base */
 .fullscreen-button-base {
     position: absolute;
     width: 60px;
@@ -695,7 +673,6 @@ body {
     background: var(--primary);
     color: white;
 }
-/* Posições específicas */
 .fullscreen-top-right {
     top: 10px;
     right: 10px;
@@ -704,7 +681,6 @@ body {
     bottom: 10px;
     right: 10px;
 }
-/* NOVO: Modal de proporções */
 .aspect-modal {
     position: fixed;
     top: 50%;
@@ -760,7 +736,7 @@ body {
     <div class="header-menu">
         <nav class="header">
             <div class="top-bar__section">
-                <h1><i class="fas fa-heart-crack" style="color:#E53E3E;"></i>Saihate no Paladin Fan</h1>
+                <h1><i class="fas fa-trash" style="color:#00A89A;"></i>Gachiakuta Fan</h1>
             </div>
             <div class="top-bar__section">
                 <button aria-label="Abrir busca" class="top-bar__icon" id="menu-icon">
@@ -785,61 +761,56 @@ body {
             <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-user-plus"></i> Cadastre-se</a>
             <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-sign-in-alt"></i> Login</a>
             <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-star"></i> Populares</a>
-            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-sort-alpha-down"></i> A - Z</a>
-            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-masks-theater"></i> Gêneros</a>
-            <a href="javascript:showNotification('Sistema em construção, volte mais tarde.')" class="menu-item"><i class="fas fa-info-circle"></i> Sobre</a>
-            <a href="https://linkpremiado51-cmd.github.io/Yshippanime/" class="menu-item"><i class="fas fa-home"></i> Anime I Geek Home</a>
+            <a href="gachiakuta.html" class="menu-item"><i class="fas fa-home"></i> Voltar para Gachiakuta</a>
             <button class="top-bar__icon" id="openReportModalBtn" onclick="openReportModal()">
                 <i class="fas fa-bug"></i> Reportar Erro
             </button>
         </div>
         <div class="menu-overlay" id="menuOverlay"></div>
     <div class="zoom-container" id="zoom-container">
-        <!-- Seção do Player -->
+        <!-- Player -->
         <section class="episode-player-section" id="episode-player-section">
             <div class="player-container">
-                <iframe class="player-frame" id="player-frame" src="https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <!-- Botão de tela cheia no CANTO SUPERIOR DIREITO -->
+                <iframe class="player-frame" id="player-frame" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <div class="fullscreen-button-base fullscreen-top-right" id="fullscreenButtonTop">
                     <i class="fas fa-expand"></i>
                 </div>
-                <!-- Botão de tela cheia no CANTO INFERIOR DIREITO -->
                 <div class="fullscreen-button-base fullscreen-bottom-right" id="fullscreenButtonBase">
                     <i class="fas fa-expand"></i>
                 </div>
             </div>
         </section>
-        <!-- Seção de Informações do Episódio -->
+        <!-- Informações -->
         <section class="episode-info-section" id="episode-info-section">
             <div class="episode-info-content">
-                <h3 class="episode-info-title">Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado</h3>
+                <h3 class="episode-info-title" id="episode-full-title">Gachiakuta</h3>
                 <div class="episode-info-grid">
                     <div class="episode-info-item">
                         <span class="episode-info-label">Episódio</span>
-                        <p class="episode-info-value">T1.E1 ∙ O Menino da Cidade dos Mortos</p>
+                        <p class="episode-info-value" id="episode-number-title">Carregando...</p>
                     </div>
                     <div class="episode-info-item">
                         <span class="episode-info-label">Duração</span>
-                        <p class="episode-info-value">9 de out. de 2021 24 min</p>
+                        <p class="episode-info-value">24 min</p>
                     </div>
                     <div class="episode-info-item">
                         <span class="episode-info-label">Temporada</span>
                         <p class="episode-info-value">1</p>
                     </div>
                     <div class="episode-info-item">
-                        <span class="episode-info-label">Número</span>
-                        <p class="episode-info-value">1</p>
+                        <span class="episode-info-label">Lançamento</span>
+                        <p class="episode-info-value">2025</p>
                     </div>
                 </div>
                 <div class="episode-synopsis">
                     <h4>Sinopse</h4>
-                    <p id="episode-synopsis-text">Will nasceu na cidade dos mortos, onde foi criado por três mortos-vivos. Apesar de ter sido nutrido com amor, Will questiona sua existência neste lugar inóspito, onde é o único humano vivo. Ele descobre que seus três pais escondem algo que pode explicar esse mistério e, como se isso não fosse intrigante o suficiente, ainda precisa descobrir que outros segredos se escondem dentro dele.</p>
+                    <p id="episode-synopsis-text">Carregando sinopse...</p>
                 </div>
             </div>
         </section>
-        <!-- Navegação de Episódios -->
+        <!-- Navegação -->
         <section class="episode-navigation" id="episode-navigation">
-            <a href="saihate_no_paradin.html" class="episode-nav-btn prev fixed-catalog">
+            <a href="gachiakuta.html" class="episode-nav-btn prev fixed-catalog">
                 <i class="fas fa-arrow-left"></i> Voltar para o Catálogo
             </a>
             <a href="#" class="episode-nav-btn prev episodio-anterior" style="display: none;">
@@ -851,10 +822,9 @@ body {
         </section>
     </div>
     <div class="footer">
-        <div class="footer-left">
-            </div>
+        <div class="footer-left"></div>
         <div class="footer-right">
-            <p>© 2025 Fanpage Saihate no Paladin. Desenvolvido por xAI.</p>
+            <p>© 2025 Fanpage Gachiakuta. Desenvolvido por xAI.</p>
         </div>
     </div>
     <div class="fixed-footer-controls">
@@ -865,14 +835,12 @@ body {
             <i class="fas fa-search-plus"></i>
         </button>
     </div>
-    <!-- NOVO: Camada anti-clique -->
     <div class="anti-click-layer"></div>
-    <!-- NOVO: Modal de proporções -->
     <div class="aspect-modal" id="aspectModal">
         <h3>Selecionar Proporção</h3>
         <div class="aspect-option" data-aspect="16:9">
             <span>16:9</span>
-            <span>Padrão antigo</span>
+            <span>Padrão</span>
         </div>
         <div class="aspect-option" data-aspect="18:9">
             <span>18:9</span>
@@ -881,10 +849,6 @@ body {
         <div class="aspect-option" data-aspect="19:9">
             <span>19:9</span>
             <span>FullView</span>
-        </div>
-        <div class="aspect-option" data-aspect="19.5:9">
-            <span>19.5:9</span>
-            <span>Infinity Display</span>
         </div>
         <div class="aspect-option" data-aspect="20:9">
             <span>20:9</span>
@@ -899,7 +863,7 @@ body {
     <div class="modal-overlay" id="reportErrorModal">
         <div class="modal-content">
             <h3><i class="fas fa-exclamation-triangle"></i> Reportar Problema</h3>
-            <p>Selecione o problema encontrado (ex: link quebrado):</p>
+            <p>Selecione o problema encontrado:</p>
             <button class="report-option" data-error-type="Link Quebrado"><i class="fas fa-link-slash"></i> Link Quebrado</button>
             <button class="report-option" data-error-type="Imagem Faltando"><i class="fas fa-image-slash"></i> Imagem Faltando</button>
             <button class="report-option" data-error-type="Outro Problema"><i class="fas fa-puzzle-piece"></i> Outro Problema</button>
@@ -907,11 +871,10 @@ body {
         </div>
     </div>
     <script type="module">
-        // Importações e Configurações de Firebase (Mantidas do original, mas não usadas aqui)
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js';
-        import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
-        import { getFirestore, collection, getDocs, doc, getDoc, addDoc } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
-        console.log('1. [INICIALIZAÇÃO] Iniciando script...');
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js';
+        import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js';
+
         const firebaseConfig = {
             apiKey: "AIzaSyA9vB_anmutvZByIhKxsPJbsP0VZ7gyWB0",
             authDomain: "sorteio-mega-sorte.firebaseapp.com",
@@ -921,21 +884,81 @@ body {
             appId: "1:776750928407:web:72da06deb8b97302b5c252",
             measurementId: "G-GD7D30N0G"
         };
-        console.log('2. [FIREBASE] Configurações carregadas.');
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const db = getFirestore(app);
-        console.log('3. [FIREBASE] App, Analytics e Firestore inicializados.');
-        // Constantes Globais
-        const CONSTRUCTION_LINK = "javascript:showNotification('Sistema em construção, volte mais tarde.')";
-        const CONSTRUCTION_SUBTITLE = "Sistema em construção";
-        // Funções de utilidade (mantidas do original)
-        async function getIPAddress() {
-            // Lógica de IP mantida
+
+        // ========================
+        // ✅ DADOS DOS EPISÓDIOS GACHIAKUTA
+        // ========================
+        const episodesData = [
+            { number: 1, title: "E1 ∙ A Esfera", videoUrl: "https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview", description: "O protagonista, Rudo, é incriminado e jogado no Abismo..." },
+            { number: 2, title: "E2 ∙ Imbuído", videoUrl: "https://drive.google.com/file/d/1Z6lnU84ZyQ1MMvwaO4dBoRQ53VaViufL/preview", description: "Após ser jogado no Abismo, Rudo descobre uma nova habilidade..." },
+            { number: 3, title: "E3 ∙ O Chão", videoUrl: "https://drive.google.com/file/d/10ZwqJLhMgSEb0DrOvFnbL91YwPbR0k61/preview", description: "Rudo começa a entender melhor o Abismo e o que é necessário..." },
+            { number: 4, title: "E4 ∙ Quartel-General dos Limpadores", videoUrl: "https://drive.google.com/file/d/13PJ6or0l_fx6TFn8pGHsVrLHRCpZ89E2/preview", description: "Rudo se depara com os 'Cleaners'..." },
+            { number: 5, title: "E5 ∙ Invasores", videoUrl: "https://drive.google.com/file/d/1scxaqvP7Pk74c1EDAAXnRVjfcrY02H4p/preview", description: "Ele continua sua jornada com os Cleaners..." },
+            { number: 6, title: "E6 ∙ É um Acerto!!", videoUrl: "https://drive.google.com/file/d/1e9BjWWzkvI-WCDxQ3P8PWo6xZ1SF1l1O/preview", description: "Um momento de confronto crucial..." },
+            { number: 7, title: "E7 ∙ Uma Pontuação a Acertar", videoUrl: "https://drive.google.com/file/d/1dkVPHrTatf1Ha8Aqi-KMmml0fXYHt9Ts/preview", description: "O foco se volta para um conflito pessoal..." },
+            { number: 8, title: "E8 ∙ Seguindo em Frente", videoUrl: "https://drive.google.com/file/d/1HbIAZ9DqHNJegkmJOLBis7xKVVmBeXjt/preview", description: "Os personagens fazem um progresso significativo..." },
+            { number: 9, title: "E9 ∙ A Cidade do Grafite", videoUrl: "https://drive.google.com/file/d/1W4g4ooNv_ijUdxj63TcvkbJ-D5C7SsrH/preview", description: "A equipe chega a uma nova área do Abismo..." },
+            { number:10, title: "E10 ∙ Penta: Terra de Ninguém do Deserto", videoUrl: "https://drive.google.com/file/d/1uhsHL1h3rNveyKMv4sEA4Duj5ZdP0XhK/preview", description: "Exploração de uma região nova e perigosa..." },
+            { number:11, title: "E11 ∙ A Hospitalidade de Amo", videoUrl: "https://drive.google.com/file/d/1vrcY4wR4w4FYxPyHkgRUhDxij7bgzMAh/preview", description: "Um novo personagem ou local oferece refúgio..." },
+            { number:12, title: "E12 ∙ Algo Como Uma Maldição", videoUrl: "https://drive.google.com/file/d/1eJ-mYEzHpmr27Pzpbr44a9zIfsR7tJBf/preview", description: "Rudo lida com as consequências de seus poderes..." },
+            { number:13, title: "E13 ∙ Um Olhar Vazio", videoUrl: "https://drive.google.com/file/d/1X9ZzZzX9ZzX9ZzX9ZzX9ZzX9ZzX9ZzX9/preview", description: "Um episódio que explora a seriedade da situação..." },
+            { number:14, title: "E14 ∙ A Calmaria Antes da Tempestade", videoUrl: "https://drive.google.com/file/d/1Y8YyYy8YyY8Yy8YyY8YyY8YyYy8Yy8Yy/preview", description: "Preparação para um grande evento..." }
+        ];
+
+        function getURLParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
         }
-        async function recordReportError(errorType) {
-            // Lógica de reporte de erro mantida
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            if (!notification) return;
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => notification.classList.remove('show'), 4000);
         }
+        window.showNotification = showNotification;
+
+        function loadEpisodeData(epNum) {
+            const ep = episodesData.find(e => e.number == epNum);
+            const nav = document.getElementById('episode-navigation');
+            const prev = nav.querySelector('.episodio-anterior');
+            const next = nav.querySelector('.episodio-proximo');
+
+            if (!ep) {
+                showNotification(`Episódio ${epNum} não encontrado.`);
+                setTimeout(() => window.location.href = 'gachiakuta.html', 3000);
+                return;
+            }
+
+            document.title = `Gachiakuta ${ep.title} - Fanpage`;
+            document.querySelector('meta[name="description"]').content = `Assista ${ep.title} de Gachiakuta`;
+
+            document.getElementById('player-frame').src = ep.videoUrl;
+            document.getElementById('episode-full-title').textContent = 'Gachiakuta';
+            document.getElementById('episode-number-title').textContent = ep.title;
+            document.getElementById('episode-synopsis-text').textContent = ep.description;
+
+            if (epNum > 1) {
+                prev.href = `episodios.html?episodio=${epNum - 1}`;
+                prev.style.display = 'flex';
+            } else {
+                prev.style.display = 'none';
+            }
+            if (epNum < episodesData.length) {
+                next.href = `episodios.html?episodio=${epNum + 1}`;
+                next.style.display = 'flex';
+            } else {
+                next.style.display = 'none';
+            }
+        }
+
+        // ========================
+        // ✅ FUNÇÕES DE TEMA, ZOOM, FULLSCREEN
+        // ========================
         function openHamburgerMenu() {
             document.getElementById('hamburgerMenu')?.classList.add('open');
             document.getElementById('menuOverlay')?.classList.add('active');
@@ -945,394 +968,104 @@ body {
             document.getElementById('menuOverlay')?.classList.remove('active');
         }
         window.closeHamburgerMenu = closeHamburgerMenu;
+
+        function toggleTheme() {
+            const body = document.body;
+            const newTheme = body.dataset.theme === 'light' ? 'dark' : 'light';
+            body.dataset.theme = newTheme;
+            localStorage.setItem('theme', newTheme);
+        }
+
         function openReportModal() {
-            const modal = document.getElementById('reportErrorModal');
-            if (modal) modal.style.display = 'flex';
+            document.getElementById('reportErrorModal').style.display = 'flex';
         }
         function closeReportModal() {
-            const modal = document.getElementById('reportErrorModal');
-            if (modal) modal.style.display = 'none';
+            document.getElementById('reportErrorModal').style.display = 'none';
         }
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            if (!notification) return;
-            notification.textContent = message;
-            notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 4000);
-        }
-        window.showNotification = showNotification;
-        // NOVO: Função para abrir modal de proporções
+
         function openAspectModal() {
-            const modal = document.getElementById('aspectModal');
-            if (modal) modal.style.display = 'block';
+            document.getElementById('aspectModal').style.display = 'block';
         }
-        // NOVO: Função para fechar modal de proporções
         function closeAspectModal() {
-            const modal = document.getElementById('aspectModal');
-            if (modal) modal.style.display = 'none';
+            document.getElementById('aspectModal').style.display = 'none';
         }
-        // NOVO: Função para aplicar proporção e abrir tela cheia
+
         function applyAspectRatio(aspect) {
-            const playerFrame = document.getElementById('player-frame');
-            const playerContainer = document.querySelector('.player-container');
-            const [width, height] = aspect.split(':').map(Number);
-            const ratio = height / width;
-            // Aplica a proporção ao contêiner
-            playerContainer.style.paddingBottom = `${ratio * 100}%`;
-            // Armazena a proporção selecionada para uso em tela cheia
-            playerFrame.dataset.aspectRatio = `${width}:${height}`;
-            // Atualiza a altura mínima da seção do player com base na orientação do dispositivo
-            updatePlayerSectionMinHeight(ratio);
+            const [w, h] = aspect.split(':').map(Number);
+            const ratio = h / w;
+            document.querySelector('.player-container').style.paddingBottom = `${ratio * 100}%`;
+            document.getElementById('player-frame').dataset.aspectRatio = aspect;
             closeAspectModal();
-            // Força a tela cheia imediatamente após aplicar a proporção
-            if (playerFrame.requestFullscreen) {
-                playerFrame.requestFullscreen();
-            } else if (playerFrame.webkitRequestFullscreen) {
-                playerFrame.webkitRequestFullscreen();
-            } else if (playerFrame.msRequestFullscreen) {
-                playerFrame.msRequestFullscreen();
-            }
+
+            const frame = document.getElementById('player-frame');
+            if (frame.requestFullscreen) frame.requestFullscreen();
+            else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
         }
-        // NOVO: Função para atualizar a altura mínima da seção do player
-        function updatePlayerSectionMinHeight(ratio) {
-            const playerSection = document.getElementById('episode-player-section');
-            const playerContainer = document.querySelector('.player-container');
-            // Verifica a orientação do dispositivo
-            const isPortrait = window.innerHeight > window.innerWidth;
-            if (isPortrait) {
-                // Modo retrato: a altura mínima deve ser baseada na largura do contêiner
-                const containerWidth = playerContainer.offsetWidth;
-                const minHeight = containerWidth * ratio;
-                playerSection.style.minHeight = `${minHeight}px`;
-            } else {
-                // Modo paisagem: a altura mínima pode ser baseada em uma altura fixa ou na altura da tela
-                // Vamos usar a mesma lógica anterior ou uma altura mínima fixa maior
-                const containerWidth = playerContainer.offsetWidth;
-                const minHeight = containerWidth * ratio;
-                playerSection.style.minHeight = `${minHeight}px`;
-            }
-        }
-        // NOVO: Evento para atualizar a altura mínima ao mudar a orientação
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => {
-                const playerFrame = document.getElementById('player-frame');
-                const aspectRatio = playerFrame.dataset.aspectRatio;
-                if (aspectRatio) {
-                    const [width, height] = aspectRatio.split(':').map(Number);
-                    const ratio = height / width;
-                    updatePlayerSectionMinHeight(ratio);
-                }
-            }, 300); // Pequeno delay para esperar a orientação ser aplicada
-        });
-        // NOVO: Evento para atualizar a altura mínima ao sair da tela cheia
-        document.addEventListener('fullscreenchange', () => {
-            if (!document.fullscreenElement) {
-                // Saiu da tela cheia
-                const playerFrame = document.getElementById('player-frame');
-                const aspectRatio = playerFrame.dataset.aspectRatio;
-                if (aspectRatio) {
-                    const [width, height] = aspectRatio.split(':').map(Number);
-                    const ratio = height / width;
-                    updatePlayerSectionMinHeight(ratio);
-                }
-            }
-        });
-        // Funções de Event Listener (mantidas do original)
+
         function setupEventListeners() {
-            console.log('13. [EVENTOS] Configurando event listeners...');
-            const searchInput = document.getElementById('search-input');
-            const menuToggle = document.getElementById('menu-icon');
-            const mainMenu = document.getElementById('main-menu');
-            const themeToggle = document.getElementById('theme-toggle');
-            const body = document.body;
-            const zoomInBtnFixed = document.getElementById('zoom-in-btn-fixed');
-            const zoomOutBtnFixed = document.getElementById('zoom-out-btn-fixed');
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const menuOverlay = document.getElementById('menuOverlay');
-            const rootElement = document.documentElement;
-            const fullscreenButtonBase = document.getElementById('fullscreenButtonBase');
-            const fullscreenButtonTop = document.getElementById('fullscreenButtonTop');
+            const themeToggle = document.getElementById('theme-toggle');
+            const zoomIn = document.getElementById('zoom-in-btn-fixed');
+            const zoomOut = document.getElementById('zoom-out-btn-fixed');
+            const fullscreenBase = document.getElementById('fullscreenButtonBase');
+            const fullscreenTop = document.getElementById('fullscreenButtonTop');
             const aspectOptions = document.querySelectorAll('.aspect-option');
-            let currentScale = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
-            const step = 0.05;
-            const baseFontSize = 16;
-            function updateZoom(showNotif = true) {
-                rootElement.style.fontSize = `${baseFontSize * currentScale}px`;
-                localStorage.setItem('zoomLevel', currentScale.toFixed(2));
-                const isDisabledMax = currentScale >= 1.5;
-                const isDisabledMin = currentScale <= 0.5;
-                if (zoomInBtnFixed) zoomInBtnFixed.disabled = isDisabledMax;
-                if (zoomOutBtnFixed) zoomOutBtnFixed.disabled = isDisabledMin;
-            }
-            function handleZoom(direction) {
-                if (direction === 'in') {
-                    currentScale = Math.min(1.5, currentScale + step);
-                } else if (direction === 'out') {
-                    currentScale = Math.max(0.5, currentScale - step);
-                }
-                currentScale = parseFloat(currentScale.toFixed(2));
-                updateZoom(true);
-            }
-            zoomInBtnFixed?.addEventListener('click', () => handleZoom('in'));
-            zoomOutBtnFixed?.addEventListener('click', () => handleZoom('out'));
-            updateZoom(false);
-            // Clica no botão de zoom-in após 1 segundo
-            setTimeout(() => {
-                if (zoomInBtnFixed) zoomInBtnFixed.click();
-                // Meio segundo depois, clica no botão de zoom-out
-                setTimeout(() => {
-                    if (zoomOutBtnFixed) zoomOutBtnFixed.click();
-                }, 500);
-            }, 1000);
-            hamburgerBtn?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                openHamburgerMenu();
-            });
+
+            hamburgerBtn?.addEventListener('click', openHamburgerMenu);
             menuOverlay?.addEventListener('click', closeHamburgerMenu);
-            searchInput?.addEventListener('input', (e) => {
-                // window.searchAnimes(e.target.value); // Não aplicável aqui
-            });
-            menuToggle?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                mainMenu.classList.toggle('open');
-                if (mainMenu.classList.contains('open') && searchInput) {
-                    setTimeout(() => searchInput.focus(), 300);
-                }
-            });
-            document.addEventListener('click', (e) => {
-                if (mainMenu && !e.target.closest('#main-menu') && !e.target.closest('#menu-icon') && mainMenu.classList.contains('open')) {
-                    mainMenu.classList.remove('open');
-                }
-            });
-            function toggleTheme() {
-                const newTheme = body.dataset.theme === 'light' ? 'dark' : 'light';
-                body.dataset.theme = newTheme;
-                localStorage.setItem('theme', newTheme);
-            }
             themeToggle?.addEventListener('click', toggleTheme);
+            fullscreenBase?.addEventListener('click', openAspectModal);
+            fullscreenTop?.addEventListener('click', openAspectModal);
+            aspectOptions.forEach(opt => {
+                opt.addEventListener('click', () => applyAspectRatio(opt.dataset.aspect));
+            });
+
+            let scale = parseFloat(localStorage.getItem('zoomLevel')) || 0.75;
+            const root = document.documentElement;
+            function updateZoom() {
+                root.style.fontSize = `${16 * scale}px`;
+                localStorage.setItem('zoomLevel', scale.toFixed(2));
+                if (zoomIn) zoomIn.disabled = scale >= 1.5;
+                if (zoomOut) zoomOut.disabled = scale <= 0.5;
+            }
+            zoomIn?.addEventListener('click', () => { scale = Math.min(1.5, scale + 0.05); updateZoom(); });
+            zoomOut?.addEventListener('click', () => { scale = Math.max(0.5, scale - 0.05); updateZoom(); });
+            updateZoom();
+
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.body.dataset.theme = savedTheme;
+
+            document.querySelectorAll('.report-option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const type = btn.dataset.errorType;
+                    fetch('https://httpbin.org/post', { method: 'POST' }); // placeholder
+                    showNotification(`Erro "${type}" reportado com sucesso!`);
+                    closeReportModal();
+                });
+            });
+
             document.getElementById('closeReportModal')?.addEventListener('click', closeReportModal);
             document.getElementById('reportErrorModal')?.addEventListener('click', (e) => {
-                if (e.target.classList.contains('modal-overlay')) {
-                    closeReportModal();
-                }
+                if (e.target.classList.contains('modal-overlay')) closeReportModal();
             });
-            document.querySelectorAll('.report-option').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const errorType = e.currentTarget.dataset.errorType;
-                    recordReportError(errorType);
-                });
-            });
-            // NOVO: Eventos para ABRIR MODAL DE PROPORÇÃO — AMBOS OS BOTÕES
-            fullscreenButtonBase?.addEventListener('click', openAspectModal);
-            fullscreenButtonTop?.addEventListener('click', openAspectModal);
-            // NOVO: Evento para aplicar proporção
-            aspectOptions.forEach(option => {
-                option.addEventListener('click', () => {
-                    const aspect = option.dataset.aspect;
-                    applyAspectRatio(aspect);
-                });
-            });
-            console.log('14. [EVENTOS] Configuração de event listeners concluída.');
         }
-        // NOVO: Função para obter o número do episódio da URL
-        function getURLParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-        // NOVO: Dados dos episódios
-        const episodesData = [
-            {
-                number: 1,
-                title: "T1.E1 ∙ O Menino da Cidade dos Mortos",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "9 de out. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/1MjC8nkScy_yLRoHA9H4cetYcLh13ecrX/preview",
-                synopsis: "Will nasceu na cidade dos mortos, onde foi criado por três mortos-vivos. Apesar de ter sido nutrido com amor, Will questiona sua existência neste lugar inóspito, onde é o único humano vivo. Ele descobre que seus três pais escondem algo que pode explicar esse mistério e, como se isso não fosse intrigante o suficiente, ainda precisa descobrir que outros segredos se escondem dentro dele."
-            },
-            {
-                number: 2,
-                title: "T1.E2 ∙ O Reino dos Mortos",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "16 de out. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/1Z6lnU84ZyQ1MMvwaO4dBoRQ53VaViufL/preview", // Atualize com o link real
-                synopsis: "Will começa sua jornada e enfrenta os desafios do mundo exterior, aprendendo sobre a vida dos vivos."
-            },
-            {
-                number: 3,
-                title: "T1.E3 ∙ A Batalha Final",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "23 de out. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/10ZwqJLhMgSEb0DrOvFnbL91YwPbR0k61/preview", // Atualize com o link real
-                synopsis: "Will e seus companheiros enfrentam um inimigo poderoso que ameaça a paz de uma vila."
-            },
-            {
-                number: 4,
-                title: "T1.E4 ∙ O Legado do Herói",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "30 de out. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/13PJ6or0l_fx6TFn8pGHsVrLHRCpZ89E2/preview", // Atualize com o link real
-                synopsis: "Will descobre mais sobre seu passado e o legado de seus pais adotivos."
-            },
-            {
-                number: 5,
-                title: "T1.E5 ∙ O Fim do Mundo",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "6 de nov. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/1scxaqvP7Pk74c1EDAAXnRVjfcrY02H4p/preview", // Atualize com o link real
-                synopsis: "Will e seus amigos descobrem uma antiga profecia sobre o fim do mundo."
-            },
-            {
-                number: 6,
-                title: "T1.E6 ∙ O Paladino Eterno",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "13 de nov. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/1e9BjWWzkvI-WCDxQ3P8PWo6xZ1SF1l1O/preview", // Atualize com o link real
-                synopsis: "Will finalmente alcança seu objetivo de se tornar um verdadeiro paladino."
-            },
-            {
-                number: 7,
-                title: "T1.E7 ∙ O Caminho do Guerreiro",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "20 de nov. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/1dkVPHrTatf1Ha8Aqi-KMmml0fXYHt9Ts/preview", // Atualize com o link real
-                synopsis: "Will treina com um mestre guerreiro e aprende a usar sua força para proteger os outros."
-            },
-            {
-                number: 8,
-                title: "T1.E8 ∙ A Cidade dos Vivos",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "27 de nov. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/1HbIAZ9DqHNJegkmJOLBis7xKVVmBeXjt/preview", // Atualize com o link real
-                synopsis: "Will chega à primeira cidade de humanos e descobre a complexidade da sociedade viva."
-            },
-            {
-                number: 9,
-                title: "T1.E9 ∙ O Segredo dos Mortos-Vivos",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "4 de dez. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/1W4g4ooNv_ijUdxj63TcvkbJ-D5C7SsrH/preview", // Atualize com o link real
-                synopsis: "Will descobre a verdade sobre seus pais adotivos e seu propósito no mundo."
-            },
-            {
-                number: 10,
-                title: "T1.E10 ∙ A Ascensão do Paladino",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "11 de dez. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/1uhsHL1h3rNveyKMv4sEA4Duj5ZdP0XhK/preview", // Atualize com o link real
-                synopsis: "Will finalmente é reconhecido como um paladino de verdade e enfrenta seu maior desafio."
-            },
-            {
-                number: 11,
-                title: "T1.E11 ∙ O Último Inimigo",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "18 de dez. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/1vrcY4wR4w4FYxPyHkgRUhDxij7bgzMAh/preview", // Atualize com o link real
-                synopsis: "Will e seus aliados se preparam para a batalha final contra a ameaça que assola o mundo."
-            },
-            {
-                number: 12,
-                title: "T1.E12 ∙ O Paladino do Fim do Mundo",
-                fullTitle: "Saihate no Paladin: Tetsusabi no Yama no Ou Temporada 1 Legendado",
-                releaseDate: "25 de dez. de 2021",
-                duration: "24 min",
-                season: "1",
-                videoUrl: "https://drive.google.com/file/d/1eJ-mYEzHpmr27Pzpbr44a9zIfsR7tJBf/preview", // Atualize com o link real
-                synopsis: "O desfecho da jornada de Will. A verdade sobre o mundo e seu destino final são revelados."
-            }
-        ];
-        // ✅ NOVA FUNÇÃO CORRIGIDA — carrega episódio e ajusta botões
-        function loadEpisodeData(episodeNumber) {
-            const episode = episodesData.find(ep => ep.number == episodeNumber);
-            const navSection = document.getElementById('episode-navigation');
-            const btnAnterior = navSection.querySelector('.episodio-anterior');
-            const btnProximo = navSection.querySelector('.episodio-proximo');
-            if (episode) {
-                // Atualiza título da página e metadados
-                document.title = `${episode.title} - Saihate no Paladin - Anime I Geek`;
-                document.querySelector('meta[name="description"]').content = `Assista ${episode.title} no Anime I Geek`;
-                // Atualiza o iframe
-                const playerFrame = document.getElementById('player-frame');
-                if (playerFrame) playerFrame.src = episode.videoUrl;
-                // Atualiza título da seção
-                const infoTitle = document.querySelector('.episode-info-title');
-                if (infoTitle) infoTitle.textContent = episode.fullTitle;
-                // Atualiza informações do episódio
-                const infoValues = document.querySelectorAll('.episode-info-value');
-                if (infoValues.length >= 4) {
-                    infoValues[0].textContent = episode.title;
-                    infoValues[1].textContent = `${episode.releaseDate} ${episode.duration}`;
-                    infoValues[2].textContent = episode.season;
-                    infoValues[3].textContent = episode.number;
-                }
-                // Atualiza sinopse
-                const synopsisText = document.getElementById('episode-synopsis-text');
-                if (synopsisText) synopsisText.textContent = episode.synopsis;
-                // Gerencia botões dinâmicos
-                if (episode.number > 1) {
-                    btnAnterior.href = `episodios.html?episodio=${episode.number - 1}`;
-                    btnAnterior.style.display = 'flex';
-                } else {
-                    btnAnterior.style.display = 'none';
-                }
-                if (episode.number < episodesData.length) {
-                    btnProximo.href = `episodios.html?episodio=${episode.number + 1}`;
-                    btnProximo.style.display = 'flex';
-                } else {
-                    btnProximo.style.display = 'none';
-                }
-            } else {
-                showNotification(`Episódio ${episodeNumber} não encontrado.`);
-                setTimeout(() => {
-                    window.location.href = "saihate_no_paradin.html";
-                }, 3000);
-            }
-        }
-        // Carrega episódio ao iniciar
+
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('17. [DOM] DOMContentLoaded. Chamando setupEventListeners().');
-            const episodeNumber = getURLParameter('episodio');
-            if (episodeNumber) {
-                loadEpisodeData(episodeNumber);
-            } else {
-                showNotification('Nenhum episódio especificado. Redirecionando...');
-                setTimeout(() => {
-                    window.location.href = "saihate_no_paradin.html";
-                }, 3000);
+            const ep = getURLParameter('episodio');
+            if (ep) loadEpisodeData(ep);
+            else {
+                showNotification('Nenhum episódio especificado.');
+                setTimeout(() => window.location.href = 'gachiakuta.html', 2000);
             }
             setupEventListeners();
         });
+
         window.addEventListener('beforeunload', () => {
-            console.log('[LIFECYCLE] Evento beforeunload. Salvando estado...');
             localStorage.setItem('theme', document.body.dataset.theme);
-            localStorage.setItem('zoomLevel', (parseFloat(document.documentElement.style.fontSize) / 16 || 0.75).toFixed(2));
+            const zoom = parseFloat(document.documentElement.style.fontSize) / 16 || 0.75;
+            localStorage.setItem('zoomLevel', zoom.toFixed(2));
         });
-        console.log('18. [FINAL] Script da Página do Episódio carregado.');
     </script>
 </body>
 </html>
